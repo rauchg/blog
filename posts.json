@@ -1,0 +1,24 @@
+{
+  "posts": [
+    {
+      "id": "addressable-errors",
+      "date": "February 4, 2016",
+      "title": "Addressable Errors"
+    },
+    {
+      "id": "pure-ui",
+      "date": "July 13, 2015",
+      "title": "Pure UI"
+    },
+    {
+      "id": "ecmascript-6",
+      "date": "February 22, 2015",
+      "title": "ECMAScript 6"
+    },
+    {
+      "id": "7-principles-of-rich-web-applications",
+      "date": "November 4, 2014",
+      "title": "7 Principles of Rich Web Applications"
+    }
+  ]
+}

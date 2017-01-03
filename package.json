@@ -1,0 +1,16 @@
+{
+  "name": "rauchg-blog",
+  "description": "rauchg.com (blog)",
+  "engines": {
+    "ace": "beta"
+  },
+  "dependencies": {
+    "express": "^4.14.0",
+    "next": "beta"
+  },
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  }
+}
