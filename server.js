@@ -1,32 +1,30 @@
-// deps
-const express = require('express')
+const { createServer } = require('http')
+const { parse } = require('url')
 const next = require('next')
 
-// data
-const { posts } = require('./posts')
-const posts_ = {}
-posts.forEach(({ id }) => posts_[id] = true)
-
-// init
 const dev = process.env.NODE_ENV !== 'production'
-const app = next({ dir: '.', dev })
+const app = next({ dev })
 const handle = app.getRequestHandler()
 
 app.prepare()
 .then(() => {
-  const server = express()
+  createServer((req, res) => {
+    const { pathname } = parse(req.url)
 
-  server.get('*', (req, res) => {
-    const id = req.path.substr(1)
-
-    if (posts_[id]) {
-      app.render(req, res, `/posts/${id}`, req.query)
-    } else {
-      handle(req, res)
+    if (/^\/\d{4}\/.+\/$/.test(pathname)) {
+      // wordpress used to link to posts with a
+      // trailing slash, that would 404 in next
+      // so we redirect them to without
+      res.writeHead(301, {
+        Location: pathname.substr(0, pathname.length - 1)
+      })
+      res.end()
+      return
     }
-  })
 
-  server.listen(3000, (err) => {
+    handle(req, res)
+  })
+  .listen(3000, (err) => {
     if (err) throw err
     console.log('> Ready on http://localhost:3000')
   })
