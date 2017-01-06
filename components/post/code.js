@@ -3,7 +3,7 @@ export default ({ children }) => (
     { children }
     <style jsx>{`
       code {
-        color: #999;
+        color: #666;
         font-family: monospace;
       }
     `}</style>

@@ -1,17 +1,20 @@
 import Head from 'next/head'
 import Post from '../../layouts/post'
 import Title from '../../components/post/title'
+import Meta from '../../components/post/meta'
 import P from '../../components/post/paragraph'
 import HR from '../../components/post/hr'
 import Code from '../../components/post/code'
 import Snippet from '../../components/post/snippet'
 import { Ref, FootNotes, Note } from '../../components/post/footnotes'
 import Figure, { Image } from '../../components/post/figure'
+import withViews from '../../lib/with-views'
 
-export default () => (
+export default withViews(({ views }) => (
   <Post>
     <Head><title>Pure UI</title></Head>
     <Title>Pure UI</Title>
+    <Meta date="July 13, 2015" views={ views } />
 
     <P>I recently redesigned and implemented a new version
     of <a href={links[0]} target="_blank">VideoPress</a>,
@@ -402,7 +405,7 @@ export default () => (
       </Note>
     </FootNotes>
   </Post>
-)
+))
 
 const links = [
   'https://videopress.com',

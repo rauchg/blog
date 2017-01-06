@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Post from '../../layouts/post'
 import P from '../../components/post/paragraph'
 import Title from '../../components/post/title'
+import Meta from '../../components/post/meta'
 import Quote from '../../components/post/quote'
 import { H2, H3 } from '../../components/post/heading'
 import Code from '../../components/post/code'
@@ -10,11 +11,14 @@ import UL, { LI as ULI } from '../../components/post/bullets-list'
 import OL, { LI as OLI } from '../../components/post/numbers-list'
 import TLDR from '../../components/post/tldr'
 import Figure, { Image } from '../../components/post/figure'
+import withViews from '../../lib/with-views'
 
-export default () => (
+export default withViews(({ views }) => (
   <Post>
     <Head><title>7 Principles of Rich Web Applications</title></Head>
     <Title>7 Principles of Rich Web Applications</Title>
+    <Meta date="November 4, 2014" views={ views } />
+
     <P><span className="translations">Also available
     in: <a href={links[0]} target="_blank">Japanese</a>,{' '}
     <a href={links[1]} target="_blank">Russian</a>,{' '}
@@ -805,7 +809,7 @@ So: the hardware of the Internet can currently achieve within a factor of two of
       }
     `}</style>
   </Post>
-)
+))
 
 const links = [
   'http://yosuke-furukawa.hatenablog.com/entry/2014/11/14/141415',

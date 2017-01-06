@@ -5,6 +5,8 @@ export default ({ children }) => (
   <div className="main">
     <div className="logo">
       <Link href="/"><a>rauchg.com</a></Link>
+      {' '}
+      (<a href={`https://github.com/rauchg/blog`} target="_blank">src</a>)
     </div>
 
     { children }

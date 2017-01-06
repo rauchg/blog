@@ -1,6 +1,8 @@
-export default ({ desc, children, wide  }) => (
+export default ({ desc, href, children, wide  }) => (
   <div className={ wide && 'wide' }>
-    { children }
+    { href
+        ? <a href={ href } target="_blank">{ children }</a>
+        : children }
     {
       desc && <p>
         { desc }
@@ -9,7 +11,7 @@ export default ({ desc, children, wide  }) => (
     <style jsx>{`
       div {
         text-align: center;
-        margin-bottom: 30px;
+        margin-bottom: 20px;
       }
 
       p {
@@ -38,9 +40,9 @@ export default ({ desc, children, wide  }) => (
   </div>
 )
 
-const Image = ({ src }) => (
+const Image = ({ width, src }) => (
   <div>
-    <img src={src} />
+    <img width={width} src={src} />
     <style jsx>{`
       img {
         max-width: 100%;
@@ -50,4 +52,16 @@ const Image = ({ src }) => (
   </div>
 )
 
-export { Image }
+const Video = ({ src }) => (
+  <div>
+    <video autoPlay loop src={src} />
+    <style jsx>{`
+      video {
+        max-width: 100%;
+        margin: 15px 0;
+      }
+    `}</style>
+  </div>
+)
+
+export { Image, Video }

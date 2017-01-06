@@ -2,16 +2,19 @@ import Head from 'next/head'
 import Post from '../../layouts/post'
 import P from '../../components/post/paragraph'
 import Title from '../../components/post/title'
+import Meta from '../../components/post/meta'
 import Quote from '../../components/post/quote'
 import { H2, H3 } from '../../components/post/heading'
 import { Ref, FootNotes, Note } from '../../components/post/footnotes'
 import Code from '../../components/post/code'
 import Snippet from '../../components/post/snippet'
+import withViews from '../../lib/with-views'
 
-export default () => (
+export default withViews(({ views }) => (
   <Post>
     <Head><title>ECMAScript 6</title></Head>
     <Title>ECMAScript 6</Title>
+    <Meta date="February 22, 2015" views={ views } />
 
     <Quote by="Ludwig Wittgenstein">
       The limits of my language mean the limits of my world.
@@ -399,7 +402,7 @@ var method = opts.method || 'GET'`}</Snippet>
       </Note>
     </FootNotes>
   </Post>
-)
+))
 
 const links = [
   'https://twitter.com/fogus/status/550717447163355136',

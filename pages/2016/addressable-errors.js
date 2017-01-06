@@ -1,14 +1,17 @@
 import Head from 'next/head'
 import Post from '../../layouts/post'
 import Title from '../../components/post/title'
+import Meta from '../../components/post/meta'
 import P from '../../components/post/paragraph'
 import Code from '../../components/post/code'
 import { Ref, FootNotes, Note } from '../../components/post/footnotes'
+import withViews from '../../lib/with-views'
 
-export default () => (
+export default withViews(({ views }) => (
   <Post>
     <Head><title>Addressable Errors</title></Head>
     <Title>Addressable Errors</Title>
+    <Meta date="February 4, 2016" views={ views } />
 
     <P>One of the biggest problems with debugging is that error and
     warning messages are <b>static</b>. The only way for errors to become
@@ -48,7 +51,7 @@ export default () => (
       </Note>
     </FootNotes>
   </Post>
-)
+))
 
 const links = [
   'http://elm-lang.org/blog/compiler-errors-for-humans',

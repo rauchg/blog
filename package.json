@@ -5,8 +5,12 @@
     "ace": "beta"
   },
   "dependencies": {
+    "comma-number": "^1.1.0",
     "express": "^4.14.0",
-    "next": "^2.0.0-beta.12"
+    "firebase": "^3.6.4",
+    "isomorphic-fetch": "^2.2.1",
+    "next": "^2.0.0-beta.15",
+    "react-youtube": "^7.3.0"
   },
   "scripts": {
     "dev": "next",
