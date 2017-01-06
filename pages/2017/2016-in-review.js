@@ -226,7 +226,7 @@ export default withViews(({ views }) => (
     <P>The effectiveness of this mega-brain is a function of the ability
     of the "individual sub-brains", or neurons, to communicate.</P>
 
-    <P>Astonoshing evidence of this is given to us by <a href="https://en.wikipedia.org/wiki/Terence_Tao" target="_blank">Terence Tao</a>, Fields
+    <P>Astonishing evidence of this is given to us by <a href="https://en.wikipedia.org/wiki/Terence_Tao" target="_blank">Terence Tao</a>, Fields
     Medal winner, in the particular way he found the proof to 
     the <a href="https://en.wikipedia.org/wiki/Sign_sequence#Erd.C5.91s_discrepancy_problem" target="_blank">Erdős discrepancy problem</a> in {' '}
     <a href="http://www.nature.com/news/maths-whizz-solves-a-master-s-riddle-1.18441" target="_blank">late 2015</a>:</P>
@@ -312,7 +312,7 @@ export default withViews(({ views }) => (
     <Figure desc={<span>
         New York Times story from <a href="http://query.nytimes.com/gst/abstract.html?res=9F04E1D71E30EE3ABC4851DFB4668389639EDE&legacy=true" target="_blank">February 20, 1922</a> (<a href="http://query.nytimes.com/mem/archive-free/pdf?res=9F04E1D71E30EE3ABC4851DFB4668389639EDE" target="_blank">PDF</a>)
       </span>}>
-      <Image width={300} src="https://i.imgur.com/utcgDet.png" />
+      <Image width={300} src="https://cldup.com/ePCBk5ZmYM.png" />
     </Figure>
 
 
@@ -379,7 +379,7 @@ export default withViews(({ views }) => (
     translucent and large. Oops.</P>
 
     <Figure desc='"I could have sworn it was a beetle"'>
-      <Image src="https://i.imgur.com/qumqthA.jpg" />
+      <Image src="https://cldup.com/i2q5apnEho.jpg" />
     </Figure>
 
     <P>Notice that I used the word <em>hack</em> to describe these
@@ -524,7 +524,7 @@ export default withViews(({ views }) => (
     the closest:</P>
 
     <Figure desc="Need a module to compare versions? How about all the possible ones?">
-      <Image src="http://i.imgur.com/LnKQ31J.jpg" />
+      <Image src="https://cldup.com/mVLV4CAcnm.jpg" />
     </Figure>
 
     <H3 id="avatars">Beautiful Default Avatars</H3>
@@ -544,7 +544,7 @@ export default withViews(({ views }) => (
     to find harmonic colors:</P>
 
     <Figure desc="I opted for Triadic colors, with very pleasing results">
-      <Image src="https://i.imgur.com/LCVrtH0.png" />
+      <Image src="https://cldup.com/MvKtqKKINQ.png" />
     </Figure>
 
     <H2 id="bad-ideas">Things that Seemed like Bad Ideas</H2>
