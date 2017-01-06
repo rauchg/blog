@@ -18,7 +18,7 @@ export const FootNotes = ({ children }) => (
 )
 
 export const Ref = ({ id }) => (
-  <a href={`#f${id}`}>
+  <a href={`#f${id}`} id={`s${id}`}>
     [{ id }]
     <style jsx>{`
       a {
