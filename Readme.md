@@ -61,3 +61,14 @@ rest of the site.
 
 An index of all posts is maintained in JSON format as `./posts.json`
 for practical reasons.
+
+### Custom server
+
+I set up a `server.js` that boots up Next.js programatically. This
+gives me complete control over the HTTP request and response cycle.
+
+In this case, the routes structured under `pages/` are sufficient,
+but I set up a few redirections to retain compatibility with my
+previous WordPress based setup.
+
+To start the custom server, I run `node server.js` upon deployment.
