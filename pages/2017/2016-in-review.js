@@ -332,7 +332,7 @@ export default withViews(({ views }) => (
       <LI>Braille went digital many years before consumers had
       digital books on their tablets.</LI>
       <LI>The telephone was invented while building a device
-      for the hairing-impaired.</LI>
+      for the hearing-impaired.</LI>
       <LI>Keyboards were developed early on for people with
       disabilities.</LI>
       <LI>The blind community were some of the earliest adopters
