@@ -143,7 +143,7 @@ export default withViews(({ views }) => (
     <P>Now doesn't offer the so-called <b>function as a service</b>,
     because we think HTTP/2 is a more adequate abstraction.</P>
 
-    <P>It doesn't require re-inventing the wheel and specing out new
+    <P>It doesn't require re-inventing the wheel and thinking up new
     proprietary protocols and specificiations for
     what the request and response objects should look like.</P>
 
@@ -160,7 +160,7 @@ export default withViews(({ views }) => (
   return { name: users[0].name }
 }`}</Snippet>
 
-    <P>And with one command it gets served as a Node.js HTTP server: <Code>micro</Code></P>
+    <P>And with one command it gets served as a Node.js HTTP server: <Code>micro</Code>.</P>
 
     <P>Anything you <em>return</em> gets sent as a JSON response, but
     you retain the flexibility to serve out entire websites, APIs and
