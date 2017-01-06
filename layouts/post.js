@@ -12,5 +12,11 @@ export default ({ children }) => (
         font-size: 14px;
       }
     `}</style>
+    <style jsx global>{`
+      body {
+        width: 100%;
+        overflow-x: hidden;
+      }
+    `}</style>
   </Page>
 )

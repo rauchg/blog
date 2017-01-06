@@ -8,6 +8,8 @@ import Code from '../../components/post/code'
 import Snippet from '../../components/post/snippet'
 import { Ref, FootNotes, Note } from '../../components/post/footnotes'
 import Figure, { Image } from '../../components/post/figure'
+import loadScript from 'load-script'
+import React from 'react'
 import withViews from '../../lib/with-views'
 
 export default withViews(({ views }) => (
@@ -226,7 +228,7 @@ export default withViews(({ views }) => (
       // …`}</Snippet>
 
     <Figure wide>
-      woot
+      <div id="demo1" className="pure-ui-demo"></div>
     </Figure>
 
     <P>Throughout this exercise it became apparent that there was more
@@ -272,7 +274,7 @@ export default withViews(({ views }) => (
     thumbnail with a progress bar that notifies the user in realtime.</P>
 
     <Figure wide>
-      woot 2
+      <div id="demo2" className="pure-ui-demo"></div>
     </Figure>
 
     <P>Once rendered, I incorporated a <Code>[+]</Code> icon (which you can click
@@ -404,8 +406,183 @@ export default withViews(({ views }) => (
         the feature.
       </Note>
     </FootNotes>
+
+    { /* side effects from the third-party demo codebase */ }
+    <Demos />
+    <style jsx>{`
+      .pure-ui-demo {
+        vertical-align: top;
+        padding: 15px 0 0;
+        text-align: left;
+        position: relative;
+      }
+
+      #demo1.loaded {
+        padding-bottom: 10px;
+      }
+
+      #demo1.loaded::after {
+        content: 'Hint: click [+] to edit!';
+        font-size: 11px;
+        position: absolute;
+        left: 0px;
+        bottom: 15px;
+        color: #999;
+      }
+
+      #demo2 {
+        max-width: 600px;
+        margin: auto;
+      }
+
+      @media (max-width: 500px) {
+        #demo1 {
+          text-align: center;
+        }
+
+        #demo1 :global(.t) {
+          text-align: left;
+        }
+
+        #demo1 :global(.options) {
+          text-align: left;
+        }
+
+        #demo1 :global(.board) {
+          margin-right: 0;
+        }
+
+        #demo1.loaded::after {
+          content: 'Hint: tap [+] to edit!';
+          position: static;
+        }
+      }
+    `}</style>
   </Post>
 ))
+
+class Demos extends React.Component {
+  constructor (props) {
+    super(props)
+    this.onScriptLoad = this.onScriptLoad.bind(this)
+  }
+
+  componentDidMount () {
+    document.querySelector('#demo1').innerHTML = ''
+    document.querySelector('#demo2').innerHTML = ''
+    if (!window.Viewer) {
+      loadScript('https://cldup.com/uUo8iSbKXRh/C7isGX.js', (err) => {
+        if (err) return console.error('demo script load fail')
+        this.onScriptLoad()
+      })
+    } else {
+      this.onScriptLoad()
+    }
+  }
+
+  render () {
+    return <div>
+      <style jsx global>{`
+        /* this is specified here until we fix a bug with :global
+         * and descendants in styled-jsx */
+        .pure-ui-demo .category > .t {
+          display: none;
+        }
+      `}</style>
+    </div>
+  }
+
+  onScriptLoad () {
+    document.querySelector('#demo1').classList.add('loaded')
+
+    Viewer([
+      {
+        "title": "Thumb tooltip",
+        "views": [
+          [
+            {
+              "title": "Default",
+              "require": "thumbTip",
+              "params": {
+                "width": 136,
+                "height": 78,
+                "css": true
+              }
+            },
+            {
+              "title": "Custom offset (30px)",
+              "require": "thumbTip",
+              "params": {
+                "width": 136,
+                "height": 78,
+                "tipLeft": 30
+              }
+            },
+            {
+              "title": "Custom offset (left edge)",
+              "require": "thumbTip",
+              "params": {
+                "width": 136,
+                "height": 78,
+                "tipLeft": 0
+              }
+            },
+            {
+              "title": "Custom offset (right edge)",
+              "require": "thumbTip",
+              "params": {
+                "width": 136,
+                "height": 78,
+                "tipLeft": 142
+              }
+            },
+            {
+              "title": "Loading",
+              "require": "thumbTip",
+              "params": {
+                "width": 136,
+                "height": 78,
+                "waiting": true
+              }
+            },
+            {
+              "title": "Loaded",
+              "require": "thumbTip",
+              "params": {
+                "url": "https://cldup.com/tY2dbQWFVw.png",
+                "width": 136,
+                "height": 78,
+                "index": 38,
+                "rows": 10,
+                "cols": 10,
+                "at": 30
+              }
+            }
+          ]
+        ]
+      }
+    ], document.querySelector('#demo1'), () => {})
+
+    Viewer([
+      {
+        "title": "Transcoding",
+        "views": [
+          {
+            "title": "In progress (dark thumbnail)",
+            "require": "converting",
+            "params": {
+              "title": "The video of all galaxies that span the universe",
+              "bgurl": "https://cldup.com/VK_jwU0ZRK.png",
+              "progress": 65,
+              "width": 'ontouchstart' in document ? 320 : 560,
+              "height": 315
+            }
+          }
+        ]
+      }
+    ], document.querySelector('#demo2'), () => {})
+  }
+}
 
 const links = [
   'https://videopress.com',

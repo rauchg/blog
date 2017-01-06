@@ -138,6 +138,34 @@ export default withViews(({ views }) => (
       <LI>Already faster than <em>native</em> terminals across <a href="https://twitter.com/rauchg/status/758125063002427392" target="_blank">some</a> <a href="https://twitter.com/rauchg/status/808353136926593024" target="_blank">benchmarks</a>. Working on improving them all.</LI>
     </UL>
 
+    <H3 id="micro">Micro</H3>
+
+    <P>Now doesn't offer the so-called <b>function as a service</b>,
+    because we think HTTP/2 is a more adequate abstraction.</P>
+
+    <P>It doesn't require re-inventing the wheel and specing out new
+    proprietary protocols and specificiations for
+    what the request and response objects should look like.</P>
+
+    <P>However, I do love the <em>simplicity</em> of the approach, which
+    solves many common use cases. To that end,
+    I wrote <a href="https://github.com/zeit/micro" target="_blank">micro</a>,
+    a Node.js microservice framework.</P>
+
+    <P>Write your <Code>index.js</Code> file that <b>exports a function</b>:</P>
+
+    <Snippet>{`module.exports = async (req, res) => {
+  await authorizeUser(req)
+  const { users } = await getSomeData()
+  return { name: users[0].name }
+}`}</Snippet>
+
+    <P>And with one command it gets served as a Node.js HTTP server: <Code>micro</Code></P>
+
+    <P>Anything you <em>return</em> gets sent as a JSON response, but
+    you retain the flexibility to serve out entire websites, APIs and
+    even <a href="https://github.com/timneutkens/micro-graphql" target="_blank">GraphQL endpoints</a>!</P>
+
     <H3 id="next">Next.js</H3>
 
     <P><a href="https://github.com/zeit/next.js" target="_blank">Next.js</a> is a minimalist framework for server-rendered (universal) React applications.</P>
@@ -348,7 +376,7 @@ export default withViews(({ views }) => (
     <P>An amusing example is given of an Australian Beetle
     attempts to mate with a beer bottle because it
     satisfied its primitive heuristics. It had to be brown,
-    transulent and large. Oops.</P>
+    translucent and large. Oops.</P>
 
     <Figure desc='"I could have sworn it was a beetle"'>
       <Image src="https://i.imgur.com/qumqthA.jpg" />

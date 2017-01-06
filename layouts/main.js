@@ -20,18 +20,22 @@ export default ({ children }) => (
         padding: 25px 50px;
       }
 
-      @media (max-width: 500px) {
-        .main {
-          padding: 25px 15px;
-        }
-      }
-
       .logo {
         padding-bottom: 50px;
       }
 
       a {
         text-decoration: none;
+      }
+
+      @media (max-width: 500px) {
+        .main {
+          padding: 25px 15px;
+        }
+
+        .logo {
+          padding-bottom: 20px;
+        }
       }
     `}</style>
   </div>
