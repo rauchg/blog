@@ -5,7 +5,7 @@ import Head from 'next/head'
 export default () => (
   <Page>
     <Head>
-      <title>rauchg.com</title>
+      <title>Guillermo Rauch</title>
     </Head>
 
     <div className="home">
