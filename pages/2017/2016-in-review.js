@@ -113,7 +113,7 @@ export default withViews(({ views }) => (
 
     <P>Why productive? Because <a href="http://graydon2.dreamwidth.org/193447.html" target="_blank">text is king</a>. Text is low-bandwidth. Text is
     fast to input. Text is searchable.
-    If use <a href="http://forthedeveloper.com/2008/terminal-sweetness-reverse-i-search/" target="_blank"><Code>ctrl+r</Code></a>, you
+    If you use <a href="http://forthedeveloper.com/2008/terminal-sweetness-reverse-i-search/" target="_blank"><Code>ctrl+r</Code></a>, you
     know what I'm talking about.</P>
 
     <P><a href="https://hyper.is" target="_blank">Hyper</a> is the <a href="https://atom.io" target="_blank">Atom</a> of terminals. Written with and extensible with web technologies. Open Source.</P>
