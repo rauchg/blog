@@ -88,7 +88,7 @@ export default withViews(({ views }) => (
     I've been in too many companies where you depend on a specific {' '}
     <em>person or team</em> to manage this stuff.</P>
 
-    <P>Processes like that kill productivity and create invisible barries for product
+    <P>Processes like that kill productivity and create invisible barriers for product
     engineers. Worse yet, after a while you just get used to it.</P>
 
     <P>To solve this problem, we
