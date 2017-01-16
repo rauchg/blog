@@ -11,6 +11,14 @@ app.prepare()
   createServer((req, res) => {
     const { pathname } = parse(req.url)
 
+    if (/^\/slackin\/?$/.test(pathname)) {
+      res.writeHead(302, {
+        Location: 'https://github.com/rauchg/slackin'
+      })
+      res.end()
+      return
+    }
+
     if (/^\/\d{4}\/.+\/$/.test(pathname)) {
       // wordpress used to link to posts with a
       // trailing slash, that would 404 in next
