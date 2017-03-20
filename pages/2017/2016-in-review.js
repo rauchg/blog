@@ -24,7 +24,7 @@ export default withViews(({ views }) => (
     <P>What follows is a brief summary of my year organized by
     different categories.</P>
 
-    <P>This classification is certainly arbitrary, but it gives me model
+    <P>This classification is certainly arbitrary, but it gives me a model
     that I can use every year to look back and
     reflect on what's changed.</P>
 
