@@ -10,7 +10,7 @@ export default withViews(({ views }) => (
   <Post>
     <Head><title>It's Hard to Forego Efficiency</title></Head>
     <Title>It's Hard to Forego Efficiency</Title>
-    <Meta date="April 28, 2017" views={ views } />
+    <Meta date="March 28, 2017" views={ views } />
 
     <P>We live in a world of tradeoffs.</P>
 
@@ -30,12 +30,12 @@ export default withViews(({ views }) => (
       optimizing everything at once. Any extra minute you dedicate to an
       activity takes it away from something else.</P>
 
-    <P>In order to make progress in any system, we learn to be OK with
-      juggling many things and letting some balls drop to the ground.</P>
+    <P>In order to make progress in any system, we learn to be ok with
+      juggling many things and letting some drop to the ground.</P>
 
     <P>To meet a deadline, for example, you might choose to de-optimize
-      your reachability. Email starts piling in. Shipping is more
-      important, right?</P>
+      your availability. Email starts piling in and meetings get rescheduled.
+      Shipping is more important, right?</P>
 
     <P>When you start a new company, your website’s design might be lacking.</P>
 
@@ -45,12 +45,12 @@ export default withViews(({ views }) => (
 
     <P>My core argument is that once you’ve grown accustomed to a certain level of efficiency when performing a task, or a certain level of efficiency provided by the system or environment you are in, <b>it’s extraordinarily difficult to forego it</b>.</P>
 
-    <P>For a basic example, consider a task you repeat every single day: Googling things. Imagine you switch to a new web browser that makes rendering search results take 200 miliseconds instead of, previously, 20 miliseconds.</P>
+    <P>For a basic example, consider a task you repeat every single day: Googling things. Imagine you switch to a new web browser that makes rendering search results take 200 milliseconds instead of, previously, 20 milliseconds.</P>
 
     <P>It would be almost impossible to justify such a <em>backwards change</em> in
       your daily routine.</P>
 
-    <P>It’s not even necessary to experience superior efficiency for a long period of time to notice this effect. Even knowing greener and more efficient grass is out there does the same. If at your current job deploying an app to production takes hours, but you know of a colleague of yours that <a href="https://zeit.co/now" target="_blank">deploys in seconds</a>, you will feel its inexorable pull.</P>
+    <P>It’s not even necessary to experience superior efficiency for a long period to notice this effect. Even knowing greener and more efficient grass is out there does the same. If at your current job deploying an app to production takes hours, but you know of a colleague of yours that <a href="https://zeit.co/now" target="_blank">deploys in seconds</a>, you will feel its inexorable pull.</P>
 
     <P>This effect is valid for any system, and by no means limited to programming.</P>
 

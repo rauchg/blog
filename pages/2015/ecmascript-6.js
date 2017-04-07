@@ -251,7 +251,7 @@ var method = opts.method || 'GET'`}</Snippet>
     <Snippet>{`for (let i = 0; i < 10; i++) {}
 // \`i\` doesn't exist here.`}</Snippet>
 
-    <P>When you want to ensure immutability with the same semantics
+    <P>When you want to ensure <a href="https://mathiasbynens.be/notes/es6-const" target="_blank">binding immutability</a> with the same semantics
     as <Code>let</Code>, use <Code>const</Code> instead.</P>
 
     <H3 id="template-strings">template strings over concatenation</H3>
