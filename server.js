@@ -2,6 +2,8 @@ const { createServer } = require('http')
 const { parse } = require('url')
 const next = require('next')
 
+const atom = require('./lib/atom')
+
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler()
@@ -27,6 +29,12 @@ app.prepare()
         Location: pathname.substr(0, pathname.length - 1)
       })
       res.end()
+      return
+    }
+
+    if(/^\/atom\/?$/.test(pathname)) {
+      res.setHeader('Content-Type','text/xml')
+      res.end(atom())
       return
     }
 
