@@ -22,13 +22,12 @@ export default withViews(({ views }) => (
     <P><span className="translations">Also available
     in: <a href={links[0]} target="_blank">Japanese</a>,{' '}
     <a href={links[1]} target="_blank">Russian</a>,{' '}
-    <a href={links[2]} target="_blank">Chinese</a>,{' '}
-    <a href={links[3]} target="_blank">Portuguese</a></span>.</P>
+    <a href={links[2]} target="_blank">Portuguese</a></span>.</P>
 
     <P>This is a writeup based on a presentation I gave at BrazilJS
     in August 2014. It builds on some of the ideas I’ve
-    been <a href={links[4]} target="_blank">blogging</a> {' '}
-    <a href={links[5]} target="_blank">about</a> recently
+    been <a href={links[3]} target="_blank">blogging</a> {' '}
+    <a href={links[4]} target="_blank">about</a> recently
     related mostly to UX and performance.</P>
 
     <P>I want to introduce 7 actionable principles for websites that
@@ -38,8 +37,8 @@ export default withViews(({ views }) => (
 
     <P>JavaScript has undeniably become an indispensable tool
     for frontend developers. Its usage is now expanding into other areas
-    like <a href={links[6]} target="_blank">servers</a> and <a href={links[7]} target="_blank">microcontrollers</a>.
-    It’s the language of choice for introducing computer science concepts
+    like <a href={links[5]} target="_blank">servers</a> and <a href={links[6]} target="_blank">microcontrollers</a>.
+    It’s the language of choice for <a href={links[7]} target="_blank">introducing</a>  computer science concepts
     by prestigious universities.</P>
 
     <P>Yet a lot of questions on its precise role and usage on the web
@@ -119,8 +118,8 @@ export default withViews(({ views }) => (
 
     <P>The reasons are fairly straightforward. The medium by which pages
     are transmitted, the internet, has a theoretical speed limit.
-    This has been memorably illustrated by the famous essay/rant
-    “It’s the latency, stupid” by Stuart Cheshire:</P>
+    This has been memorably illustrated by the famous essay/rant <a href={links[8]} target="_blank">
+    “It’s the latency, stupid”</a> by Stuart Cheshire:</P>
 
     <Snippet>{`The distance from Stanford to Boston is 4320km.
 The speed of light in vacuum is 300 x 10^6 m/s.
@@ -178,7 +177,7 @@ So: the hardware of the Internet can currently achieve within a factor of two of
 
     <P>However, even in the presence of a cache, there’s a performance
     penalty when considering script parsing and evaluation
-    time. <a href={links[8]} target="_blank">“Is jQuery Too Big For Mobile?”</a> describes
+    time. <a href={links[9]} target="_blank">“Is jQuery Too Big For Mobile?”</a> describes
     how even for jQuery alone this could be in the order of hundreds of
     milliseconds for certain mobile browsers.</P>
 
@@ -203,7 +202,7 @@ So: the hardware of the Internet can currently achieve within a factor of two of
     This has two serious implications for SPAs:</P>
 
     <P>1. Large scripts take a lot longer to download than it seems. As
-    explained in the book <a href={links[9]} target="_blank">“High Performance Browser Networking”</a> by
+    explained in the book <a href={links[10]} target="_blank">“High Performance Browser Networking”</a> by
     Ilya Grigorik, it takes “four roundtrips (…) and hundreds of
     milliseconds of latency, to reach 64 KB of throughput between the
     client and server”. In this example, considering a great internet
@@ -213,7 +212,7 @@ So: the hardware of the Internet can currently achieve within a factor of two of
     <P>2. Since this rule applies also for the initial page download,
     it makes the initial content that comes rendered with the page all
     that much more important. As Paul Irish concludes in his
-    presentation <a href={links[10]} target="_blank">“Delivering the Goods”</a>,
+    presentation <a href={links[11]} target="_blank">“Delivering the Goods”</a>,
     the first 14kb are crucially important. This is a helpful illustration
     of the amount of data the server can send in each round-trip over time:</P>
 
@@ -241,7 +240,7 @@ So: the hardware of the Internet can currently achieve within a factor of two of
     Then they fetch different portions of the page in parallel.
     This allows for great responsiveness even in a situation with slow
     legacy backend services. For some pages, pre-rendering the content
-    that’s “above <a href={links[11]} target="_blank">the fold</a>” is
+    that’s “above <a href={links[12]} target="_blank">the fold</a>” is
     also a viable option.</P>
 
     <P>Making a <em>qualitative assessment</em> of scripts and styles based on the
@@ -255,11 +254,11 @@ So: the hardware of the Internet can currently achieve within a factor of two of
 
     <P>A neat example of a SPA that does not incur in extra roundtrip
     penalties is a proof-of-concept clone
-    of <a href={links[12]} target="_blank">StackOverflow in 4096 bytes</a> (which
+    of <a href={links[13]} target="_blank">StackOverflow in 4096 bytes</a> (which
     can theoretically be delivered on the first post-handshake roundtrip
     of a TCP connection!). It manages to pull this off at the expense of
     cacheability, by inlining all the assets within the response.
-    With <a href={links[13]} target="_blank">SPDY or HTTP/2 server push</a>,
+    With <a href={links[14]} target="_blank">SPDY or HTTP/2 server push</a>,
     it should be theoretically possible to deliver client code that’s
     cacheable in a single hop. For the time being, rendering part or all
     of the page on the server is the most common solution to avoiding
@@ -292,7 +291,7 @@ So: the hardware of the Internet can currently achieve within a factor of two of
 
     <P>It’s helpful to refer to some of the initial discussions around
     the design of the initial WWW and HTML to understand this. In
-    particular, this mailing list thread from 1997 proposing the
+    particular, <a href={links[15]} target="_blank">this mailing list thread</a> from 1997 proposing the
     addition of the <Code>{'<img>'}</Code> tag to HTML. Marc Andreessen
     re-iterates the importance of serving information fast:</P>
 
@@ -366,17 +365,17 @@ So: the hardware of the Internet can currently achieve within a factor of two of
     we’ve discussed very clearly.</P>
 
     <P>First of all, analyzing
-    the <a href={links[14]} target="_blank">packet dump</a> of
+    the <a href={links[16]} target="_blank">packet dump</a> of
     the TCP connection to <Code>www.google.com</Code> reveals they
     make sure to send their entire homepage all at once after the request
     comes in. The whole exchange, including closing the connection,
     takes 64ms for me in San Francisco. This has likely been the case
-    ever since <a href={links[15]} target="_blank">the beginning</a>.</P>
+    ever since <a href={links[17]} target="_blank">the beginning</a>.</P>
 
-    <P>In late 2004, Google <a href={links[16]} target="_blank">pioneered</a> the
+    <P>In late 2004, Google <a href={links[18]} target="_blank">pioneered</a> the
     usage of JavaScript to provide inline as-you-type suggestions
     (curiously, as a 20% time project, like Gmail). This even became an
-    inspiration for <a href={links[17]} target="_blank">coining AJAX</a>:</P>
+    inspiration for <a href={links[19]} target="_blank">coining AJAX</a>:</P>
 
     <Quote>Take a look at Google Suggest. Watch the way the
     suggested terms update as you type, almost instantly […] with no
@@ -385,7 +384,7 @@ So: the hardware of the Internet can currently achieve within a factor of two of
     Adaptive Path have been calling Ajax</Quote>
 
     <P>And in 2010
-    they <a href={links[18]} target="_blank">introduced</a> Instant Search,
+    they <a href={links[20]} target="_blank">introduced</a> Instant Search,
     which puts JS front and center by skipping the page refresh altogether
     and transitioning to the “search results” layout as soon as you
     press a key as we saw above.</P>
@@ -405,14 +404,14 @@ So: the hardware of the Internet can currently achieve within a factor of two of
     scenario where this technique breaks. That would be when the
     layout doesn’t match the stored image, as in the case of
     login screens. A thorough analysis of its implications was
-    provided by <a href={links[19]} target="_blank">Marco Arment in 2010</a>.</P>
+    provided by <a href={links[21]} target="_blank">Marco Arment in 2010</a>.</P>
 
     <P>Another form of input besides clicks and form submissions
     that’s greatly enhanced by JavaScript rendering is <b>file input</b>.</P>
 
     <P>We can capture the user’s intent to upload through a variety of
     means: drag and drop, paste, file picker. Then, thanks to
-    new <a href={links[20]} target="_blank">HTML5 APIs</a> we can
+    new <a href={links[22]} target="_blank">HTML5 APIs</a> we can
     display content as if it had been uploaded.
     An example of this in action is in the work we did with Cloudup uploads.
     Notice how the thumbnail is generated and rendered immediately:</P>
@@ -423,7 +422,7 @@ So: the hardware of the Internet can currently achieve within a factor of two of
 
     <P>In all of these cases, we’re enhancing the perception of speed.
     Thankfully, there’s plenty of evidence that this is a good idea.
-    consider <a href={links[21]} target="_blank">the example</a> of
+    consider <a href={links[23]} target="_blank">the example</a> of
     how <em>increasing</em> the walk to baggage claim
     reduced the number of complaints at the Houston Airport, without
     necessarily making baggage handling faster.</P>
@@ -443,7 +442,7 @@ So: the hardware of the Internet can currently achieve within a factor of two of
     indicators should be <b>deferred</b>. They should only be rendered after
     the user no longer considers the response was immediate.
     According to the
-  often-cited <a href={links[22]} target="_blank">research by Nielsen</a>:</P>
+  often-cited <a href={links[24]} target="_blank">research by Nielsen</a>:</P>
 
     <Quote>The basic advice regarding response times has been
     about the same for thirty years Miller 1968; Card et al. 1991:<br />
@@ -589,7 +588,7 @@ So: the hardware of the Internet can currently achieve within a factor of two of
     <P>When detecting a disconnection, it’s useful to store data in
     memory (or even better, <Code>localStorage</Code>) so that it can be sent
     later. This is specially important in light of the introduction
-    of <a href={links[23]} target="_blank">ServiceWorker</a>, which enables
+    of <a href={links[25]} target="_blank">ServiceWorker</a>, which enables
     JavaScript web applications to run in the <em>background</em>. If your
     application is not open, you can still attempt to sync user
     data in the background.</P>
@@ -643,7 +642,7 @@ So: the hardware of the Internet can currently achieve within a factor of two of
     enhancing history now that we can control it with JavaScript.</P>
 
     <P>One such opportunity is what Daniel Pipius
-    dubbed <a href={links[24]} target="_blank">Fast Back</a>:</P>
+    dubbed <a href={links[26]} target="_blank">Fast Back</a>:</P>
 
     <Quote>Back should be quick; users don’t expect data to
     have changed much.</Quote>
@@ -722,7 +721,7 @@ So: the hardware of the Internet can currently achieve within a factor of two of
 
     <P>After this, some web applications opt to refresh the page on
     behalf of the user when deemed appropriate. For example, if the
-    page is <a href={links[25]} target="_blank">not visible</a> and
+    page is <a href={links[27]} target="_blank">not visible</a> and
     no form inputs are filled out.</P>
 
     <P>A better approach is to perform <b>hot code reloading</b>. This means
@@ -737,7 +736,7 @@ So: the hardware of the Internet can currently achieve within a factor of two of
     very efficient.</P>
 
     <P>Consider for example a module in your application that sets up
-    an event bus (e.g: <a href={links[26]} target="_blank">socket.io</a>).
+    an event bus (e.g: <a href={links[28]} target="_blank">socket.io</a>).
     When events are received, the state
     of a certain component is populated and it renders to the DOM.
     Then you modify the behavior of that component, for example, so that
@@ -752,11 +751,11 @@ So: the hardware of the Internet can currently achieve within a factor of two of
     <P>But the next challenge is that modules should be able to be
     re-evaluated without introducing undesirable side effects. This
     is where an architecture like the one proposed
-    by <a href={links[27]} target="_blank">React</a> comes
+    by <a href={links[29]} target="_blank">React</a> comes
     particularly handy. If a component code is updated, its logic can
     be trivially re-executed and the DOM efficiently updates. An
     exploration of this concept by Dan Abramov can
-    be <a href={links[28]} target="_blank">found here</a>.</P>
+    be <a href={links[30]} target="_blank">found here</a>.</P>
 
     <P>In essence, the idea that you <em>render to</em> the DOM (or <em>paint</em> it)
     is what significantly helps with hot code swapping. If state
@@ -780,7 +779,7 @@ So: the hardware of the Internet can currently achieve within a factor of two of
 
     <P>A slightly more advanced method is to monitor mouse movement
     and analyze its trajectory to detect “collisions” with actionable
-    elements like buttons. A <a href={links[29]} target="_blank">jQuery example</a>:</P>
+    elements like buttons. A <a href={links[31]} target="_blank">jQuery example</a>:</P>
 
     <Figure desc="jQuery plugin that predicts the mouse trajectory">
       <Image src="https://cldup.com/VZ7GRJR3Rl.gif" />
@@ -814,25 +813,27 @@ So: the hardware of the Internet can currently achieve within a factor of two of
 const links = [
   'http://yosuke-furukawa.hatenablog.com/entry/2014/11/14/141415',
   'http://habrahabr.ru/post/242429/',
-  'http://lenciel.cn/2014/11/7-principles-of-rich-web-applications/',
   'http://wmonline.ucoz.com.br/publ/melhores_praticas/usabilidade/7_principios_de_aplicacoes_rich_web_e/22-1-0-35',
   'https://cloudup.com/blog/the-need-for-speed',
   'https://cloudup.com/blog/introducing-mydb',
   'http://nodejs.org/',
   'https://tessel.io/',
   'http://web.stanford.edu/class/cs101/',
+  'http://www.stuartcheshire.org/rants/latency.html',
   'http://modernweb.com/2014/03/10/is-jquery-too-big-for-mobile/',
   'http://chimera.labs.oreilly.com/books/1230000000545/ch02.html#thats_four_rou',
   'https://docs.google.com/presentation/d/1MtDBNTH1g7CZzhwlJ1raEJagA8qM3uoV7ta6i66bO2M/present#slide=id.g3eb97ca8f_10',
+  'https://varvy.com/pagespeed/prioritize-visible-content.html',
   'http://danlec.com/blog/stackoverflow-in-4096-bytes',
-  'http://www.feedthebot.com/pagespeed/prioritize-visible-content.html',
   'http://www.chromium.org/spdy/link-headers-and-server-hint',
+  'http://1997.webhistory.org/www.lists/www-talk.1993q1/0260.html',
   'https://gist.github.com/rauchg/3e1b2d7529009370b986',
   'http://en.wikipedia.org/wiki/Google#mediaviewer/File:Google1998.png',
   'http://googleblog.blogspot.com/2004/12/ive-got-suggestion.html',
   'http://www.adaptivepath.com/ideas/ajax-new-approach-web-applications/',
   'http://googleblog.blogspot.com/2010/09/search-now-faster-than-speed-of-type.html',
   'http://www.marco.org/2010/11/11/my-default-png-dilemma',
+  'https://developer.mozilla.org/en-US/docs/Using_files_from_web_applications',
   'http://www.nytimes.com/2012/08/19/opinion/sunday/why-waiting-in-line-is-torture.html',
   'http://www.nngroup.com/articles/response-times-3-important-limits/',
   'http://jakearchibald.com/2014/using-serviceworker-today/',
@@ -843,4 +844,3 @@ const links = [
   'http://gaearon.github.io/react-hot-loader/',
   'https://medium.com/@cihadturhan/a-ux-idea-i-know-where-you-are-aiming-3e00d152afb2'
 ]
-
