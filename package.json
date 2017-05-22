@@ -9,10 +9,10 @@
     "firebase": "^3.6.4",
     "isomorphic-fetch": "^2.2.1",
     "load-script": "^1.0.0",
-    "next": "2.0.0",
+    "next": "beta",
     "nprogress": "^0.2.0",
-    "react": "^15.4.2",
-    "react-dom": "^15.4.2",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
     "react-youtube": "^7.3.0"
   },
   "scripts": {
