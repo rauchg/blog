@@ -13,6 +13,7 @@
     "nprogress": "^0.2.0",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
+    "react-forms": "^1.0.0-rc6",
     "react-youtube": "^7.3.0"
   },
   "scripts": {
