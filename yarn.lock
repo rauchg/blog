@@ -994,10 +994,6 @@ cipher-base@^1.0.0, cipher-base@^1.0.1, cipher-base@^1.0.3:
   dependencies:
     inherits "^2.0.1"
 
-classnames@^2.2.1:
-  version "2.2.5"
-  resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.5.tgz#fb3801d453467649ef3603c7d61a02bd129bde6d"
-
 cliui@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/cliui/-/cliui-2.1.0.tgz#4b475760ff80264c762c3a1719032e91c7fea0d1"
@@ -2704,12 +2700,6 @@ react-dom@^15.5.4:
     loose-envify "^1.1.0"
     object-assign "^4.1.0"
     prop-types "~15.5.7"
-
-react-forms@^1.0.0-rc6:
-  version "1.0.0-rc6"
-  resolved "https://registry.yarnpkg.com/react-forms/-/react-forms-1.0.0-rc6.tgz#755db47602c4109cddd27743a1fcb5be60f95f20"
-  dependencies:
-    classnames "^2.2.1"
 
 react-hot-loader@3.0.0-beta.6:
   version "3.0.0-beta.6"

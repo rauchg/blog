@@ -10,10 +10,11 @@ export default () => (
 
     <div className="home">
       <div className="main">
-        <h1>Guillermo Rauch</h1>
+        <h1>Boots on the Ground!</h1>
         <nav>
           <a target="_blank" href="https://twitter.com/rauchg">Twitter</a>
           <Link href="/essays"><a>Essays</a></Link>
+          <Link href="/writePosts"><a>Posts</a></Link>
           <a href="mailto:rauchg@gmail.com">Email</a>
         </nav>
       </div>
