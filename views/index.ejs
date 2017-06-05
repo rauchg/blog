@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MY APP</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>May Node and Express be with you.</h1>
+
+  <ul class="quotes">
+  <% for(var i=0; i<quotes.length; i++) {%>
+    <li class="quote">
+      <span><%= quotes[i].name %></span>
+      <span><%= quotes[i].quote %></span>
+    </li>
+  <% } %>
+  </ul>
+
+  <h2>Add a quote</h2>
+
+  <form action="/quotes" method="POST">
+    <input type="text" placeholder="name" name="name">
+    <input type="text" placeholder="quote" name="quote">
+    <button type="submit">Submit</button>
+  </form>
+
+  <div>
+    <h2>Replace last quote written by Master Yoda with a quote written by Darth Vadar</h2>
+    <button id="update"> Darth Vadar invades! </button>
+  </div>
+
+  <div>
+    <h2>Delete Darth Vadar's first quote</h2>
+    <button id="delete"> Delete first Darth Vadar quote </button>
+  </div>
+
+  <script src="main.js"></script>
+
+</body>
+</html>

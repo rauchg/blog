@@ -1,32 +1,24 @@
-import CreatePost from '../components/post/createPost'
-import CommentForm from '../components/post/CommentForm'
-import React from 'react';
 import Page from '../layouts/main'
-import Link from 'next/link'
+import Link from 'next/prefetch'
 import { posts } from '../posts'
 import Head from 'next/head'
 
 export default () => (
   <Page>
     <Head>
-      <title>Create Posts</title>
+      <title>Feed</title>
     </Head>
-    <div className="createPost" >
-     <CreatePost />
-    <CommentForm />
-    <style jsx>{`
-      div {
-        width: 50%;
-        height: 15em;
-        margin: 0 auto;
+    <div className="posts">
+      {
+        posts.map(({ id, date, title }) => (
+          <Post 
+            id={id}
+            key={id}
+            date={date}
+            title={title}
+          />
+        ))
       }
-@media (max-width: 500px) {
-        div {
-         width: 90%;
-         height: 25em;
-        }
-      }
-    `}</style>
     </div>
   </Page>
 )
