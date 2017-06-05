@@ -8,11 +8,6 @@ export default ({ children }) => (
       {' '}
       (<a href={`https://github.com/rauchg/blog`} target="_blank">src</a>)
     </div>
-    <div className="logo2">
-      <Link href="/login"><a>Login</a></Link>
-      {' '}
-      (<a href={`https://github.com/rauchg/blog`} target="_blank">src</a>)
-    </div>
 
     { children }
 
@@ -27,14 +22,6 @@ export default ({ children }) => (
 
       .logo {
         padding-bottom: 50px;
-        width: 50%;
-display: inline-block;
-      }
-.logo2 {
-        padding-bottom: 50px;
-        width: 50%;
-        text-align: right;
-display: inline-block;
       }
 
       a {
