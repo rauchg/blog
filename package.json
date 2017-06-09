@@ -25,6 +25,8 @@
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-youtube": "^7.3.0",
+    "redux": "^3.6.0",
+    "redux-form": "^6.7.0",
     "tls": "0.0.1"
   },
   "scripts": {
