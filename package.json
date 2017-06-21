@@ -5,19 +5,36 @@
     "ace": "beta"
   },
   "dependencies": {
+    "axios": "^0.16.2",
+    "body-parser": "^1.17.2",
     "comma-number": "^1.1.0",
+    "ejs": "^2.5.6",
+    "express": "^4.15.3",
     "firebase": "^3.6.4",
+    "fs": "0.0.1-security",
     "isomorphic-fetch": "^2.2.1",
     "load-script": "^1.0.0",
+    "marked": "^0.3.6",
+    "module": "^1.2.5",
+    "mongodb": "^2.2.28",
+    "mongoose": "^4.10.4",
+    "net": "^1.0.2",
     "next": "beta",
+    "nodemon": "^1.11.0",
     "nprogress": "^0.2.0",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
-    "react-youtube": "^7.3.0"
+    "react-youtube": "^7.3.0",
+    "redux": "^3.6.0",
+    "redux-form": "^6.7.0",
+    "tls": "0.0.1"
   },
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "NODE_ENV=production node server"
+    "start": "SET NODE_ENV=production node server"
+  },
+  "devDependencies": {
+    "json-loader": "^0.5.4"
   }
 }
