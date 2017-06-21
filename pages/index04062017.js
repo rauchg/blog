@@ -13,8 +13,8 @@ export default () => (
         <h1>Boots on the Ground!</h1>
         <nav>
           <a target="_blank" href="https://twitter.com/rauchg">Twitter</a>
-          <Link href="/feed"><a>Feed</a></Link>
-          <Link href="/writePosts"><a>Create</a></Link>
+          <Link href="/essays"><a>Essays</a></Link>
+          <Link href="/writePosts"><a>Posts</a></Link>
           <a href="mailto:rauchg@gmail.com">Email</a>
         </nav>
       </div>
