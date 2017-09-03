@@ -1,9 +1,6 @@
 {
   "name": "rauchg-blog",
   "description": "rauchg.com (blog)",
-  "engines": {
-    "ace": "beta"
-  },
   "dependencies": {
     "comma-number": "^2.0.0",
     "firebase": "^4.3.0",
