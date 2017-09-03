@@ -5,15 +5,15 @@
     "ace": "beta"
   },
   "dependencies": {
-    "comma-number": "^1.1.0",
-    "firebase": "^3.6.4",
+    "comma-number": "^2.0.0",
+    "firebase": "^4.3.0",
     "isomorphic-fetch": "^2.2.1",
     "load-script": "^1.0.0",
-    "next": "beta",
+    "next": "^3.0.6",
     "nprogress": "^0.2.0",
-    "react": "^15.5.4",
-    "react-dom": "^15.5.4",
-    "react-youtube": "^7.3.0"
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-youtube": "^7.4.0"
   },
   "scripts": {
     "dev": "next",
