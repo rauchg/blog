@@ -1,8 +1,8 @@
 const { createServer } = require('http')
 const { parse } = require('url')
 const next = require('next')
-
 const atom = require('./lib/atom')
+const gpgKey = require('fs').readFileSync('./gpg.asc');
 
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
@@ -32,9 +32,19 @@ app.prepare()
       return
     }
 
+    if ('/gpg.asc' === pathname) {
+      const body = gpgKey;
+      res.setHeader('Content-Type', 'text/plain');
+      res.setHeader('Content-Length', Buffer.byteLength(body));
+      res.end(body);
+      return;
+    }
+
     if(/^\/atom\/?$/.test(pathname)) {
-      res.setHeader('Content-Type','text/xml')
-      res.end(atom())
+      const body = atom();
+      res.setHeader('Content-Type', 'text/xml');
+      res.setHeader('Content-Length', Buffer.byteLength(body));
+      res.end(body);
       return
     }
 
