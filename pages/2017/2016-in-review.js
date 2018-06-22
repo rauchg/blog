@@ -10,7 +10,7 @@ import UL, { LI } from '../../components/post/bullets-list'
 import { Ref, FootNotes, Note } from '../../components/post/footnotes'
 import Figure, { Image, Video } from '../../components/post/figure'
 import Quote from '../../components/post/quote'
-import Link from 'next/prefetch'
+import Link from 'next/link'
 import YouTube from '../../components/post/youtube'
 import Meta from '../../components/post/meta'
 import withViews from '../../lib/with-views'
@@ -187,7 +187,7 @@ export default withViews(({ views }) => (
 
     <P>And then just type in <Code>next</Code> and head to <Code>http://localhost/</Code>.</P>
 
-    <P>A few years ago I wrote about <Link href="/2014/7-principles-of-rich-web-applications"><a>7 principles</a></Link> that made for great UX
+    <P>A few years ago I wrote about <Link prefetch href="/2014/7-principles-of-rich-web-applications"><a>7 principles</a></Link> that made for great UX
     in the web. This tool enables those.</P>
 
     <P>Each <em>"page"</em> is a webpack entry-point. Each section
@@ -437,7 +437,7 @@ export default withViews(({ views }) => (
     <H3 id="essays">Essays</H3>
 
     <P>The only essay I wrote this year is
-    called <Link href="/2016/addressable-errors"><a>Addressable Errors</a></Link>.</P>
+    called <Link prefetch href="/2016/addressable-errors"><a>Addressable Errors</a></Link>.</P>
 
     <P>Inspired by React's excellent warnings, I decided that every time
     I write an error out to a terminal or console, I'll attach a URL to it.</P>
