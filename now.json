@@ -1,0 +1,8 @@
+{
+  "env": {
+    "NODE_ENV": "production"
+  },
+  "features": {
+    "cloud": "v2"
+  }
+}

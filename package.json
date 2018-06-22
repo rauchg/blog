@@ -12,6 +12,17 @@
     "react-dom": "^16.1.0",
     "react-youtube": "^7.4.0"
   },
+  "bin": "server.js",
+  "pkg": {
+    "assets": [
+      ".next",
+      "gpg.asc",
+      "pages"
+    ],
+    "scripts": [
+      ".next/server/**/*.js"
+    ]
+  },
   "scripts": {
     "dev": "next",
     "build": "next build",
