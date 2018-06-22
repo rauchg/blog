@@ -1,5 +1,5 @@
 import Page from '../layouts/main'
-import Link from 'next/prefetch'
+import Link from 'next/link'
 import Head from 'next/head'
 
 export default () => (
@@ -13,7 +13,7 @@ export default () => (
         <h1>Guillermo Rauch</h1>
         <nav>
           <a target="_blank" href="https://twitter.com/rauchg">Twitter</a>
-          <Link href="/essays"><a>Essays</a></Link>
+          <Link prefetch href="/essays"><a>Essays</a></Link>
           <a href="/gpg.asc" download>GPG</a>
           <a href="mailto:rauchg@gmail.com">Email</a>
         </nav>
