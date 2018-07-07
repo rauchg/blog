@@ -6,11 +6,11 @@ const path = require("path");
 const gpgKey = require("fs").readFileSync(path.join(__dirname, "gpg.asc"));
 
 const dev = process.env.NODE_ENV !== "production";
-const app = next({ dev });
+const app = next({ dev, dir: __dirname });
 const handle = app.getRequestHandler();
 
 app.prepare().then(() => {
-  createServer((req, res) => {
+  const srv = createServer((req, res) => {
     const { pathname } = parse(req.url);
 
     if (/^\/slackin\/?$/.test(pathname)) {
@@ -49,8 +49,15 @@ app.prepare().then(() => {
     }
 
     handle(req, res);
-  }).listen(3000, err => {
+  });
+
+  srv.listen(3000, err => {
     if (err) throw err;
     console.log("> Ready on http://localhost:3000");
+  });
+
+  process.on("SIGTERM", () => {
+    console.log("> Shutting down");
+    srv.close();
   });
 });
