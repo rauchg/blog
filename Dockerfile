@@ -1,14 +1,12 @@
 FROM mhart/alpine-node:10 as base
-RUN yarn global add pkg
 WORKDIR /usr/src
 COPY package.json yarn.lock /usr/src/
 RUN yarn
 COPY . .
-RUN pkg -t node10 . -o bin
-RUN ls
+RUN yarn run build && yarn --production
 
-FROM alpine
-RUN apk add --no-cache libstdc++ libgcc
-COPY --from=base /usr/src/bin /start
-EXPOSE 3000
-CMD ["/start"]
+FROM mhart/alpine-node:base-10
+WORKDIR /usr/src
+ENV NODE_ENV="production"
+COPY --from=base /usr/src .
+CMD ["node", "server.js"]
