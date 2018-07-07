@@ -1,0 +1,10 @@
+*
+!package.json
+!components
+!yarn.lock
+!pages
+!server.js
+!posts.json
+!lib
+!layouts
+!gpg.asc
