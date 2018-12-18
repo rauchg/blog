@@ -1,5 +1,13 @@
 {
-  "features": {
-    "cloud": "v2"
-  }
+  "version": 2,
+  "builds": [
+    { "src": "atom.js", "use": "@now/node" },
+    { "src": "gpg.js", "use": "@now/node" },
+    { "src": "package.json", "use": "@now/next" }
+  ],
+  "routes": [
+    { "src": "^\/slackin\/?$", "status": 302, "headers": { "Location": "https://github.com/rauchg/slackin" } },
+    { "src": "^/gpg.asc", "dest": "gpg.js" },
+    { "src": "^/atom", "dest": "atom.js" }
+  ]
 }
