@@ -244,7 +244,7 @@ So: the hardware of the Internet can currently achieve within a factor of two of
     also a viable option.</P>
 
     <P>Making a <em>qualitative assessment</em> of scripts and styles based on the
-    information the server has about the the session, the user and the
+    information the server has about the session, the user and the
     URL is absolutely crucial. The scripts that deal with sorting orders
     will obviously be more important to <Code>/orders</Code> than the logic to deal
     with the settings page. Maybe less intuitively, one could also make
