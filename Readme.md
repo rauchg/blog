@@ -4,39 +4,33 @@ This is the blog that powers `rauchg.com`, built on
 [next.js](https://zeit.co/blog/next) and
 deployed to the cloud via [now](https://zeit.co/now).
 
-Depends on the [blog-views](https://github.com/rauchg/blog-views) microservice
-for the realtime views display.
-
 ## How to run
+
+First, install [Now](https://zeit.co/download).
 
 ### Development
 
-All that's needed to run this blog is:
-
 ```
-npm install
-npm run dev
+now dev
 ```
-
-Then head to `http://localhost:3000`. Changes you make to
-components will henceforth be reflected there in realtime.
 
 ### Deployment
 
-All that's needed to deploy this blog to the cloud is to
-execute a single command ([install](https://zeit.co/download) it here)
+#### Staging
 
 ```bash
 now
 ```
 
-When I deploy, I get a new instance of the blog at a new, immutable
-URL. When I browse to it and verify it looks ok, I set up an alias
-targetting the production URL `rauchg.com`.
+This is the equivalent of submitting a PR with the [GitHub integration](https://zeit.co/github)
+
+#### Production
 
 ```bash
-now alias <url> rauchg.com
+now target --production
 ```
+
+This is the equivalent of `git push` to `master` (or merging a PR to master)
 
 ## Architecture
 
@@ -61,14 +55,3 @@ rest of the site.
 
 An index of all posts is maintained in JSON format as `./posts.json`
 for practical reasons.
-
-### Custom server
-
-I set up a `server.js` that boots up Next.js programatically. This
-gives me complete control over the HTTP request and response cycle.
-
-In this case, the routes structured under `pages/` are sufficient,
-but I set up a few redirections to retain compatibility with my
-previous WordPress based setup.
-
-To start the custom server, I run `node server.js` upon deployment.
