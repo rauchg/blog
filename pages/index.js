@@ -5,12 +5,12 @@ import Head from 'next/head'
 export default () => (
   <Page>
     <Head>
-      <title>Guillermo Rauch</title>
+      <title>Guillermo Federico Rauch</title>
     </Head>
 
     <div className="home">
       <div className="main">
-        <h1>Guillermo Rauch</h1>
+        <h1>Guillermo Federico Rauch</h1>
         <nav>
           <a target="_blank" href="https://twitter.com/rauchg">Twitter</a>
           <Link prefetch href="/essays"><a>Essays</a></Link>
