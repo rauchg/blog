@@ -55,3 +55,4 @@ rest of the site.
 
 An index of all posts is maintained in JSON format as `./posts.json`
 for practical reasons.
+
