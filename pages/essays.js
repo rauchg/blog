@@ -26,7 +26,7 @@ export default () => (
 const Post = ({ id, date, title }) => (
   <div className="post">
     <span className="date">{ date }</span>
-    <Link prefetch href={`/${new Date(date).getFullYear()}/${id}`}><a>{ title }</a></Link>
+    <Link href={`/${new Date(date).getFullYear()}/${id}`}><a>{ title }</a></Link>
 
     <style jsx>{`
       .post {

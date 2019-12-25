@@ -13,7 +13,7 @@ export default () => (
         <h1>Guillermo Rauch</h1>
         <nav>
           <a target="_blank" href="https://twitter.com/rauchg">Twitter</a>
-          <Link prefetch href="/essays"><a>Essays</a></Link>
+          <Link href="/essays"><a>Essays</a></Link>
           <a href="/gpg.asc" download>GPG</a>
           <a href="mailto:rauchg@gmail.com">Email</a>
         </nav>

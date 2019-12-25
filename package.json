@@ -6,10 +6,10 @@
     "firebase": "^4.3.0",
     "isomorphic-fetch": "^2.2.1",
     "load-script": "^1.0.0",
-    "next": "^8.0.4-canary.30",
+    "next": "^9.1.7-canary.4",
     "nprogress": "^0.2.0",
-    "react": "^16.4.1",
-    "react-dom": "^16.4.1",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
     "react-youtube": "^7.4.0"
   },
   "scripts": {

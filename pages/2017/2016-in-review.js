@@ -138,41 +138,13 @@ export default withViews(({ views }) => (
       <LI>Already faster than <em>native</em> terminals across <a href="https://twitter.com/rauchg/status/758125063002427392" target="_blank">some</a> <a href="https://twitter.com/rauchg/status/808353136926593024" target="_blank">benchmarks</a>. Working on improving them all.</LI>
     </UL>
 
-    <H3 id="micro">Micro</H3>
-
-    <P>Now doesn't offer the so-called <b>function as a service</b>,
-    because we think HTTP/2 is a more adequate abstraction.</P>
-
-    <P>It doesn't require re-inventing the wheel and thinking up new
-    proprietary protocols and specificiations for
-    what the request and response objects should look like.</P>
-
-    <P>However, I do love the <em>simplicity</em> of the approach, which
-    solves many common use cases. To that end,
-    I wrote <a href="https://github.com/zeit/micro" target="_blank">micro</a>,
-    a Node.js microservice framework.</P>
-
-    <P>Write your <Code>index.js</Code> file that <b>exports a function</b>:</P>
-
-    <Snippet>{`module.exports = async (req, res) => {
-  await authorizeUser(req)
-  const { users } = await getSomeData()
-  return { name: users[0].name }
-}`}</Snippet>
-
-    <P>And with one command it gets served as a Node.js HTTP server: <Code>micro</Code>.</P>
-
-    <P>Anything you <em>return</em> gets sent as a JSON response, but
-    you retain the flexibility to serve out entire websites, APIs and
-    even <a href="https://github.com/timneutkens/micro-graphql" target="_blank">GraphQL endpoints</a>!</P>
-
     <H3 id="next">Next.js</H3>
 
     <P><a href="https://github.com/zeit/next.js" target="_blank">Next.js</a> is a minimalist framework for server-rendered (universal) React applications.</P>
 
     <P>It brings back some of the good ideas that came with writing PHP
-    sites: no setup, start with the filesystem, automatic routing, the
-    server outputs pre-compiled HTML instead of a blank page.</P>
+    sites: no setup, start with the filesystem, automatic routing, you
+    get pre-rendered HTML in the first hop instead of a blank page.</P>
 
     <P>You start by writing a <Code>./pages/index.js</Code> that exports a function
     (stateless component) or a <Code>class</Code> that inherits from{' '}
@@ -187,7 +159,7 @@ export default withViews(({ views }) => (
 
     <P>And then just type in <Code>next</Code> and head to <Code>http://localhost/</Code>.</P>
 
-    <P>A few years ago I wrote about <Link prefetch href="/2014/7-principles-of-rich-web-applications"><a>7 principles</a></Link> that made for great UX
+    <P>A few years ago I wrote about <Link href="/2014/7-principles-of-rich-web-applications"><a>7 principles</a></Link> that made for great UX
     in the web. This tool enables those.</P>
 
     <P>Each <em>"page"</em> is a webpack entry-point. Each section
