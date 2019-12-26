@@ -1,11 +1,11 @@
 export default ({ children }) => (
   <code>
-    { children }
+    {children}
     <style jsx>{`
       code {
-        color: #666;
-        font-family: monospace;
+        color: #BE00FF;
+        font-family: Menlo, monospace;
       }
     `}</style>
   </code>
-)
+);

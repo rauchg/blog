@@ -1,23 +1,22 @@
 export default ({ by, children }) => (
   <blockquote>
     <p>
-      { children }
+      {children}
       <br />
-      {
-        by && `– ${ by }`
-      }
+      {by ? <>– {by}</> : null}
     </p>
     <style jsx>{`
       blockquote {
         margin: 30px 0;
-        color: #9B9B9B;
+        color: #666;
         font-style: oblique;
-        font-size: 12px;
+        border-left: 8px solid #ccc;
+        padding-left: 20px;
       }
 
       p {
-        line-height: 24px;
+        line-height: 28px;
       }
     `}</style>
   </blockquote>
-)
+);

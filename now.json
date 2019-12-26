@@ -1,17 +1,28 @@
 {
-  "version": 2,
-  "alias": ["rauchg.com", "www.rauchg.com"],
-  "builds": [
-    { "src": "gpg.asc", "use": "@now/static" },
-    { "src": "package.json", "use": "@now/static-build" }
-  ],
+  "env": {
+    "FIREBASE_PROJECT_ID": "rauchg-blog",
+    "FIREBASE_PRIVATE_KEY": "@blog-firebase-private-key",
+    "FIREBASE_CLIENT_EMAIL": "@blog-firebase-client-email"
+  },
   "routes": [
     {
-      "src": "/atom\\/?", "headers": { "content-type": "text/xml" }
+      "src": "/atom\\/?",
+      "headers": {
+        "content-type": "text/xml"
+      }
+    },
+    {
+      "src": "/essays.*",
+      "headers": {
+        "location": "/"
+      },
+      "status": 302
     },
     {
       "src": "/slackin\\/?.*",
-      "headers": { "location": "https://github.com/rauchg/slackin" },
+      "headers": {
+        "location": "https://github.com/rauchg/slackin"
+      },
       "status": 302
     }
   ]

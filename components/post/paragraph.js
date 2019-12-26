@@ -1,13 +1,12 @@
 export default ({ children }) => (
   <p>
-    { children }
+    {children}
     <style jsx>{`
       p {
-        font-size: 14px;
-        line-height: 24px;
-        margin-bottom: 20px;
+        margin: 20px 0;
+        line-height: 25px;
+        font-weight: 500;
       }
     `}</style>
   </p>
-)
-
+);

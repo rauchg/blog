@@ -1,57 +1,73 @@
-import Page from '../layouts/main'
-import Link from 'next/link'
-import Head from 'next/head'
+import Layout from "../components/layouts/main";
+import Link from "next/link";
+import { posts } from "../posts";
+import { WRITINGS } from "../components/header";
 
-export default () => (
-  <Page>
-    <Head>
-      <title>Guillermo Rauch</title>
-    </Head>
+export function unstable_getStaticProps() {
+  return {
+    props: {
+      posts: posts.map(post => ({
+        ...post,
+        url: `${new Date(post.date).getFullYear()}/${post.id}`
+      }))
+    }
+  };
+}
 
-    <div className="home">
-      <div className="main">
-        <h1>Guillermo Rauch</h1>
-        <nav>
-          <a target="_blank" href="https://twitter.com/rauchg">Twitter</a>
-          <Link href="/essays"><a>Essays</a></Link>
-          <a href="/gpg.asc" download>GPG</a>
-          <a href="mailto:rauchg@gmail.com">Email</a>
-        </nav>
-      </div>
-    </div>
+const Home = ({ posts, date }) => (
+  <Layout headerActive={WRITINGS}>
+    <ul>
+      {posts.map(post => (
+        <li key={post.id}>
+          <span>{post.date}</span>
+          <Link href={post.url}>
+            <a>{post.title}</a>
+          </Link>
+        </li>
+      ))}
+    </ul>
 
     <style jsx>{`
-      .home {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: -1;
+      ul li {
+        padding: 10px 15px;
       }
 
-      .main {
-        flex: none;
-        text-align: center;
+      ul li span {
+        color: #5b5b5b;
+        display: block;
+        font-size: 13px;
       }
 
-      h1 {
-        font-size: 14px;
-        font-weight: normal;
-      }
-
-      nav {
-        margin-top: 20px;
-      }
-
-      a {
-        display: inline-block;
-        margin: 0 15px;
+      ul li a {
+        font-weight: bold;
+        color: var(--link-color);
         text-decoration: none;
       }
+
+      ul li a:hover {
+        background: #eee;
+      }
+
+      @media (min-width: 500px) {
+        ul {
+          padding: 20px 0;
+        }
+
+        ul li a {
+          padding: 10px 15px;
+          transition: 150ms background-color ease-in;
+        }
+
+        ul li span {
+          display: inline-block;
+          width: 160px;
+          padding-right: 10px;
+          text-align: right;
+          font-size: inherit;
+        }
+      }
     `}</style>
-  </Page>
-)
+  </Layout>
+);
+
+export default Home;
