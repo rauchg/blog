@@ -27,7 +27,7 @@ This is the equivalent of submitting a PR with the [GitHub integration](https://
 #### Production
 
 ```bash
-now target --production
+now --prod
 ```
 
 This is the equivalent of `git push` to `master` (or merging a PR to master)
