@@ -1045,7 +1045,7 @@ export default withViews(({ views }) => (
     </Figure>
 
     <H2 id="stablecoins-not-bitcoin">
-      We are interested in stablecoins not bitcoin…
+      We are interested in stablecoins, not bitcoins…
     </H2>
 
     <P>
@@ -1054,7 +1054,7 @@ export default withViews(({ views }) => (
         target="_blank"
         href="https://www.coindesk.com/love-blockchain-just-bitcoin"
       >
-        blockchain not bitcoin
+        blockchain, not bitcoin
       </a>
       ".
     </P>
