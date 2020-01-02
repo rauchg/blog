@@ -4639,10 +4639,10 @@ nanomatch@^1.2.9:
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
 
-native-url@0.2.3:
-  version "0.2.3"
-  resolved "https://registry.yarnpkg.com/native-url/-/native-url-0.2.3.tgz#29dfc0d7b2b396af493872ccc4b7d974e72ecb9a"
-  integrity sha512-AeSn0qFkS9EVPExWw/mN8le1HUj09LXovYPBTT9rnr9300OTvz+MZoEzIM1F7iPROsT2UNMzM+UsJCTPDqaL1g==
+native-url@0.2.4:
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/native-url/-/native-url-0.2.4.tgz#37623b3db2c7bb6670e50e379634248ba5ca9d90"
+  integrity sha512-McE+8BrgMw2ANypdYX9s1L+aUkbWDCEtsBGIbs8TfKBfQrFcZ2jMXX9LxGjOIOtoRXkwLTSlz38XHm8J3U6hgQ==
   dependencies:
     querystring "^0.2.0"
 
@@ -4665,10 +4665,10 @@ neo-async@^2.5.0, neo-async@^2.6.0, neo-async@^2.6.1:
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.1.tgz#ac27ada66167fa8849a6addd837f6b189ad2081c"
   integrity sha512-iyam8fBuCUpWeKPGpaNMetEocMt364qkCsfL9JuhjXX6dRnguRVOfk2GZaDpPjcOKiiXCPINZC1GczQ7iTq3Zw==
 
-next@^9.1.7-canary.4:
-  version "9.1.7-canary.5"
-  resolved "https://registry.yarnpkg.com/next/-/next-9.1.7-canary.5.tgz#d112132f382b5ed5d5d04993d7d8a9600b30b580"
-  integrity sha512-xnX5AQC0t1Uyif+jzux9ulcy905asGdhy/h5RON0bH6Wt/eq4idyiMaxqTFHk78HR9VXBduurjwm9UYjcnPzpA==
+next@^9.1.7-canary.12:
+  version "9.1.7-canary.12"
+  resolved "https://registry.yarnpkg.com/next/-/next-9.1.7-canary.12.tgz#a6be0d6adfbe8f012142030b883c2840672c9a11"
+  integrity sha512-J+pBUInv9+lYDwHucPUpgKJAtW7/gN/cCgmO5ubBpLa5HKaUFIuPZTuXG1+n8ImRWwwPjzFG1P+rp/vWo/GaGw==
   dependencies:
     "@ampproject/toolbox-optimizer" "1.1.1"
     "@babel/core" "7.7.2"
@@ -4721,7 +4721,7 @@ next@^9.1.7-canary.4:
     lru-cache "5.1.1"
     mini-css-extract-plugin "0.8.0"
     mkdirp "0.5.1"
-    native-url "0.2.3"
+    native-url "0.2.4"
     node-fetch "2.6.0"
     object-assign "4.1.1"
     ora "3.4.0"
