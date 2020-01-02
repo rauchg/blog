@@ -297,7 +297,7 @@ export default withViews(({ views }) => (
     </P>
     <P>
       By setting up a{" "}
-      <a href="https://zeit.co/github" href="_blank">
+      <a href="https://zeit.co/github" target="_blank">
         Git integration
       </a>
       , every single <Code>git push</Code> gets its own live deployment URL.
