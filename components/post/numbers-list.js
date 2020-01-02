@@ -1,6 +1,6 @@
 export default ({ children }) => (
   <ul>
-    { children }
+    {children}
     <style jsx>{`
       ul {
         margin: 0 0 20px 0;
@@ -9,19 +9,18 @@ export default ({ children }) => (
       }
     `}</style>
   </ul>
-)
+);
 
 const LI = ({ children }) => (
   <li>
-    { children }
+    {children}
     <style jsx>{`
       li {
         margin-bottom: 5px;
-        line-height: 24px;
+        line-height: 1.5;
       }
     `}</style>
   </li>
-)
+);
 
-export { LI }
-
+export { LI };

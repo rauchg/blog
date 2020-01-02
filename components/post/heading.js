@@ -13,7 +13,7 @@ const H = ({ id, level = 2, fontSize = 20, children }) => (
 
     <style jsx>{`
       div {
-        margin: 25px 0;
+        margin: 50px 0 25px;
         font-family: Helvetica Neue, Helvetica, Arial, "Lucida Grande",
           sans-serif;
       }

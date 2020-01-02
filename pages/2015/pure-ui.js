@@ -590,20 +590,27 @@ export default withViews(({ views }) => (
 class Demos extends React.Component {
   constructor(props) {
     super(props);
+    this.mounted = false;
     this.onScriptLoad = this.onScriptLoad.bind(this);
   }
 
   componentDidMount() {
+    this.mounted = true;
     document.querySelector("#demo1").innerHTML = "";
     document.querySelector("#demo2").innerHTML = "";
     if (!window.Viewer) {
       loadScript("https://cldup.com/uUo8iSbKXRh/C7isGX.js", err => {
+        if (!this.mounted) return;
         if (err) return console.error("demo script load fail");
         this.onScriptLoad();
       });
     } else {
       this.onScriptLoad();
     }
+  }
+
+  componentWillUnmount() {
+    this.mounted = false;
   }
 
   render() {

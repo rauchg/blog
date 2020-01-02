@@ -17,7 +17,9 @@ export default ({ active = null }) => (
     <nav>
       <ul>
         <li className={active === WRITINGS ? "active" : ""}>
-          <a href="/">Writings</a>
+          <Link href="/">
+            <a href="/">Writings</a>
+          </Link>
         </li>
         <li className={active === ABOUT ? "active" : ""}>
           <a href="mailto:rauchg@gmail.com">Email</a>

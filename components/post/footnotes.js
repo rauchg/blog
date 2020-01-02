@@ -4,6 +4,10 @@ export const FootNotes = ({ children }) => (
   <div>
     {children}
     <style jsx>{`
+      div {
+        font-size: 16px;
+      }
+
       div::before {
         width: 200px;
         content: " ";

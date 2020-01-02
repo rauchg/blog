@@ -1,4 +1,3 @@
-import Head from "next/head";
 import Post from "../../components/layouts/post";
 import Quote from "../../components/post/quote";
 import P from "../../components/post/paragraph";

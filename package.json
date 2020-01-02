@@ -10,6 +10,7 @@
     "nprogress": "^0.2.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "react-twitter-embed": "^3.0.3",
     "react-youtube": "^7.4.0",
     "time-ago": "^0.2.1"
   },

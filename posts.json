@@ -1,6 +1,11 @@
 {
   "posts": [
     {
+      "id": "2019-in-review",
+      "date": "January 2, 2020",
+      "title": "2019 in Review"
+    },
+    {
       "id": "its-hard-to-forego-efficiency",
       "date": "March 28, 2017",
       "title": "It's Hard to Forego Efficiency"

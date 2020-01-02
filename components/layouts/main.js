@@ -33,6 +33,9 @@ export default ({ children, headerActive }) => {
 
       <style jsx>{`
         main {
+          padding: 10px;
+        }
+        @media (max-width: 600px) {
           padding: 20px;
         }
       `}</style>
