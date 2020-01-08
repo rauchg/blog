@@ -2,11 +2,12 @@
   "name": "rauchg-blog",
   "description": "rauchg.com (blog)",
   "dependencies": {
+    "@zeit/react-jsx-parser": "^2.0.0",
     "comma-number": "^2.0.0",
     "firebase": "^7.6.1",
     "firebase-admin": "^8.9.0",
     "load-script": "^1.0.0",
-    "next": "^9.1.7-canary.12",
+    "next": "^9.1.8-canary.5",
     "nprogress": "^0.2.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
@@ -17,5 +18,9 @@
   "scripts": {
     "dev": "next",
     "build": "next build && node scripts/build-atom > public/atom"
+  },
+  "devDependencies": {
+    "@types/react": "^16.9.17",
+    "typescript": "^3.7.4"
   }
 }

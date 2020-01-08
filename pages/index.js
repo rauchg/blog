@@ -1,26 +1,23 @@
 import Layout from "../components/layouts/main";
 import Link from "next/link";
-import { posts } from "../posts";
 import { WRITINGS } from "../components/header";
+import getCombinedPosts from "../lib/get-combined-posts";
 
-export function unstable_getStaticProps() {
+export async function unstable_getStaticProps() {
   return {
     props: {
-      posts: posts.map(post => ({
-        ...post,
-        url: `${new Date(post.date).getFullYear()}/${post.id}`
-      }))
+      posts: await getCombinedPosts()
     }
   };
 }
 
-const Home = ({ posts, date }) => (
+const Home = ({ posts }) => (
   <Layout headerActive={WRITINGS}>
     <ul>
       {posts.map(post => (
         <li key={post.id}>
           <span>{post.date}</span>
-          <Link href={post.url}>
+          <Link href={post.notion ? "[...slug]" : post.url} as={post.url}>
             <a>{post.title}</a>
           </Link>
         </li>

@@ -1,3 +1,3 @@
 #!/usr/bin/env node
-const atom = require("../lib/atom");
-console.log(atom());
+const atom = require("../.next/serverless/scripts/build-rss").default;
+atom().then(result => console.log(result))

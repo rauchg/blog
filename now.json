@@ -2,7 +2,15 @@
   "env": {
     "FIREBASE_PROJECT_ID": "rauchg-blog",
     "FIREBASE_PRIVATE_KEY": "@blog-firebase-private-key",
-    "FIREBASE_CLIENT_EMAIL": "@blog-firebase-client-email"
+    "FIREBASE_CLIENT_EMAIL": "@blog-firebase-client-email",
+    "NOTION_TOKEN": "@notion-token",
+    "BLOG_INDEX_ID": "@blog-index-id"
+  },
+  "build": {
+    "env": {
+      "NOTION_TOKEN": "@notion-token",
+      "BLOG_INDEX_ID": "@blog-index-id"
+    }
   },
   "routes": [
     {
