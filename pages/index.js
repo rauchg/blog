@@ -2,12 +2,14 @@ import Layout from "../components/layouts/main";
 import Link from "next/link";
 import { WRITINGS } from "../components/header";
 import getCombinedPosts from "../lib/get-combined-posts";
+import IssgIndicator from '../components/issg-indicator';
 
 export async function unstable_getStaticProps() {
   return {
     props: {
       posts: await getCombinedPosts()
-    }
+    },
+    revalidate: 2
   };
 }
 
@@ -23,6 +25,8 @@ const Home = ({ posts }) => (
         </li>
       ))}
     </ul>
+
+    <IssgIndicator />
 
     <style jsx>{`
       ul li {

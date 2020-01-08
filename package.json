@@ -13,6 +13,7 @@
     "react-dom": "^16.12.0",
     "react-twitter-embed": "^3.0.3",
     "react-youtube": "^7.4.0",
+    "swr": "^0.1.16",
     "time-ago": "^0.2.1"
   },
   "scripts": {

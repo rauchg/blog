@@ -3,6 +3,7 @@ import ReactJSXParser from "@zeit/react-jsx-parser";
 import { textBlock } from "../lib/notion/renderers";
 import getPageData from "../lib/notion/getPageData";
 import getBlogIndex from "../lib/notion/getBlogIndex";
+import IssgIndicator from '../components/issg-indicator';
 import { getBlogLink, getDateStr, getHeadingId } from "../lib/blog-helpers";
 
 import Head from "next/head";
@@ -22,7 +23,8 @@ export async function unstable_getStaticProps({ params: { slug } }) {
     return {
       props: {
         redirect: true
-      }
+      },
+      revalidate: 1
     };
   }
   const postData = await getPageData(post.id);
@@ -31,7 +33,8 @@ export async function unstable_getStaticProps({ params: { slug } }) {
   return {
     props: {
       post
-    }
+    },
+    revalidate: 2,
   };
 }
 
@@ -61,6 +64,8 @@ const RenderPost = ({ post, views, redirect }) => {
 
   return (
     <Post>
+      <IssgIndicator />
+
       <Header title={post.Page} date={getDateStr(post.Date)} views={views} />
       <Head>
         <meta property="og:title" content={post.Page} />
