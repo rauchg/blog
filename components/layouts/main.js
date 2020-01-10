@@ -35,9 +35,6 @@ export default ({ children, headerActive }) => {
         main {
           padding: 10px;
         }
-        @media (max-width: 600px) {
-          padding: 20px;
-        }
       `}</style>
     </main>
   );
