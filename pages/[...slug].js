@@ -76,7 +76,11 @@ const RenderPost = ({ post, views, redirect }) => {
         <meta property="og:image" content={post["Twitter Card"] || ""} />
       </Head>
 
-      {post.content.map((block, blockIdx) => {
+      {(!post.content || post.content.length === 0) && (
+        <components.p>This post has no content</components.p>
+      )}
+
+      {(post.content || []).map((block, blockIdx) => {
         const { value } = block;
         const { type, properties, id } = value;
         const isLast = blockIdx === post.content.length - 1;
