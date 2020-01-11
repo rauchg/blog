@@ -14,6 +14,7 @@ import components from "../components/shared";
 
 // Get the data for each blog post
 export async function unstable_getStaticProps({ params: { slug } }) {
+  slug = Array.isArray(slug) ? slug.join('/') : slug
   // load the postsTable so that we can get the page's ID
   const postsTable = await getBlogIndex();
   const post = postsTable[slug];
