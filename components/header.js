@@ -58,16 +58,16 @@ export default ({ active = null }) => (
         padding: 5px 10px;
       }
 
-      a:hover {
-        background-color: var(--link-highlight);
-      }
-
       .active a {
         font-weight: bold;
         pointer-events: none;
       }
 
       @media (min-width: 500px) {
+        a:hover {
+          background-color: var(--link-highlight);
+        }
+
         header {
           display: flex;
           justify-content: space-between;

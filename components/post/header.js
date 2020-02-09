@@ -97,10 +97,6 @@ export default ({
           color: inherit;
         }
 
-        nav a:hover {
-          color: var(--link-color);
-        }
-
         .meta {
           display: flex;
           font-weight: 500;
@@ -186,6 +182,10 @@ export default ({
         }
 
         @media (min-width: 500px) {
+          nav a:hover {
+            color: var(--link-color);
+          }
+
           .meta .date .short {
             display: none;
           }

@@ -44,10 +44,6 @@ const Home = ({ posts, date }) => (
         text-decoration: none;
       }
 
-      ul li a:hover {
-        background: #eee;
-      }
-
       @media (min-width: 500px) {
         ul {
           padding: 20px 0;
@@ -56,6 +52,10 @@ const Home = ({ posts, date }) => (
         ul li a {
           padding: 10px 15px;
           transition: 150ms background-color ease-in;
+        }
+
+        ul li a:hover {
+          background: #eee;
         }
 
         ul li span {
