@@ -12,6 +12,10 @@ const style = css.global`
     box-sizing: border-box;
   }
 
+  a, a:hover {
+    -webkit-tap-highlight-color: transparent;
+  }
+
   /* Remove default padding */
   ul[class],
   ol[class] {
