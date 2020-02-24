@@ -1,6 +1,16 @@
+import { useRouter } from "next/router";
 import { TwitterTweetEmbed } from "react-twitter-embed";
+import { useTweet } from "../../lib/tweets";
+import Node from "../../tlog/components/post/node";
+import components from "../../tlog/components/tweet-page/components";
 
 export default function Tweet({ id, caption }) {
+  const ast = useTweet(id);
+
+  if (ast) {
+    return <Node components={components} node={ast[0]} />;
+  }
+
   return (
     <main>
       <div>
@@ -38,3 +48,5 @@ export default function Tweet({ id, caption }) {
     </main>
   );
 }
+
+Tweet.tweets = [];

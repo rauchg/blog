@@ -12,9 +12,36 @@ import UL, { LI } from "../../components/post/bullets-list";
 import withViews from "../../lib/with-views";
 import YouTube from "../../components/post/youtube";
 import Head from "next/head";
+import getTweets from "../../lib/get-tweets";
 
-export default withViews(({ views }) => (
-  <Post>
+const TWEETS = [
+  "1166443719148466177",
+  "1158730494311198720",
+  "1095927783421706240",
+  "1195443929828577280",
+  "1150939681153929216",
+  "1199843171431256066",
+  "1105876480930734086",
+  "1172978856883417088",
+  "935857414435495937",
+  "1191438907696656384",
+  "1190383627340783618",
+  "1163871715153199104",
+  "1191828261501853696",
+  "1146230484541722624",
+  "1205225680453210112",
+  "1109207974994735104",
+  "1112377964942028805",
+  "1071084058841559041",
+];
+
+export async function unstable_getStaticProps() {
+  const tweets = await getTweets(TWEETS);
+  return { props: { tweets } };
+}
+
+const Page = withViews(({ tweets, views }) => (
+  <Post tweets={tweets}>
     <Header title="2019 in Review" date="January 2, 2020" views={views} />
     <Head>
       <meta property="og:title" content="2019 in Review" />
@@ -1205,3 +1232,5 @@ export default withViews(({ views }) => (
     </FootNotes>
   </Post>
 ));
+
+export default Page;

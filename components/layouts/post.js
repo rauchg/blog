@@ -1,18 +1,25 @@
 import Page from "./main";
+import { Tweets } from "../../lib/tweets";
+import prismTheme from "../../tlog/components/post/prism-theme";
 
-export default ({ children }) => (
+export default ({ tweets, children }) => (
   <Page>
-    <main>
-      <article>{children}</article>
-    </main>
+    <Tweets.Provider value={tweets}>
+      <main>
+        <article>{children}</article>
+      </main>
 
-    <style jsx>{`
-      main {
-        padding: 15px;
-        max-width: 680px;
-        margin: auto;
-        font-size: 18px;
-      }
-    `}</style>
+      <style jsx global>
+        {prismTheme}
+      </style>
+      <style jsx>{`
+        main {
+          padding: 15px;
+          max-width: 680px;
+          margin: auto;
+          font-size: 18px;
+        }
+      `}</style>
+    </Tweets.Provider>
   </Page>
 );
