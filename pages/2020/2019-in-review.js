@@ -37,7 +37,7 @@ const TWEETS = [
 
 export async function unstable_getStaticProps() {
   const tweets = await getTweets(TWEETS);
-  return { props: { tweets } };
+  return { props: { tweets }, revalidate: false };
 }
 
 const Page = withViews(({ tweets, views }) => (
