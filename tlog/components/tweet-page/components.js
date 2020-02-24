@@ -1,11 +1,11 @@
 import { Div } from '../post/components/containers';
 import { H1, H2, H3, H4, H5, H6 } from '../post/components/headings';
-import { P, Blockquote, Hr, Span, Strong, Em, Br, B, S, Del } from '../post/components/text';
+import { P, Blockquote, Hr } from '../post/components/text';
 import { Code, Pre } from '../post/components/code';
 import { A } from '../post/components/anchor';
 import { Ul, Ol, Li } from '../post/components/lists';
-import { Table, Thead, Tbody, Tr, Th, Td } from '../post/components/table';
-import { Img, Video, Source } from '../post/components/media';
+import { Table, Th, Td } from '../post/components/table';
+import { Img } from '../post/components/media';
 import { Mention, Cashtag, Emoji, Poll } from '../post/components/twitter';
 import Node from '../post/node';
 import Tweet from './tweet';
@@ -24,13 +24,6 @@ export default {
   p: P,
   blockquote: Blockquote,
   hr: Hr,
-  span: Span,
-  strong: Strong,
-  em: Em,
-  br: Br,
-  b: B,
-  s: S,
-  del: Del,
 
   code: Code,
   pre: Pre,
@@ -42,15 +35,10 @@ export default {
   li: Li,
 
   table: Table,
-  thead: Thead,
-  tbody: Tbody,
-  tr: Tr,
   th: Th,
   td: Td,
 
   img: Img,
-  video: Video,
-  source: Source,
 
   Mention,
   Cashtag,

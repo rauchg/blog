@@ -17,12 +17,6 @@ export const Table = p => (
   </div>
 );
 
-export const Thead = p => <thead {...p} />;
-
-export const Tbody = p => <tbody {...p} />;
-
-export const Tr = p => <tr {...p} />;
-
 export const Th = p => (
   <>
     <th {...p} />

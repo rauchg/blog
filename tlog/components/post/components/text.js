@@ -40,17 +40,3 @@ export const Hr = p => (
     `}</style>
   </>
 );
-
-export const Span = p => <span {...p} />;
-
-export const Strong = p => <strong {...p} />;
-
-export const Em = p => <em {...p} />;
-
-export const Br = p => <br {...p} />;
-
-export const B = p => <b {...p} />;
-
-export const S = p => <s {...p} />;
-
-export const Del = p => <del {...p} />;

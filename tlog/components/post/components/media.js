@@ -68,11 +68,3 @@ export const Img = p => (
     `}</style>
   </details>
 );
-
-export const Video = p => (
-  <>
-    <video {...p} />
-  </>
-);
-
-export const Source = p => <source {...p} />;

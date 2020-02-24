@@ -1,21 +1,16 @@
-import { useRef } from 'react';
+import React from 'react';
 import { useLoadTweets } from '../../lib/twitter/hooks';
 import defaultComponents from './components';
 import handlers from './handlers';
 
 const defaultHandler = name => (props, components) => {
   const Comp = components[name];
-  return <Comp {...props} />;
+  return Comp ? <Comp {...props} /> : React.createElement(name, props);
 };
 
 function handleNode(node, components, i) {
   if (typeof node === 'string') {
     return node;
-  }
-
-  if (!components[node.tag]) {
-    console.error('Missing component for:', node);
-    return null;
   }
 
   const handler = handlers[node.tag] || defaultHandler(node.tag);
