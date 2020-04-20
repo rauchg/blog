@@ -12,22 +12,22 @@ const style = css.global`
     --accents-5: #666666;
 
     --link-color: var(--colors-blue);
+    --link-highlight: yellow;
+    --meta-text-color: #4f4f4f;
     --poll-bar-color: var(--colors-blue);
     --inline-code-color: var(--colors-purple);
     --code-color: #9efeff;
     --code-bg-color: #1e1e3f;
 
-    /* Embedded tweet */
-    --tweet-font: normal normal 16px/1.4 Helvetica, Roboto, "Segoe UI", Calibri,
-      sans-serif;
-    --tweet-font-color: #1c2022;
-    --tweet-bg-color: #fff;
-    --tweet-border: 1px solid #e1e8ed;
-    --tweet-border-hover: 1px solid #ccd6dd;
-    --tweet-link-color: #2b7bb9;
-    --tweet-link-color-hover: #3b94d9;
-    --tweet-color-gray: #697882;
-    --tweet-color-red: #e02460;
+    --tweet-font: normal normal 16px/1.4 Helvetica, Roboto, 'Segoe UI', Calibri, sans-serif;
+    --tweet-font-color: #000;
+    --tweet-bg-color: #eee;
+    --tweet-border: 2px solid var(--accents-3);
+    --tweet-border-hover: 2px solid var(--accents-4);
+    --tweet-link-color: #0366d6;
+    --tweet-link-color-hover: #0070f3;
+    --tweet-color-gray: var(--accents-5);
+    --tweet-color-red: #ff0080;
   }
 
   ::selection {

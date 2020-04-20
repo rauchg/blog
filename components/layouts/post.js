@@ -1,6 +1,5 @@
 import Page from "./main";
 import { Tweets } from "../../lib/tweets";
-import prismTheme from "../../tlog/components/post/prism-theme";
 
 export default ({ tweets, children }) => (
   <Page>
@@ -9,9 +8,6 @@ export default ({ tweets, children }) => (
         <article>{children}</article>
       </main>
 
-      <style jsx global>
-        {prismTheme}
-      </style>
       <style jsx>{`
         main {
           padding: 15px;

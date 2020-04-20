@@ -3,17 +3,12 @@ import { TwitterTweetEmbed } from "react-twitter-embed";
 import { useTweet } from "../../lib/tweets";
 import Node from "../../static-tweet/components/html/node";
 import components from "../../static-tweet/components/twitter-layout/components";
-import styles from '../../static-tweet/components/zeit-layout/zeit.module.css';
 
 export default function Tweet({ id, caption }) {
   const ast = useTweet(id);
 
   if (ast) {
-    return (
-      <div styles={styles.zeit}>
-        <Node components={components} node={ast[0]} />
-      </div>
-    );
+    return <Node components={components} node={ast[0]} />;
   }
 
   return (
