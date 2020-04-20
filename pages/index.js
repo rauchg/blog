@@ -3,7 +3,7 @@ import Link from "next/link";
 import { posts } from "../posts";
 import { WRITINGS } from "../components/header";
 
-export function unstable_getStaticProps() {
+export function getStaticProps() {
   return {
     props: {
       posts: posts.map(post => ({
