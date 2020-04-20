@@ -1,4 +1,4 @@
-import css from "styled-jsx/css";
+import css from 'styled-jsx/css';
 
 const style = css.global`
   :root {
@@ -19,15 +19,16 @@ const style = css.global`
     --code-color: #9efeff;
     --code-bg-color: #1e1e3f;
 
-    --tweet-font: normal normal 16px/1.4 Helvetica, Roboto, 'Segoe UI', Calibri, sans-serif;
-    --tweet-font-color: #000;
-    --tweet-bg-color: #eee;
-    --tweet-border: 2px solid var(--accents-3);
-    --tweet-border-hover: 2px solid var(--accents-4);
-    --tweet-link-color: #0366d6;
-    --tweet-link-color-hover: #0070f3;
-    --tweet-color-gray: var(--accents-5);
-    --tweet-color-red: #ff0080;
+    --tweet-font: normal normal 16px/1.4 Helvetica, Roboto, 'Segoe UI', Calibri,
+      sans-serif;
+    --tweet-font-color: #1c2022;
+    --tweet-bg-color: #fff;
+    --tweet-border: 2px solid #e1e8ed;
+    --tweet-border-hover: 2px solid #ccd6dd;
+    --tweet-link-color: #2b7bb9;
+    --tweet-link-color-hover: #3b94d9;
+    --tweet-color-gray: #697882;
+    --tweet-color-red: #e02460;
   }
 
   ::selection {
