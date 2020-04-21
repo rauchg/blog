@@ -1,8 +1,6 @@
 {
   "env": {
-    "FIREBASE_PROJECT_ID": "rauchg-blog",
-    "FIREBASE_PRIVATE_KEY": "@blog-firebase-private-key",
-    "FIREBASE_CLIENT_EMAIL": "@blog-firebase-client-email"
+    "FIREBASE_PRIVATE_KEY": "@blog-firebase-private-key"
   },
   "routes": [
     {
