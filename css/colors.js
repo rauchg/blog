@@ -1,4 +1,4 @@
-import css from "styled-jsx/css";
+import css from 'styled-jsx/css';
 
 const style = css.global`
   :root {

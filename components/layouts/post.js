@@ -1,10 +1,13 @@
-import Page from "./main";
+import Page from './main';
+import { Tweets } from '../../lib/tweets';
 
-export default ({ children }) => (
+export default ({ tweets, children }) => (
   <Page>
-    <main>
-      <article>{children}</article>
-    </main>
+    <Tweets.Provider value={tweets}>
+      <main>
+        <article>{children}</article>
+      </main>
+    </Tweets.Provider>
 
     <style jsx>{`
       main {

@@ -12,9 +12,15 @@ import UL, { LI } from "../../components/post/bullets-list";
 import withViews from "../../lib/with-views";
 import YouTube from "../../components/post/youtube";
 import Head from "next/head";
+import getTweets from "../../lib/get-tweets";
 
-export default withViews(({ views }) => (
-  <Post>
+export async function getStaticProps() {
+  const tweets = await getTweets(Page);
+  return { props: { tweets } };
+}
+
+const Page = withViews(({ tweets, views }) => (
+  <Post tweets={tweets}>
     <Header title="2019 in Review" date="January 2, 2020" views={views} />
     <Head>
       <meta property="og:title" content="2019 in Review" />
@@ -1205,3 +1211,5 @@ export default withViews(({ views }) => (
     </FootNotes>
   </Post>
 ));
+
+export default Page;
