@@ -67,6 +67,7 @@ const Home = ({ posts, date }) => (
         }
       }
     `}</style>
+
   </Layout>
 );
 

@@ -1,6 +1,11 @@
 {
   "posts": [
     {
+      "id": "vercel",
+      "date": "April 21, 2020",
+      "title": "Vercel"
+    },
+    {
       "id": "2019-in-review",
       "date": "January 2, 2020",
       "title": "2019 in Review"

@@ -33,14 +33,14 @@ const Page = withViews(({ tweets, views }) => (
       <meta name="twitter:site" content="@rauchg" />
       <meta
         property="og:image"
-        content="https://user-images.githubusercontent.com/13041/71661903-92614e80-2d47-11ea-9e97-ceee5ad8c720.png"
+        content="https://rauchg.com/og/2019-in-review.png"
       />
     </Head>
 
     <P>
       <em>
         This post is a quick summary of the evolution of{" "}
-        <a href="https://zeit.co" target="_blank">
+        <a href="https://vercel.com" target="_blank">
           our company
         </a>
         , our <a href="https://nextjs.org">open-source work</a>, interesting
@@ -53,7 +53,7 @@ const Page = withViews(({ tweets, views }) => (
       Throughout 2019 we have continued to see the growth of the{" "}
       <em>JAMstack</em>. The idea is quite simple: Any website or app you{" "}
       <a href="https://nextjs.org">build</a> and{" "}
-      <a href="https://zeit.co">deploy</a> will use the stack of client-side{" "}
+      <a href="https://vercel.com">deploy</a> will use the stack of client-side{" "}
       <i>J</i>
       avaScript, <i>A</i>PIs, and <i>M</i>arkup.
     </P>
@@ -274,7 +274,7 @@ const Page = withViews(({ tweets, views }) => (
       }
     </Snippet>
     <P>
-      The <a href="https://zeit.co">ZEIT Now</a> platform gives you a
+      The <a href="https://vercel.com">Vercel</a> platform gives you a
       comprehensive workflow with built-in CI/CD and global CDN, that are
       carefully optimized for production-grade dynamic sites.
     </P>
@@ -303,7 +303,7 @@ const Page = withViews(({ tweets, views }) => (
     </P>
     <P>
       By setting up a{" "}
-      <a href="https://zeit.co/github" target="_blank">
+      <a href="https://vercel.com/github" target="_blank">
         Git integration
       </a>
       , every single <Code>git push</Code> gets its own live deployment URL.
@@ -377,7 +377,7 @@ const Page = withViews(({ tweets, views }) => (
 
     <P>
       When you install our{" "}
-      <a href="https://zeit.co/github" target="_blank">
+      <a href="https://vercel.com/github" target="_blank">
         GitHub app
       </a>
       , we don't just register a "Check" like other CI providers in the pull
@@ -908,7 +908,7 @@ const Page = withViews(({ tweets, views }) => (
         SWR
       </a>{" "}
       is another.{" "}
-      <a href="https://zeit.co/blog/zero-config" target="_blank">
+      <a href="https://vercel.com/blog/zero-config" target="_blank">
         Zero-config deployments
       </a>
       , another.

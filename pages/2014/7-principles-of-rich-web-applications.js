@@ -105,8 +105,8 @@ export default withViews(({ views }) => (
 
     <OL>
       <OLI>
-        <a href="#server-rendered-pages-are-not-optional">
-          Server rendered pages are not optional
+        <a href="#pre-rendered-pages-are-not-optional">
+          Pre-rendered pages are not optional
         </a>
       </OLI>
       <OLI>
@@ -135,21 +135,32 @@ export default withViews(({ views }) => (
       </OLI>
     </OL>
 
-    <H2 id="server-rendered-pages-are-not-optional">
-      1. Server rendered pages are not optional
+    <H2 id="pre-rendered-pages-are-not-optional">
+      1. Pre rendered pages are not optional
     </H2>
 
     <TLDR>
-      Server rendering is not about SEO, it’s about performance. Consider the
-      additional roundtrips to get scripts, styles, and subsequent API requests.
-      In the future, consider HTTP 2.0 “pushing” of resources.
+      Pre-rendering is not (just) about SEO, it’s about performance. Consider
+      the additional roundtrips to get scripts, styles, and subsequent API
+      requests. In the future, consider HTTP 2.0 “pushing” of resources.
     </TLDR>
 
     <P>
+      <em>
+        Note: this title used to be "server-rendered". However, "pre-rendered"
+        also encapsulates{" "}
+        <a href="/2020/2019-in-review#static-is-the-new-dynamic">
+          static site generation
+        </a>
+        , so it was edited accordingly.
+      </em>
+    </P>
+
+    <P>
       The first thing I’m compelled to point out is a fairly common false
-      dichotomy. That of “server-rendered apps vs single-page apps”. If we want
-      to optimize for the best possible user experience and performance, giving
-      up one or the other is never a good idea.
+      dichotomy. That of “pre- or server-rendered apps vs single-page apps”. If
+      we want to optimize for the best possible user experience and performance,
+      giving up one or the other is never a good idea.
     </P>
 
     <P>
