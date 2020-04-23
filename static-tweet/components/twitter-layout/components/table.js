@@ -6,7 +6,7 @@ export const Table = p => (
         display: flex;
         justify-content: center;
         width: 100%;
-        margin: 1.5rem 0;
+        margin: var(--container-margin);
       }
       table {
         display: block;

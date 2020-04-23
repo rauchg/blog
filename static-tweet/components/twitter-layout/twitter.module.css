@@ -1,0 +1,35 @@
+.theme {
+  --colors-blue: #0c00ff;
+  --colors-purple: #be00ff;
+
+  --accents-1: #fafafa;
+  --accents-2: #eaeaea;
+  --accents-3: #999999;
+  --accents-4: #888888;
+  --accents-5: #666666;
+
+  --bg-color: #fff;
+  --link-color: var(--colors-blue);
+  --poll-bar-color: var(--colors-blue);
+  --inline-code-color: var(--colors-purple);
+  --code-color: #9efeff;
+  --code-bg-color: #1e1e3f;
+
+  --text-margin: 1.25rem 0;
+  --container-margin: 1.5rem 0;
+  --poll-margin: 1.5rem 1rem;
+  --heading-margin-top: 3.5rem;
+  --heading-margin-bottom: 2rem;
+  --li-margin: 0 0 0.5rem 0;
+
+  /* Embedded tweet */
+  --tweet-font: normal normal 16px/1.4 Helvetica, Roboto, 'Segoe UI', Calibri, sans-serif;
+  --tweet-font-color: #1c2022;
+  --tweet-bg-color: #fff;
+  --tweet-border: 1px solid #e1e8ed;
+  --tweet-border-hover: 1px solid #ccd6dd;
+  --tweet-link-color: #2b7bb9;
+  --tweet-link-color-hover: #3b94d9;
+  --tweet-color-gray: #697882;
+  --tweet-color-red: #e02460;
+}

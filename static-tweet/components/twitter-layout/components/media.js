@@ -2,7 +2,7 @@ import dynamic from 'next/dynamic';
 
 const LoadDetailsDialog = dynamic(() => import('../details-dialog'), { ssr: false });
 
-export const Img = p => (
+export const Img = ({ width, height, ...p }) => (
   <details>
     <summary>
       <img {...p} />
@@ -16,11 +16,21 @@ export const Img = p => (
     <LoadDetailsDialog />
 
     <style jsx>{`
+      summary {
+        position: relative;
+        padding-bottom: ${(height / width) * 100 || 0}%;
+      }
+      summary > img {
+        position: ${height && width ? 'absolute' : 'static'};
+      }
+    `}</style>
+    <style jsx>{`
       details {
         height: 100%;
         overflow: hidden;
       }
       summary {
+        position: relative;
         height: 100%;
         list-style: none;
       }

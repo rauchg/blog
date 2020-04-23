@@ -3,7 +3,7 @@ import css from 'styled-jsx/css';
 const { className, styles } = css.resolve`
    {
     font-weight: 600;
-    margin: 3.5rem 0 2rem 0;
+    margin: var(--heading-margin-top) 0 var(--heading-margin-bottom) 0;
   }
 `;
 
@@ -18,8 +18,8 @@ const Permalink = ({ children, id }) => (
         display: block;
         position: absolute;
         visibility: hidden;
-        margin-top: -3.5rem;
-        padding-top: 3.5rem;
+        margin-top: calc(-1 * var(--heading-margin-top));
+        padding-top: var(--heading-margin-top);
       }
       a {
         color: inherit;

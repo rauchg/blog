@@ -29,7 +29,7 @@ function getTweetContent($, tweet, isMainTweet) {
     meta.createdAt = Number(time.attr('data-time-ms'));
   }
 
-  tweetContent.children('img').each(function() {
+  tweetContent.children('img').each(function () {
     const props = this.attribs;
 
     // Handle emojis inside the text
@@ -45,16 +45,13 @@ function getTweetContent($, tweet, isMainTweet) {
     console.error('An image with the following props is not being handled:', props);
   });
 
-  tweetContent.children('a').each(function() {
+  tweetContent.children('a').each(function () {
     const props = this.attribs;
     const el = $(this);
 
     if (props['data-expanded-url']) {
       const url = props['data-expanded-url'];
-      const quotedTweetPath = tweet
-        .children('.QuoteTweet')
-        .find('.QuoteTweet-link')
-        .attr('href');
+      const quotedTweetPath = tweet.children('.QuoteTweet').find('.QuoteTweet-link').attr('href');
 
       // Embedded Tweet
       if (quotedTweetPath && url.endsWith(quotedTweetPath)) {
@@ -98,9 +95,9 @@ function getTweetContent($, tweet, isMainTweet) {
 
         // Gifs
         if (url.pathname.startsWith('/tweet_video_thumb')) {
-          const video = $(`<video poster="${url.href}" playsinline autoplay muted loop>`).append(
-            `<source src="${videoUrl}" type="video/mp4">`
-          );
+          const video = $(
+            `<video poster="${url.href}" controls playsinline autoplay muted loop>`
+          ).append(`<source src="${videoUrl}" type="video/mp4">`);
           media.attr('data-type', 'gif-container').append(video);
         } else {
           // Custom videos require a call to the Twitter API to get the URL of the video
@@ -110,7 +107,7 @@ function getTweetContent($, tweet, isMainTweet) {
       } else {
         const images = adaptiveMedia.find('img');
 
-        images.each(function() {
+        images.each(function () {
           const img = $(this);
           const src = img.attr('src');
           const alt = img.attr('alt');
@@ -125,39 +122,41 @@ function getTweetContent($, tweet, isMainTweet) {
         media.attr('data-type', `image-container ${images.length}`);
       }
 
-      mediaHtml = $('<div>')
-        .append(media)
-        .html();
+      mediaHtml = $('<div>').append(media).html();
 
       el.remove();
       return;
     }
 
-    // @mention
-    if (props['data-mentioned-user-id']) {
+    const asTwitterLink = type => {
       this.attribs = {
-        'data-type': 'mention',
+        'data-type': type,
         href: props.href,
       };
       // Replace custom tags inside the anchor with text
       el.text(el.text());
       return;
+    };
+
+    // @mention
+    if (props['data-mentioned-user-id']) {
+      return asTwitterLink('mention');
+    }
+
+    // #hashtag
+    if (props['data-query-source'] === 'hashtag_click') {
+      return asTwitterLink('hashtag');
     }
 
     // $cashtag
     if (props['data-query-source'] === 'cashtag_click') {
-      this.attribs = {
-        'data-type': 'cashtag',
-        href: props.href,
-      };
-      el.text(el.text());
-      return;
+      return asTwitterLink('cashtag');
     }
 
     console.error('An anchor with the following props is not being handled:', props);
   });
 
-  actions.each(function() {
+  actions.each(function () {
     const el = $(this);
     const className = this.attribs.class;
     const is = name => className.includes(`ProfileTweet-action--${name}`);
@@ -204,9 +203,7 @@ export function getVideo(html, { poster, url }) {
     `<source src="${url}" type="video/mp4">`
   );
 
-  return $('<div>')
-    .append(container.append(video))
-    .html();
+  return $('<div>').append(container.append(video)).html();
 }
 
 export function getTweetData(html, { thread } = {}) {
@@ -231,10 +228,8 @@ export function getTweetData(html, { thread } = {}) {
     .children('.ThreadedConversation--selfThread')
     .children('ol')
     .children()
-    .each(function() {
-      const selfTweet = $(this)
-        .children('li')
-        .children('.tweet');
+    .each(function () {
+      const selfTweet = $(this).children('li').children('.tweet');
       const selfTweetContent = getTweetContent($, selfTweet.children('.content'));
 
       if (selfTweetContent) {

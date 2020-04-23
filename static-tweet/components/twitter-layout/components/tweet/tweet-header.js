@@ -25,6 +25,7 @@ export default function TweetHeader({ tweet }) {
         }
         .avatar {
           height: 2.25rem;
+          width: 2.25rem;
           margin-right: 0.625rem;
         }
         .avatar > img {

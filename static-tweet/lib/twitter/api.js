@@ -3,9 +3,7 @@ import fetch from '../fetch';
 const API_URL = 'https://api.twitter.com';
 
 function twitterLabsEnabled(expansions) {
-  const labsEnabled = process.env.TWITTER_LABS_ENABLED;
-
-  if (labsEnabled !== '1' && labsEnabled !== 'true') return false;
+  if (!process.env.TWITTER_LABS_ENABLED) return false;
   if (!expansions) return true;
 
   const exp = process.env.TWITTER_LABS_EXPANSIONS || '';
@@ -39,6 +37,10 @@ export async function fetchUserStatus(tweetId) {
     }
   );
 
+  console.log('Twitter x-rate-limit-limit:', res.headers.get('x-rate-limit-limit'));
+  console.log('Twitter x-rate-limit-remaining:', res.headers.get('x-rate-limit-remaining'));
+  console.log('Twitter x-rate-limit-reset:', res.headers.get('x-rate-limit-reset'));
+
   if (res.ok) return res.json();
   if (res.status === 404) return;
 
@@ -61,6 +63,10 @@ export async function fetchTweetWithPoll(tweetId) {
     }
   );
 
+  console.log('Twitter Labs x-rate-limit-limit:', res.headers.get('x-rate-limit-limit'));
+  console.log('Twitter Labs x-rate-limit-remaining:', res.headers.get('x-rate-limit-remaining'));
+  console.log('Twitter Labs x-rate-limit-reset:', res.headers.get('x-rate-limit-reset'));
+
   if (res.ok) return res.json();
   if (res.status === 404) return;
 
@@ -68,7 +74,6 @@ export async function fetchTweetWithPoll(tweetId) {
 }
 
 export async function getEmbeddedTweetHtml(url) {
-  // Consider moving this to an API route
   const res = await fetch(`https://publish.twitter.com/oembed?url=${url}`);
 
   if (res.ok) return res.json();

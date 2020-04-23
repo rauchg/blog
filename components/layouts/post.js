@@ -1,5 +1,5 @@
-import Page from "./main";
-import { Tweets } from "../../lib/tweets";
+import Page from './main';
+import { Tweets } from '../../lib/tweets';
 
 export default ({ tweets, children }) => (
   <Page>
@@ -7,15 +7,15 @@ export default ({ tweets, children }) => (
       <main>
         <article>{children}</article>
       </main>
-
-      <style jsx>{`
-        main {
-          padding: 15px;
-          max-width: 680px;
-          margin: auto;
-          font-size: 18px;
-        }
-      `}</style>
     </Tweets.Provider>
+
+    <style jsx>{`
+      main {
+        padding: 15px;
+        max-width: 680px;
+        margin: auto;
+        font-size: 18px;
+      }
+    `}</style>
   </Page>
 );

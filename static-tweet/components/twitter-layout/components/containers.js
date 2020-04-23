@@ -5,14 +5,14 @@ export const Div = p => (
       .image-container {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(50%, 1fr));
-        margin: 1.5rem 0;
+        margin: var(--container-margin);
       }
       .image-count-3 > :global(:first-child) {
         grid-row-end: span 2;
       }
       .gif-container,
       .video-container {
-        margin: 1.5rem 0;
+        margin: var(--container-margin);
       }
       .gif-container > :global(video),
       .video-container > :global(video) {

@@ -3,7 +3,7 @@ export const P = p => (
     {p.children}
     <style jsx>{`
       p {
-        margin: 1.25rem 0;
+        margin: var(--text-margin);
         white-space: pre-wrap;
         word-wrap: break-word;
       }
@@ -19,7 +19,7 @@ export const Blockquote = p => (
         background: var(--accents-1);
         color: var(--accents-5);
         border: 1px solid var(--accents-2);
-        margin: 1.5rem 0;
+        margin: var(--container-margin);
         padding: 0 1.25rem;
       }
     `}</style>
@@ -33,7 +33,7 @@ export const Hr = p => (
       hr {
         border: 0;
         border-top: 1px solid var(--accents-2);
-        margin: 1.25rem 0;
+        margin: var(--text-margin);
       }
     `}</style>
   </>

@@ -60,20 +60,17 @@ export default {
 
     if (type === 'mention') {
       const { Mention } = components;
-      return (
-        <Mention key={i} href={props.href}>
-          {props.children}
-        </Mention>
-      );
+      return <Mention key={i} href={props.href} children={props.children} />;
+    }
+
+    if (type === 'hashtag') {
+      const { Hashtag } = components;
+      return <Hashtag key={i} href={props.href} children={props.children} />;
     }
 
     if (type === 'cashtag') {
       const { Cashtag } = components;
-      return (
-        <Cashtag key={i} href={props.href}>
-          {props.children}
-        </Cashtag>
-      );
+      return <Cashtag key={i} href={props.href} children={props.children} />;
     }
 
     if (type === 'quote-tweet') {

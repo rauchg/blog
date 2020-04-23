@@ -27,6 +27,12 @@ export const Mention = p => (
   </TwitterLink>
 );
 
+export const Hashtag = p => (
+  <TwitterLink href={p.href} type="#">
+    {p.children[0].replace(/^\#/, '')}
+  </TwitterLink>
+);
+
 export const Cashtag = p => (
   <TwitterLink href={p.href} type="$">
     {p.children[0].replace(/^\$/, '')}
@@ -79,7 +85,7 @@ export const Poll = ({ data }) => {
 
       <style jsx>{`
         .poll {
-          margin: 1.5rem 1rem;
+          margin: var(--poll-margin);
         }
         .options {
           display: grid;

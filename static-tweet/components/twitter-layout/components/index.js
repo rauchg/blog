@@ -6,7 +6,7 @@ import { A } from './anchor';
 import { Ul, Ol, Li } from './lists';
 import { Table, Th, Td } from './table';
 import { Img } from './media';
-import { Mention, Cashtag, Emoji, Poll } from './twitter';
+import { Mention, Hashtag, Cashtag, Emoji, Poll } from './twitter';
 import Tweet from './tweet/tweet';
 import EmbeddedTweet from './embedded-tweet';
 
@@ -40,6 +40,7 @@ export default {
   img: Img,
 
   Mention,
+  Hashtag,
   Cashtag,
   Emoji,
   Poll,

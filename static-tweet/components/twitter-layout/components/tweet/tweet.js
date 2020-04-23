@@ -19,7 +19,7 @@ export default function Tweet({ children, data }) {
           background: var(--tweet-bg-color);
           border: var(--tweet-border);
           border-radius: 5px;
-          margin: 1.5rem 0;
+          margin: var(--container-margin);
         }
         .tweet:hover {
           border: var(--tweet-border-hover);
