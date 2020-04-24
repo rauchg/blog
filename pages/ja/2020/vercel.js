@@ -1,11 +1,12 @@
-import Post from '../../../components/layouts/post'
-import P from '../../../components/post/paragraph'
-import HR from '../../../components/post/hr'
-import Header from '../../../components/post/header'
-import { H2, H3 } from '../../../components/post/heading'
-import withViews from '../../../lib/with-views'
-import Head from 'next/head'
-import Link from 'next/link'
+import Post from "../../../components/layouts/post";
+import P from "../../../components/post/paragraph";
+import HR from "../../../components/post/hr";
+import Header from "../../../components/post/header";
+import { H2, H3 } from "../../../components/post/heading";
+import withViews from "../../../lib/with-views";
+import Head from "next/head";
+import Link from "next/link";
+import { PostHrefLang } from "../../2020/vercel";
 
 export default withViews(({ views }) => (
   <Post>
@@ -21,8 +22,9 @@ export default withViews(({ views }) => (
       <meta name="twitter:site" content="@rauchg" />
       <meta property="og:image" content="https://rauchg.com/og/vercel.png" />
     </Head>
+    <PostHrefLang />
     <P>
-      訳註:{' '}
+      訳註:{" "}
       <a href="https://nextjs.org/" target="_blank">
         Next.js
       </a>
@@ -175,7 +177,7 @@ export default withViews(({ views }) => (
       <a href="https://svelte.dev" target="_blank">
         Svelte
       </a>
-      はブラウザが読み込むJavaScriptの容量を大幅に減らすなど意欲的な試みを行っています。どのフレームワークも、コンポーネント化で直面する様々な問題や、
+      は、ブラウザが読み込むJavaScriptの容量を大幅に減らすなど意欲的な試みを行っています。どのフレームワークも、コンポーネント化で直面する様々な問題や、
       <a target="_blank" href="https://www.webcomponents.org/">
         コンポーネント化のウェブ標準
       </a>
@@ -188,7 +190,7 @@ export default withViews(({ views }) => (
       コードをプッシュしてレビューする一連のプロセスは複雑化しがちです。自前のCI/CDパイプラインを構築したり、Jenkinsの設定を弄ったり、CI/CDやCDNのベンダーを選定するのに時間がかかりすぎるのです。CI/CDとCDNをうまく連携させたり、複雑なシステムの挙動を見張るのはとても難儀です。
     </P>
     <P>
-      フロントエンドに特化したプッシュ・レビューの仕組みについて試行錯誤した結果、私達は画期的なアイデアにたどり着きました。フロントエンド開発チームにとっては、プレビュー用のURLほど強力な武器はないと気づいたのです。Vercelを使えば、開発中のフロントエンドアプリをプレビュー用にデプロイし、すぐさまそのURLを取得して結果を確認することができます。コンテンツ管理システム(訳註:
+      フロントエンドに特化したプッシュ・レビューの仕組みについて試行錯誤した結果、私達は画期的なアイデアにたどり着きました。Jamstackのフロントエンドアプリを開発しているチームにとっては、プレビュー用のURLほどシンプルで強力なものはないと気づいたのです。Vercelを使えば、開発中のフロントエンドアプリをプレビュー用にデプロイし、すぐさまそのURLを取得して結果を確認することができます。コンテンツ管理システム(訳註:
       Wordpressなど)によくあるプレビュー機能と同じですが、Vercelは
       <a href="https://vercel.com/github" target="_blank">
         <b>Gitと連携し、全てのpushに対してデプロイを行うのがポイントです</b>。
@@ -268,4 +270,4 @@ export default withViews(({ views }) => (
       な物語が垣間見えることでしょう。
     </P>
   </Post>
-))
+));
