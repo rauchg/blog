@@ -1,12 +1,12 @@
 # blog
 
 This is the blog that powers `rauchg.com`, built on
-[next.js](https://zeit.co/blog/next) and
-deployed to the cloud via [now](https://zeit.co/now).
+[next.js](https://nextjs.org/) and
+deployed to the cloud via [Vercel](https://vercel.com).
 
 ## How to run
 
-First, install [Now](https://zeit.co/download).
+First, install [Vercel CLI](https://vercel.com/download).
 
 ### Development
 
@@ -22,7 +22,7 @@ now dev
 now
 ```
 
-This is the equivalent of submitting a PR with the [GitHub integration](https://zeit.co/github)
+This is the equivalent of submitting a PR with the [GitHub integration](https://vercel.com/github)
 
 #### Production
 
