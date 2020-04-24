@@ -33,8 +33,8 @@ export default withViews(({ views }) => (
         <a href={links[2]} target="_blank">
           Portuguese
         </a>
+        .
       </span>
-      .
     </P>
 
     <P>
@@ -1096,6 +1096,7 @@ So: the hardware of the Internet can currently achieve within a factor of two of
     <style jsx>{`
       .translations {
         color: #666;
+        font-size: 14px;
       }
     `}</style>
   </Post>

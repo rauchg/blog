@@ -12,6 +12,15 @@ import UL, { LI } from "../../components/post/bullets-list";
 import withViews from "../../lib/with-views";
 import YouTube from "../../components/post/youtube";
 import Head from "next/head";
+import Link from "next/link";
+import Hreflang from "../../components/hreflang";
+
+export const PostHrefLang = () => (
+  <Hreflang
+    links={[{ lang: "ja", url: "https://rauchg.com/ja/2020/vercel" }]}
+    defaultUrl="https://rauchg.com/2020/vercel"
+  />
+);
 
 export default withViews(({ views }) => (
   <Post>
@@ -27,6 +36,17 @@ export default withViews(({ views }) => (
       <meta name="twitter:site" content="@rauchg" />
       <meta property="og:image" content="https://rauchg.com/og/vercel.png" />
     </Head>
+    <PostHrefLang />
+
+    <P>
+      <span className="translations">
+        Also available in:{" "}
+        <Link href="/ja/2020/vercel">
+          <a>Japanese</a>
+        </Link>
+        .
+      </span>
+    </P>
 
     <P>
       Today we announced that we’ve re-branded as{" "}
@@ -330,5 +350,11 @@ export default withViews(({ views }) => (
       </a>
       , much like the platform it builds on.
     </P>
+    <style jsx>{`
+      .translations {
+        color: #666;
+        font-size: 14px;
+      }
+    `}</style>
   </Post>
 ));
