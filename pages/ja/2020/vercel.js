@@ -224,14 +224,14 @@ export default withViews(({ views }) => (
     <H3 id="ship-with-speed">3. スピードが命</H3>
     <P>
       最近のフロントエンド開発において、サイトの速度ほど大事なことはありません。
-      たとえば、さまざまな観点からサイトの速度を数値化する
+      たとえば
       <a
         href="https://twitter.com/rauchg/status/1252312827131342848"
         target="_blank"
       >
         GoogleのLighthouseスコア
       </a>
-      は、検索エンジンのランキングに大きな影響を与えます。
+      は、さまざまな観点からサイトの速度を数値化してくれますが、それらの数値はどれもサイトの検索順位に影響を与えます。
     </P>
     <P>
       Vercelは
