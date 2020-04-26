@@ -2,7 +2,7 @@ export default ({ emoji, children }) => (
   <p>
     <span className="emoji">{emoji}</span>
 
-    <div>{children}</div>
+    <span className="children">{children}</span>
 
     <style jsx>{`
       p {
@@ -13,6 +13,10 @@ export default ({ emoji, children }) => (
         padding: 15px 10px;
         font-size: 16px;
         align-items: center;
+      }
+
+      .children {
+        display: block;
       }
 
       .emoji {

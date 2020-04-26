@@ -414,7 +414,7 @@ export default withViews(({ views }) => (
     <P>
       Equipped with <Code>print</Code>, I was able to enumerate the entire
       environment
-      <Ref id="1" />
+      <Ref id="1" />.
     </P>
 
     <Figure
