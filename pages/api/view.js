@@ -7,7 +7,9 @@ export default async function view(req, res) {
     });
   }
 
-  const ref = db.ref("views").child(req.query.id);
+  const ref = db()
+    .ref("views")
+    .child(req.query.id);
   const { snapshot } = await ref.transaction(currentViews => {
     // if it has never been set it returns null
     if (currentViews === null) currentViews = 0;

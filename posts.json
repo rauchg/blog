@@ -1,6 +1,11 @@
 {
   "posts": [
     {
+      "id": "an-ode-to-code-golf",
+      "date": "April 26, 2020",
+      "title": "An ode to code golf"
+    },
+    {
       "id": "vercel",
       "date": "April 21, 2020",
       "title": "Vercel"

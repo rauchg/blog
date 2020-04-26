@@ -1,0 +1,36 @@
+<style contenteditable>
+  /* Edit me */
+  head, style {
+    display: block;
+  }
+
+  style {
+    font-family: monospace; /*try `fantasy` for a special treat.*/
+    padding: 50px;
+    font-size: 16px;
+    white-space: pre;
+    line-height: 1.4;
+    color: #101;
+  }
+
+  style:hover {
+    outline: 0;
+  }
+
+  style::before {
+    content: '<style contenteditable>';
+  }
+
+  style::after {
+    content: "<\/style>";
+    display: block;
+  }
+
+  /* prior art:
+     http://annevankesteren.nl/test/contenteditable-style.htm
+     http://mathiasbynens.be/demo/css-hidden-elements
+
+     Quine:
+     http://en.wikipedia.org/wiki/Quine_(computing)
+  */
+</style>

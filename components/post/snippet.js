@@ -1,6 +1,16 @@
-export default ({ children, caption = null }) => (
+export default ({
+  children,
+  smallText = false,
+  scroll = true,
+  caption = null
+}) => (
   <div>
-    <pre>
+    <pre
+      className={`
+        ${scroll ? "scroll" : ""}
+        ${smallText ? "small-text" : ""}
+      `}
+    >
       <code>{children}</code>
     </pre>
 
@@ -12,7 +22,18 @@ export default ({ children, caption = null }) => (
         background: #000;
         padding: 20px;
         margin: 0 0 10px;
+        white-space: pre-wrap;
+        word-break: break-all;
+      }
+
+      pre.scroll {
+        white-space: inherit;
+        word-break: inherit;
         overflow-x: auto;
+      }
+
+      pre.small-text {
+        font-size: 14px;
       }
 
       div {
