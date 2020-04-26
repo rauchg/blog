@@ -94,7 +94,7 @@ export default withViews(({ views }) => (
   <Post>
     <Header title="An Ode to Code Golf" date="April 26, 2020" views={views} />
     <Head>
-      <meta property="og:title" content="Vercel" />
+      <meta property="og:title" content="An Ode to Code Golf" />
       <meta property="og:site_name" content="Guillermo Rauch's blog" />
       <meta
         property="og:description"
