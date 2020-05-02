@@ -9,7 +9,7 @@ async function main () {
     mqlOpts: {
       apiKey: process.env.MICROLINK_API_KEY
     },
-    entries: posts.map(post => {
+    entries: posts.map(post => ({ preset: 'rauchg', title: post.title }))
       return {
         preset: 'rauchg',
         title: post.title
