@@ -9,12 +9,7 @@ async function main () {
     mqlOpts: {
       apiKey: process.env.MICROLINK_API_KEY
     },
-    entries: posts.map(post => ({ preset: 'rauchg', title: post.title }))
-      return {
-        preset: 'rauchg',
-        title: post.title
-      }
-    }),
+    entries: posts.map(post => ({ preset: 'rauchg', title: post.title }),
     output: {
       path: './public/cards',
       filename: query => slugify(query.title),
