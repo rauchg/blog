@@ -330,7 +330,7 @@ export default withViews(({ views }) => (
       cloud, and making iteration easy and fast by default.
     </P>
 
-    <H2>Onward</H2>
+    <H2 id="onward">Onward and Upward</H2>
 
     <P>
       We are still in the early days of a new beginning for the Web. A Web

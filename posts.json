@@ -1,6 +1,11 @@
 {
   "posts": [
     {
+      "id": "static-hoisting",
+      "date": "April 30, 2020",
+      "title": "Static Hoisting"
+    },
+    {
       "id": "an-ode-to-code-golf",
       "date": "April 26, 2020",
       "title": "An ode to code golf"

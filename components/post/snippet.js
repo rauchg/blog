@@ -7,7 +7,7 @@ export default ({
   <div>
     <pre
       className={`
-        ${scroll ? "scroll" : ""}
+        ${scroll ? "" : "no-scroll"}
         ${smallText ? "small-text" : ""}
       `}
     >
@@ -22,14 +22,18 @@ export default ({
         background: #000;
         padding: 20px;
         margin: 0 0 10px;
-        white-space: pre-wrap;
-        word-break: break-all;
+        overflow-x: auto;
       }
 
-      pre.scroll {
-        white-space: inherit;
-        word-break: inherit;
-        overflow-x: auto;
+      code {
+        font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo,
+          Courier, monospace;
+      }
+
+      pre.no-scroll {
+        white-space: pre-wrap;
+        word-break: break-all;
+        overflow: none;
       }
 
       pre.small-text {

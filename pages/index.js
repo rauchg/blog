@@ -47,6 +47,12 @@ const Home = ({ posts, date }) => (
       @media (min-width: 500px) {
         ul {
           padding: 20px 0;
+          max-width: 42rem;
+          margin: auto;
+        }
+
+        ul li {
+          padding-left: 0;
         }
 
         ul li a {
@@ -67,7 +73,6 @@ const Home = ({ posts, date }) => (
         }
       }
     `}</style>
-
   </Layout>
 );
 

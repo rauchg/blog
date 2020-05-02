@@ -1,5 +1,5 @@
-import Page from './main';
-import { Tweets } from '../../lib/tweets';
+import Page from "./main";
+import { Tweets } from "../../lib/tweets";
 
 export default ({ tweets, children }) => (
   <Page>
@@ -12,9 +12,12 @@ export default ({ tweets, children }) => (
     <style jsx>{`
       main {
         padding: 15px;
-        max-width: 680px;
-        margin: auto;
         font-size: 18px;
+      }
+
+      @media (min-width: 500px) {
+        max-width: 42rem;
+        margin: auto;
       }
     `}</style>
   </Page>

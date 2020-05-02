@@ -64,6 +64,12 @@ export default ({ active = null }) => (
       }
 
       @media (min-width: 500px) {
+        header {
+          max-width: 42rem;
+          margin: auto;
+          padding: 20px 0;
+        }
+
         a:hover {
           background-color: var(--link-highlight);
         }

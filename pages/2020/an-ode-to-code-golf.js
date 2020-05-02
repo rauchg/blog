@@ -150,7 +150,7 @@ export default withViews(({ views }) => (
       clearly helped: exposure to open-source (Linux), being involved in online
       communities (IRC and forums) and <b>hacking competitions</b>.
     </P>
-    <H2>Izhal: the hacker's ladder of success</H2>
+    <H2 id="izhal">Izhal: the hacker's ladder of success</H2>
     <P>
       One day, on one of the forums I frequented, someone shared an online game
       called "Izhal.com", which I became completely obsessed about. It was
@@ -213,7 +213,7 @@ export default withViews(({ views }) => (
       . I would recommend beginners to play with them, and content creators to
       experiment with this model for new educational materials.
     </P>
-    <H2>The power of JavaScript</H2>
+    <H2 id="js">The power of JavaScript</H2>
     <P>
       Why did I decide to write about Izhal? Yesterday I was catching up with my
       friend{" "}
@@ -282,7 +282,7 @@ export default withViews(({ views }) => (
       </a>
       , which became the inspiration for this post.
     </P>
-    <H2>Code-golf.io</H2>
+    <H2 id="code-golf-io">Code-golf.io</H2>
     <P>
       <a href="https://code-golf.io/" target="_blank">
         Code-golf.io
@@ -405,7 +405,7 @@ export default withViews(({ views }) => (
       felt like learning to code again.
     </P>
 
-    <H2>A blast from the past</H2>
+    <H2 id="past">A blast from the past</H2>
 
     <Callout emoji="💡">
       Spoiler alert: I'm detailing the solution to one of the code challenges
@@ -691,7 +691,7 @@ export default withViews(({ views }) => (
       <Image src="/images/an-ode-to-code-golf/golf12.png" />
     </Figure>
 
-    <H2>Optimizing for fun</H2>
+    <H2 id="fun-optimization">Optimizing for fun</H2>
 
     <P>
       Throughout that simple game, I had to apply lots of the skills that were
