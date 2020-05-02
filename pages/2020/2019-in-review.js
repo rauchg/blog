@@ -32,7 +32,7 @@ const Page = withViews(({ tweets, views }) => (
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content="@rauchg" />
       />
-      <meta property='og:image' content='/cards/2019-in-review.png' />
+      <meta property="og:image" content="/cards/2019-in-review.png" />
     </Head>
 
     <P>
