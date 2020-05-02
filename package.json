@@ -33,6 +33,6 @@
   },
   "scripts": {
     "dev": "next",
-    "build": "next build && node scripts/build-atom > public/atom"
+    "build": "next build && node scripts/build-cards && node scripts/build-atom > public/atom"
   }
 }
