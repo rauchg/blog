@@ -34,7 +34,7 @@ export default withViews(({ views }) => (
       />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content="@rauchg" />
-      <meta property="og:image" content="https://rauchg.com/og/vercel.png" />
+      <meta property='og:image' content='/cards/vercel.png' />
     </Head>
     <PostHrefLang />
 

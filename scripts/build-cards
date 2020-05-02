@@ -1,0 +1,28 @@
+#!/usr/bin/env node
+
+const microlinkCards = require('@microlink/cards')
+const slugify = require('@sindresorhus/slugify')
+const { posts } = require('../posts')
+
+async function main () {
+  await microlinkCards({
+    mqlOpts: {
+      apiKey: process.env.MICROLINK_API_KEY
+    },
+    entries: posts.map(post => {
+      return {
+        preset: 'rauchg',
+        title: post.title
+      }
+    }),
+    output: {
+      path: './public/cards',
+      filename: query => slugify(query.title),
+      overwrite: false
+    }
+  })
+}
+
+main()
+  .then(() => process.exit())
+  .catch(err => console.error(err) && process.exit(1))
