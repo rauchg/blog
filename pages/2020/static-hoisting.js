@@ -525,7 +525,7 @@ function Diagram(props) {
           </tspan>
           <tspan x={2} y={652}>
             {
-              "⁴ Functions and serverless containers provide natural multi-az, but are subject to higher costs due to [2]"
+              "⁴ Functions and serverless containers provide natural multi-az, but are subject to higher costs due to [3]"
             }
           </tspan>
         </text>
