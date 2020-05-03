@@ -156,7 +156,7 @@ a(314, 159)
         style={{
           position: "absolute",
           left: 0,
-          width: "100vw",
+          width: "100%",
           background: "#eee",
           padding: "30px 0 35px",
           display: "flex",
