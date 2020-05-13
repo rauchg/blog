@@ -12,8 +12,7 @@ async function main () {
     entries: posts.map(({ title }) => ({ preset: 'rauchg', title })),
     output: {
       path: './public/cards',
-      filename: ({ title }) => slugify(title),
-      overwrite: false
+      filename: ({ title }) => slugify(title)
     }
   })
 }
