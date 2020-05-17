@@ -1,7 +1,6 @@
 import Layout from "../components/layouts/main";
 import Link from "next/link";
 import { posts } from "../posts";
-import { WRITINGS } from "../components/header";
 
 export function getStaticProps() {
   return {
@@ -15,7 +14,7 @@ export function getStaticProps() {
 }
 
 const Home = ({ posts, date }) => (
-  <Layout headerActive={WRITINGS}>
+  <Layout>
     <ul>
       {posts.map(post => (
         <li key={post.id}>

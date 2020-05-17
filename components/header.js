@@ -1,12 +1,7 @@
 import Logo from "./logo";
 import Link from "next/link";
 
-export const WRITINGS = "WRITINGS";
-export const ABOUT = "ABOUT";
-export const TWITTER = "TWITTER";
-export const SOURCE = "SOURCE";
-
-export default ({ active = null }) => (
+export default () => (
   <header>
     <Link href="/">
       <a className="logo" href="/">
