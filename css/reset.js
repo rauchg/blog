@@ -12,8 +12,14 @@ const style = css.global`
     box-sizing: border-box;
   }
 
-  a, a:hover {
+  a {
     -webkit-tap-highlight-color: transparent;
+  }
+
+  @media (any-hover: hover) {
+    a:hover {
+      -webkit-tap-highlight-color: transparent;
+    }
   }
 
   /* Remove default padding */

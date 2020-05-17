@@ -1,6 +1,6 @@
-import TweetHeader from './tweet-header';
-import TweetInfo from './tweet-info';
-import TweetAction from './tweet-action';
+import TweetHeader from "./tweet-header";
+import TweetInfo from "./tweet-info";
+import TweetAction from "./tweet-action";
 
 export default function Tweet({ children, data }) {
   return (
@@ -21,8 +21,10 @@ export default function Tweet({ children, data }) {
           border-radius: 5px;
           margin: var(--container-margin);
         }
-        .tweet:hover {
-          border: var(--tweet-border-hover);
+        @media (any-hover: hover) {
+          .tweet:hover {
+            border: var(--tweet-border-hover);
+          }
         }
         blockquote {
           position: relative;

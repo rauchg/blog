@@ -1,4 +1,4 @@
-import css from 'styled-jsx/css';
+import css from "styled-jsx/css";
 
 const { className, styles } = css.resolve`
    {
@@ -25,12 +25,14 @@ const Permalink = ({ children, id }) => (
         color: inherit;
         text-decoration: none;
       }
-      a:hover {
-        color: inherit;
-        border-bottom: 1px solid;
-      }
-      a:hover ~ .permalink {
-        visibility: visible;
+      @media (any-hover: hover) {
+        a:hover {
+          color: inherit;
+          border-bottom: 1px solid;
+        }
+        a:hover ~ .permalink {
+          visibility: visible;
+        }
       }
       .permalink {
         visibility: hidden;

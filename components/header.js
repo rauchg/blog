@@ -9,44 +9,51 @@ export const SOURCE = "SOURCE";
 export default ({ active = null }) => (
   <header>
     <Link href="/">
-      <a href="/">
+      <a className="logo" href="/">
         <Logo />
       </a>
     </Link>
 
     <nav>
-      <ul>
-        <li className={active === WRITINGS ? "active" : ""}>
-          <Link href="/">
-            <a href="/">Writings</a>
-          </Link>
-        </li>
-        <li className={active === ABOUT ? "active" : ""}>
-          <a href="mailto:rauchg@gmail.com">Email</a>
-        </li>
-        <li className={active === TWITTER ? "active" : ""}>
-          <a href="https://twitter.com/rauchg" target="_blank">
-            Twitter
-          </a>
-        </li>
-        <li className={active === SOURCE ? "active" : ""}>
-          <a href="https://github.com/rauchg/blog" target="_blank">
-            Source
-          </a>
-        </li>
-      </ul>
+      <a className="src" target="_blank" href="https://github.com/rauchg/blog">
+        Source
+      </a>
+      <a className="follow" target="_blank" href="https://twitter.com/rauchg">
+        Follow Me
+      </a>
     </nav>
 
     <style jsx>{`
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
       nav {
         padding: 10px 0 10px 5px;
       }
 
-      ul {
-        display: flex;
+      nav a {
+        padding: 6px 10px;
+        display: inline-block;
+        text-decoration: none;
+        margin-right: 15px;
       }
 
-      a {
+      nav a.src {
+        font-size: 13px;
+        color: #333;
+      }
+
+      nav a.follow {
+        font-weight: bold;
+        color: #fff;
+        background: #000;
+        font-size: 13px;
+      }
+
+      a.logo {
         text-decoration: none;
         color: #000;
         display: inline-flex;
@@ -54,30 +61,21 @@ export default ({ active = null }) => (
         padding: 5px;
       }
 
-      ul li a {
-        padding: 5px 10px;
-      }
+      @media (any-hover: hover) {
+        a.logo:hover {
+          background-color: var(--link-highlight);
+        }
 
-      .active a {
-        font-weight: bold;
-        pointer-events: none;
+        a.logo:active {
+          background-color: #fff445;
+        }
       }
 
       @media (min-width: 500px) {
         header {
           max-width: 42rem;
           margin: auto;
-          padding: 20px 0;
-        }
-
-        a:hover {
-          background-color: var(--link-highlight);
-        }
-
-        header {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
+          padding: 10px 0;
         }
 
         nav {

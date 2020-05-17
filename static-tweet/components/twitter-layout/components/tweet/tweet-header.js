@@ -1,13 +1,23 @@
 export default function TweetHeader({ tweet }) {
   const url = `https://twitter.com/${tweet.username}`;
-  const avatar = tweet.avatar.bigger.replace('_bigger.', '_normal.');
+  const avatar = tweet.avatar.bigger.replace("_bigger.", "_normal.");
 
   return (
     <div className="header">
-      <a href={url} className="avatar" target="_blank" rel="noopener noreferrer">
+      <a
+        href={url}
+        className="avatar"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <img src={avatar} alt={tweet.name} />
       </a>
-      <a href={url} className="author" target="_blank" rel="noopener noreferrer">
+      <a
+        href={url}
+        className="author"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <span className="name" title={tweet.name}>
           {tweet.name}
         </span>
@@ -39,8 +49,10 @@ export default function TweetHeader({ tweet }) {
           text-decoration: none;
           color: inherit;
         }
-        .author:hover {
-          color: var(--tweet-link-color-hover);
+        @media (any-hover: hover) {
+          .author:hover {
+            color: var(--tweet-link-color-hover);
+          }
         }
         .name,
         .username {

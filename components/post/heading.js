@@ -28,7 +28,7 @@ const H = ({ id, level = 2, fontSize = 20, children }) => (
         visibility: hidden;
       }
 
-      @media (min-width: 500px) {
+      @media (any-hover: hover) {
         div:hover a,
         span:hover a {
           visibility: visible;

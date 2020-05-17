@@ -62,7 +62,7 @@ export default () => (
         transform: rotate(3deg) translate(0px, -4px);
       }
 
-      @media (min-width: 500px) {
+      @media (any-hover: hover) {
         a:hover {
           color: #fff;
           background: #22bad9;

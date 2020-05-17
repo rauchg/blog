@@ -181,11 +181,13 @@ export default ({
           opacity: 0;
         }
 
-        @media (min-width: 500px) {
+        @media (any-hover: hover) {
           nav a:hover {
             color: var(--link-color);
           }
+        }
 
+        @media (min-width: 500px) {
           .meta .date .short {
             display: none;
           }

@@ -1,8 +1,8 @@
 const PROTOCOL = /^(https?:|)\/\//;
 
 const beautifyHref = href => {
-  const text = href.replace(PROTOCOL, '');
-  const i = text.indexOf('/');
+  const text = href.replace(PROTOCOL, "");
+  const i = text.indexOf("/");
 
   if (i === -1) return text;
   // Remove trailing slash
@@ -14,7 +14,9 @@ const beautifyHref = href => {
   const pathname = text.substring(i);
 
   // Hide large paths similarly to how twitter does it
-  return pathname.length > 20 ? `${hostname}${pathname.substring(0, 15)}...` : text;
+  return pathname.length > 20
+    ? `${hostname}${pathname.substring(0, 15)}...`
+    : text;
 };
 
 export const A = p => (
@@ -31,8 +33,10 @@ export const A = p => (
         color: var(--link-color);
         text-decoration: none;
       }
-      a:hover {
-        text-decoration: underline;
+      @media (any-hover: hover) {
+        a:hover {
+          text-decoration: underline;
+        }
       }
     `}</style>
   </a>

@@ -1,8 +1,13 @@
-import { Fragment } from 'react';
-import formatDistanceStrict from 'date-fns/formatDistanceStrict';
+import { Fragment } from "react";
+import formatDistanceStrict from "date-fns/formatDistanceStrict";
 
 export const TwitterLink = p => (
-  <a href={p.href} target="_blank" rel="noopener noreferrer" title={p.title || p.href}>
+  <a
+    href={p.href}
+    target="_blank"
+    rel="noopener noreferrer"
+    title={p.title || p.href}
+  >
     <s>{p.type}</s>
     <b>{p.children}</b>
 
@@ -11,8 +16,10 @@ export const TwitterLink = p => (
         color: #22bad9;
         text-decoration: none;
       }
-      a:hover > b {
-        text-decoration: underline;
+      @media (any-hover: hover) {
+        a:hover > b {
+          text-decoration: underline;
+        }
       }
       s {
         text-decoration: none;
@@ -23,19 +30,19 @@ export const TwitterLink = p => (
 
 export const Mention = p => (
   <TwitterLink href={p.href} type="@">
-    {p.children[0].replace(/^@/, '')}
+    {p.children[0].replace(/^@/, "")}
   </TwitterLink>
 );
 
 export const Hashtag = p => (
   <TwitterLink href={p.href} type="#">
-    {p.children[0].replace(/^\#/, '')}
+    {p.children[0].replace(/^\#/, "")}
   </TwitterLink>
 );
 
 export const Cashtag = p => (
   <TwitterLink href={p.href} type="$">
-    {p.children[0].replace(/^\$/, '')}
+    {p.children[0].replace(/^\$/, "")}
   </TwitterLink>
 );
 
@@ -56,7 +63,10 @@ export const Emoji = p => (
 // Note: Poll data is most likely cached, so ongoing polls will not be updated
 // until a revalidation happens
 export const Poll = ({ data }) => {
-  const votesCount = data.options.reduce((count, option) => count + option.votes, 0);
+  const votesCount = data.options.reduce(
+    (count, option) => count + option.votes,
+    0
+  );
   const endsAt = new Date(data.endsAt);
   const now = new Date();
 
@@ -65,8 +75,8 @@ export const Poll = ({ data }) => {
       <div className="options">
         {data.options.map(option => {
           const per = Math.round((option.votes / votesCount) * 100) || 0;
-          const width = per || 1 + '%';
-          const widthLabel = per + '%';
+          const width = per || 1 + "%";
+          const widthLabel = per + "%";
 
           return (
             <Fragment key={option.position}>
@@ -80,7 +90,11 @@ export const Poll = ({ data }) => {
       <hr />
       <div className="footer">
         <span className="votes-count">{votesCount} votes</span>
-        <span>{now > endsAt ? 'Final results' : `${formatDistanceStrict(endsAt, now)} left`}</span>
+        <span>
+          {now > endsAt
+            ? "Final results"
+            : `${formatDistanceStrict(endsAt, now)} left`}
+        </span>
       </div>
 
       <style jsx>{`
