@@ -1,6 +1,11 @@
 {
   "posts": [
     {
+      "id": "develop-preview-test",
+      "date": "May 29, 2020",
+      "title": "Develop, Preview, Test"
+    },
+    {
       "id": "static-hoisting",
       "date": "May 2, 2020",
       "title": "Static Hoisting"

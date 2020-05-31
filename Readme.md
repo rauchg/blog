@@ -11,7 +11,7 @@ First, install [Vercel CLI](https://vercel.com/download).
 ### Development
 
 ```
-now dev
+vc dev
 ```
 
 ### Deployment
@@ -19,7 +19,7 @@ now dev
 #### Staging
 
 ```bash
-now
+vc
 ```
 
 This is the equivalent of submitting a PR with the [GitHub integration](https://vercel.com/github)
@@ -27,7 +27,7 @@ This is the equivalent of submitting a PR with the [GitHub integration](https://
 #### Production
 
 ```bash
-now --prod
+vc --prod
 ```
 
 This is the equivalent of `git push` to `master` (or merging a PR to master)

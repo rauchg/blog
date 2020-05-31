@@ -30,7 +30,7 @@
     "use-is-in-viewport": "^1.0.9"
   },
   "scripts": {
-    "dev": "next",
+    "dev": "next dev -H 0.0.0.0",
     "build": "next build && node scripts/build-atom > public/atom"
   }
 }

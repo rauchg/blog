@@ -53,6 +53,9 @@ const Figure = ({ desc, href, children, wide, height, width }) => {
           display: block;
           margin-top: 10px;
         }
+        p > :global(a) {
+          color: #666;
+        }
         .wide {
           background: #f2f2f2;
           position: relative;
