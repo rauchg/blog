@@ -12,6 +12,7 @@ export default ({ children, headerActive }) => {
     <main>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Guillermo Rach's blog</title>
       </Head>
 
       <style jsx global>
