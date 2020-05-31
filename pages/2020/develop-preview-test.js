@@ -201,7 +201,7 @@ const Page = withViews(({ tweets, views }) => (
       Just like GitHub is capable of keeping the history of your code forever,
       so can Vercel. Because deploys are{" "}
       <Link href="/2020/2019-in-review#static-is-the-new-dynamic">
-        stateless
+        <a>stateless</a>
       </Link>
       , the resources are only used on-demand and scale infinitely with traffic.
     </P>
@@ -230,7 +230,7 @@ const Page = withViews(({ tweets, views }) => (
 
     <Tweet
       id="921185541487341568"
-      caption="The risks of environment differences, shared by Kubernetes' creator"
+      caption="The risks of environment differences, as explained by Kubernetes' creator"
     />
 
     <P>
@@ -291,7 +291,108 @@ const Page = withViews(({ tweets, views }) => (
       />
     </Figure>
 
+    <P>
+      Then, I installed the{" "}
+      <a
+        target="_blank"
+        href="https://www.checklyhq.com/docs/cicd/github/#setting-up-your-github-integration"
+      >
+        Checkly GitHub app
+      </a>{" "}
+      and under the CI/CD tab of the check, I linked it to my{" "}
+      <Code>rauchg/blog</Code> repository.
+    </P>
+
+    <P>
+      I created a git branch where I introduced the <Code>&lt;title&gt;</Code>{" "}
+      tag for my blog, but on purpose{" "}
+      <a
+        href="https://github.com/rauchg/blog/pull/53/commits/b5c30eaef41944f36cf14e7d7f8be9be9953709f"
+        target="_blank"
+      >
+        I misspelt my name
+      </a>
+      .
+    </P>
+
+    <P>
+      As soon as I created my pull request, the check was already failing. In
+      just a few seconds, I pushed, deployed, a headless browser simulating a
+      visitor ran, and my error was exposed:
+    </P>
+
+    <Figure
+      desc="I can also configure my testing check as mandatory and make this PR unmergeable"
+      width={1479}
+      height={618}
+    >
+      <Image
+        src="https://res.cloudinary.com/rauchg/image/upload/v1590907347/blog/2020/develop-preview-test/818F8CEB-5CAA-4E72-A6E3-2EB40D3233DE_p8gw2b.jpg"
+        width={1479}
+        height={618}
+      />
+    </Figure>
+
+    <P>
+      This happened with absolutely zero additional configuration. Vercel
+      supplied a URL, Checkly tested it, GitHub was notified. After pushing
+      again, the check re-runs automatically:
+    </P>
+
+    <Figure
+      desc="Each commit gets its own deploy preview, and its own checks"
+      width={1018}
+      height={267}
+    >
+      <Image
+        src="https://res.cloudinary.com/rauchg/image/upload/v1590911564/blog/2020/develop-preview-test/F936C1A8-D003-4B2A-96AF-8F28560D039A_hwdup6.jpg"
+        width={1018}
+        height={267}
+      />
+    </Figure>
+
+    <P>
+      With my typo fixed, I'm free to merge. Merging to master will deploy my
+      changes to <Code>rauchg.com</Code> automatically.
+    </P>
+
+    <Figure
+      desc="After pressing the green button, we go live. With confidence."
+      width={1469}
+      height={439}
+    >
+      <Image
+        src="https://res.cloudinary.com/rauchg/image/upload/v1590909584/blog/2020/develop-preview-test/EA10BD39-A066-44BE-8E37-C6C9B30C3AE3_shqh6b.jpg"
+        width={1469}
+        height={439}
+      />
+    </Figure>
+
     <H2>Conclusion</H2>
+
+    <P>
+      Notably, Checkly allows us to configure multiple locations in the world
+      that the tests get executed from, as well as{" "}
+      <b>invoking our checks over time</b>.
+    </P>
+
+    <P>
+      Leslie Lamport{" "}
+      <a
+        href="https://lamport.azurewebsites.net/pubs/distributed-system.txt"
+        target="_blank"
+      >
+        famously said
+      </a>{" "}
+      that a distributed system is one where "the failure of a computer you
+      didn't even know existed can render your own computer unusable".
+    </P>
+
+    <P>
+      As our systems become more complex, with ever-changing platforms and
+      dependencies on other cloud systems, continuously testing just like our
+      users do is our best bet to tame the chaos.
+    </P>
   </Post>
 ));
 
