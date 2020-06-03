@@ -37,12 +37,11 @@ async function getMediaHtml(tweet) {
 async function getQuotedTweetHtml({ quotedTweet }, context) {
   if (!quotedTweet) return;
 
-  if (process.env.TWITTER_LOAD_WIDGETS) {
+  if (process.env.NEXT_PUBLIC_TWITTER_LOAD_WIDGETS === 'true') {
     const data = await getEmbeddedTweetHtml(quotedTweet.url);
-
     return data?.html;
   } else {
-    const ast = await fetchTweetAst(quotedTweet.url);
+    const ast = await fetchTweetAst(quotedTweet.id);
     // The AST of embedded tweets is always sent as data
     return ast && `<blockquote data-id="${context.add({ ast })}"></blockquote>`;
   }

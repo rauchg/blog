@@ -1,9 +1,10 @@
 import fetch from '../fetch';
 
 const API_URL = 'https://api.twitter.com';
+const SYNDICATION_URL = 'https://syndication.twitter.com';
 
 function twitterLabsEnabled(expansions) {
-  if (!process.env.TWITTER_LABS_ENABLED) return false;
+  if (process.env.TWITTER_LABS_ENABLED !== 'true') return false;
   if (!expansions) return true;
 
   const exp = process.env.TWITTER_LABS_EXPANSIONS || '';
@@ -11,17 +12,18 @@ function twitterLabsEnabled(expansions) {
   return exp.includes(expansions);
 }
 
-export async function fetchTweetHtml(url) {
-  if (!url.startsWith('https://twitter.com/')) {
-    throw new Error(`The url "${url}" does not match a Twitter thread`);
-  }
+export async function fetchTweetsHtml(ids) {
+  const res = await fetch(`${SYNDICATION_URL}/tweets.json?ids=${ids}`);
 
-  const res = await fetch(url);
-
-  if (res.ok) return res.text();
+  if (res.ok) return res.json();
   if (res.status === 404) return {};
 
-  throw new Error(`Fetch for the Twitter thread of "${url}" failed with code: ${res.status}`);
+  throw new Error(`Fetch for the embedded tweets of "${ids}" failed with code: ${res.status}`);
+}
+
+export async function fetchTweetHtml(id) {
+  const html = await fetchTweetsHtml(id);
+  return html[id];
 }
 
 export async function fetchUserStatus(tweetId) {
