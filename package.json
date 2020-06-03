@@ -31,5 +31,8 @@
   "scripts": {
     "dev": "next",
     "build": "next build && node scripts/build-atom > public/atom"
+  },
+  "prettier": {
+    "arrowParens": "avoid"
   }
 }
