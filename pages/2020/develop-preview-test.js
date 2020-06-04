@@ -4,7 +4,6 @@ import Header from "../../components/post/header";
 import Tweet from "../../components/post/tweet";
 import Link from "next/link";
 import Code from "../../components/post/code";
-import Snippet from "../../components/post/snippet";
 import Quote from "../../components/post/quote";
 import Figure, { Image } from "../../components/post/figure";
 import { H2 } from "../../components/post/heading";
@@ -20,7 +19,7 @@ export async function getStaticProps() {
 
 const Page = withViews(({ tweets, views }) => (
   <Post tweets={tweets}>
-    <Header title="Develop, Preview, Test" date="May 29, 2020" views={views} />
+    <Header title="Develop, Preview, Test" date="May 31, 2020" views={views} />
     <Head>
       <meta property="og:title" content="Develop, Preview, Test" />
       <meta property="og:site_name" content="Guillermo Rauch's blog" />
@@ -89,7 +88,7 @@ const Page = withViews(({ tweets, views }) => (
       In this essay I want to make the case that{" "}
       <b>prioritizing end-to-end (E2E) testing</b> for the critical parts of
       your app will reduce risk and give you the best return. Further, I'll show
-      can to adopt this methodology in mere minutes.
+      how you can adopt this methodology in mere minutes.
     </P>
 
     <H2>Why end-to-end?</H2>
@@ -280,7 +279,7 @@ const Page = withViews(({ tweets, views }) => (
     </P>
 
     <Figure
-      desc="My test checking for the title of the page"
+      desc="The ENVIRONMENT_URL env variable will be populated with each preview deploy URL"
       width={1390}
       height={669}
     >
@@ -323,13 +322,13 @@ const Page = withViews(({ tweets, views }) => (
 
     <Figure
       desc="I can also configure my testing check as mandatory and make this PR unmergeable"
-      width={1479}
-      height={618}
+      width={1479 / 2}
+      height={618 / 2}
     >
       <Image
         src="https://res.cloudinary.com/rauchg/image/upload/v1590907347/blog/2020/develop-preview-test/818F8CEB-5CAA-4E72-A6E3-2EB40D3233DE_p8gw2b.jpg"
-        width={1479}
-        height={618}
+        width={1479 / 2}
+        height={618 / 2}
       />
     </Figure>
 
@@ -341,13 +340,13 @@ const Page = withViews(({ tweets, views }) => (
 
     <Figure
       desc="Each commit gets its own deploy preview, and its own checks"
-      width={1018}
-      height={267}
+      width={1018 / 2}
+      height={267 / 2}
     >
       <Image
         src="https://res.cloudinary.com/rauchg/image/upload/v1590911564/blog/2020/develop-preview-test/F936C1A8-D003-4B2A-96AF-8F28560D039A_hwdup6.jpg"
-        width={1018}
-        height={267}
+        width={1018 / 2}
+        height={267 / 2}
       />
     </Figure>
 
@@ -358,13 +357,13 @@ const Page = withViews(({ tweets, views }) => (
 
     <Figure
       desc="After pressing the green button, we go live. With confidence."
-      width={1469}
-      height={439}
+      width={1469 / 2}
+      height={439 / 2}
     >
       <Image
         src="https://res.cloudinary.com/rauchg/image/upload/v1590909584/blog/2020/develop-preview-test/EA10BD39-A066-44BE-8E37-C6C9B30C3AE3_shqh6b.jpg"
-        width={1469}
-        height={439}
+        width={1469 / 2}
+        height={439 / 2}
       />
     </Figure>
 
