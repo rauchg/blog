@@ -8,7 +8,7 @@ export const Ul = p => (
         padding-left: 1rem;
       }
       ul :global(li:before) {
-        content: '-';
+        content: "-";
         color: var(--accents-3);
         position: absolute;
         margin-left: -1rem;

@@ -1,6 +1,6 @@
-import YouTube from 'react-youtube'
+import YouTube from "react-youtube";
 
-export default (props) => (
+export default props => (
   <div>
     <YouTube {...withDefault(props)} />
     <style jsx>{`
@@ -9,12 +9,11 @@ export default (props) => (
       }
     `}</style>
   </div>
-)
+);
 
-const withDefault = (props) => (
+const withDefault = props =>
   Object.assign({}, props, {
     opts: Object.assign({}, props.opts || {}, {
-      width: '100%'
-    })
-  })
-)
+      width: "100%",
+    }),
+  });

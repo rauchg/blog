@@ -161,7 +161,7 @@ a(314, 159)
           padding: "30px 0 35px",
           display: "flex",
           alignItems: "center",
-          justifyContent: "center"
+          justifyContent: "center",
         }}
       >
         <div className="mobile-diagram-wrapper">

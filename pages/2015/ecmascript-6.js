@@ -584,5 +584,5 @@ const links = [
   "http://babeljs.io/",
   "http://tirania.org/blog/archive/2013/Aug-15.html",
   "https://esdiscuss.org/notes/2014-01-30#async-await",
-  "http://babeljs.io/docs/usage/transformers/#async-to-generator"
+  "http://babeljs.io/docs/usage/transformers/#async-to-generator",
 ];

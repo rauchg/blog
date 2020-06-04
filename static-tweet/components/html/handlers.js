@@ -1,13 +1,13 @@
 function getContainerClassName(dataType) {
   if (!dataType) return;
 
-  const [type, count] = dataType.split(' ');
+  const [type, count] = dataType.split(" ");
 
   switch (type) {
-    case 'image-container':
+    case "image-container":
       return `image-container image-count-${count}`;
-    case 'gif-container':
-    case 'video-container':
+    case "gif-container":
+    case "video-container":
       return type;
   }
 }
@@ -17,7 +17,7 @@ export default {
     const { data } = props;
     const type = props.dataType || (data && data.type);
 
-    if (type === 'tweet') {
+    if (type === "tweet") {
       const { Tweet } = components;
       return (
         <Tweet key={i} data={data}>
@@ -26,7 +26,7 @@ export default {
       );
     }
 
-    if (type === 'poll-container') {
+    if (type === "poll-container") {
       const { Poll } = components;
       return <Poll key={i} data={data} />;
     }
@@ -43,12 +43,12 @@ export default {
   img(props, components, i) {
     const type = props.dataType;
 
-    if (type === 'emoji-for-text') {
+    if (type === "emoji-for-text") {
       const { Emoji } = components;
       return <Emoji key={i} src={props.src} alt={props.alt} />;
     }
 
-    if (type === 'media-image') {
+    if (type === "media-image") {
       const Img = components.img;
       return <Img key={i} src={props.src} alt={props.alt} />;
     }
@@ -58,22 +58,22 @@ export default {
   a(props, components, i) {
     const type = props.dataType;
 
-    if (type === 'mention') {
+    if (type === "mention") {
       const { Mention } = components;
       return <Mention key={i} href={props.href} children={props.children} />;
     }
 
-    if (type === 'hashtag') {
+    if (type === "hashtag") {
       const { Hashtag } = components;
       return <Hashtag key={i} href={props.href} children={props.children} />;
     }
 
-    if (type === 'cashtag') {
+    if (type === "cashtag") {
       const { Cashtag } = components;
       return <Cashtag key={i} href={props.href} children={props.children} />;
     }
 
-    if (type === 'quote-tweet') {
+    if (type === "quote-tweet") {
       const { EmbeddedTweet } = components;
       return <EmbeddedTweet key={i} href={props.href} />;
     }
@@ -86,8 +86,8 @@ export default {
     );
   },
   blockquote(props, components, i) {
-    if (process.env.TWITTER_LOAD_WIDGETS) {
-      const isEmbeddedTweet = props.className?.includes('twitter-tweet');
+    if (process.env.NEXT_PUBLIC_TWITTER_LOAD_WIDGETS === "true") {
+      const isEmbeddedTweet = props.className?.includes("twitter-tweet");
 
       if (isEmbeddedTweet) {
         const { EmbeddedTweet } = components;

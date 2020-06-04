@@ -4,10 +4,11 @@ export default function TweetAction({ tweet }) {
   const userUrl = `https://twitter.com/${tweet.username}`;
   const tweetUrl = `${userUrl}/status/${tweet.id}`;
   const count = tweet.replies + tweet.retweets;
+  const isConversation = tweet.ctaType === "conversation" || count > 4;
 
   return (
     <>
-      {count > 4 ? (
+      {isConversation ? (
         <a
           href={tweetUrl}
           title="View the conversation on Twitter"
@@ -16,7 +17,8 @@ export default function TweetAction({ tweet }) {
         >
           <div className="icon icon-reply" />
           <span className="text">
-            {formatNumber(count)} people are talking about this
+            {count ? formatNumber(count) : tweet.ctaCount} people are talking
+            about this
           </span>
           <div className="icon icon-chevron" />
         </a>

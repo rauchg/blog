@@ -75,5 +75,5 @@ const links = [
   "http://elm-lang.org/blog/compiler-errors-for-humans",
   "https://i.imgur.com/OANtEbP.jpg",
   "http://fb.me/react-warning-keys",
-  "http://php.net/manual/en/keyword.paamayim-nekudotayim.php#69537"
+  "http://php.net/manual/en/keyword.paamayim-nekudotayim.php#69537",
 ];

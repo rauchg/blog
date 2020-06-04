@@ -642,8 +642,8 @@ class Demos extends React.Component {
                 params: {
                   width: 136,
                   height: 78,
-                  css: true
-                }
+                  css: true,
+                },
               },
               {
                 title: "Custom offset (30px)",
@@ -651,8 +651,8 @@ class Demos extends React.Component {
                 params: {
                   width: 136,
                   height: 78,
-                  tipLeft: 30
-                }
+                  tipLeft: 30,
+                },
               },
               {
                 title: "Custom offset (left edge)",
@@ -660,8 +660,8 @@ class Demos extends React.Component {
                 params: {
                   width: 136,
                   height: 78,
-                  tipLeft: 0
-                }
+                  tipLeft: 0,
+                },
               },
               {
                 title: "Custom offset (right edge)",
@@ -669,8 +669,8 @@ class Demos extends React.Component {
                 params: {
                   width: 136,
                   height: 78,
-                  tipLeft: 142
-                }
+                  tipLeft: 142,
+                },
               },
               {
                 title: "Loading",
@@ -678,8 +678,8 @@ class Demos extends React.Component {
                 params: {
                   width: 136,
                   height: 78,
-                  waiting: true
-                }
+                  waiting: true,
+                },
               },
               {
                 title: "Loaded",
@@ -691,12 +691,12 @@ class Demos extends React.Component {
                   index: 38,
                   rows: 10,
                   cols: 10,
-                  at: 30
-                }
-              }
-            ]
-          ]
-        }
+                  at: 30,
+                },
+              },
+            ],
+          ],
+        },
       ],
       document.querySelector("#demo1"),
       () => {}
@@ -715,11 +715,11 @@ class Demos extends React.Component {
                 bgurl: "https://cldup.com/VK_jwU0ZRK.png",
                 progress: 65,
                 width: "ontouchstart" in document ? 320 : 560,
-                height: 315
-              }
-            }
-          ]
-        }
+                height: 315,
+              },
+            },
+          ],
+        },
       ],
       document.querySelector("#demo2"),
       () => {}
@@ -737,5 +737,5 @@ const links = [
   "http://primercss.io/buttons/",
   "https://en.wikipedia.org/wiki/Fuzz_testing",
   "http://imgur.com/",
-  "http://writings.quilt.org/2014/05/12/distributed-systems-and-the-end-of-the-api/#toc-ack"
+  "http://writings.quilt.org/2014/05/12/distributed-systems-and-the-end-of-the-api/#toc-ack",
 ];

@@ -21,8 +21,10 @@ export default function TweetInfo({ tweet }) {
         <div className="heart">
           <div className="icon icon-heart" role="img" />
         </div>
-        {tweet.likes > 0 && (
-          <span className="likes">{formatNumber(tweet.likes)}</span>
+        {(tweet.heartCount || tweet.likes > 0) && (
+          <span className="likes">
+            {tweet.heartCount || formatNumber(tweet.likes)}
+          </span>
         )}
       </a>
       {createdAt && (

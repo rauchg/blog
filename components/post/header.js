@@ -12,7 +12,7 @@ export default ({
   views = null,
   tweetUrl = null,
   twitterRetweets = null,
-  twitterLikes = null
+  twitterLikes = null,
 }) => {
   const [isMounted, setIsMounted] = useState(false);
 

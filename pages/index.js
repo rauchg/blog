@@ -7,9 +7,9 @@ export function getStaticProps() {
     props: {
       posts: posts.map(post => ({
         ...post,
-        url: `${new Date(post.date).getFullYear()}/${post.id}`
-      }))
-    }
+        url: `${new Date(post.date).getFullYear()}/${post.id}`,
+      })),
+    },
   };
 }
 
