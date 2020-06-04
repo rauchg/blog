@@ -23,7 +23,8 @@
   --li-margin: 0 0 0.5rem 0;
 
   /* Embedded tweet */
-  --tweet-font: normal normal 16px/1.4 Helvetica, Roboto, 'Segoe UI', Calibri, sans-serif;
+  --tweet-font: normal normal 16px/1.4 Helvetica, Roboto, "Segoe UI", Calibri,
+    sans-serif;
   --tweet-font-color: #1c2022;
   --tweet-bg-color: #fff;
   --tweet-border: 1px solid #e1e8ed;

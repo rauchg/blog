@@ -2,7 +2,7 @@ export default ({
   children,
   smallText = false,
   scroll = true,
-  caption = null
+  caption = null,
 }) => (
   <div>
     <pre

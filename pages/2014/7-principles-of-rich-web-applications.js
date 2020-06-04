@@ -1134,5 +1134,5 @@ const links = [
   "http://socket.io/",
   "http://facebook.github.io/react/",
   "http://gaearon.github.io/react-hot-loader/",
-  "https://medium.com/@cihadturhan/a-ux-idea-i-know-where-you-are-aiming-3e00d152afb2"
+  "https://medium.com/@cihadturhan/a-ux-idea-i-know-where-you-are-aiming-3e00d152afb2",
 ];

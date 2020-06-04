@@ -9,10 +9,10 @@ export default () => (
       }
 
       div::after {
-        content: '***';
+        content: "***";
         text-align: center;
         display: inline;
       }
     `}</style>
   </div>
-)
+);

@@ -102,7 +102,18 @@ const Page = withViews(({ tweets, views }) => (
     <Figure
       width={1000}
       height={450}
-      desc="What if we make end-to-end tests be fast and cheap?"
+      desc={
+        <>
+          Martin Fowler's conventional{" "}
+          <a
+            href="https://martinfowler.com/articles/practical-test-pyramid.html#TheTestPyramid"
+            target="_blank"
+          >
+            testing pyramid
+          </a>
+          . What if 🐢 and 💲 went away?
+        </>
+      }
     >
       <Image
         src="https://res.cloudinary.com/rauchg/image/upload/c_fill,h_450,w_1000/v1590871850/blog/2020/develop-preview-test/1A0185D9-E8F1-4A55-B3D0-3C8D526CE710_zrgpuv.png"

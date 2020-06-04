@@ -1,6 +1,6 @@
 export default function TweetHeader({ tweet }) {
   const url = `https://twitter.com/${tweet.username}`;
-  const avatar = tweet.avatar.bigger.replace("_bigger.", "_normal.");
+  const avatar = tweet.avatar.normal;
 
   return (
     <div className="header">

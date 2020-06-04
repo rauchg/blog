@@ -1,4 +1,4 @@
-import styles from './skeleton.module.css';
+import styles from "./skeleton.module.css";
 
 export default function Skeleton({ children, style }) {
   return (

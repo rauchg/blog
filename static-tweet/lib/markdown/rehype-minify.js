@@ -3,7 +3,7 @@ function minifyAst(ast) {
     return ast.reduce((nodes, node) => {
       const n = minifyAst(node);
       // Empty new lines aren't required
-      const isNoise = n === '\n' && nodes[nodes.length - 1]?.tag !== 'span';
+      const isNoise = n === "\n" && nodes[nodes.length - 1]?.tag !== "span";
 
       if (!isNoise) nodes.push(n);
 
@@ -14,10 +14,10 @@ function minifyAst(ast) {
   if (!ast.tagName && ast.children) {
     return minifyAst(ast.children);
   }
-  if (ast.type === 'text') {
+  if (ast.type === "text") {
     return ast.value;
   }
-  if (ast.type === 'element') {
+  if (ast.type === "element") {
     const node = { tag: ast.tagName };
     const children = ast.children?.length ? minifyAst(ast.children) : [];
 
@@ -34,7 +34,9 @@ function minifyAst(ast) {
     return node;
   }
 
-  throw new Error(`Unable to handle the following AST: ${JSON.stringify(ast, null, 2)}`);
+  throw new Error(
+    `Unable to handle the following AST: ${JSON.stringify(ast, null, 2)}`
+  );
 }
 
 function rehypeMinify() {

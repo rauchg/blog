@@ -22,7 +22,7 @@ function Demo() {
   if (typeof IntersectionObserver != "undefined") {
     [isInViewport, targetRef] = useIsInViewport({
       modTop: "500px",
-      modBottom: "250px"
+      modBottom: "250px",
     });
   }
 
@@ -52,7 +52,7 @@ function Demo() {
         const sh = doc.documentElement.clientHeight;
         win.scrollTo({
           left: (560 - sw) / 2,
-          top: (560 - sh) / 2
+          top: (560 - sh) / 2,
         });
       }
       onResize();
