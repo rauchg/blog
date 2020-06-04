@@ -28,9 +28,13 @@
     "unist-util-visit": "^2.0.2",
     "use-is-in-viewport": "^1.0.9"
   },
+  "devDependencies": {
+    "prettier": "^2.0.5"
+  },
   "scripts": {
     "dev": "next",
-    "build": "next build && node scripts/build-atom > public/atom"
+    "build": "next build && node scripts/build-atom > public/atom",
+    "prettier": "prettier --write ."
   },
   "prettier": {
     "arrowParens": "avoid"
