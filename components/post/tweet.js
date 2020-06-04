@@ -1,8 +1,8 @@
-import { useRouter } from 'next/router';
-import { useTweet } from '../../lib/tweets';
-import Node from '../../static-tweet/components/html/node';
-import components from '../../static-tweet/components/twitter-layout/components';
-import twitterTheme from '../../static-tweet/components/twitter-layout/twitter.module.css';
+import { useRouter } from "next/router";
+import { useTweet } from "../../lib/tweets";
+import Node from "../../static-tweet/components/html/node";
+import components from "../../static-tweet/components/twitter-layout/components";
+import twitterTheme from "../../static-tweet/components/twitter-layout/twitter.module.css";
 
 export default function Tweet({ id, caption }) {
   const tweet = useTweet(id);

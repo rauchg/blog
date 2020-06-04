@@ -1,15 +1,21 @@
-import fetch from '../fetch';
-import { getVideo } from './tweet-html';
-import { fetchUserStatus, getEmbeddedTweetHtml, fetchTweetWithPoll } from './api';
-import fetchTweetAst from '../fetchTweetAst';
-import markdownToAst from '../markdown/markdownToAst';
+import fetch from "../fetch";
+import { getVideo } from "./tweet-html";
+import {
+  fetchUserStatus,
+  getEmbeddedTweetHtml,
+  fetchTweetWithPoll,
+} from "./api";
+import fetchTweetAst from "../fetchTweetAst";
+import markdownToAst from "../markdown/markdownToAst";
 
 function getVideoData(userStatus) {
   const video = userStatus.extended_entities.media[0];
   const poster = video.media_url_https;
   // Find the first mp4 video in the array, if the results are always properly sorted, then
   // it should always be the mp4 video with the lowest bitrate
-  const mp4Video = video.video_info.variants.find(v => v.content_type === 'video/mp4');
+  const mp4Video = video.video_info.variants.find(
+    v => v.content_type === "video/mp4"
+  );
 
   if (!mp4Video) return;
 
@@ -37,7 +43,7 @@ async function getMediaHtml(tweet) {
 async function getQuotedTweetHtml({ quotedTweet }, context) {
   if (!quotedTweet) return;
 
-  if (process.env.NEXT_PUBLIC_TWITTER_LOAD_WIDGETS === 'true') {
+  if (process.env.NEXT_PUBLIC_TWITTER_LOAD_WIDGETS === "true") {
     const data = await getEmbeddedTweetHtml(quotedTweet.url);
     return data?.html;
   } else {
@@ -55,7 +61,7 @@ async function getPollHtml(tweet, context) {
 
   if (poll) {
     const meta = {
-      type: 'poll-container',
+      type: "poll-container",
       endsAt: poll.end_datetime,
       duration: poll.duration_minutes,
       status: poll.voting_status,
@@ -67,16 +73,16 @@ async function getPollHtml(tweet, context) {
 }
 
 export default async function getTweetHtml(tweet, context) {
-  const meta = { ...tweet.meta, type: 'tweet' };
+  const meta = { ...tweet.meta, type: "tweet" };
   const md = await markdownToAst(tweet.html);
   const html = [
     // md.children is the markdown content, which is later added as children to the container
     `<div data-id="${context.add(meta, md.children)}">`,
-    (await getMediaHtml(tweet)) || '',
-    (await getQuotedTweetHtml(tweet, context)) || '',
-    (await getPollHtml(tweet, context)) || '',
+    (await getMediaHtml(tweet)) || "",
+    (await getQuotedTweetHtml(tweet, context)) || "",
+    (await getPollHtml(tweet, context)) || "",
     `</div>`,
-  ].join('');
+  ].join("");
 
   return html;
 }

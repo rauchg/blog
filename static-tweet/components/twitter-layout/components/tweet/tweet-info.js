@@ -1,13 +1,13 @@
-import format from 'date-fns/format';
-import formatNumber from '../../../../lib/format-number';
-import useMounted from '../../../../lib/use-mounted';
+import format from "date-fns/format";
+import formatNumber from "../../../../lib/format-number";
+import useMounted from "../../../../lib/use-mounted";
 
 export default function TweetInfo({ tweet }) {
   const mounted = useMounted();
   const likeUrl = `https://twitter.com/intent/like?tweet_id=${tweet.id}`;
   const tweetUrl = `https://twitter.com/${tweet.username}/status/${tweet.id}`;
   const createdAt =
-    typeof window !== 'undefined' && mounted ? new Date(tweet.createdAt) : null;
+    typeof window !== "undefined" && mounted ? new Date(tweet.createdAt) : null;
 
   return (
     <div className="info">
@@ -38,7 +38,7 @@ export default function TweetInfo({ tweet }) {
             title={`Time Posted: ${createdAt.toUTCString()}`}
             dateTime={createdAt.toISOString()}
           >
-            {format(createdAt, 'h:mm a - MMM d, y')}
+            {format(createdAt, "h:mm a - MMM d, y")}
           </time>
         </a>
       )}

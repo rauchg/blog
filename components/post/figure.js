@@ -6,13 +6,13 @@ const Figure = ({ desc, href, children, wide, height, width }) => {
           position: "relative",
           display: "inline-block",
           maxWidth: "100%",
-          overflow: "hidden"
+          overflow: "hidden",
         }}
       >
         <div
           style={{
             width,
-            paddingBottom: (height / width) * 100 + "%"
+            paddingBottom: (height / width) * 100 + "%",
           }}
         />
         <div
@@ -23,7 +23,7 @@ const Figure = ({ desc, href, children, wide, height, width }) => {
             top: 0,
             margin: "auto",
             height: "auto",
-            maxWidth: "100%"
+            maxWidth: "100%",
           }}
         >
           {children}

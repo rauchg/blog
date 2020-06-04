@@ -1,9 +1,9 @@
-import unified from 'unified';
-import parse from 'rehype-parse';
-import sanitize from 'rehype-sanitize';
-import tweet from './rehype-tweet';
-import minify from './rehype-minify';
-import schema from './schema';
+import unified from "unified";
+import parse from "rehype-parse";
+import sanitize from "rehype-sanitize";
+import tweet from "./rehype-tweet";
+import minify from "./rehype-minify";
+import schema from "./schema";
 
 // Create the processor, the order of the plugins is important
 const getProcessor = unified()

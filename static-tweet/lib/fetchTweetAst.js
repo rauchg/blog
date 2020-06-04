@@ -1,8 +1,8 @@
-import GithubSlugger from 'github-slugger';
-import { fetchTweetHtml } from './twitter/api';
-import { getTweetData } from './twitter/embed/tweet-html';
-import getTweetHtml from './twitter/getTweetHtml';
-import htmlToAst from './markdown/htmlToAst';
+import GithubSlugger from "github-slugger";
+import { fetchTweetHtml } from "./twitter/api";
+import { getTweetData } from "./twitter/embed/tweet-html";
+import getTweetHtml from "./twitter/getTweetHtml";
+import htmlToAst from "./markdown/htmlToAst";
 
 class Context {
   slugger = new GithubSlugger();

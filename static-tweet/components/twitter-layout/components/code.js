@@ -4,8 +4,9 @@ export const Code = p => (
     <style jsx>{`
       code {
         font-size: 14px;
-        font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-          Bitstream Vera Sans Mono, Courier New, monospace, serif;
+        font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
+          DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace,
+          serif;
       }
       code.inline {
         color: var(--inline-code-color);

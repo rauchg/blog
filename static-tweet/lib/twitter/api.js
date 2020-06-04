@@ -1,13 +1,13 @@
-import fetch from '../fetch';
+import fetch from "../fetch";
 
-const API_URL = 'https://api.twitter.com';
-const SYNDICATION_URL = 'https://syndication.twitter.com';
+const API_URL = "https://api.twitter.com";
+const SYNDICATION_URL = "https://syndication.twitter.com";
 
 function twitterLabsEnabled(expansions) {
-  if (process.env.TWITTER_LABS_ENABLED !== 'true') return false;
+  if (process.env.TWITTER_LABS_ENABLED !== "true") return false;
   if (!expansions) return true;
 
-  const exp = process.env.TWITTER_LABS_EXPANSIONS || '';
+  const exp = process.env.TWITTER_LABS_EXPANSIONS || "";
 
   return exp.includes(expansions);
 }
@@ -18,7 +18,9 @@ export async function fetchTweetsHtml(ids) {
   if (res.ok) return res.json();
   if (res.status === 404) return {};
 
-  throw new Error(`Fetch for the embedded tweets of "${ids}" failed with code: ${res.status}`);
+  throw new Error(
+    `Fetch for the embedded tweets of "${ids}" failed with code: ${res.status}`
+  );
 }
 
 export async function fetchTweetHtml(id) {
@@ -39,9 +41,18 @@ export async function fetchUserStatus(tweetId) {
     }
   );
 
-  console.log('Twitter x-rate-limit-limit:', res.headers.get('x-rate-limit-limit'));
-  console.log('Twitter x-rate-limit-remaining:', res.headers.get('x-rate-limit-remaining'));
-  console.log('Twitter x-rate-limit-reset:', res.headers.get('x-rate-limit-reset'));
+  console.log(
+    "Twitter x-rate-limit-limit:",
+    res.headers.get("x-rate-limit-limit")
+  );
+  console.log(
+    "Twitter x-rate-limit-remaining:",
+    res.headers.get("x-rate-limit-remaining")
+  );
+  console.log(
+    "Twitter x-rate-limit-reset:",
+    res.headers.get("x-rate-limit-reset")
+  );
 
   if (res.ok) return res.json();
   if (res.status === 404) return;
@@ -50,7 +61,7 @@ export async function fetchUserStatus(tweetId) {
 }
 
 export async function fetchTweetWithPoll(tweetId) {
-  const expansions = 'attachments.poll_ids';
+  const expansions = "attachments.poll_ids";
 
   // If there isn't an API token or Twitter Labs is not enabled, don't do anything,
   // this is only required for Polls.
@@ -65,14 +76,25 @@ export async function fetchTweetWithPoll(tweetId) {
     }
   );
 
-  console.log('Twitter Labs x-rate-limit-limit:', res.headers.get('x-rate-limit-limit'));
-  console.log('Twitter Labs x-rate-limit-remaining:', res.headers.get('x-rate-limit-remaining'));
-  console.log('Twitter Labs x-rate-limit-reset:', res.headers.get('x-rate-limit-reset'));
+  console.log(
+    "Twitter Labs x-rate-limit-limit:",
+    res.headers.get("x-rate-limit-limit")
+  );
+  console.log(
+    "Twitter Labs x-rate-limit-remaining:",
+    res.headers.get("x-rate-limit-remaining")
+  );
+  console.log(
+    "Twitter Labs x-rate-limit-reset:",
+    res.headers.get("x-rate-limit-reset")
+  );
 
   if (res.ok) return res.json();
   if (res.status === 404) return;
 
-  throw new Error(`Fetch to the Twitter Labs API failed with code: ${res.status}`);
+  throw new Error(
+    `Fetch to the Twitter Labs API failed with code: ${res.status}`
+  );
 }
 
 export async function getEmbeddedTweetHtml(url) {

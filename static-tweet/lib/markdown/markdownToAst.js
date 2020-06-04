@@ -1,20 +1,20 @@
-import unified from 'unified';
-import markdown from 'remark-parse';
-import remarkToRehype from 'remark-rehype';
-import raw from 'rehype-raw';
-import prism from '@mapbox/rehype-prism';
+import unified from "unified";
+import markdown from "remark-parse";
+import remarkToRehype from "remark-rehype";
+import raw from "rehype-raw";
+import prism from "@mapbox/rehype-prism";
 
 const handlers = {
   // Add a className to inlineCode so we can differentiate between it and code fragments
   inlineCode(h, node) {
     return {
       ...node,
-      type: 'element',
-      tagName: 'code',
-      properties: { className: 'inline' },
+      type: "element",
+      tagName: "code",
+      properties: { className: "inline" },
       children: [
         {
-          type: 'text',
+          type: "text",
           value: node.value,
         },
       ],

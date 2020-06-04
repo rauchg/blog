@@ -1,6 +1,8 @@
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 
-const LoadDetailsDialog = dynamic(() => import('../details-dialog'), { ssr: false });
+const LoadDetailsDialog = dynamic(() => import("../details-dialog"), {
+  ssr: false,
+});
 
 export const Img = ({ width, height, src, ...p }) => (
   <details>
@@ -21,7 +23,7 @@ export const Img = ({ width, height, src, ...p }) => (
         padding-bottom: ${(height / width) * 100 || 0}%;
       }
       summary > img {
-        position: ${height && width ? 'absolute' : 'static'};
+        position: ${height && width ? "absolute" : "static"};
       }
     `}</style>
     <style jsx>{`

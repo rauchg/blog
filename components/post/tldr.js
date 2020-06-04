@@ -1,8 +1,6 @@
 export default ({ children }) => (
   <div className="wrap">
-    <b>tl;DR:</b>
-    {' '}
-    <div className="content">{ children }</div>
+    <b>tl;DR:</b> <div className="content">{children}</div>
     <style jsx>{`
       .wrap {
         margin-bottom: 25px;
@@ -17,4 +15,4 @@ export default ({ children }) => (
       }
     `}</style>
   </div>
-)
+);

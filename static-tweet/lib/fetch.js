@@ -1,3 +1,3 @@
-import zeitFetch from '@zeit/fetch';
+import zeitFetch from "@zeit/fetch";
 
 export default zeitFetch();

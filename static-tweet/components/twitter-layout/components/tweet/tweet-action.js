@@ -1,10 +1,10 @@
-import formatNumber from '../../../../lib/format-number';
+import formatNumber from "../../../../lib/format-number";
 
 export default function TweetAction({ tweet }) {
   const userUrl = `https://twitter.com/${tweet.username}`;
   const tweetUrl = `${userUrl}/status/${tweet.id}`;
   const count = tweet.replies + tweet.retweets;
-  const isConversation = tweet.ctaType === 'conversation' || count > 4;
+  const isConversation = tweet.ctaType === "conversation" || count > 4;
 
   return (
     <>
