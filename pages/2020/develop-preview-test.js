@@ -266,7 +266,7 @@ const Page = withViews(({ tweets, views }) => (
 
     <P>
       To show the <b>Develop -> Preview -> Test</b> workflow in action, I'm
-      going to demonstrante how easily I can add an E2E test for{" "}
+      going to demonstrate how easily I can add an E2E test for{" "}
       <a href="https://github.com/rauchg/blog" target="_blank">
         my open-source blog
       </a>{" "}
