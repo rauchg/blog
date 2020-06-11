@@ -223,7 +223,7 @@ export default withViews(({ views }) => (
 
     <Figure
       desc="Side-by-side terminal and web browser with hot code reloading"
-      href="https//hyper.is"
+      href="https://hyper.is"
     >
       <Video src="https://video.twimg.com/tweet_video/CxvaQGQXcAUTxCV.mp4" />
     </Figure>
@@ -808,44 +808,6 @@ export default withViews(({ views }) => (
       Instead of having our users Google error messages or codes, we can point
       them to a resource we can update over time and others can comment on!
     </P>
-
-    <H3 id="interviews">Interviews</H3>
-
-    <UL>
-      <LI>
-        <a
-          href="https://betweenthewires.org/between-the-wires-guillermo-rauch-2819177beedc"
-          target="_blank"
-        >
-          An interview about my work and background
-        </a>{" "}
-        by Between the Wires
-      </LI>
-      <LI>
-        <a
-          href="https://devchat.tv/js-jabber/217-jsj-the-now-project-with-guillermo-rauch"
-          target="_blank"
-        >
-          The Now Project on JS Jabber
-        </a>{" "}
-        about the motivations for starting <ZEIT /> and Now.
-      </LI>
-      <LI>
-        <a
-          href="https://www.acast.com/nodeup/106-1-1-w-guillermo-rauch"
-          target="_blank"
-        >
-          1-on-1 with Guillermo Rauch on NodeUP
-        </a>{" "}
-        on the Node.js ecosystem, cloud, how it's evolved since its early days.
-      </LI>
-      <LI>
-        <a href="https://changelog.com/podcast/213" target="_blank">
-          The Changelog episode
-        </a>{" "}
-        on <ZEIT />, Hyper and Now.
-      </LI>
-    </UL>
 
     <H3 id="presentations">Presentations</H3>
 

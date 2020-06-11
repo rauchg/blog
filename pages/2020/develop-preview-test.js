@@ -19,19 +19,19 @@ export async function getStaticProps() {
 
 const Page = withViews(({ tweets, views }) => (
   <Post tweets={tweets}>
-    <Header title="Develop, Preview, Test" date="May 31, 2020" views={views} />
+    <Header title="Develop, Preview, Test" date="June 11, 2020" views={views} />
     <Head>
       <meta property="og:title" content="Develop, Preview, Test" />
       <meta property="og:site_name" content="Guillermo Rauch's blog" />
       <meta
         property="og:description"
-        content="The rise of deploy previews and serverless testing infrastructure is revoluzioning the way we test web projects."
+        content="The rise of deploy previews and serverless testing infrastructure is revolutionizing the way we test web projects."
       />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content="@rauchg" />
       <meta
         property="og:image"
-        content="https://rauchg.com/og/develop-preview-test.png"
+        content="https://res.cloudinary.com/rauchg/image/upload/v1591890273/blog/og/4C8D37F4-9C56-4251-894B-F48EF289C798_fxqt6c.png"
       />
     </Head>
     <P>
