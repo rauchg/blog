@@ -240,7 +240,7 @@ a(314, 159)
 ●  (SSG)     automatically generated as static HTML + JSON (uses getStaticProps)`}</Snippet>
 
     <P>
-      As you can see from the symbols (○ ● λ) to represent the output types:
+      As you can see from the symbols (○ ● λ), which represent the output types:
     </P>
 
     <UL>
