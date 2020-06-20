@@ -1,7 +1,6 @@
 {
-  "name": "rauchg-blog",
-  "license": "MIT",
-  "description": "rauchg.com (blog)",
+  "name": "wangqiwen-blog",
+  "description": "wangqiwen.xyz (blog)",
   "dependencies": {
     "@mdx-js/loader": "^2.1.1",
     "@mdx-js/react": "^2.1.1",
