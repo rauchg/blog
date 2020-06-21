@@ -21,7 +21,7 @@ const Header = ({ id, title, date }) => {
         <span className="meta">
           <a
             className="author"
-            href="https://twitter.com/rauchg"
+            href="https://twitter.com/QiwenWang1"
             target="_blank"
           >
             <span className="img">
@@ -32,7 +32,7 @@ const Header = ({ id, title, date }) => {
                 layout="fixed"
               />
             </span>
-            rauchg
+            Wang Qiwen
           </a>
 
           {isMounted ? (
