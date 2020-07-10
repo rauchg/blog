@@ -28,7 +28,7 @@ const Home = ({ posts, date }) => (
 
     <style jsx>{`
       ul li {
-        padding: 10px 15px;
+        padding: 10px 10px;
       }
 
       ul li span {
