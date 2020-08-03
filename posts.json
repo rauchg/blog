@@ -1,6 +1,11 @@
 {
   "posts": [
     {
+      "id": "books-people-reread",
+      "date": "August 2, 2020",
+      "title": "Books people re(read)"
+    },
+    {
       "id": "develop-preview-test",
       "date": "June 11, 2020",
       "title": "Develop, Preview, Test"
