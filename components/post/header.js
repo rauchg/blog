@@ -9,6 +9,7 @@ import TimeAgo from "../time-ago";
 export default ({
   title,
   date,
+  timestamp,
   views = null,
   tweetUrl = null,
   twitterRetweets = null,
@@ -48,20 +49,20 @@ export default ({
               >
                 <span className="sep" />
                 <span className="short">
-                  <TimeAgo date={date} />
+                  <TimeAgo timestamp={timestamp} date={date} />
                 </span>
                 <span className="full">
-                  <TimeAgo date={date} long={true} />
+                  <TimeAgo timestamp={timestamp} date={date} long={true} />
                 </span>
               </a>
             ) : (
               <span className={`date ${isMounted ? "" : "loading"}`}>
                 <span className="sep" />
                 <span className="short">
-                  <TimeAgo date={date} />
+                  <TimeAgo timestamp={timestamp} date={date} />
                 </span>
                 <span className="full">
-                  <TimeAgo date={date} long={true} />
+                  <TimeAgo timestamp={timestamp} date={date} long={true} />
                 </span>
               </span>
             )
