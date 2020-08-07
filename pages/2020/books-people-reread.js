@@ -104,7 +104,7 @@ export async function getStaticProps() {
       })
       .filter(v => v != null) 
     },
-    revalidate: 60
+    revalidate: 1
   }
 }
 
