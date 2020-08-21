@@ -199,9 +199,9 @@ a(314, 159)
       >
         appending
       </a>{" "}
-      (and soon{" "}
+      and{" "}
       <a
-        href="https://github.com/zeit/next.js/discussions/11552"
+        href="https://nextjs.org/blog/next-9-5#stable-incremental-static-regeneration"
         target="_blank"
       >
         updating
