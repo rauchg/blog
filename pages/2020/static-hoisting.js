@@ -205,8 +205,7 @@ a(314, 159)
         target="_blank"
       >
         updating
-      </a>
-      ) pages.
+      </a> pages.
     </P>
 
     <P>
