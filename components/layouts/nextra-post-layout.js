@@ -29,22 +29,22 @@ const components = {
   blockquote: Quote
 }
 
-export default ({ frontMatter }) => {
+export default ({ meta }) => {
   return withViews(({ tweets, views, children }) => {
     return <Post tweets={tweets}>
-      <Header title={frontMatter.title} date={frontMatter.date} views={views} />
+      <Header title={meta.title} date={meta.date} views={views} />
       <Head>
-        <meta property="og:title" content={frontMatter.title} />
+        <meta property="og:title" content={meta.title} />
         <meta property="og:site_name" content="Guillermo Rauch's blog" />
         <meta
           property="og:description"
-          content={frontMatter.description}
+          content={meta.description}
         />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@rauchg" />
         <meta
           property="og:image"
-          content={frontMatter.og}
+          content={meta.og}
         />
       </Head>
       <MDXProvider components={components}>
