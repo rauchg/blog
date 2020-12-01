@@ -378,7 +378,7 @@ const Page = withViews(({ tweets, views }) => (
       />
     </Figure>
 
-    <H2>Conclusion</H2>
+    <H2 id="conclusion">Conclusion</H2>
 
     <P>
       Notably, Checkly allows us to configure multiple locations in the world
