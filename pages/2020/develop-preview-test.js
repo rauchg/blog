@@ -91,7 +91,7 @@ const Page = withViews(({ tweets, views }) => (
       how you can adopt this methodology in mere minutes.
     </P>
 
-    <H2>Why end-to-end?</H2>
+    <H2 id="why">Why end-to-end?</H2>
 
     <P>
       In addition to integration tests, I want to now make the case that modern
@@ -166,7 +166,7 @@ const Page = withViews(({ tweets, views }) => (
       (it must do the right thing quickly).
     </P>
 
-    <H2>End-to-end made possible</H2>
+    <H2 id="possible">End-to-end made possible</H2>
 
     <P>
       First, back when I argued for focusing on integration in 2016 and made no
@@ -262,7 +262,7 @@ const Page = withViews(({ tweets, views }) => (
       for an example) are <b>now making E2E both fast and cheap</b>.
     </P>
 
-    <H2>End-to-end made easy</H2>
+    <H2 id="easy">End-to-end made easy</H2>
 
     <P>
       To show the <b>Develop -> Preview -> Test</b> workflow in action, I'm
