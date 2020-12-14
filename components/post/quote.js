@@ -2,8 +2,7 @@ export default ({ by, children }) => (
   <blockquote>
     <p>
       {children}
-      <br />
-      {by ? <>– {by}</> : null}
+      {by ? <><br />– {by}</> : null}
     </p>
     <style jsx>{`
       blockquote {
