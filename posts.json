@@ -1,6 +1,11 @@
 {
   "posts": [
     {
+      "id": "next-for-vercel",
+      "date": "December 16, 2020",
+      "title": "Next for Vercel"
+    },
+    {
       "id": "books-people-reread",
       "date": "August 2, 2020",
       "title": "Books people re(read)"

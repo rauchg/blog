@@ -4,7 +4,7 @@ import Node from "../../static-tweet/components/html/node";
 import components from "../../static-tweet/components/twitter-layout/components";
 import twitterTheme from "../../static-tweet/components/twitter-layout/twitter.module.css";
 
-export default function Tweet({ id, caption }) {
+export default function Tweet({ id, br, caption }) {
   const tweet = useTweet(id);
 
   // Happens when `getStaticProps` is traversing the tree to collect the tweet ids
@@ -12,11 +12,11 @@ export default function Tweet({ id, caption }) {
 
   return (
     <main className={twitterTheme.theme}>
-      <Node components={components} node={tweet.ast[0]} />
+      <Node components={components} node={tweet.ast[0]} br={br} />
       {caption != null ? <p>{caption}</p> : null}
       <style jsx>{`
         main {
-          max-width: 500px;
+          max-width: 100%;
           min-width: 220px;
           margin: 2rem auto;
         }
@@ -27,11 +27,6 @@ export default function Tweet({ id, caption }) {
           margin: 0;
           margin-top: 10px;
           padding: 0;
-        }
-        @media (max-width: 500px) {
-          main {
-            max-width: 300px;
-          }
         }
       `}</style>
     </main>

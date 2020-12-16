@@ -9,20 +9,16 @@ export const TwitterLink = p => (
     title={p.title || p.href}
   >
     <s>{p.type}</s>
-    <b>{p.children}</b>
+    {p.children}
 
     <style jsx>{`
-      a {
-        color: #22bad9;
+      a, s {
         text-decoration: none;
       }
       @media (any-hover: hover) {
-        a:hover > b {
+        a:hover {
           text-decoration: underline;
         }
-      }
-      s {
-        text-decoration: none;
       }
     `}</style>
   </a>

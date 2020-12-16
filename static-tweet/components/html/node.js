@@ -6,7 +6,7 @@ const defaultHandler = name => (props, components) => {
   return Comp ? <Comp {...props} /> : createElement(name, props);
 };
 
-function handleNode(node, components, i) {
+function handleNode({node, components, i, br, brIndex}) {
   if (typeof node === "string") {
     return node;
   }
@@ -28,8 +28,18 @@ function handleNode(node, components, i) {
   if (node.data) {
     props.data = node.data;
   }
+
   if (nodes && Array.isArray(nodes)) {
-    props.children = nodes.map((node, i) => handleNode(node, components, i));
+    props.children = [];
+    for (let i = 0; i < nodes.length; i++) {
+      props.children.push(handleNode({node: nodes[i], components, i, br, brIndex}));
+
+      let idx = 0;
+      while (br && brIndex.i === br[0]) {
+        props.children.push(<br key={'br-' + br[0] + '-' + (++idx)} />);
+        br.splice(0, 1);
+      }
+    }
   }
 
   const element = handler(props, components, i, node);
@@ -38,9 +48,10 @@ function handleNode(node, components, i) {
     console.error("A handler returned null for:", node);
   }
 
+  brIndex.i++;
   return element;
 }
 
-export default function Node({ components, node }) {
-  return handleNode(node, components);
+export default function Node({ components, node, br }) {
+  return handleNode({node, components, br: br ? [...br] : null, brIndex: { i: 0 } });
 }

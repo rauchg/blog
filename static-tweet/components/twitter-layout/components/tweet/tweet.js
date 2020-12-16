@@ -1,6 +1,5 @@
 import TweetHeader from "./tweet-header";
 import TweetInfo from "./tweet-info";
-import TweetAction from "./tweet-action";
 
 export default function Tweet({ children, data }) {
   return (
@@ -10,7 +9,6 @@ export default function Tweet({ children, data }) {
         {children}
         <TweetInfo tweet={data} />
       </blockquote>
-      <TweetAction tweet={data} />
       <style jsx>{`
         .tweet {
           color: var(--tweet-font-color);
