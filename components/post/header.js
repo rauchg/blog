@@ -6,15 +6,17 @@ import RefreshCwIcon from "../icons/refresh-cw";
 import commaNumber from "comma-number";
 import TimeAgo from "../time-ago";
 
-export default ({
-  title,
-  date,
-  timestamp,
-  views = null,
-  tweetUrl = null,
-  twitterRetweets = null,
-  twitterLikes = null,
-}) => {
+const Header = (
+  {
+    title,
+    date,
+    timestamp,
+    views = null,
+    tweetUrl = null,
+    twitterRetweets = null,
+    twitterLikes = null,
+  }
+) => {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -200,3 +202,5 @@ export default ({
     </main>
   );
 };
+
+export default Header;
