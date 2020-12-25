@@ -29,7 +29,7 @@ const components = {
   blockquote: Quote
 }
 
-export default ({ meta }) => {
+const NextraPostLayout = ({ meta }) => {
   return withViews(({ tweets, views, children }) => {
     return <Post tweets={tweets}>
       <Header title={meta.title} date={meta.date} views={views} />
@@ -53,3 +53,5 @@ export default ({ meta }) => {
      </Post>;
   });
 };
+
+export default NextraPostLayout;

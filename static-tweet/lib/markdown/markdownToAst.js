@@ -29,7 +29,7 @@ function toAst() {
 // Create the processor, the order of the plugins is important
 const processor = unified()
   .use(markdown)
-  .use(remarkToRehype, { handlers, allowDangerousHTML: true })
+  .use(remarkToRehype, { handlers, allowDangerousHtml: true })
   // Add custom HTML found in the tweet to the AST
   .use(raw)
   // Add syntax highlighting

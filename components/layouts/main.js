@@ -7,7 +7,7 @@ import Header from "../header";
 
 import "nprogress";
 
-export default ({ children, headerActive }) => {
+const Main = ({ children, headerActive }) => {
   return (
     <main>
       <Head>
@@ -43,3 +43,5 @@ export default ({ children, headerActive }) => {
     </main>
   );
 };
+
+export default Main;

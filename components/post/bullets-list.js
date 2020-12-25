@@ -1,15 +1,15 @@
-export default ({ children }) => (
-  <ul>
-    {children}
-    <style jsx>{`
-      ul {
-        margin: 0 0 20px 0;
-        padding: 0;
-        list-style-type: none;
-      }
-    `}</style>
-  </ul>
-);
+const BulletsList = ({ children }) => <ul>
+  {children}
+  <style jsx>{`
+    ul {
+      margin: 0 0 20px 0;
+      padding: 0;
+      list-style-type: none;
+    }
+  `}</style>
+</ul>;
+
+export default BulletsList;
 
 const LI = ({ children }) => (
   <li>

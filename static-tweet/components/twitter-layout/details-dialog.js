@@ -3,4 +3,6 @@
  */
 import "@github/details-dialog-element";
 
-export default () => null;
+const DetailsDialogPlaceholder = () => null;
+
+export default DetailsDialogPlaceholder;
