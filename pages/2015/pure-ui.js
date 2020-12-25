@@ -145,7 +145,7 @@ export default withViews(({ views }) => (
     </P>
 
     <Figure wide>
-      <Image src="https://cldup.com/JDDxCgEoBj.png" />
+      <Image src="/images/pure-ui/JDDxCgEoBj.png" />
     </Figure>
 
     <P>
@@ -176,7 +176,7 @@ export default withViews(({ views }) => (
     </P>
 
     <Figure wide>
-      <Image src="https://cldup.com/AgHrso5cqp.png" />
+      <Image src="/images/pure-ui/AgHrso5cqp.png" />
     </Figure>
 
     <P>
@@ -201,7 +201,7 @@ export default withViews(({ views }) => (
     </P>
 
     <Figure wide>
-      <Image src="https://cldup.com/iIIdwqx6y4.png" />
+      <Image src="/images/pure-ui/iIIdwqx6y4.png" />
     </Figure>
 
     <P>These answer the questions of what the player would look like when</P>
@@ -385,7 +385,7 @@ export default withViews(({ views }) => (
     </P>
 
     <Figure>
-      <Image src="https://cldup.com/KK_maFpl8V.gif" />
+      <Image src="/images/pure-ui/KK_maFpl8V.gif" />
     </Figure>
 
     <P>
@@ -599,7 +599,7 @@ class Demos extends React.Component {
     document.querySelector("#demo1").innerHTML = "";
     document.querySelector("#demo2").innerHTML = "";
     if (!window.Viewer) {
-      loadScript("https://cldup.com/uUo8iSbKXRh/C7isGX.js", err => {
+      loadScript("/images/pure-ui/uUo8iSbKXRh/C7isGX.js", err => {
         if (!this.mounted) return;
         if (err) return console.error("demo script load fail");
         this.onScriptLoad();
@@ -685,7 +685,7 @@ class Demos extends React.Component {
                 title: "Loaded",
                 require: "thumbTip",
                 params: {
-                  url: "https://cldup.com/tY2dbQWFVw.png",
+                  url: "/images/pure-ui/tY2dbQWFVw.png",
                   width: 136,
                   height: 78,
                   index: 38,
@@ -712,7 +712,7 @@ class Demos extends React.Component {
               require: "converting",
               params: {
                 title: "The video of all galaxies that span the universe",
-                bgurl: "https://cldup.com/VK_jwU0ZRK.png",
+                bgurl: "/images/pure-ui/VK_jwU0ZRK.png",
                 progress: 65,
                 width: "ontouchstart" in document ? 320 : 560,
                 height: 315,

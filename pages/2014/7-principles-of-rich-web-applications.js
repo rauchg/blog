@@ -220,7 +220,7 @@ So: the hardware of the Internet can currently achieve within a factor of two of
     </P>
 
     <Figure desc="Analysis of the HTML sent by the server for every page of a SPA in the wild">
-      <Image src="https://cldup.com/kpfLbf6dha.png" />
+      <Image src="/images/7-principles-of-rich-web-applications/kpfLbf6dha.png" />
     </Figure>
 
     <P>
@@ -295,7 +295,7 @@ So: the hardware of the Internet can currently achieve within a factor of two of
     </P>
 
     <Figure desc="How many KB a server can send for each phase of the connection by segments">
-      <Image src="https://cldup.com/WI9kN_9iyR.png" />
+      <Image src="/images/7-principles-of-rich-web-applications/WI9kN_9iyR.png" />
     </Figure>
 
     <P>
@@ -358,7 +358,7 @@ So: the hardware of the Internet can currently achieve within a factor of two of
     </P>
 
     <Figure desc="Proof-of-concept SPA with inlined CSS and JS that doesn’t incur in extra roundtrips">
-      <Image src="https://cldup.com/NeV5qFDaVR.png" />
+      <Image src="/images/7-principles-of-rich-web-applications/NeV5qFDaVR.png" />
     </Figure>
 
     <P>
@@ -464,7 +464,7 @@ So: the hardware of the Internet can currently achieve within a factor of two of
     </P>
 
     <Figure desc="Google adapts its layout as soon as you hold down a key">
-      <Image src="https://cldup.com/CmkksKRbrl.gif" />
+      <Image src="/images/7-principles-of-rich-web-applications/CmkksKRbrl.gif" />
     </Figure>
 
     <P>
@@ -536,7 +536,7 @@ So: the hardware of the Internet can currently achieve within a factor of two of
     </P>
 
     <Figure desc="iPhone OS enforced loading default.png before the application">
-      <Image src="https://cldup.com/Gg1AwDA71S.png" />
+      <Image src="/images/7-principles-of-rich-web-applications/Gg1AwDA71S.png" />
     </Figure>
 
     <P>
@@ -568,7 +568,7 @@ So: the hardware of the Internet can currently achieve within a factor of two of
     </P>
 
     <Figure desc="The image gets rendered and fades in before the upload completes">
-      <Image src="https://cldup.com/iCig_gr__M.gif" />
+      <Image src="/images/7-principles-of-rich-web-applications/iCig_gr__M.gif" />
     </Figure>
 
     <P>
@@ -687,7 +687,7 @@ So: the hardware of the Internet can currently achieve within a factor of two of
     </P>
 
     <Figure desc="A single-user application can still benefit from reactivity">
-      <Image src="https://cldup.com/15MbLjLsfm.gif" />
+      <Image src="/images/7-principles-of-rich-web-applications/15MbLjLsfm.gif" />
     </Figure>
 
     <P>
@@ -700,7 +700,7 @@ So: the hardware of the Internet can currently achieve within a factor of two of
     </P>
 
     <Figure desc="Each page reacts to the session and login state">
-      <Image src="https://cldup.com/FS74zJHpDg.gif" />
+      <Image src="/images/7-principles-of-rich-web-applications/FS74zJHpDg.gif" />
     </Figure>
 
     <P>
@@ -717,7 +717,7 @@ So: the hardware of the Internet can currently achieve within a factor of two of
     </P>
 
     <Figure desc="Example of what would occur if we disregard elapsed time upon reconnection">
-      <Image src="https://cldup.com/D7obeKaOlB.png" />
+      <Image src="/images/7-principles-of-rich-web-applications/D7obeKaOlB.png" />
     </Figure>
 
     <P>
@@ -773,7 +773,7 @@ So: the hardware of the Internet can currently achieve within a factor of two of
     </P>
 
     <Figure desc="Possibly the most annoying artifact of the old web">
-      <Image src="https://cldup.com/mc3PlaztUS.png" />
+      <Image src="/images/7-principles-of-rich-web-applications/mc3PlaztUS.png" />
     </Figure>
 
     <P>
@@ -831,7 +831,7 @@ So: the hardware of the Internet can currently achieve within a factor of two of
     </P>
 
     <Figure desc="The beforeunload browser warning">
-      <Image src="https://cldup.com/8Eu4Sk9mD8.png" />
+      <Image src="/images/7-principles-of-rich-web-applications/8Eu4Sk9mD8.png" />
     </Figure>
 
     <P>
@@ -904,7 +904,7 @@ So: the hardware of the Internet can currently achieve within a factor of two of
     </P>
 
     <Figure desc="Pressing back incorrectly loads the initial HTML from the pageload">
-      <Image src="https://cldup.com/c081WZaE8H.gif" />
+      <Image src="/images/7-principles-of-rich-web-applications/c081WZaE8H.gif" />
     </Figure>
 
     <P>
@@ -917,7 +917,7 @@ So: the hardware of the Internet can currently achieve within a factor of two of
     </P>
 
     <Figure desc="Infinite pagination is usually susceptible to scrolling amnesia">
-      <Image src="https://cldup.com/3m0DOKp9BW.gif" />
+      <Image src="/images/7-principles-of-rich-web-applications/3m0DOKp9BW.gif" />
     </Figure>
 
     <P>
@@ -927,7 +927,7 @@ So: the hardware of the Internet can currently achieve within a factor of two of
     </P>
 
     <Figure desc="The toggling of comments should be preserved when navigating history">
-      <Image src="https://cldup.com/bvqcnxO0De.gif" />
+      <Image src="/images/7-principles-of-rich-web-applications/bvqcnxO0De.gif" />
     </Figure>
 
     <P>
@@ -1068,7 +1068,7 @@ So: the hardware of the Internet can currently achieve within a factor of two of
     </P>
 
     <Figure desc="jQuery plugin that predicts the mouse trajectory">
-      <Image src="https://cldup.com/VZ7GRJR3Rl.gif" />
+      <Image src="/images/7-principles-of-rich-web-applications/VZ7GRJR3Rl.gif" />
     </Figure>
 
     <H2 id="conclusion">Conclusion</H2>

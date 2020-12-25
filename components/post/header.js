@@ -5,6 +5,7 @@ import HeartIcon from "../icons/heart";
 import RefreshCwIcon from "../icons/refresh-cw";
 import commaNumber from "comma-number";
 import TimeAgo from "../time-ago";
+import NextImage from 'next/image'
 
 const Header = (
   {
@@ -38,7 +39,9 @@ const Header = (
             href="https://twitter.com/rauchg"
             target="_blank"
           >
-            <img src="https://pbs.twimg.com/profile_images/1029230542716264448/LgLb--Of_200x200.jpg" />
+            <span className="img">
+              <NextImage src="/images/rauchg.png" width={25} height={25} layout="fixed" />
+            </span>
             rauchg
           </a>
 
@@ -146,11 +149,13 @@ const Header = (
           text-decoration: none;
         }
 
-        .meta .author img {
+        .meta .author .img {
           width: 25px;
           height: 25px;
           border-radius: 100%;
           margin-right: 5px;
+          display: inline-block;
+          overflow: hidden;
         }
 
         .twitter {
