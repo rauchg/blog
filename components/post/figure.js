@@ -7,15 +7,7 @@ const FigureContext = createContext({
 });
 
 const Figure = ({ desc, href, children, wide, height, width }) => {
-  if (!height) {
-    throw new TypeError('The height attribute is required');
-  }
-
-  if (!width) {
-    throw new TypeError('The width attribute is required');
-  }
-
-  const content = <div
+  const content = width && height ? (<div
         style={{
           position: "relative",
           display: "inline-block",
@@ -44,7 +36,7 @@ const Figure = ({ desc, href, children, wide, height, width }) => {
             {children}
           </FigureContext.Provider>
         </div>
-      </div>
+  </div>) : (children)
 
   return (
     <div className={wide && "wide"}>
@@ -97,6 +89,14 @@ const Image = ({ width=null, height=null, style, src }) => {
 
   if (height == null) {
     height = contextHeight;
+  }
+
+  if (!height) {
+    throw new TypeError('The height attribute is required');
+  }
+
+  if (!width) {
+    throw new TypeError('The width attribute is required');
   }
 
   return <div style={style}>

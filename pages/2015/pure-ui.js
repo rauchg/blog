@@ -144,7 +144,7 @@ export default withViews(({ views }) => (
       represent the same content for desktop and for mobile:
     </P>
 
-    <Figure wide>
+    <Figure width={1194} height={1350} wide>
       <Image src="/images/pure-ui/JDDxCgEoBj.png" />
     </Figure>
 
@@ -175,7 +175,7 @@ export default withViews(({ views }) => (
       .
     </P>
 
-    <Figure wide>
+    <Figure width={1298} height={520} wide>
       <Image src="/images/pure-ui/AgHrso5cqp.png" />
     </Figure>
 
@@ -200,7 +200,7 @@ export default withViews(({ views }) => (
       of the video player with my design tool.
     </P>
 
-    <Figure wide>
+    <Figure width={719} height={960} wide>
       <Image src="/images/pure-ui/iIIdwqx6y4.png" />
     </Figure>
 
@@ -384,7 +384,7 @@ export default withViews(({ views }) => (
       photos:
     </P>
 
-    <Figure>
+    <Figure width={465} height={407}>
       <Image src="/images/pure-ui/KK_maFpl8V.gif" />
     </Figure>
 
@@ -599,7 +599,7 @@ class Demos extends React.Component {
     document.querySelector("#demo1").innerHTML = "";
     document.querySelector("#demo2").innerHTML = "";
     if (!window.Viewer) {
-      loadScript("/images/pure-ui/uUo8iSbKXRh/C7isGX.js", err => {
+      loadScript("/pure-ui-demo.js", err => {
         if (!this.mounted) return;
         if (err) return console.error("demo script load fail");
         this.onScriptLoad();
