@@ -258,11 +258,11 @@ const Page = withViews(({ tweets, views }) => (
     <Snippet
       caption={
         <>
-          Use <code>npm i -g now</code> to install
+          Use <code>npm i -g vercel</code> to install
         </>
       }
     >
-      {`$  now`} {"\n"}✅ Preview:{" "}
+      {`$  vc`} {"\n"}✅ Preview:{" "}
       {
         <a
           style={{ color: "#fff" }}
@@ -318,7 +318,7 @@ const Page = withViews(({ tweets, views }) => (
       height={465}
       desc="Every push and branch gets its own deploy URL"
     >
-      <Image src="https://user-images.githubusercontent.com/13041/71661231-7bb9f800-2d45-11ea-8aab-e030bcd16012.png" />
+      <Image src="/images/2019-in-review/github-comment.png" />
     </Figure>
 
     <H2 id="testing-the-jamstack">The Deploy URL, the Center of Gravity</H2>
@@ -372,7 +372,7 @@ const Page = withViews(({ tweets, views }) => (
       height={1256}
       desc="The URL as the center of the app-building universe"
     >
-      <Image src="https://user-images.githubusercontent.com/13041/71646947-a3c63e80-2ce6-11ea-957c-c8f0f15ff176.png" />
+      <Image src="/images/2019-in-review/gravity.png" width={1274} height={1256} />
     </Figure>
 
     <P>
@@ -412,7 +412,7 @@ const Page = withViews(({ tweets, views }) => (
       height={876}
       desc="Checks are automatically run against the deploy URL"
     >
-      <Image src="https://user-images.githubusercontent.com/13041/71647154-46cc8780-2cea-11ea-8fe6-b9380c0c918b.png" />
+      <Image src="/images/2019-in-review/checks.png" />
     </Figure>
 
     <H2 id="flaky-tests-flaky-ux">Flaky Tests mean Flaky UX</H2>
@@ -481,7 +481,7 @@ const Page = withViews(({ tweets, views }) => (
       Which obviously has a <em>relevant xkcd</em> as prior art:
     </P>
     <Figure width={278} height={386} desc="There is always an xkcd for that">
-      <Image src="https://imgs.xkcd.com/comics/workflow.png" />
+      <Image src="/images/2019-in-review/xkcd.png" />
     </Figure>
     <H2 id="microservices-complex-unavailable">
       Microservices increase complexity and reduce availability
@@ -761,7 +761,7 @@ const Page = withViews(({ tweets, views }) => (
       height={808}
       desc="The Notion UI. Every UI element is mutable and hyperlinkable"
     >
-      <Image src="https://user-images.githubusercontent.com/13041/71637284-d0228200-2c36-11ea-8042-a26d9c3c4954.png" />
+      <Image src="/images/2019-in-review/notion.png" />
     </Figure>
     <P>
       On the left hand side, Notion's sidebar puts you in direct contact with
@@ -805,7 +805,7 @@ const Page = withViews(({ tweets, views }) => (
       height={882}
       desc="Some revenue-centric folks have known the ideal input design forever"
     >
-      <Image src="https://user-images.githubusercontent.com/13041/71637360-488a4280-2c39-11ea-906a-24f9d8b9a7aa.png" />
+      <Image src="/images/2019-in-review/irs.png" />
     </Figure>
     <H2 id="shared-cdns-caches-are-busted">
       Shared CDNs have their caches busted
@@ -1047,7 +1047,7 @@ const Page = withViews(({ tweets, views }) => (
       height={342}
       desc="Percentage improvements in tail-end latencies (95th and 99th percentile)"
     >
-      <Image src="https://user-images.githubusercontent.com/13041/71637892-31068600-2c48-11ea-8810-461f9295228f.png" />
+      <Image src="/images/2019-in-review/quic-latency.png" />
     </Figure>
 
     <H2 id="stablecoins-not-bitcoin">

@@ -206,10 +206,12 @@ export default withViews(({ views }) => (
     </P>
 
     <Figure
+      width={1272}
+      height={932}
       href="https://hyper.is"
       desc="Showing off Hyper's simple UI, config and plugin installation"
     >
-      <Image src="https://cdn.zeit.co/hyper/hyperapp.gif" />
+      <Image src="/images/2016-in-review/hyperapp.gif" />
     </Figure>
 
     <P>
@@ -582,6 +584,8 @@ export default withViews(({ views }) => (
     </P>
 
     <Figure
+      width={706}
+      height={884}
       desc={
         <span>
           New York Times story from{" "}
@@ -602,7 +606,7 @@ export default withViews(({ views }) => (
         </span>
       }
     >
-      <Image width={300} src="https://cldup.com/ePCBk5ZmYM.png" />
+      <Image src="/images/2016-in-review/ePCBk5ZmYM.png" />
     </Figure>
 
     <H3 id="accessibility">Accessibility is the Mother of Invention</H3>
@@ -709,8 +713,12 @@ export default withViews(({ views }) => (
       brown, translucent and large. Oops.
     </P>
 
-    <Figure desc='"I could have sworn it was a beetle"'>
-      <Image src="https://cldup.com/i2q5apnEho.jpg" />
+    <Figure
+      width={660}
+      height={440}
+      desc='"I could have sworn it was a beetle"'
+    >
+      <Image src="/images/2016-in-review/i2q5apnEho.jpg" />
     </Figure>
 
     <P>
@@ -855,6 +863,8 @@ export default withViews(({ views }) => (
     <H3 id="thoughtcomplete">Thoughtcomplete</H3>
 
     <Figure
+      width={1268}
+      height={676}
       href="https://thoughtcomplete.now.sh/"
       desc={
         <span>
@@ -865,7 +875,7 @@ export default withViews(({ views }) => (
         </span>
       }
     >
-      <Image src="https://cloud.githubusercontent.com/assets/13041/19394398/ad54abfc-91fe-11e6-9c99-777694f8f7df.gif" />
+      <Image src="/images/2016-in-review/thoughtcomplete.gif" />
     </Figure>
 
     <P>
@@ -955,8 +965,12 @@ export default withViews(({ views }) => (
       , gets the closest:
     </P>
 
-    <Figure desc="Need a module to compare versions? How about all the possible ones?">
-      <Image src="https://cldup.com/mVLV4CAcnm.jpg" />
+    <Figure
+      width={2416}
+      height={952}
+      desc="Need a module to compare versions? How about all the possible ones?"
+    >
+      <Image src="/images/2016-in-review/mVLV4CAcnm.jpg" />
     </Figure>
 
     <H3 id="avatars">Beautiful Default Avatars</H3>
