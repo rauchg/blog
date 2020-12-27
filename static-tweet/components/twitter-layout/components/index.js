@@ -5,10 +5,10 @@ import { Code, Pre } from "./code";
 import { A } from "./anchor";
 import { Ul, Ol, Li } from "./lists";
 import { Table, Th, Td } from "./table";
-import { Img } from "./media";
 import { Mention, Hashtag, Cashtag, Emoji, Poll } from "./twitter";
 import Tweet from "./tweet/tweet";
 import EmbeddedTweet from "./embedded-tweet";
+import NextImage from "next/image";
 
 export default {
   div: Div,
@@ -37,7 +37,7 @@ export default {
   th: Th,
   td: Td,
 
-  img: Img,
+  img: NextImage,
 
   Mention,
   Hashtag,

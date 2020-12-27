@@ -1,6 +1,6 @@
 import cheerio from "cheerio";
 
-function getTweetContent($) {
+async function getTweetContent($) {
   const container = $(".EmbeddedTweet-tweetContainer");
 
   if (!container.length) return;
@@ -84,15 +84,24 @@ function getTweetContent($) {
         images.each(function () {
           const img = $(this);
           const alt = img.attr("alt");
+          const width = img.attr("width");
+          const height = img.attr("height");
           const url = img.attr("data-image");
           const format = img.attr("data-image-format");
+          const src = `${url}?format=${format}`;
 
           this.attribs = {
             "data-type": "media-image",
-            src: `${url}?format=${format}`,
+            src,
           };
           if (alt) {
             this.attribs.alt = alt;
+          }
+          if (width != null) {
+            this.attribs.width = width;
+          }
+          if (height != null) {
+            this.attribs.height = height;
           }
           // Move the media img to a new container
           media.append(img);
@@ -174,12 +183,10 @@ function getTweetContent($) {
   return content;
 }
 
-export function getTweetData(html) {
+export async function getTweetData(html) {
   const $ = cheerio.load(html, {
     decodeEntities: false,
     xmlMode: false,
   });
-  const tweetContent = getTweetContent($);
-
-  return tweetContent;
+  return await getTweetContent($);
 }
