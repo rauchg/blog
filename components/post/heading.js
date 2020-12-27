@@ -26,6 +26,7 @@ const H = ({ id, level = 2, fontSize = 20, children }) => (
 
       a {
         visibility: hidden;
+        scroll-margin-top: 5rem;
       }
 
       @media (any-hover: hover) {
