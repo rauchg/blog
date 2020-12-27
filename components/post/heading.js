@@ -1,12 +1,10 @@
 const H = ({ id, level = 2, fontSize = 20, children }) => (
-  <div>
+  <div id={id}>
     {React.createElement(
       `h${level}`,
       { style: { fontWeight: 500, fontSize } },
       <span>
-        <a href={`#${id}`} id={id}>
-          #
-        </a>
+        <a href={`#${id}`}>#</a>
       </span>,
       children
     )}
@@ -25,15 +23,8 @@ const H = ({ id, level = 2, fontSize = 20, children }) => (
       }
 
       a {
-        visibility: hidden;
-        scroll-margin-top: 5rem;
-      }
-
-      @media (any-hover: hover) {
-        div:hover a,
-        span:hover a {
-          visibility: visible;
-        }
+        text-decoration: none;
+        color: #999;
       }
     `}</style>
   </div>
