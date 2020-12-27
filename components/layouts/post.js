@@ -15,6 +15,10 @@ const Post = ({ tweets, children }) => (
         font-size: 18px;
       }
 
+      article {
+        scroll-margin-top: 50px;
+      }
+
       @media (min-width: 500px) {
         max-width: 42rem;
         margin: auto;
