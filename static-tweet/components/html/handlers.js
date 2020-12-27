@@ -50,7 +50,15 @@ export default {
 
     if (type === "media-image") {
       const Img = components.img;
-      return <Img key={i} src={props.src} alt={props.alt} />;
+      return (
+        <Img
+          key={i}
+          width={props.width}
+          height={props.height}
+          src={props.src}
+          alt={props.alt}
+        />
+      );
     }
 
     return null;

@@ -17,7 +17,7 @@ class Context {
 
 export default async function fetchTweetAst(tweetId) {
   const tweetHtml = await fetchTweetHtml(tweetId);
-  const tweet = tweetHtml && getTweetData(tweetHtml);
+  const tweet = tweetHtml && (await getTweetData(tweetHtml));
 
   if (!tweet) return;
 
