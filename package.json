@@ -24,7 +24,7 @@
     "rehype-raw": "^4.0.1",
     "rehype-sanitize": "^3.0.0",
     "remark-parse": "^7.0.2",
-    "remark-rehype": "^5.0.0",
+    "remark-rehype": "^8.0.0",
     "time-ago": "^0.2.1",
     "unified": "^8.4.2",
     "unist-util-visit": "^2.0.3",
