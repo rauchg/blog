@@ -1,14 +1,14 @@
-import { Div } from "./containers";
-import { H1, H2, H3, H4, H5, H6 } from "./headings";
-import { P, Blockquote, Hr } from "./text";
-import { Code, Pre } from "./code";
-import { A } from "./anchor";
-import { Ul, Ol, Li } from "./lists";
-import { Table, Th, Td } from "./table";
-import { Mention, Hashtag, Cashtag, Emoji, Poll } from "./twitter";
-import Tweet from "./tweet/tweet";
-import EmbeddedTweet from "./embedded-tweet";
-import NextImage from "next/image";
+import { Div } from './containers';
+import { H1, H2, H3, H4, H5, H6 } from './headings';
+import { P, Blockquote, Hr } from './text';
+import { Code, Pre } from './code';
+import { A } from './anchor';
+import { Ul, Ol, Li } from './lists';
+import { Table, Th, Td } from './table';
+import { Img } from './media';
+import { Mention, Hashtag, Cashtag, Emoji, Poll } from './twitter';
+import Tweet from './tweet/tweet';
+import EmbeddedTweet from './embedded-tweet';
 
 export default {
   div: Div,
@@ -37,7 +37,7 @@ export default {
   th: Th,
   td: Td,
 
-  img: NextImage,
+  img: Img,
 
   Mention,
   Hashtag,
