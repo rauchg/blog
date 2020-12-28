@@ -1,12 +1,20 @@
-import dynamic from 'next/dynamic';
-import Image from 'next/image';
+import dynamic from "next/dynamic";
+import Image from "next/image";
 
-const LoadDetailsDialog = dynamic(() => import('../details-dialog'), { ssr: false });
+const LoadDetailsDialog = dynamic(() => import("../details-dialog"), {
+  ssr: false,
+});
 
 export const Img = ({ width, height, src, ...p }) => (
   <details>
     <summary>
-      <Image {...p} src={`${src}&name=small`} layout="fill" objectFit="cover" quality={80} />
+      <Image
+        {...p}
+        src={`${src}&name=small`}
+        layout="fill"
+        objectFit="cover"
+        quality={80}
+      />
     </summary>
 
     <details-dialog>

@@ -9,7 +9,7 @@ import getTweets from "../../lib/get-tweets";
 import HR from "../../components/post/hr";
 import Figure, { Image } from "../../components/post/figure";
 
-export async function getStaticProps () {
+export async function getStaticProps() {
   const tweets = await getTweets(MDXContent);
   return { props: { tweets } };
 }
@@ -38,13 +38,16 @@ What's more, frontend is an area of **technological and [artistic](https://www.f
   id="1313237934175207424"
   br={[0, 0]}
   caption="Backend is something you used to build entirely from scratch. Not anymore"
-  />
+/>
 
 <h2 id="fast-for-everyone">Vercel is fast for everyone</h2>
 
 For Vercel, being customer focused represents a unique challenge: to delight our developer customer, and to give them the tools and platform to delight **their customer**.
 
-<Tweet id="708675139253174273" caption="The world right before Next.js was born" />
+<Tweet
+  id="708675139253174273"
+  caption="The world right before Next.js was born"
+/>
 
 Next.js pioneered the concept of **zero configuration** in the React space, letting you focus exclusively on your product.
 
@@ -52,9 +55,13 @@ However, it wasn't just about developer experience. We shipped a lot of the esse
 
 That included out-of-the-box server rendering for fast page boots and optimal SEO, code splitting, production bundle optimization and minification.
 
-This has enabled the frontend developer, motivated by a better experience, to succeed in production. 
+This has enabled the frontend developer, motivated by a better experience, to succeed in production.
 
-<Tweet id="1286769353027801088" br={[0]} caption="Next.js powers giants like Apple and revolutionary products like TikTok.com" />
+<Tweet
+  id="1286769353027801088"
+  br={[0]}
+  caption="Next.js powers giants like Apple and revolutionary products like TikTok.com"
+/>
 <h2 id="hybrid">Vercel is hybrid</h2>
 
 A key ingredient of being customer focused is not being dogmatic, meeting the customer where they are and [enabling incremental adoption](https://nextjs.org/blog/incremental-adoption) of the promising new technology.
@@ -67,7 +74,10 @@ Over time, new optimization opportunities emerged, like static site generation (
 
 Pure server rendering wouldn't have been enough. Pure static (Jamstack) is not enough. Giving the developer the power and optionality of SSR and SSG on a per-page basis? That works.
 
-<Tweet id="1260216925671567361" caption="Next.js was in constant evolution, while maintaining backwards compatibility" />
+<Tweet
+  id="1260216925671567361"
+  caption="Next.js was in constant evolution, while maintaining backwards compatibility"
+/>
 
 <h2 id="everywhere">Vercel is everywhere</h2>
 
@@ -91,8 +101,12 @@ As far as frontend performance goes, a CDN is a key ingredient. However, in real
 
 The time it takes to download the HTML from the edge is just the tip of an entire iceberg of complexity that represents a challenge to performance.
 
-<Figure desc="Measuring CDN latency and JS bundle sizes is a bad oversimplification" width={889/2} height={892/2}>
-<Image src="/images/next-for-vercel/iceberg.jpg" />
+<Figure
+  desc="Measuring CDN latency and JS bundle sizes is a bad oversimplification"
+  width={889 / 2}
+  height={892 / 2}
+>
+  <Image src="/images/next-for-vercel/iceberg.jpg" />
 </Figure>
 
 This oversimplification stems from the fact that performance as it relates to user experience is technically very challenging to measure.
@@ -103,7 +117,7 @@ When it comes to frontend, we might be compelled to make the same observation ab
 
 Measuring how good your pages are has been, until recently, a daunting task because we didn't know what to measure, and therefore, what to optimize.
 
-A breakthrough was recently made by the W3C Web Performance Working Group and Google in the introduction of the **[Core Web Vitals](https://web.dev/vitals/) metrics**: LCP, CLS and FID. 
+A breakthrough was recently made by the W3C Web Performance Working Group and Google in the introduction of the **[Core Web Vitals](https://web.dev/vitals/) metrics**: LCP, CLS and FID.
 
 These metrics help you ascertain how good your _actual_ user experience is, by focusing on the actual end-user outcomes: how fast the content is put in front of the user's eyes, how little it jitters around, and how fast it reacts to input.
 
@@ -117,7 +131,10 @@ The other one is to **address reality**, embracing the real mass of the problem.
 
 Furthermore, instead of relying solely on synthetic lighthouse tests, our [built-in Analytics offering](https://vercel.com/analytics) helps you by computing a **real experience score** based on the web vitals of your actual visitors.
 
-<Tweet id="1321153986330828815" caption="Hashicorp uses Vercel analytics to stay true to their performance goals" />
+<Tweet
+  id="1321153986330828815"
+  caption="Hashicorp uses Vercel analytics to stay true to their performance goals"
+/>
 
 <h2 id="collaborative">Vercel is collaborative</h2>
 
@@ -126,7 +143,9 @@ When you link your project to Vercel, even before it makes it into production, y
 Development is not confined to `localhost:3000`, bespoke VMs or a monolithic staging server.
 
 <Tweet
-id="1338797740147552256" caption="Each branch and PR is an opportunity to try your real frontend" />
+  id="1338797740147552256"
+  caption="Each branch and PR is an opportunity to try your real frontend"
+/>
 
 With every push of code and every proposed content change, you get a hyperlink that you can share with anyone in the world. Your frontend is served from the same serverless infrastructure with production capabilities.
 

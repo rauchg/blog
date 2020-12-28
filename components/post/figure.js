@@ -1,13 +1,15 @@
-import NextImage from 'next/image'
-import { useContext, createContext } from 'react'
+import NextImage from "next/image";
+import { useContext, createContext } from "react";
 
 const FigureContext = createContext({
   width: null,
-  height: null
+  height: null,
 });
 
 const Figure = ({ desc, href, children, wide, height, width }) => {
-  const content = width && height ? (<div
+  const content =
+    width && height ? (
+      <div
         style={{
           position: "relative",
           display: "inline-block",
@@ -32,11 +34,14 @@ const Figure = ({ desc, href, children, wide, height, width }) => {
             maxWidth: "100%",
           }}
         >
-          <FigureContext.Provider value={{width,height}}>
+          <FigureContext.Provider value={{ width, height }}>
             {children}
           </FigureContext.Provider>
         </div>
-  </div>) : (children)
+      </div>
+    ) : (
+      children
+    );
 
   return (
     <div className={wide && "wide"}>
@@ -80,8 +85,10 @@ const Figure = ({ desc, href, children, wide, height, width }) => {
   );
 };
 
-const Image = ({ width=null, height=null, style, src }) => {
-  const { width: contextWidth, height: contextHeight } = useContext(FigureContext);
+const Image = ({ width = null, height = null, style, src }) => {
+  const { width: contextWidth, height: contextHeight } = useContext(
+    FigureContext
+  );
 
   if (width == null) {
     width = contextWidth;
@@ -92,25 +99,23 @@ const Image = ({ width=null, height=null, style, src }) => {
   }
 
   if (!height) {
-    throw new TypeError('The height attribute is required');
+    throw new TypeError("The height attribute is required");
   }
 
   if (!width) {
-    throw new TypeError('The width attribute is required');
+    throw new TypeError("The width attribute is required");
   }
 
-  return <div style={style}>
-    <NextImage
-      src={src}
-      width={width}
-      height={height}
-    />
-    <style jsx>{`
-      div {
-        margin: auto;
-      }
-    `}</style>
-  </div>
+  return (
+    <div style={style}>
+      <NextImage src={src} width={width} height={height} />
+      <style jsx>{`
+        div {
+          margin: auto;
+        }
+      `}</style>
+    </div>
+  );
 };
 
 const Video = ({ src }) => (

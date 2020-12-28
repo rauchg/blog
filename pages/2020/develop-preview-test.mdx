@@ -8,20 +8,20 @@ date: June 11, 2020
 import getTweets from "../../lib/get-tweets";
 import Figure, { Image } from "../../components/post/figure";
 
-export async function getStaticProps () {
+export async function getStaticProps() {
   const tweets = await getTweets(MDXContent);
   return { props: { tweets } };
 }
 
-A few years ago I tweeted a simple guideline that 
+A few years ago I tweeted a simple guideline that
 [challenged conventional wisdom](https://twitter.com/swyx/status/1261202288476971008)
-and became the norm for many people learning 
+and became the norm for many people learning
 [how to test their frontends](https://kentcdodds.com/blog/write-tests)
 effectively.
 
 <Tweet id="807626710350839808" />
 
-Writing tests is an **investment**, and like any other investment, 
+Writing tests is an **investment**, and like any other investment,
 it has to be evaluated in terms of its **return** and **risks** (e.g.:
 [opportunity costs](https://en.wikipedia.org/wiki/Opportunity_cost)) it incurs in.
 
@@ -65,9 +65,7 @@ now fully revert the conventional testing pyramid:
     </>
   }
 >
-  <Image
-    src="/images/develop-preview-test/pyramid.jpg"
-  />
+  <Image src="/images/develop-preview-test/pyramid.jpg" />
 </Figure>
 
 As it turns out,
@@ -100,7 +98,7 @@ First, back when I argued for focusing on integration in 2016 and made no
 mention of end-to-end tests, we didn't yet have the deployment
 infrastructure we have today.
 
-With [Vercel](https://vercel.com/), 
+With [Vercel](https://vercel.com/),
 every push to git gets deployed and given an URL. This can be done cost
 effectively by focusing on incremental computation, where the underlying
 static files and serverless functions used to power a deployment are
@@ -121,9 +119,7 @@ mostly re-used from deploy to deploy.
   width={1362}
   height={388}
 >
-  <Image
-    src="/images/develop-preview-test/github-comment.jpg"
-  />
+  <Image src="/images/develop-preview-test/github-comment.jpg" />
 </Figure>
 
 Just like GitHub is capable of keeping the history of your code forever,
@@ -182,9 +178,7 @@ the function that will later be invoked:
   width={1390}
   height={669}
 >
-  <Image
-    src="/images/develop-preview-test/checkly.jpg"
-  />
+  <Image src="/images/develop-preview-test/checkly.jpg" />
 </Figure>
 
 Then, I installed the
@@ -205,9 +199,7 @@ visitor ran, and my error was exposed:
   width={1479 / 2}
   height={618 / 2}
 >
-  <Image
-    src="/images/develop-preview-test/failing-check.jpg"
-  />
+  <Image src="/images/develop-preview-test/failing-check.jpg" />
 </Figure>
 
 This happened with absolutely zero additional configuration. Vercel
@@ -219,9 +211,7 @@ again, the check re-runs automatically:
   width={1018 / 2}
   height={267 / 2}
 >
-  <Image
-    src="/images/develop-preview-test/commits.jpg"
-  />
+  <Image src="/images/develop-preview-test/commits.jpg" />
 </Figure>
 
 With my typo fixed, I'm free to merge. Merging to master will deploy my
@@ -232,17 +222,15 @@ changes to `rauchg.com` automatically.
   width={1469 / 2}
   height={439 / 2}
 >
-  <Image
-    src="/images/develop-preview-test/github-green.jpg"
-  />
+  <Image src="/images/develop-preview-test/github-green.jpg" />
 </Figure>
 
 <h2 id="conclusion">Conclusion</h2>
 
 Notably, Checkly allows us to configure multiple locations in the world
 that the tests get executed from, as well as
-<b>invoking our checks over time</b>.
 
+<b>invoking our checks over time</b>.
 
 Leslie Lamport
 [famously said](https://lamport.azurewebsites.net/pubs/distributed-system.txt)

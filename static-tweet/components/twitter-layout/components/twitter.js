@@ -12,7 +12,8 @@ export const TwitterLink = p => (
     {p.children}
 
     <style jsx>{`
-      a, s {
+      a,
+      s {
         text-decoration: none;
       }
       @media (any-hover: hover) {

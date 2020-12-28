@@ -219,7 +219,11 @@ So: the hardware of the Internet can currently achieve within a factor of two of
       another roundtrip can be made to get the data needed for rendering.
     </P>
 
-    <Figure width={934} height={754} desc="Analysis of the HTML sent by the server for every page of a SPA in the wild">
+    <Figure
+      width={934}
+      height={754}
+      desc="Analysis of the HTML sent by the server for every page of a SPA in the wild"
+    >
       <Image src="/images/7-principles-of-rich-web-applications/kpfLbf6dha.png" />
     </Figure>
 
@@ -294,7 +298,11 @@ So: the hardware of the Internet can currently achieve within a factor of two of
       of the amount of data the server can send in each round-trip over time:
     </P>
 
-    <Figure width={901} height={409} desc="How many KB a server can send for each phase of the connection by segments">
+    <Figure
+      width={901}
+      height={409}
+      desc="How many KB a server can send for each phase of the connection by segments"
+    >
       <Image src="/images/7-principles-of-rich-web-applications/WI9kN_9iyR.png" />
     </Figure>
 
@@ -357,7 +365,11 @@ So: the hardware of the Internet can currently achieve within a factor of two of
       roundtrips.
     </P>
 
-    <Figure width={1153} height={899} desc="Proof-of-concept SPA with inlined CSS and JS that doesn’t incur in extra roundtrips">
+    <Figure
+      width={1153}
+      height={899}
+      desc="Proof-of-concept SPA with inlined CSS and JS that doesn’t incur in extra roundtrips"
+    >
       <Image src="/images/7-principles-of-rich-web-applications/NeV5qFDaVR.png" />
     </Figure>
 
@@ -463,7 +475,11 @@ So: the hardware of the Internet can currently achieve within a factor of two of
       down a key:
     </P>
 
-    <Figure width={1015} height={625} desc="Google adapts its layout as soon as you hold down a key">
+    <Figure
+      width={1015}
+      height={625}
+      desc="Google adapts its layout as soon as you hold down a key"
+    >
       <Image src="/images/7-principles-of-rich-web-applications/CmkksKRbrl.gif" />
     </Figure>
 
@@ -535,7 +551,11 @@ So: the hardware of the Internet can currently achieve within a factor of two of
       away, while the actual app was loading.
     </P>
 
-    <Figure width={324} height={463} desc="iPhone OS enforced loading default.png before the application">
+    <Figure
+      width={324}
+      height={463}
+      desc="iPhone OS enforced loading default.png before the application"
+    >
       <Image src="/images/7-principles-of-rich-web-applications/Gg1AwDA71S.png" />
     </Figure>
 
@@ -567,7 +587,11 @@ So: the hardware of the Internet can currently achieve within a factor of two of
       thumbnail is generated and rendered immediately:
     </P>
 
-    <Figure width={931} height={602} desc="The image gets rendered and fades in before the upload completes">
+    <Figure
+      width={931}
+      height={602}
+      desc="The image gets rendered and fades in before the upload completes"
+    >
       <Image src="/images/7-principles-of-rich-web-applications/iCig_gr__M.gif" />
     </Figure>
 
@@ -686,7 +710,11 @@ So: the hardware of the Internet can currently achieve within a factor of two of
       laptop:
     </P>
 
-    <Figure width={661} height={578} desc="A single-user application can still benefit from reactivity">
+    <Figure
+      width={661}
+      height={578}
+      desc="A single-user application can still benefit from reactivity"
+    >
       <Image src="/images/7-principles-of-rich-web-applications/15MbLjLsfm.gif" />
     </Figure>
 
@@ -699,7 +727,11 @@ So: the hardware of the Internet can currently achieve within a factor of two of
       situations where multiple people have access to the same device.
     </P>
 
-    <Figure width={818} height={547} desc="Each page reacts to the session and login state">
+    <Figure
+      width={818}
+      height={547}
+      desc="Each page reacts to the session and login state"
+    >
       <Image src="/images/7-principles-of-rich-web-applications/FS74zJHpDg.gif" />
     </Figure>
 
@@ -716,7 +748,11 @@ So: the hardware of the Internet can currently achieve within a factor of two of
       reopening it days later. What how does your app behave then?
     </P>
 
-    <Figure width={1024} height={640} desc="Example of what would occur if we disregard elapsed time upon reconnection">
+    <Figure
+      width={1024}
+      height={640}
+      desc="Example of what would occur if we disregard elapsed time upon reconnection"
+    >
       <Image src="/images/7-principles-of-rich-web-applications/D7obeKaOlB.png" />
     </Figure>
 
@@ -772,7 +808,11 @@ So: the hardware of the Internet can currently achieve within a factor of two of
       the back button:
     </P>
 
-    <Figure width={374} height={165} desc="Possibly the most annoying artifact of the old web">
+    <Figure
+      width={374}
+      height={165}
+      desc="Possibly the most annoying artifact of the old web"
+    >
       <Image src="/images/7-principles-of-rich-web-applications/mc3PlaztUS.png" />
     </Figure>
 
@@ -903,7 +943,11 @@ So: the hardware of the Internet can currently achieve within a factor of two of
       subtle bug:
     </P>
 
-    <Figure width={1022} height={642} desc="Pressing back incorrectly loads the initial HTML from the pageload">
+    <Figure
+      width={1022}
+      height={642}
+      desc="Pressing back incorrectly loads the initial HTML from the pageload"
+    >
       <Image src="/images/7-principles-of-rich-web-applications/c081WZaE8H.gif" />
     </Figure>
 
@@ -916,7 +960,11 @@ So: the hardware of the Internet can currently achieve within a factor of two of
       <em>scrolling amnesia</em>.
     </P>
 
-    <Figure width={782} height={551} desc="Infinite pagination is usually susceptible to scrolling amnesia">
+    <Figure
+      width={782}
+      height={551}
+      desc="Infinite pagination is usually susceptible to scrolling amnesia"
+    >
       <Image src="/images/7-principles-of-rich-web-applications/3m0DOKp9BW.gif" />
     </Figure>
 
@@ -926,7 +974,11 @@ So: the hardware of the Internet can currently achieve within a factor of two of
       subtrees.
     </P>
 
-    <Figure width={797} height={563} desc="The toggling of comments should be preserved when navigating history">
+    <Figure
+      width={797}
+      height={563}
+      desc="The toggling of comments should be preserved when navigating history"
+    >
       <Image src="/images/7-principles-of-rich-web-applications/bvqcnxO0De.gif" />
     </Figure>
 
@@ -1067,7 +1119,11 @@ So: the hardware of the Internet can currently achieve within a factor of two of
       :
     </P>
 
-    <Figure width={540} height={480} desc="jQuery plugin that predicts the mouse trajectory">
+    <Figure
+      width={540}
+      height={480}
+      desc="jQuery plugin that predicts the mouse trajectory"
+    >
       <Image src="/images/7-principles-of-rich-web-applications/VZ7GRJR3Rl.gif" />
     </Figure>
 
