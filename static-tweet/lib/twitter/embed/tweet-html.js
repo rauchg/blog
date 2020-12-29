@@ -62,12 +62,16 @@ function getTweetContent($) {
     const el = $(this);
     const type = el[0].type;
 
-    if (
-      type === "text" &&
-      !/\s$/.test(el.text()) &&
-      el.next().children().length
-    ) {
-      el.after($("<br><br>"));
+    if (type !== "text") return;
+
+    const text = el.text();
+
+    if (text.length && text.trim() === "") {
+      if (el.next().children().length) {
+        el.after($("<br>"));
+      }
+    } else if (!/\s$/.test(el.text()) && el.next().children().length) {
+      el.after($("<br>"));
     }
   });
 
