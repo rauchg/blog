@@ -57,6 +57,20 @@ function getTweetContent($) {
     meta.ctaCount = conversationText.text().match(/^[^\s]+/)[0];
   }
 
+  // If some text ends without a trailing space, it's missing a <br>
+  tweetContent.contents().each(function () {
+    const el = $(this);
+    const type = el[0].type;
+
+    if (
+      type === "text" &&
+      !/\s$/.test(el.text()) &&
+      el.next().children().length
+    ) {
+      el.after($("<br><br>"));
+    }
+  });
+
   card.children().each(function () {
     const props = this.attribs;
     const scribe = props["data-scribe"];
