@@ -9,7 +9,7 @@ githubSchema.attributes["*"].push("className");
 // Allow specific attributes that are required for the page to render properly
 githubSchema.attributes["div"] = ["dataType", "dataId"];
 githubSchema.attributes["blockquote"] = ["dataId"];
-githubSchema.attributes["img"] = ["dataType", "src"];
+githubSchema.attributes["img"] = ["dataType", "src", "height", "width"];
 githubSchema.attributes["video"] = [
   "poster",
   "controls",

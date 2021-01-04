@@ -1,6 +1,6 @@
 import cheerio from "cheerio";
 
-async function getTweetContent($) {
+function getTweetContent($) {
   const container = $(".EmbeddedTweet-tweetContainer");
 
   if (!container.length) return;
@@ -46,7 +46,7 @@ async function getTweetContent($) {
   meta.avatar = {
     normal: avatar.attr("data-src-1x"),
   };
-  meta.name = name.attr("title");
+  meta.name = name.text();
   meta.username = screenName.text().substring(1); // Omit the initial @
   meta.createdAt = new Date(fullTimestamp.attr("data-datetime")).getTime();
   meta.heartCount = heartCount.text();
@@ -56,6 +56,24 @@ async function getTweetContent($) {
     // Get the formatted count and skip the rest
     meta.ctaCount = conversationText.text().match(/^[^\s]+/)[0];
   }
+
+  // If some text ends without a trailing space, it's missing a <br>
+  tweetContent.contents().each(function () {
+    const el = $(this);
+    const type = el[0].type;
+
+    if (type !== "text") return;
+
+    const text = el.text();
+
+    if (text.length && text.trim() === "") {
+      if (el.next().children().length) {
+        el.after($("<br>"));
+      }
+    } else if (!/\s$/.test(el.text()) && el.next().children().length) {
+      el.after($("<br>"));
+    }
+  });
 
   card.children().each(function () {
     const props = this.attribs;
@@ -84,24 +102,19 @@ async function getTweetContent($) {
         images.each(function () {
           const img = $(this);
           const alt = img.attr("alt");
-          const width = img.attr("width");
-          const height = img.attr("height");
           const url = img.attr("data-image");
           const format = img.attr("data-image-format");
-          const src = `${url}?format=${format}`;
+          const height = img.attr("height");
+          const width = img.attr("width");
 
           this.attribs = {
             "data-type": "media-image",
-            src,
+            src: `${url}?format=${format}`,
+            height,
+            width,
           };
           if (alt) {
             this.attribs.alt = alt;
-          }
-          if (width != null) {
-            this.attribs.width = width;
-          }
-          if (height != null) {
-            this.attribs.height = height;
           }
           // Move the media img to a new container
           media.append(img);
@@ -183,10 +196,12 @@ async function getTweetContent($) {
   return content;
 }
 
-export async function getTweetData(html) {
+export function getTweetData(html) {
   const $ = cheerio.load(html, {
     decodeEntities: false,
     xmlMode: false,
   });
-  return await getTweetContent($);
+  const tweetContent = getTweetContent($);
+
+  return tweetContent;
 }

@@ -5,19 +5,17 @@ import HeartIcon from "../icons/heart";
 import RefreshCwIcon from "../icons/refresh-cw";
 import commaNumber from "comma-number";
 import TimeAgo from "../time-ago";
-import NextImage from 'next/image'
+import NextImage from "next/image";
 
-const Header = (
-  {
-    title,
-    date,
-    timestamp,
-    views = null,
-    tweetUrl = null,
-    twitterRetweets = null,
-    twitterLikes = null,
-  }
-) => {
+const Header = ({
+  title,
+  date,
+  timestamp,
+  views = null,
+  tweetUrl = null,
+  twitterRetweets = null,
+  twitterLikes = null,
+}) => {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -40,7 +38,12 @@ const Header = (
             target="_blank"
           >
             <span className="img">
-              <NextImage src="/images/rauchg.png" width={25} height={25} layout="fixed" />
+              <NextImage
+                src="/images/rauchg.png"
+                width={25}
+                height={25}
+                layout="fixed"
+              />
             </span>
             rauchg
           </a>

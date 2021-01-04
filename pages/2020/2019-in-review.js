@@ -372,7 +372,11 @@ const Page = withViews(({ tweets, views }) => (
       height={1256}
       desc="The URL as the center of the app-building universe"
     >
-      <Image src="/images/2019-in-review/gravity.png" width={1274} height={1256} />
+      <Image
+        src="/images/2019-in-review/gravity.png"
+        width={1274}
+        height={1256}
+      />
     </Figure>
 
     <P>
