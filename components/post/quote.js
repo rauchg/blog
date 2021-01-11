@@ -1,13 +1,13 @@
 const Quote = ({ by, children }) => (
   <blockquote>
-    <p>
+    <>
       {children}
       {by ? (
         <>
           <br />– {by}
         </>
       ) : null}
-    </p>
+    </>
     <style jsx>{`
       blockquote {
         margin: 30px 0;
