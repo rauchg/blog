@@ -1,0 +1,407 @@
+---
+title: 7 Principles of Rich Web Applications
+description:
+og:
+date: November 4, 2014
+---
+
+import Figure, { Image } from "../../components/post/figure";
+
+これは 2014 年の 8 月に開催された BrazilJS で話したプレゼンテーションを元にまとめたものです。私が UX やパフォーマンスに関して[最近ブログに書いて](https://cloudup.com/blog/the-need-for-speed) [まとめた](https://cloudup.com/blog/introducing-mydb)ア[イデア](http://d.hatena.ne.jp/keyword/%A5%A4%A5%C7%A5%A2)のいくつかで構成されてます。
+
+UI コントロールを[JavaScript](http://d.hatena.ne.jp/keyword/JavaScript)で行っているウェブサイトのための、**7 つの実践可能な原則**を紹介しようと思います。この原則は私が Web 開発者として経験したことに基づいているだけじゃなく、[World Wide Web](http://d.hatena.ne.jp/keyword/World%20Wide%20Web)の長期ユーザーとしての経験から作られています。
+
+[JavaScript](http://d.hatena.ne.jp/keyword/JavaScript)はフロントエンド開発者にとっては無くてはならない[ツール](http://d.hatena.ne.jp/keyword/%A5%C4%A1%BC%A5%EB)になっています。その使用方法は[サーバー](http://nodejs.org/)や[マイクロコントローラー](https://tessel.io/)など、色んな領域に拡張されています。
+
+しかしウェブにおいて[JavaScript](http://d.hatena.ne.jp/keyword/JavaScript)の正確な役割や利用方法については**たくさんの疑問や謎**があります。多くの[フレームワーク](http://d.hatena.ne.jp/keyword/%A5%D5%A5%EC%A1%BC%A5%E0%A5%EF%A1%BC%A5%AF)やライブラリ作者においても同じことが言えます。
+
+- history や navigation や page rendering といったブラウザの機能を[JavaScript](http://d.hatena.ne.jp/keyword/JavaScript)で置き換えたほうが良いのか?
+- backend で多くの処理をするのは[オワコン](http://d.hatena.ne.jp/keyword/%A5%AA%A5%EF%A5%B3%A5%F3)なのか? それとも全ての HTML を[レンダリング](http://d.hatena.ne.jp/keyword/%A5%EC%A5%F3%A5%C0%A5%EA%A5%F3%A5%B0)するべきなのか?
+- Single Page Application は未来なのか?
+- JS はサイトのページを拡張するためのものなのか、アプリケーションとしてページを[レンダリング](http://d.hatena.ne.jp/keyword/%A5%EC%A5%F3%A5%C0%A5%EA%A5%F3%A5%B0)するためのものなのか?
+- PJAX や TurboLinks のようなテクニックは使ったほうがよいのか?
+- ウェブサイトやウェブアプリケーション感のはっきりした違いとは何なのか? そもそも違いなんてあるのか?
+
+これらの疑問に対して以下のように回答してみました。私のアプローチは UX の観点から[JavaScript](http://d.hatena.ne.jp/keyword/JavaScript)の利用方法を調査する、という方法を取りました。特に、エンドユーザーにとって興味のあるデータを取得させるため、どうやって時間を短縮しようとしているのかといったア[イデア](http://d.hatena.ne.jp/keyword/%A5%A4%A5%C7%A5%A2)に強くフォーカスを当てて調査しました。ネットワーク基礎を初めとして、未来予測まで幅広く記述しました。
+
+1. [サーバーがページをレンダリングするのは任意ではない。](#pre-rendered-pages-are-not-optional)
+1. [ユーザー入力に迅速に対応しよう](#act-immediately-on-user-input)
+1. [データの変更に反応しよう](#react-to-data-changes)
+1. [データ変更をサーバーとともにコントロールしよう](#control-the-data-exchange-with-the-server)
+1. [history を壊すべきじゃない、history を拡張しよう](#dont-break-history-enhance-it)
+1. [コードの更新を Push しよう](#push-code-updates)
+1. [振る舞いを予測しよう](#predict-behavior)
+
+<h2 id="pre-rendered-pages-are-not-optional">
+  1. サーバーがページをレンダリングするのは任意ではない。
+</h2>
+
+<TLDR>
+
+サーバー[レンダリング](http://d.hatena.ne.jp/keyword/%A5%EC%A5%F3%A5%C0%A5%EA%A5%F3%A5%B0)は[SEO](http://d.hatena.ne.jp/keyword/SEO)だけのものじゃなく、性能を向上させるためのものです。[JavaScript](http://d.hatena.ne.jp/keyword/JavaScript)や[CSS](http://d.hatena.ne.jp/keyword/CSS)、[API](http://d.hatena.ne.jp/keyword/API)リクエストを取得する時にラウンドトリップが起きる事を考慮して設計すること。将来的には HTTP 2.0 でリソースをサーバープッシュする事も検討しておくこと。
+これまで、このトピックは一般的に対立構造(VS 構造)として語られてきました。例えば、 "Server Side Rendered Apps vs Single Page Apps"といったような形です。もし我々が UX や性能をベストまで最適したいと思ったら、サーバーサイド[レンダリング](http://d.hatena.ne.jp/keyword/%A5%EC%A5%F3%A5%C0%A5%EA%A5%F3%A5%B0)と Single Page Apps のどっちかを取ってどっちかを諦めるのは良いア[イデア](http://d.hatena.ne.jp/keyword/%A5%A4%A5%C7%A5%A2)とはいえません。
+
+</TLDR>
+
+その理由はわかりやすく単純です。インターネットを介して送信されたどんなページにも理論的なスピードの限界があるからです。この限界は Stuart Cheshire によって書かれた有名なエッセイ、 ["It's the latency, stupid"](http://rescomp.stanford.edu/~cheshire/rants/Latency.html)によって説明されています。
+
+```
+Stanford から Boston までは 4320km ある。\
+真空状態の光の速度は 300 x 10^6 m/s.\
+ファイバーの中での光の速度は大雑把に言うと真空状態の 66%。\
+ファイバーの中での光の速度は 300 x 10^6 m/s \* 0.66 = 200 x 10^6 m/s\
+ボストンへの片道で遅延は 4320km / 200 x 10^6 m/s = 21.6ms.\
+ラウンドトリップタイムは Boston から戻るまでに 43.2ms.\
+現在のインターネット環境で Stanford から Boston に[ping](http://d.hatena.ne.jp/keyword/ping)を送った時は大体 85ms\
+そのため: インターネットのハードウェアは光の速度の 2 倍くらいかかることになる。\
+Boston と Stanford 間の 85ms のラウンドトリップタイムは将来的に改善されていくでしょう。もしかしたら今すぐにでも実験すれば改善は見られるかもしれません。しかし、Boston と Stanford 間にはどんなに速くなったとしても約**50ms**ほどの理論的な限界値があるということに注意しなくてはなりません。
+```
+
+ユーザーのコネクションにおける[帯域幅](http://d.hatena.ne.jp/keyword/%C2%D3%B0%E8%C9%FD)の制限はものすごく改善されるかもしれません、それが堅調に改善されたとしても、latency の指している針(限界値)は全く動かないでしょう。ページ上のなんらかの情報を表示しようとする際に。ラウンドトリップ自体の回数を最小化する事が重要になるでしょう。\
+特に素晴らしい UX やレスポンシブさを提供するためには考えるべきです。
+
+これは特に`<script>`や`<link>`タグ以外の[マークアップ](http://d.hatena.ne.jp/keyword/%A5%DE%A1%BC%A5%AF%A5%A2%A5%C3%A5%D7)が存在しない、空の body タグで構成された[JavaScript](http://d.hatena.ne.jp/keyword/JavaScript)駆動のアプリケーションが起動する時に考慮する必要がある問題です。この種類のアプリケーションは  **"Single Page Application"**  とか  **"SPA"**  の名前で受け入れられています。その名前が示す通り、一つのページしか存在せず、クライアントサイドのコードによって残りの部分を表示します。
+
+URL が打ち込まれたり、link を辿った際に、`http://app.com/orders/`にユーザーがページ遷移する、というシナリオを考えてみましょう。その瞬間からあなたのアプリケーションはリクエストを受けて、処理が始まります、そのページを表示しようとするのに重要な情報は既に持っています。例えば database からの命令を pre-fetch したり、レスポンスにそれらの情報を含めることができます。ほとんどの SPA の場合、ブランクのページと`<script>`タグがその代わりに返されます。それからさらに一回のラウンドトリップが行われて、[スクリプト](http://d.hatena.ne.jp/keyword/%A5%B9%A5%AF%A5%EA%A5%D7%A5%C8)の内容が取得されます。さらに、もう一度ラウンドトリップが発生し[レンダリング](http://d.hatena.ne.jp/keyword/%A5%EC%A5%F3%A5%C0%A5%EA%A5%F3%A5%B0)するためのデータが取得されます。
+
+<Figure width={934} height={754} desc="よくあるSPAのページのHTML解析結果">
+  <Image src="/images/7-principles-of-rich-web-applications/kpfLbf6dha.png" />
+</Figure>
+
+ほとんどの開発者は意識的にこの[トレードオフ](http://d.hatena.ne.jp/keyword/%A5%C8%A5%EC%A1%BC%A5%C9%A5%AA%A5%D5)を受け入れています。なぜなら彼らはその[複数回](http://d.hatena.ne.jp/keyword/%CA%A3%BF%F4%B2%F3)のネットワークホップがたかだか一回しか発生しない事を確認しているからです。つまり、彼らのユーザーは script や stylesheet のレスポンスヘッダーに適切なキャッシュ情報を埋め込んでいるため、キャッシュにヒットされれば毎回のホップは発生しない事になります。一度だけロードされ、ほとんどのユーザー操作(他のページに遷移するといったような操作)をハンドリングできれば、追加のページや[スクリプト](http://d.hatena.ne.jp/keyword/%A5%B9%A5%AF%A5%EA%A5%D7%A5%C8)のリクエストを発行する必要はありません。これが受け入れ可能な[トレードオフ](http://d.hatena.ne.jp/keyword/%A5%C8%A5%EC%A1%BC%A5%C9%A5%AA%A5%D5)であるということは一般的に認識されています。
+
+しかしながら、キャッシュがあったとしても、script パースや評価にかかる時間が考慮された際にパフォーマンス上の障害になることがあります。 ["jQuery は Mobile にはでかすぎじゃね?"](http://modernweb.com/2014/03/10/is-jquery-too-big-for-mobile/)  という記事では、[jQuery](http://d.hatena.ne.jp/keyword/jQuery)単体であっても、mobile browser が確認するためには何百ミリ秒のオーダーがかかることが記述されています。
+
+不幸なことに、script がロードされている間、ユーザーに対して何のフィードバックも帰ってこない事があるのです。この結果、ブランクのページが表示され、直後に全ページがロードされて描画されます。
+
+最も重要な事として、我々開発者はインターネットデータ通信 ([TCP](http://d.hatena.ne.jp/keyword/TCP)) の開始が遅いということを常に意識しているわけではありません。[TCP](http://d.hatena.ne.jp/keyword/TCP)の開始が遅いことによって一回のラウンドトリップで全ての script を fetch されるようなことはまずありません。それだけじゃなく、さらに悪い状況を作ることもあります。
+
+[TCP](http://d.hatena.ne.jp/keyword/TCP)接続は初期ラウンドトリップのハンドシェイクとともに開始されます。もしあなたが[SSL](http://d.hatena.ne.jp/keyword/SSL)を使っているのであれば、2 回のラウンドトリップ[\*1](https://yosuke-furukawa.hatenablog.com/entry/2014/11/14/141415#f-f89c6c42 "クライアント初期がセッションを使いまわすなら1回だけですが")が行われるでしょう。データ送信がサーバーから開始されるのは、ゆっくりと段階的に行われることに成ります。
+
+[輻輳](http://d.hatena.ne.jp/keyword/%ED%D5%ED%D4)制御のメカニズムは[TCP](http://d.hatena.ne.jp/keyword/TCP)[プロトコル](http://d.hatena.ne.jp/keyword/%A5%D7%A5%ED%A5%C8%A5%B3%A5%EB)の中ではスロースタートと呼ばれています。[TCP](http://d.hatena.ne.jp/keyword/TCP)[プロトコル](http://d.hatena.ne.jp/keyword/%A5%D7%A5%ED%A5%C8%A5%B3%A5%EB)はデータを送る際に一度に送るセグメントの数を徐々に増やして送ります。**SPA にとってこの仕組みには２つの深刻な影響**があります。
+
+1. 巨大な[スクリプト](http://d.hatena.ne.jp/keyword/%A5%B9%A5%AF%A5%EA%A5%D7%A5%C8)があると予想よりもはるかにダウンロードに時間がかかることになります。\
+   Ilya Grigorik が書いた["ハイパフォーマンスブラウザネットワーキング"](http://chimera.labs.oreilly.com/books/1230000000545/ch02.html#thats_four_rou)で説明されている通り、"クライアントとサーバー間で 64KB の[スループット](http://d.hatena.ne.jp/keyword/%A5%B9%A5%EB%A1%BC%A5%D7%A5%C3%A5%C8)を届けるだけでも 4 回のラウンドトリップと何百ミリ秒もの[レイテンシー](http://d.hatena.ne.jp/keyword/%A5%EC%A5%A4%A5%C6%A5%F3%A5%B7%A1%BC)が発生する。"事になでしょう。この例では、London と NewYork の間の長いインターネット接続が考慮されているが、[TCP](http://d.hatena.ne.jp/keyword/TCP)が最大パケットサイズに届くようになるまでに 225ms かかると言われています。
+   1. [TCP](http://d.hatena.ne.jp/keyword/TCP)スロースタートの法則は初期ページのダウンロードにも適用されます、初期ページには全てのページの中で一番重要な**"ページを[レンダリング](http://d.hatena.ne.jp/keyword/%A5%EC%A5%F3%A5%C0%A5%EA%A5%F3%A5%B0)するのに必要な情報"**があります。 Paul Irish はかれの発表資料、["Delivering the Goods"](https://docs.google.com/presentation/d/1MtDBNTH1g7CZzhwlJ1raEJagA8qM3uoV7ta6i66bO2M/present#slide=id.g3eb97ca8f_10)の中で、初期の**14kb**が如何に重要かを語っています。サーバーがラウンドトリップ内で送信できるデータ量に関するわかりやすいイラストを見て下さい。
+
+<Figure
+  width={901}
+  height={409}
+  desc="ウインドウサイズに応じてどのくらいのサイズのデータがサーバーから送信できるか"
+>
+  <Image src="/images/7-principles-of-rich-web-applications/WI9kN_9iyR.png" />
+</Figure>
+
+このウィンドウサイズに合わせてコンテント[\*2](https://yosuke-furukawa.hatenablog.com/entry/2014/11/14/141415#f-337161e8 "たとえデータがなくて基本的なレイアウトしかないものも含めて")を配信するウェブサイトはかなりレスポンシブに見えることでしょう。実際、高速なサーバーサイドアプリケーションを書いている多くの開発者にとって、[JavaScript](http://d.hatena.ne.jp/keyword/JavaScript)は不要であると考えられていたり、控えめに使われている事があります。もしアプリケーションが高速なバックエンドとデータソースとユーザーに近い場所にサーバーがある(CDN を利用している)場合、このバイアスはかなり強くなります。
+
+コンテントの表示が高速化され、補えるようになれば、サーバーの役割はアプリケーション特化なものになっていくでしょう。そのソリューションは常に**"サーバーで全ページを[レンダリング](http://d.hatena.ne.jp/keyword/%A5%EC%A5%F3%A5%C0%A5%EA%A5%F3%A5%B0)すればいい"という程に単純にはなりません**。
+
+いくつかの場合において、本質的じゃないページのパーツは初期レスポンスから外して、クライアントによって後で取得させた方がより良くなるでしょう。いくつかのアプリケーションは迅速にレスポンスを返すためにそのページの外枠を先に[レンダリング](http://d.hatena.ne.jp/keyword/%A5%EC%A5%F3%A5%C0%A5%EA%A5%F3%A5%B0)しようとします。そうした後で並列にページの異なる部分を fetch します。これは遅くてレガシーなバックエンドサービスの場合には素晴らしい反応を見せるでしょう。いくつかのページにおいて、"[above the fold](http://www.feedthebot.com/pagespeed/prioritize-visible-content.html)(スクロールしなくても見えるページ)"のプリ[レンダリング](http://d.hatena.ne.jp/keyword/%A5%EC%A5%F3%A5%C0%A5%EA%A5%F3%A5%B0)をしておくことは有効な選択肢と言えます。
+
+セッション、ユーザー、URL ごとにサーバーが持っている情報に基づいて script や style の存在意義を評価する事はかなり重要です。例えば、order をソートする[スクリプト](http://d.hatena.ne.jp/keyword/%A5%B9%A5%AF%A5%EA%A5%D7%A5%C8)は`/settings `ページにあるよりも`/orders`ページにだけ存在するほうがいいでしょう。
+
+直感的じゃないかもしれませんが、**"構造を作る[CSS](http://d.hatena.ne.jp/keyword/CSS)"**と**"skin やテーマを決める[CSS](http://d.hatena.ne.jp/keyword/CSS)"**間の違いを作っておいたほうが良いかもしれません[\*3](https://yosuke-furukawa.hatenablog.com/entry/2014/11/14/141415#f-074b574c "構造を作るCSSの方がskinやテーマを決めるCSSよりも優先度が高いという意味と思われる")。前者は[JavaScript](http://d.hatena.ne.jp/keyword/JavaScript)コードから利用されるため、ロードされるまでブロックされるべきですが、後者は非同期でロードされたほうが良いでしょう。
+
+ラウンドトリップが[複数回](http://d.hatena.ne.jp/keyword/%CA%A3%BF%F4%B2%F3)発生することによる障害を受けない SPA のシンプルな例として、[StackOverflow in 4096](http://danlec.com/blog/stackoverflow-in-4096-bytes)という名前の StackOverflow のクローンがあります。4096 バイトだと[TCP](http://d.hatena.ne.jp/keyword/TCP)接続の最初のハンドシェイクラウンドトリップの後で理論的には配信されることができます。これはレスポンスの中で全てのアセットをインラインにすることによって cacheability を犠牲にして実現されています。[SPDY もしくは HTTP/2 のサーバープッシュ](http://www.chromium.org/spdy/link-headers-and-server-hint)があれば、理論的にはクライアントのコードをキャッシュ可能な状態でシングルホップで配信する事ができるようになるでしょう。当分の間はページの一部分もしくは全ての[レンダリング](http://d.hatena.ne.jp/keyword/%A5%EC%A5%F3%A5%C0%A5%EA%A5%F3%A5%B0)をサーバーでやることが[複数](http://d.hatena.ne.jp/keyword/%CA%A3%BF%F4)ラウンドトリップを回避するための一般的なソリューションになるでしょう。
+
+<Figure
+  width={1153}
+  height={899}
+  desc="CSSやJSをインライン化することで複数ラウンドトリップを回避する、というProof-of-concept (理論を実証するための) SPA*"
+>
+  <Image src="/images/7-principles-of-rich-web-applications/NeV5qFDaVR.png" />
+</Figure>
+
+ブラウザとサーバー間で[レンダリング](http://d.hatena.ne.jp/keyword/%A5%EC%A5%F3%A5%C0%A5%EA%A5%F3%A5%B0)するコードを共通化でき、scripts と styles をロードする[ツール](http://d.hatena.ne.jp/keyword/%A5%C4%A1%BC%A5%EB)を提供するシステムはウェブサイトとウェブアプリ間のラフな違いをなくしていくでしょう。両者とも同じ UX の原則に従うことになります。ブログと[CRM](http://d.hatena.ne.jp/keyword/CRM)は基本的にそんなに違いはありません。両方共 URL があって navigation があり、ユーザーにデータを表示します。クライアントサイドの機能に強く依存している spreadsheet のようなアプリケーションでさえ最初にユーザーにデータを表示する必要があります。つまり**ネットワークのラウンドトリップ回数を最小にすることが最も重要になるという事**です。
+
+パフォーマンスに関しての[トレードオフ](http://d.hatena.ne.jp/keyword/%A5%C8%A5%EC%A1%BC%A5%C9%A5%AA%A5%D5)によって、ウェブは複雑さをどんどん増していっています。[複数](http://d.hatena.ne.jp/keyword/%CA%A3%BF%F4)ラウンドトリップにも非常に関係があるように見えます。
+
+[JavaScript](http://d.hatena.ne.jp/keyword/JavaScript)と[CSS](http://d.hatena.ne.jp/keyword/CSS)によるテクニック、Tips[\*4](https://yosuke-furukawa.hatenablog.com/entry/2014/11/14/141415#f-9c4a5584 "圧縮やconcat、inline化といったもの")は時間とともに追加されていました。そういうテクニックの人気や評判も時間とともに増加してきました。
+
+今後はそういったテクニックには別な方法があることを理解できるでしょう。SPDY や QUIC に見られる改善中の[プロトコル](http://d.hatena.ne.jp/keyword/%A5%D7%A5%ED%A5%C8%A5%B3%A5%EB)によってこれらのいくつかは解決され、さらにアプリケーションレイヤーにも多くの利点を発生させる事になるでしょう。
+
+初期の WWW や HTML の設計に関する初期の議論のいくつかを参考にするとこれを理解しやすくなるでしょう。特に 1997 年の`<img>`タグを HTML に追加する事を提案している[このメーリングリストのスレッド](http://1997.webhistory.org/www.lists/www-talk.1993q1/0260.html)の中で Marc Andreessen が高速に情報を提供することの重要さについて度々話をしています：
+
+> "もしもドキュメントがその場その場で断片化されなければならないのであれば、複雑さを生むことになってしまうだろう、そして例えそれらが限定的だったとしても、私達はこの複雑な方法で構造化されたドキュメントの性能にぶつかることを体験し始めることは明らかだ。これは本質的に WWW のシングルホップの原則をドアの外に投げ出している (IMG タグもそれをすることになる)。本当に我々はそれをしたいのかどうか胸に手を当ててみたらどうだろうか?"
+
+<h2 id="act-immediately-on-user-input">2. ユーザー入力に迅速に対応しよう</h2>
+
+<TLDR>
+  
+  [JavaScript](http://d.hatena.ne.jp/keyword/JavaScript)を利用すればネットワーク[レイテンシー](http://d.hatena.ne.jp/keyword/%A5%EC%A5%A4%A5%C6%A5%F3%A5%B7%A1%BC)を隠せるようになります。これをデザインの原則として適用すれば、あなたのアプリケーションから"ロード中..."のメッセージやスピナー(ぐるぐる)を削除することができるようになるでしょう。PJAXもしくはTurboLinksはこの"the perception of speed" (スピードの錯覚) を使って改善するチャンスを失ってしまうでしょう。\
+最初の原則はあなたのウェブサイトに対して[レイテンシー](http://d.hatena.ne.jp/keyword/%A5%EC%A5%A4%A5%C6%A5%F3%A5%B7%A1%BC)を最小化することの考え方に関するものでした。
+
+</TLDR>
+
+とは言っても、サーバーとクライアント間を往復する回数を最小化するためにどれだけ努力を惜しまなかったとしても、どうにもならない事があります。ユーザーとサーバー間の距離によって得られる理論上最小のラウンドトリップタイムが発生してしまうことは避けようがありません。
+
+貧弱だったり予測できないようなネットワークの品質も重大な事項の一つになるでしょう。もしネットワーク接続がそこまで品質の良いものじゃなかったとしたら、パケットの再送が発生するでしょう。結局、取得するのに何回もラウンドトリップが発生してしまうような結果になる事は予測できます。
+
+UX を向上する事に対して[JavaScript](http://d.hatena.ne.jp/keyword/JavaScript)の最適な強みはこの部分にあります。クライアントサイドのコードはユーザーインタラクションを強く惹きつけておくことで、この[レイテンシー](http://d.hatena.ne.jp/keyword/%A5%EC%A5%A4%A5%C6%A5%F3%A5%B7%A1%BC)の問題を隠すことができるようになります。スピードの錯覚を作ることができます。人工的に[レイテンシー](http://d.hatena.ne.jp/keyword/%A5%EC%A5%A4%A5%C6%A5%F3%A5%B7%A1%BC)が存在しないように見せようとすることもできます。
+
+ベーシックな HTML ウェブをちょっとだけ考えてみましょう。[ハイパーリンク](http://d.hatena.ne.jp/keyword/%A5%CF%A5%A4%A5%D1%A1%BC%A5%EA%A5%F3%A5%AF)または  `<a>`タグを通してドキュメント同士をつなぐことができます。リンクがクリックされた時、ブラウザは予期できないほど時間がかかる可能性があるネットワークリクエストを発行し、そのレスポンスを取得し、処理し、新しい状態に最終的に遷移します。
+
+[JavaScript](http://d.hatena.ne.jp/keyword/JavaScript)ではユーザーの入力後に**即座に実行する事**も、**少し送らせてから楽観的に実行する事**もできます。リンクやボタンの上でクリックした時に、ネットワークを使わずに即座に反応するという事もできます。有名な例としては[Gmail](http://d.hatena.ne.jp/keyword/Gmail) (または[Google](http://d.hatena.ne.jp/keyword/Google) Inbox)が挙げられます。email をアーカイブすると UI 上で即座に反応が返ってきます。その後、非同期に処理をサーバーに送っています。
+
+フォームの場合、submit したあとでレスポンスとして HTML を待つ代わりに、ユーザーが enter を押したあとで即座に反応することが可能です。より良い例として、[Google](http://d.hatena.ne.jp/keyword/Google) Search のような動きが当てはまります。下矢印キーを押し続けるとユーザーに即座に反応を返します。
+
+<Figure
+  width={1015}
+  height={625}
+  desc="downキーを押し続けるとGoogleは即座にレイアウトを適用する例"
+>
+  <Image src="/images/7-principles-of-rich-web-applications/CmkksKRbrl.gif" />
+</Figure>
+
+その特別なふるまいは*layout adaptation*と呼ばれるものの例です。基本的なア[イデア](http://d.hatena.ne.jp/keyword/%A5%A4%A5%C7%A5%A2)はページの初期状態が次の状態のレイアウトについて"知って"おり、遷移する前にそのページに入れるべきいくつかのデータがあれば可能になります。データを事前に持つことは"楽観的"と言われています、なぜなら入力によってはデータが全く来ない時にかわりにエラーが表示されるリスクがあるからです。しかし、そのような場合は明らかに少ないと言えるでしょう。
+
+[Google](http://d.hatena.ne.jp/keyword/Google)のホームページは特にこの試みに適しています。なぜならこの進化は私達が議論してきた最初の 2 つの原則を解説するからです。
+
+最初に、`www.google.com`へ[TCP](http://d.hatena.ne.jp/keyword/TCP)接続をした時の[packet dump](https://gist.github.com/guille/3e1b2d7529009370b986)を解析すると、リクエストが発行された後で一度に全体のホームページを送っていることが確認できると思います。接続をクローズするまで含めた全体は San Francisco にいる私には**64ms**かかります。[初め](http://en.wikipedia.org/wiki/Google#mediaviewer/File:Google1998.png)から今までそういう傾向にあります。
+
+2004 年の後期に[Google](http://d.hatena.ne.jp/keyword/Google)は as-you-type サジェスト機能(キーボートをタイプした瞬間から検索する機能(([Gmail](http://d.hatena.ne.jp/keyword/Gmail)のように 20%プロジェクトとして作られました)))を提供し、[JavaScript](http://d.hatena.ne.jp/keyword/JavaScript)の利用方法を[開拓](http://googleblog.blogspot.com/2004/12/ive-got-suggestion.html)しました。これは後に[AJAX を作る](http://www.adaptivepath.com/ideas/ajax-new-approach-web-applications/)きっかけになりました。
+
+> ここでちょっと[Google Suggest](http://d.hatena.ne.jp/keyword/Google%20Suggest)を見てみましょう、あなたがタイプした瞬間にページのリロードや待ち時間もなく即座にサジェストされる単語がアップデートされることに注目してください。[Google Suggest](http://d.hatena.ne.jp/keyword/Google%20Suggest)や[Google Maps](http://d.hatena.ne.jp/keyword/Google%20Maps)は Adaptive Path 社が[Ajax](http://d.hatena.ne.jp/keyword/Ajax)と名づけた技術を使って Web アプリケーションの新しいアプローチを示した 2 つの例です。
+
+2010 年に[Google](http://d.hatena.ne.jp/keyword/Google)は Instant Search を[紹介](http://googleblog.blogspot.com/2010/09/search-now-faster-than-speed-of-type.html)しました。InstantSearch は JS をフロントにおいてキーを押した瞬間にページリフレッシュをまるごとスキップさせて、"検索結果" レイアウトに即座に遷移するようにしていました。ちょうど上の画像の例のとおりです。
+
+layout adaptation のもう一つの有名な例があなたのポケットにも入っているかもしれません。初期から[iPhone](http://d.hatena.ne.jp/keyword/iPhone) OS はアプリケーション作者に  `default.png `の画像を提出させます。これは実際のアプリケーションがロードされるまでの間に即座に[レンダリング](http://d.hatena.ne.jp/keyword/%A5%EC%A5%F3%A5%C0%A5%EA%A5%F3%A5%B0)させるためです。
+
+<Figure
+  width={324}
+  height={463}
+  desc="iPhone OSはアプリケーションの前にdefalut.pngをロードしている例"
+>
+  <Image src="/images/7-principles-of-rich-web-applications/Gg1AwDA71S.png" />
+</Figure>
+
+この場合、OS がネットワーク[レイテンシー](http://d.hatena.ne.jp/keyword/%A5%EC%A5%A4%A5%C6%A5%F3%A5%B7%A1%BC)による遅延だけじゃなく、CPU による遅延を考慮し、それを補うために行っています。アプリケーションがロードされる前に初期ロードを早くするためにレイアウト画像を見せることはハードウェア本体の制約としても極めて重要だと考慮されています。\
+しかしこの技術がマッチしないシナリオも存在します。レイアウトがストアされた画像にマッチしない時、例えば全然レイアウトが違うログイン画面に遷移してしまうといった場合にマッチしません。その影響がどのくらいのものなのかを分析した結果が[Marco Arment によって 2010 年に提供されています](http://www.marco.org/2010/11/11/my-default-png-dilemma)。
+
+[JavaScript](http://d.hatena.ne.jp/keyword/JavaScript)によって入力フォームとクリックとデータ送信が強化される例があります、**ファイル入力**です。
+
+様々な方法でユーザーのアップロードを処理することが可能です。[ドラッグアンドドロップ](http://d.hatena.ne.jp/keyword/%A5%C9%A5%E9%A5%C3%A5%B0%A5%A2%A5%F3%A5%C9%A5%C9%A5%ED%A5%C3%A5%D7)や copy & paste、ファイルピッカーといった方法で処理することが可能です。[新しい HTML5 API](https://developer.mozilla.org/en-US/docs/Using_files_from_web_applications)に感謝しなくてはいけません。私達はまるでアップロードされたかのようにコンテントを表示することができます。この例は Cloudup で画像アップロードをしている最中の動きです。thumbnail 画像が生成され、即座に[レンダリング](http://d.hatena.ne.jp/keyword/%A5%EC%A5%F3%A5%C0%A5%EA%A5%F3%A5%B0)されていることに注目してください。
+
+<Figure
+  width={931}
+  height={602}
+  desc="画像がアップロードが完了する前にレンダリングされ、表示されている様子"
+>
+  <Image src="/images/7-principles-of-rich-web-applications/iCig_gr__M.gif" />
+</Figure>
+
+これまでの例において、私達は感覚的にスピードが上がったかのように見せることができます。ありがたいことに、これが良いア[イデア](http://d.hatena.ne.jp/keyword/%A5%A4%A5%C7%A5%A2)だとする沢山の証拠があります。素早く手荷物を扱わなくても、敢えて手荷物受取り所までの距離を増やす事で時間をかけてヒューストン空港でクレームの数を減らした手荷物受取所の例を考えてみてください。
+
+こういう敢えて遅くするようなア[イデア](http://d.hatena.ne.jp/keyword/%A5%A4%A5%C7%A5%A2)のアプリケーションは UI 上ではとても深淵な実装をしなければなりません。**私は"ロード中を示すインジケータ"とかスピナーがほとんど表示されてはいけないと思っています。**生のデータを持ってアプリケーションを遷移する時は特に表示するべきじゃないと思っています、詳しくは次のセクションで触れます。
+
+スピードのごまかしは UX には時に有害になるシチュエーションがあります。支払いフォームやログアウトリンクのような[例](http://www.nytimes.com/2012/08/19/opinion/sunday/why-waiting-in-line-is-torture.html)を考えてみてください。それらに対して楽観的なふるまいをすると、終わっていなかったとしてもユーザーに全てが終わったと通知してしまいます。その結果、ネガティブな体験になってしまう可能性があります。
+
+そういうケースの場合では、スピナーや"ロード中を表すインジケータ"の表示を繰り返すべきでしょう。こういうケースではユーザーはレスポンスが即座だったかどうかはそこまで気にしません。ちゃんと終わってから結果を[レンダリング](http://d.hatena.ne.jp/keyword/%A5%EC%A5%F3%A5%C0%A5%EA%A5%F3%A5%B0)するべきです。[Nielsen による研究](http://www.nngroup.com/articles/response-times-3-important-limits/)結果によれば：
+
+> レスポンス時間に関する基本的なアドバイスは  [Miller や Card らが行っていた研究](http://rauchg.com/2014/7-principles-of-rich-web-applications/#)と 13 年前から今までほとんど変わっていない。\
+> ユーザーからみて"システムが即座に反応している"と感じるのは大体 0.1 秒までである。つまり、0.1 秒以内であれば、結果を表示するまでに特別なフィードバックは必要ないという事を意味している。\
+> ユーザーがちょっと遅いなと感じる限界は 1.0 秒までだ、それ以上ではユーザーが遅延したと感じるだろう、そしてデータを直感的に操作する間隔は失われてしまう。\
+> ダイアログが表示されても集中していられるのは 10 秒までだ、それより長い遅延だと、終わるのを待つよりもユーザーは他のタスクを実行したいと思ってしまうだろう。\
+> PJAX や TurboLinks といったような技術は不幸なことにこのセクションで記述された"あえて遅延させるような技術"を使う機会は失われてしまいます。クライアントサイドのコードはサーバーが起きている全てのラウンドトリップが終わるまで、ウェブページの中で最終的にどんな表示がされるのかは "知らない" と思ってください。
+
+<h2 id="react-to-data-changes">3. データ変更に反応しよう</h2>
+
+<TLDR>
+  サーバーのデータが変更された時、リクエストが無くてもクライアントはその変更を知る事ができるでしょう。これは手動でF5を押したり更新したりする事からユーザーを開放するためのパフォーマンス改善です。新しい変更というのは(再)接続管理や状態変更も含みます。
+</TLDR>
+
+第三の原則はソースや 1 台以上のデータベースサーバーの中でデータが変更された時の UI の反応についての話です。
+
+ユーザーがページを更新する、[AJAX](http://d.hatena.ne.jp/keyword/AJAX)で操作するまで静的なままの HTML のスナップショットを提供する事は廃れてきています。
+
+UI は**自分で勝手に更新**されているべきでしょう。
+
+データの要素の数が無制限に増加するようなサイトでは自分自身で更新する事は特に重要です。時計、電話、[タブレット](http://d.hatena.ne.jp/keyword/%A5%BF%A5%D6%A5%EC%A5%C3%A5%C8)、[ウェアラブル](http://d.hatena.ne.jp/keyword/%A5%A6%A5%A7%A5%A2%A5%E9%A5%D6%A5%EB)デバイスは自分自身で更新される事を元に設計されています。
+
+[Facebook](http://d.hatena.ne.jp/keyword/Facebook)に PC を通してデータが入力された時に入力とほぼ同時に[Facebook](http://d.hatena.ne.jp/keyword/Facebook)はニュースフィードがあるかどうかを確認します。静的にデータを表示することは最適ではありませんでしたが、人々が一日一回自分のプロフィールを更新した場合には意味があるでしょう。
+
+写真をアップロードし、アップロードしたら即座に友達からイイねしてもらったり、コメントを受け取る事ができる場所で生活しています。ユーザー同士がアプリケーションを同時に利用している事を知るためにリアルタイムフィードバックが必要になってきています。
+
+マルチユーザーアプリケーションでしかリアルタイムフィードバックはメリットが薄いと推測するのは間違っているかもしれません。私がユーザーに反対してでも*concurrent data points*について話をしたいと思っている理由です。あなたの[スマホ](http://d.hatena.ne.jp/keyword/%A5%B9%A5%DE%A5%DB)で写真をラップトップにもシェアするという共通のシナリオで考えてみましょう。\
+
+<Figure
+  width={661}
+  height={578}
+  desc="一人のユーザーでもリアクティブさによってメリットを享受することができる"
+>
+  <Image src="/images/7-principles-of-rich-web-applications/15MbLjLsfm.gif" />
+</Figure>
+
+ユーザーに見せる全てのデータをリアクティブとして考えるとわかりやすい。**セッションやログイン状態の同期はこの原則を適用する例の一つになるでしょう。**もしあなたのアプリケーションのユーザがたくさんのタブを同期的に開いてたとしたら、一つのアプリでログアウトしたら全てのタブに対してページを無効化するほうが良いでしょう。プライバシーとセキュリティを向上させる事につながります、特にたくさんのユーザーが同じデバイスにアクセスするようなシチュエーションで効果を発揮します。
+
+<Figure
+  width={818}
+  height={547}
+  desc="セッションとログイン状態を各ページに反映させる例"
+>
+  <Image src="/images/7-principles-of-rich-web-applications/FS74zJHpDg.gif" />
+</Figure>
+
+一度、スクリーン上の情報が自動的に更新される事が期待されていました、これからは新しいニーズとして  **state reconciliation(状態の折り合い)**を入れるか検討することが重要になってきています。
+
+アトミックなデータ変更処理を受け付けた時、アプリケーションは適切に更新できるのかどうかを忘れて、勝手に更新するというのは簡単です。でももしもネットワークに未接続な状態で長い期間経過した後だったらどうなるでしょう。ラップトップを一回閉じて、何日か経ったあとで再度開いたというシナリオを想定してみましょう。そのときあなたのアプリケーションは何がどうなっているでしょうか？
+
+<Figure
+  width={1024}
+  height={640}
+  desc="長期間経過した後で再接続した時に起きる例 Twitterではとんでもない数の新規ツイートが出てしまう"
+>
+  <Image src="/images/7-principles-of-rich-web-applications/D7obeKaOlB.png" />
+</Figure>
+
+時間内にバラバラの状態から折り合いをつける能力は私達の最初の原則にも当てはまります。もしあなたが初期ページロードにデータを送信する方を選ぶのであれば、オンラインになってからクライアント[スクリプト](http://d.hatena.ne.jp/keyword/%A5%B9%A5%AF%A5%EA%A5%D7%A5%C8)がロードされるまでの時間を考慮しなくてはいけません。その時間は本質的に接続していない時間と同じものと見なす必要があります。
+
+<h2 id="control-the-data-exchange-with-the-server">
+  4. サーバーとのデータ交換をコントロールする
+</h2>
+
+<TLDR>
+  サーバーとのデータ交換は今では微調整することができるようになってきています。エラーの発生を確認し、ユーザーの操作を再実行させ、バックグラウンドでデータを同期し、オフラインでキャッシュを維持しましょう。
+</TLDR>
+
+WWW が考えられ始めた時、クライアントとサーバー間でデータを交換する方法はかなり制限されていました。
+
+1.  リンクをクリックする事で新しいページを`GET`し、[レンダリング](http://d.hatena.ne.jp/keyword/%A5%EC%A5%F3%A5%C0%A5%EA%A5%F3%A5%B0)する
+2.  `POST`や`GET`を form から送信して新しいページを[レンダリング](http://d.hatena.ne.jp/keyword/%A5%EC%A5%F3%A5%C0%A5%EA%A5%F3%A5%B0)する
+3.  画像またはオブジェクトを非同期に`GET`して埋め込み、[レンダリング](http://d.hatena.ne.jp/keyword/%A5%EC%A5%F3%A5%C0%A5%EA%A5%F3%A5%B0)する
+
+このモデルの単純さは魅力的であり、データがどうやって送信されて、受信されるのかを理解しやすく、かなり学習しやすいといえるでしょう。
+
+最も大きな制限は第二の点(form から GET や POST でデータを取ってくる点)にありました。新しいページをロードせずにデータを送信する事はできませんでした。パフォーマンスに注目すると最善とはいえませんでした。しかも form から POST で送信した場合に戻るボタンを壊すことができてしまいます。
+
+<Figure width={374} height={165} desc="古いウェブの最もイラッとさせる遺物">
+  <Image src="/images/7-principles-of-rich-web-applications/mc3PlaztUS.png" />
+</Figure>
+
+**アプリケーションプラットフォーム**としてのウェブは[JavaScript](http://d.hatena.ne.jp/keyword/JavaScript)なしでは考えられません。[AJAX](http://d.hatena.ne.jp/keyword/AJAX)はこういったユーザーが情報の送信する際の UX に関する障害を超えてきました。
+
+今ではたくさんの[API](http://d.hatena.ne.jp/keyword/API)があります。`XMLHttpRequest`, `WebSocket`, `EventSource`といった[API](http://d.hatena.ne.jp/keyword/API)はデータの流れに対して、きめ細やかなコントロールを提供してくれます。ユーザーがフォームに入力したデータを送るという機能に加えて UX を改善するための機会をいくつも持っているわけです。
+
+特に前の原則に適している機能は接続状態を表示する機能です。もしデータが自動的に更新される事を予測して準備するならユーザーに切断されたことや再接続中の状態を通知するべきでしょう。
+
+切断を検知すれば、メモリや localStorage のような場所にデータを保存して後で送信するということができるようになります。これは[JavaScript](http://d.hatena.ne.jp/keyword/JavaScript)のウェブアプリケーションがバックグラウンドで動作できるようにする[ServiceWorker](http://jakearchibald.com/2014/using-serviceworker-today/)の導入を踏まえた上でとても重要なものになります。あなたのアプリケーションがオープンじゃなかったら、バックグラウンドでユーザーデータを同期しようとすることもできます。
+
+データを送るときや**ユーザーの代わりにリトライする**時は[タイムアウト](http://d.hatena.ne.jp/keyword/%A5%BF%A5%A4%A5%E0%A5%A2%A5%A6%A5%C8)やエラーを考慮しましょう。接続が再確立したらデータを再送するように検討しましょう。永続的に失敗する場合、ユーザーに連絡しましょう。
+
+明らかなエラーは注意深く扱われるべきです。例えば予期せず 403 エラーが発生している場合、ユーザーのセッションが無効になっている事を意味します。そういった場合、処理を継続させるためにログインスクリーンを見せることでユーザーにセッションが切れている事を理解させた方が良いでしょう。
+
+ユーザーが不注意にデータフローを止めてしまわないか確認することも重要です。これは２つの状況下で発生する可能性があります。一つはブラウザやタブをうっかり閉じちゃうこと、これは閉じられる前に  `beforeunload `ハンドラ関数で防ぐようにできます。
+
+<Figure width={600} height={316} desc="beforeunloadによるブラウザ警告">
+  <Image src="/images/7-principles-of-rich-web-applications/8Eu4Sk9mD8.png" />
+</Figure>
+
+もう一つはページ遷移が起きてしまうことです。これは発生前にページ遷移を捉えることができます。例えばリンクがクリックされたら新しいページとしてロードさせるといった形です。新しいタブとして表示するだけじゃなく、自身のモーダルで表示させることも可能です。
+
+<h2 id="dont-break-history-enhance-it">
+  5. historyを壊すべきじゃない、historyを拡張しよう
+</h2>
+
+<TLDR>
+  URLを管理するブラウザとhistoryがなければ、新たなチャレンジは生まれない。無限スクロール等の技術でhistoryを壊していないか確認しよう。高速なフィードバックのためのキャッシュを常にキープしよう。
+</TLDR>
+
+フォーム送信や[ハイパーリンク](http://d.hatena.ne.jp/keyword/%A5%CF%A5%A4%A5%D1%A1%BC%A5%EA%A5%F3%A5%AF)のみのウェブアプリケーションの設計をするならブラウザの機能にある進む、戻るボタンを使うだけで終わるでしょう。
+
+典型的な"無限ページネーションシナリオ"を例として考えてみましょう。[JavaScript](http://d.hatena.ne.jp/keyword/JavaScript)でクリック/スクロールイベントを捕捉し、データや HTML をリクエストし、それをページにインジェクションするという一連の動作を含めて実装するのが典型的な方法です。`history.pushState`や`replaceState`を使うのは optional なステップですが、不幸なことにそんなに多くの情報を history に入れることはできません。
+
+これこそが私が"壊す"とうい言葉を使った理由です。ウェブが初期に提案したよりシンプルなモデルには、この将来像は描かれていませんでした。全ての状態遷移が URL の変更に依存することになるとは思われていなかったのです。
+
+これは逆に言うと、history を改善する新しい機会が生まれたとも言えます。私達開発者が[JavaScript](http://d.hatena.ne.jp/keyword/JavaScript)で history をコントロールできるようになったのです。
+
+Daniel Pipius が[Fast Back](https://medium.com/joys-of-javascript/beyond-pushstate-building-single-page-applications-4353246f4480)と名づけた記事から引用すると:
+
+> "戻る"のは素早く行われるべきだ。ユーザーは"戻る"事によってデータが変更されるような事は期待していない。
+
+これはブラウザの戻るボタンをアプリケーションレベルの普通のボタンとして考えるのと同じことです。これには 2 つめの原則 (ユーザー入力に迅速に対応しよう)と同じ原則が当てはまります。前のページをどうやってキャッシュするかを決め、即座に[レンダリング](http://d.hatena.ne.jp/keyword/%A5%EC%A5%F3%A5%C0%A5%EA%A5%F3%A5%B0)するのがキーになります。原則 3 のデータ変更に反応しようにも当てはまります。ユーザーの新しいデータ変更があったら通知し、そのページに反映する必要があります。
+
+開発者が cache behavior を制御しない、いくつかのケースが存在します。例えば、ページを[レンダリング](http://d.hatena.ne.jp/keyword/%A5%EC%A5%F3%A5%C0%A5%EA%A5%F3%A5%B0)した後、3rd パーティ製のウェブサイトに行き、ユーザーが戻るボタンをクリックしたとします。アプリケーションはサーバーにある HTML を再度[レンダリング](http://d.hatena.ne.jp/keyword/%A5%EC%A5%F3%A5%C0%A5%EA%A5%F3%A5%B0)し、クライアント上で HTML を変更します。この時、微妙で分かりにくいバグが入ってしまうリスクが有ります:
+
+<Figure
+  width={1022}
+  height={642}
+  desc="戻るボタンを押した時に正しく初期のHTMLがロードされていない例(Githubでコメントを追加て、別なページに行った後、戻ってくるとコメントが消えている例)。"
+>
+  <Image src="/images/7-principles-of-rich-web-applications/c081WZaE8H.gif" />
+</Figure>
+
+他にもナビゲーションを壊してしまう方法があります。スクロールのメモリを無視するとナビゲーションを壊すことができます。JS に依存しないページや手動で history 管理するページはほとんどがこの問題にぶつかることはありません。しかし動的なページは常にこの危険があります。私は２つのポピュラーな[JavaScript](http://d.hatena.ne.jp/keyword/JavaScript)-driven のニュースフィードを試してみました。[Twitter](http://d.hatena.ne.jp/keyword/Twitter)と[Facebook](http://d.hatena.ne.jp/keyword/Facebook)です。両方共**scrolling [amnesia](http://d.hatena.ne.jp/keyword/amnesia) (スクロール位置の喪失)**が発生しました。
+
+<Figure
+  width={782}
+  height={551}
+  desc="無限ページネーションは常にscrolling amnesiaの疑いがある。(Twitterで無限スクロールしてから戻るを押した時にスクロールしていた位置が元に戻らない)"
+>
+  <Image src="/images/7-principles-of-rich-web-applications/3m0DOKp9BW.gif" />
+</Figure>
+
+最終的に、状態変更に気づくことが history をナビゲートする際に適しています。コメントサブツリーの表示を toggle する例を考えてみましょう。
+
+<Figure
+  width={797}
+  height={563}
+  desc="コメントのtoggleはhistoryナビゲーションする時に保存されるべきだとする例(Redditでコメントのツリーを閉じてても戻ってくると開いたままになっている)"
+>
+  <Image src="/images/7-principles-of-rich-web-applications/bvqcnxO0De.gif" />
+</Figure>
+
+もしそのページがアプリケーション内のリンクにしたがって再描画されたのであれば、ユーザーは全てのコメントが閉じたまま描画される事を期待するでしょう。状態は volatile でありかつ、history スタック内でのエントリと関連付けられるようにしましょう。
+
+<h2 id="push-code-updates">6. コードの更新をPushしよう</h2>
+
+<TLDR>
+
+コードを Push しないでデータだけ Push するのは不十分だ。もしデータが自動的に更新されるなら、コードもそうなるべきだろう。[API](http://d.hatena.ne.jp/keyword/API)のエラーを回避してパフォーマンスも改善される。再描画しやすく副作用が少ないステートレスな DOM を使おう。
+
+</TLDR>
+
+アプリケーションがコードの変更に反応することは重要です。
+
+最初に、表面に見えてしまうようなエラーは限りなく減らして、信頼性を向上させるべきです。もしもバックエンドの[API](http://d.hatena.ne.jp/keyword/API)に対して互換性のない変更がある場合、クライアントのコードは更新されなければならないでしょう。さもなければ新しいデータが理解できない可能性があり、互換性のないフォーマットのデータが送られる可能性があります。
+
+コードの変更を Push するもう一つの重要な利点は第三の原則（データの変更に反応しよう）の実装をする時に必要になるという事です。もし UI が自分で更新されるんだとしたら、ユーザーが自分でページ更新を行う理由は殆どありません。
+
+traditional なウェブサイトのことを思い出してください、ページの更新には 2 つの意味があります、データの更新とコードの更新です。データを push する仕組みを準備するだけでコードを push する仕組みがないのは不十分です、特に単一タブ(単一セッション)は長い期間開かれていることが多いので、コードの push が必要になります。
+
+サーバーが push するチャンネルが決まった場所にあるなら、新しいコードが利用可能になった時にクライアントにコードが変わったことを発信させることができます。そういう仕組が存在し無いなら、HTTP リクエストにクライアントコードの version 番号が追加されることになるでしょう。サーバーはそのバージョン番号を最新のバージョンと比較し、リクエストを処理するかどうかを選択し、時にはクライアントに忠告します。
+
+この後、ウェブアプリケーションが適切だと判断したら、ユーザーの代わりにページをリフレッシュするようにします。例えば、ページが[見えない](https://developer.mozilla.org/en-US/docs/Web/Guide/User_experience/Using_the_Page_Visibility_API)とかフォームに何も入力できないという事態にならないようにします。
+
+**ホットコードリロード**するというより優れたアプローチがあります。これは全ページのリフレッシュをする必要がありません。その代わり、実行中のコードを[スワップ](http://d.hatena.ne.jp/keyword/%A5%B9%A5%EF%A5%C3%A5%D7)させてモジュールをロードし、再実行させるという機能が必要になります。
+
+多くのコードが存在している状況では、明らかにホットコードリロードは難しくなるでしょう。[アーキテクチャ](http://d.hatena.ne.jp/keyword/%A5%A2%A1%BC%A5%AD%A5%C6%A5%AF%A5%C1%A5%E3)の種類ごとに議論する余地があります。振る舞い(code)から綺麗にデータ(状態)が切り離されている[アーキテクチャ](http://d.hatena.ne.jp/keyword/%A5%A2%A1%BC%A5%AD%A5%C6%A5%AF%A5%C1%A5%E3)である必要があります。そのように分離された[アーキテクチャ](http://d.hatena.ne.jp/keyword/%A5%A2%A1%BC%A5%AD%A5%C6%A5%AF%A5%C1%A5%E3)はパッチを沢山当てた時(メンテナンスする時)に効果的になるでしょう。
+
+アプリケーション内でのモジュールの例を考えてみましょう。そのアプリケーションは[socket.io](http://socket.io/)のようなイベントでやりとりする口が用意されているとします。イベントが受信された時、[コンポーネント](http://d.hatena.ne.jp/keyword/%A5%B3%A5%F3%A5%DD%A1%BC%A5%CD%A5%F3%A5%C8)の新しい状態が導入され、DOM に[レンダリング](http://d.hatena.ne.jp/keyword/%A5%EC%A5%F3%A5%C0%A5%EA%A5%F3%A5%B0)されるでしょう。その後、前の状態から新しい状態に DOM が[マークアップ](http://d.hatena.ne.jp/keyword/%A5%DE%A1%BC%A5%AF%A5%A2%A5%C3%A5%D7)され異なる DOM が生成されます。これにより、[コンポーネント](http://d.hatena.ne.jp/keyword/%A5%B3%A5%F3%A5%DD%A1%BC%A5%CD%A5%F3%A5%C8)の振る舞いを変更します。
+
+ベースとなるモジュールごとにコードを更新することができるのが理想的なシナリオと言えるでしょう。もし[コンポーネント](http://d.hatena.ne.jp/keyword/%A5%B3%A5%F3%A5%DD%A1%BC%A5%CD%A5%F3%A5%C8)のコードが変更され、更新されるようなタイミングで、例えば socket 接続から再起動するような事になると、意味がありません。
+
+しかし、そうなると次の[チェレン](http://d.hatena.ne.jp/keyword/%A5%C1%A5%A7%A5%EC%A5%F3)ジとして、やっかいな副作用なしでモジュールが再評価されるようにできるようにしなければいけません。[React](http://facebook.github.io/react/)によって提案されているような[アーキテクチャ](http://d.hatena.ne.jp/keyword/%A5%A2%A1%BC%A5%AD%A5%C6%A5%AF%A5%C1%A5%E3)はこのチャレンジが特にやりやすくなるでしょう。もし[コンポーネント](http://d.hatena.ne.jp/keyword/%A5%B3%A5%F3%A5%DD%A1%BC%A5%CD%A5%F3%A5%C8)のコードが更新されたら、ロジックは再実行され、DOM が効率的に更新されるようになるでしょう。Dan Abramov によるコンセプトの追求は[ここで見る](http://gaearon.github.io/react-hot-loader/)ことができます。
+
+本質的には、"ある DOM にだけ"[レンダリング](http://d.hatena.ne.jp/keyword/%A5%EC%A5%F3%A5%C0%A5%EA%A5%F3%A5%B0)する、もしくは描画するというア[イデア](http://d.hatena.ne.jp/keyword/%A5%A4%A5%C7%A5%A2)はホットコードリロードをかなりやりやすくしてくれます。もし DOM 内で状態が維持されていたら、もしくはアプリケーションによって手動でセットされたイベントリスナーがあったら、コードを更新することはより複雑なタスクになるでしょう。
+
+<h2 id="predict-behavior">7. 振る舞いを予測しよう</h2>
+
+<TLDR>レイテンシーの壁を超えよう。</TLDR>
+
+リッチな[JavaScript](http://d.hatena.ne.jp/keyword/JavaScript)アプリケーションはユーザー入力を予測するという仕組みを持っています。
+
+こういうリッチなアプリケーションはユーザーの操作が成立するまえに、前もってサーバーからデータをリクエストするというア[イデア](http://d.hatena.ne.jp/keyword/%A5%A4%A5%C7%A5%A2)を共通して持っています。[ハイパーリンク](http://d.hatena.ne.jp/keyword/%A5%CF%A5%A4%A5%D1%A1%BC%A5%EA%A5%F3%A5%AF)の上にマウスがホバーしたらデータをフェッチし、クリックされた時には既にデータがあるという状態はわかり易い例といえるでしょう。
+
+応用例としては、マウスの動きをモニタし、その軌跡を分析させ、ボタンのような[クリッカブル](http://d.hatena.ne.jp/keyword/%A5%AF%A5%EA%A5%C3%A5%AB%A5%D6%A5%EB)な要素に対して"衝突"判定させる事です。[jQuery の例](https://medium.com/@cihadturhan/a-ux-idea-i-know-where-you-are-aiming-3e00d152afb2)を見てみましょう:
+
+<Figure width={540} height={480} desc="マウスの軌跡を予測するjQueryプラグイン">
+  <Image src="/images/7-principles-of-rich-web-applications/VZ7GRJR3Rl.gif" />
+</Figure>
+
+## まとめ
+
+ウェブは情報の送受信のための最も多彩なメディアの一つとして残り続けるでしょう。自身のページにより多くのダイナミズムを追加し続けていくことによって、新しいものを取り入れていく一方で、その歴史的につづいている Web の利点を保ち続けなければなりません。
+
+[ハイパーリンク](http://d.hatena.ne.jp/keyword/%A5%CF%A5%A4%A5%D1%A1%BC%A5%EA%A5%F3%A5%AF)によって相互接続されているページはどんなタイプのアプリケーションに対しても偉大な建造物です。ユーザーが操作するコード、スタイル、[マークアップ](http://d.hatena.ne.jp/keyword/%A5%DE%A1%BC%A5%AF%A5%A2%A5%C3%A5%D7)のロードは革新的になっています。この進化は[インタラクティブ](http://d.hatena.ne.jp/keyword/%A5%A4%A5%F3%A5%BF%A5%E9%A5%AF%A5%C6%A5%A3%A5%D6)性を犠牲にすること無く、パフォーマンスを向上させるでしょう。
+
+[JavaScript](http://d.hatena.ne.jp/keyword/JavaScript)には最も広く、そして最も自由な既存のプラットフォームのための UX の可能性を最大限に広げることでしょう。新しく、ユニークなチャンスは至るところで採用されている[JavaScript](http://d.hatena.ne.jp/keyword/JavaScript)によって有効になっていくでしょう。

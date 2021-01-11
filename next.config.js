@@ -4,6 +4,10 @@ module.exports = nextra("./components/layouts/nextra-post-layout")({
   images: {
     domains: ["pbs.twimg.com"],
   },
+  i18n: {
+    locales: ["en", "ru", "ja"],
+    defaultLocale: "en",
+  },
   headers() {
     return [
       {
