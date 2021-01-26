@@ -52,6 +52,10 @@ export default function TweetHeader({ tweet }) {
           border-radius: 50% !important;
           border: 1px solid red;
         }
+        .rounded {
+          border-radius: 50% !important;
+          border: 1px solid red;
+        }
         .author {
           display: flex;
           flex-direction: column;
