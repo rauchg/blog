@@ -13,12 +13,20 @@ import Code from "../post/code";
 import Snippet from "../post/snippet";
 import Tweet from "../post/tweet";
 import Quote from "../post/quote";
+import UL, { LI as ULI } from "../post/bullets-list";
+import OL, { LI as OLI } from "../post/numbers-list";
+import TLDR from "../post/tldr";
 
 const components = {
   h2: H2,
   inlineCode: Code,
   code: Snippet,
   p: P,
+  ul: UL,
+  ol: OL,
+  "ul.li": ULI,
+  "ol.li": OLI,
+  TLDR,
   a: ({ children, href }) => {
     if (!href.startsWith("/")) {
       return (
