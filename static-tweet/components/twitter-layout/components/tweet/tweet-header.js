@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function TweetHeader({ tweet }) {
   const url = `https://twitter.com/${tweet.username}`;
   const avatar = tweet.avatar.normal;
@@ -10,7 +12,13 @@ export default function TweetHeader({ tweet }) {
         target="_blank"
         rel="noopener noreferrer"
       >
-        <img src={avatar} alt={tweet.name} />
+        <Image
+          className="rounded"
+          src={avatar}
+          alt={tweet.name}
+          height={36}
+          width={36}
+        />
       </a>
       <a
         href={url}
@@ -41,7 +49,8 @@ export default function TweetHeader({ tweet }) {
         .avatar > img {
           max-width: 100%;
           max-height: 100%;
-          border-radius: 50%;
+          border-radius: 50% !important;
+          border: 1px solid red;
         }
         .author {
           display: flex;
