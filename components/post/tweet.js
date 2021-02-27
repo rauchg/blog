@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import { useTweet } from "../../lib/tweets";
 import Node from "../../static-tweet/components/html/node";
 import components from "../../static-tweet/components/twitter-layout/components";
@@ -9,6 +8,9 @@ export default function Tweet({ id, br, caption }) {
 
   // Happens when `getStaticProps` is traversing the tree to collect the tweet ids
   if (tweet.ignore) return null;
+
+  // The tweet was deleted or restricted from viewing.
+  if (!tweet.ast) return null;
 
   return (
     <main className={twitterTheme.theme}>
