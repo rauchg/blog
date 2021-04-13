@@ -1,6 +1,7 @@
 import Layout from "../components/layouts/main";
 import Link from "next/link";
-import { posts } from "../posts";
+import postsData from "../posts";
+const { posts } = postsData;
 
 export function getStaticProps() {
   return {

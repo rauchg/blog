@@ -2620,7 +2620,7 @@ native-url@0.3.4:
   dependencies:
     querystring "^0.2.0"
 
-next@canary:
+next@^10.0.10-canary.7:
   version "10.0.10-canary.7"
   resolved "https://registry.yarnpkg.com/next/-/next-10.0.10-canary.7.tgz#388673c7f019ea32d3b4c7778ae6befe5a5eecb8"
   integrity sha512-H06Nq+zLUyYmiZUn90jOgE/NgHO5ILMnNrMIEWYaNBk8Ka689ZnjHjffIBidTFwX2D/UNHD9vNQb6YM+pe3twQ==
