@@ -4,9 +4,6 @@ module.exports = nextra("./components/layouts/nextra-post-layout")({
   images: {
     domains: ["pbs.twimg.com"],
   },
-  future: {
-    webpack5: true,
-  },
   headers() {
     return [
       {

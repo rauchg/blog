@@ -1,6 +1,8 @@
+import { createElement } from "react";
+
 const H = ({ id, level = 2, fontSize = 20, children }) => (
   <div id={id}>
-    {React.createElement(
+    {createElement(
       `h${level}`,
       { style: { fontWeight: 500, fontSize } },
       <span>

@@ -1,3 +1,4 @@
+import React from "react";
 import Post from "../../components/layouts/post";
 import Header from "../../components/post/header";
 import P from "../../components/post/paragraph";
@@ -86,7 +87,7 @@ export default withViews(({ views }) => (
       div({ 'class': 'title' }, title),
       video({ autoplay: true, loop: true, src })
     );
-  } else { 
+  } else {
     return div('No video to load');
   }
 }`}</Snippet>
