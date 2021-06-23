@@ -3,7 +3,7 @@ const NumbersList = ({ children }) => (
     {children}
     <style jsx>{`
       ul {
-        margin: 0 0 20px 0;
+        margin: 20px 0;
         padding: 0;
         list-style: inside decimal;
       }
