@@ -17,7 +17,7 @@ export const Img = ({ width, height, src, ...p }) => {
         >
           <Image
             {...p}
-            src={`${src}&name=small`}
+            src={`${src}&name=medium`}
             layout="fill"
             objectFit="cover"
             quality={80}
