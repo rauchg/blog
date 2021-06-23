@@ -10,7 +10,7 @@ export default function TweetInfo({ tweet }) {
     typeof window !== "undefined" && mounted ? new Date(tweet.createdAt) : null;
 
   return (
-    <div className="info">
+    <footer>
       <a
         className="like"
         href={likeUrl}
@@ -46,7 +46,7 @@ export default function TweetInfo({ tweet }) {
         a {
           text-decoration: none;
         }
-        .info {
+        footer {
           font-size: 0.875rem;
           display: flex;
         }
@@ -86,6 +86,6 @@ export default function TweetInfo({ tweet }) {
           }
         }
       `}</style>
-    </div>
+    </footer>
   );
 }

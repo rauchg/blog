@@ -2,10 +2,7 @@ const nextra = require("nextra");
 
 module.exports = nextra("./components/layouts/nextra-post-layout")({
   images: {
-    domains: ["pbs.twimg.com"],
-  },
-  future: {
-    webpack5: true,
+    domains: ["pbs.twimg.com", "abs.twimg.com"],
   },
   headers() {
     return [
