@@ -30,7 +30,7 @@ const components = {
   a: ({ children, href }) => {
     if (!href.startsWith("/")) {
       return (
-        <a href={href} target="_blank">
+        <a href={href} target={href.startsWith("#") ? "" : "_blank"}>
           {children}
         </a>
       );

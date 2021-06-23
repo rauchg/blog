@@ -28,6 +28,9 @@ export default function Tweet({ id, br, caption }) {
           margin-top: 10px;
           padding: 0;
         }
+        p :global(a) {
+          color: #666;
+        }
       `}</style>
     </main>
   );

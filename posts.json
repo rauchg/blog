@@ -1,6 +1,11 @@
 {
   "posts": [
     {
+      "id": "making-the-web-faster",
+      "date": "June 23, 2021",
+      "title": "Making the Web. Faster."
+    },
+    {
       "id": "next-for-vercel",
       "date": "December 16, 2020",
       "title": "Next for Vercel"
