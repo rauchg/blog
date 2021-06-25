@@ -261,9 +261,7 @@ When receiving ordered atomic data updates, it's easy to forget that your applic
 
 The ability for your application to reconcile states disjointed in time is also relevant to our first principle. If you opt to send data with the initial page load, you must consider the time the data is on the wire until your client-side scripts load. That time is essentially equivalent to a disconnection, and the initial connection by your scripts is a session resumption.
 
-<h2 id="control-the-data-exchange-with-the-server">
-  4. Control the data exchange with the server
-</h2>
+<h2 id="control-the-data-exchange-with-the-server">4. Control the data exchange with the server</h2>
 
 <TLDR>
   We can now fine-tune the data exchange with the server. Make sure to handle
