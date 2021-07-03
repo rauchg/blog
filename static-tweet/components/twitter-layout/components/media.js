@@ -17,6 +17,7 @@ export const Img = ({ width, height, src, ...p }) => {
         >
           <Image
             {...p}
+            alt={p.alt || `Tweet from @${tweet.username}`}
             src={`${src}&name=medium`}
             layout="fill"
             objectFit="cover"
