@@ -9,7 +9,7 @@ import Header from "../../components/post/header";
 import withViews from "../../lib/with-views";
 import Head from "next/head";
 import UL, { LI } from "../../components/post/bullets-list";
-import useIsInViewport from "use-is-in-viewport";
+import { useInView } from "react-intersection-observer";
 import Figure, { Image } from "../../components/post/figure";
 import { Ref, FootNotes, Note } from "../../components/post/footnotes";
 import { useCallback } from "react";
@@ -17,14 +17,9 @@ import { useCallback } from "react";
 const DEMO_CODE = `_="G=[[@o=j=28H,[@-j]];j3@(25+=A8)+i*Bji&32?70:,-40-i]b=a[j]=c.cloneNode(Qob#b3@Ub.getContext('2d'DVA8,e8-x,6	(j<17+7	,ix/=2;A3_e$J*J*y,.1KDsetIntervalQ5;f=B4+A20%8-8,ia@0	+B830-f*8	,y=10;f>0&f<9E-10<yV11;-1_(y^-6EOx)^6||i%4)Ex*x+y*y<80||a$Af*50y/f,/fDa5,++j		.;G.sortreturn -e[H}DG.map==A)/-W[,=W+X][H;Vo-i*3e3;Q3@YdrawImage(a[~~L2]],-J,L3]-JD!L2]EiYbeginPath(YmoFbezierCurF()})},j=4DjQj?c#c5:4e3;z=VXW*yij|(z+1)%.5<.1E(zZ191+(U527364,x.5+i1.5*e,(59542-yZ5188+(25080*,y-(j&28]j||OU8-i%)<54-BE25,e,|[1K4K,,K,8K][~~(B48+e/3)%1H,45+B])cos(>>j*4&15)Math..StylU'hsla('+[/2+/2,Xj0,(function(b,e){/J+/4,xY	+'%',sin()*LHL1]16G.push([XZy=W))--;)601]+')'fillfor(Z12700*4+xPI*),.height=*50/f+o,ij%*#.width=$.Rect(@0,Aj/Bi/D);E&&FveTo(-H0]JK,1Lb[Oabs(Qi=Ue=Vx=WiXYa.Z*(_0<x";for(Y=0;$="_ZYXWVUQOLKJHFEDBA@$#	"[Y++];)with(_.split($))_=join(pop());eval(_)`;
 
 function Demo() {
-  let isInViewport, targetRef;
-
-  if (typeof IntersectionObserver != "undefined") {
-    [isInViewport, targetRef] = useIsInViewport({
-      modTop: "500px",
-      modBottom: "250px",
-    });
-  }
+  const { ref, inView } = useInView({
+    margin: "250px 0 500px",
+  });
 
   const onIframe = useCallback(iframe => {
     if (iframe != null) {
@@ -64,8 +59,8 @@ function Demo() {
   });
 
   return (
-    <div ref={targetRef}>
-      {isInViewport ? (
+    <div ref={ref}>
+      {inView ? (
         <iframe
           style={{ border: 0 }}
           width="100%"
