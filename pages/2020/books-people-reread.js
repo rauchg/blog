@@ -247,6 +247,7 @@ function Book({ URL, Name, Image: ImageURL, ASIN, Votes }) {
           height: 250px;
           background-size: cover;
           margin-bottom: 10px;
+          position: relative;
         }
 
         .votes {
