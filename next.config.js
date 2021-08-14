@@ -2,7 +2,12 @@ const nextra = require("nextra");
 
 module.exports = nextra("./components/layouts/nextra-post-layout")({
   images: {
-    domains: ["pbs.twimg.com", "abs.twimg.com"],
+    domains: [
+      "pbs.twimg.com",
+      "abs.twimg.com",
+      "m.media-amazon.com",
+      "images-na.ssl-images-amazon.com"
+    ],
   },
   headers() {
     return [

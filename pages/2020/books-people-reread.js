@@ -1,9 +1,9 @@
 import Post from "../../components/layouts/post";
 import Header from "../../components/post/header";
 import Head from "next/head";
-import useIsInViewport from "use-is-in-viewport";
 import withViews from "../../lib/with-views";
 import P from "../../components/post/paragraph";
+import Image from "next/image";
 
 import {
   loadPageChunk,
@@ -206,30 +206,19 @@ const Page = withViews(({ tweets, views, books }) => (
   </>
 ));
 
-function Book({ URL, Name, Image, ASIN, Votes }) {
-  let isInViewport, targetRef;
-
-  if (typeof IntersectionObserver != "undefined") {
-    [isInViewport, targetRef] = useIsInViewport({
-      modTop: "500px",
-      modBottom: "500px",
-    });
-  }
-
+function Book({ URL, Name, Image: ImageURL, ASIN, Votes }) {
   return (
-    <main ref={targetRef}>
+    <main>
       <a href={URL} target="_blank">
-        <span
-          className="image"
-          style={{
-            backgroundImage: isInViewport
-              ? `url(${
-                  Image ||
-                  `https://images-na.ssl-images-amazon.com/images/P/${ASIN}._LZZZZZZZ_.jpg`
-                })`
-              : "",
-          }}
-        />
+        <span className="image">
+          <Image
+            layout="fill"
+            src={
+              ImageURL ||
+              `https://images-na.ssl-images-amazon.com/images/P/${ASIN}._LZZZZZZZ_.jpg`
+            }
+          />
+        </span>
         <span className="title">
           {Name}
           {Votes > 1 ? <span className="votes">🔥 {Votes}</span> : null}
@@ -258,6 +247,7 @@ function Book({ URL, Name, Image, ASIN, Votes }) {
           height: 250px;
           background-size: cover;
           margin-bottom: 10px;
+          position: relative;
         }
 
         .votes {
