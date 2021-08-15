@@ -1,12 +1,13 @@
 const nextra = require("nextra");
 
 module.exports = nextra("./components/layouts/nextra-post-layout")({
+  reactStrictMode: true,
   images: {
     domains: [
       "pbs.twimg.com",
       "abs.twimg.com",
       "m.media-amazon.com",
-      "images-na.ssl-images-amazon.com"
+      "images-na.ssl-images-amazon.com",
     ],
   },
   headers() {
