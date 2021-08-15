@@ -21,7 +21,7 @@ const Home = ({ posts, date }) => (
         <li key={post.id}>
           <span>{post.date}</span>
           <Link href={post.url}>
-            <a>{post.title}</a>
+            <a href={post.url}>{post.title}</a>
           </Link>
         </li>
       ))}
