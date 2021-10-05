@@ -1,7 +1,12 @@
 import css from "styled-jsx/css";
 
 const { className, styles } = css.resolve`
-   {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-weight: 600;
     margin: var(--heading-margin-top) 0 var(--heading-margin-bottom) 0;
   }

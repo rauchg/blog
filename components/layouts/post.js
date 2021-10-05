@@ -20,8 +20,10 @@ const Post = ({ tweets, children }) => (
       }
 
       @media (min-width: 500px) {
-        max-width: 42rem;
-        margin: auto;
+        main {
+          max-width: 42rem;
+          margin: auto;
+        }
       }
     `}</style>
   </Page>
