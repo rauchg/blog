@@ -37,7 +37,9 @@ const Main = ({ children, headerActive }) => {
           padding: 10px;
         }
         @media (max-width: 600px) {
-          padding: 20px;
+          main {
+            padding: 20px;
+          }
         }
       `}</style>
     </main>
