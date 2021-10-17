@@ -39,19 +39,26 @@ export async function getStaticProps() {
   );
 
   const col = await queryCollection({
-    collectionId,
-    collectionViewId,
-    query: {
-      sort: [{ property: collectionSchema.Votes, direction: "descending" }],
-      aggregations: [{ property: "title", aggregator: "count" }],
+    collection: {
+      id: "ed95c702-dabc-498a-9186-e8ff4719ecc0",
+      spaceId: "7e95f31d-c9d4-4799-ac66-847d56344ef2",
+    },
+    collectionView: {
+      id: "29294b4b-7b0f-405f-8f5e-af4454c258a2",
+      spaceId: "7e95f31d-c9d4-4799-ac66-847d56344ef2",
     },
     loader: {
-      type: "table",
-      limit: 1000,
+      type: "reducer",
+      reducers: {
+        collection_group_results: { type: "results", limit: 1000 },
+        "table:uncategorized:title:count": {
+          type: "aggregation",
+          aggregation: { property: "title", aggregator: "count" },
+        },
+      },
+      sort: [{ property: collectionSchema.Votes, direction: "descending" }],
       searchQuery: "",
       userTimeZone: "America/Los_Angeles",
-      userLocale: "en",
-      loadContentCover: false,
     },
   });
 
@@ -71,7 +78,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      books: col.result.blockIds
+      books: col.result.reducerResults.collection_group_results.blockIds
         .map(blockId => {
           const blockData = col.recordMap.block[blockId];
 
@@ -257,6 +264,7 @@ function Book({ URL, Name, Image: ImageURL, ASIN, Votes }) {
           font-size: 12px;
           margin-left: 10px;
           padding: 3px;
+          white-space: nowrap;
         }
       `}</style>
     </main>
