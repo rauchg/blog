@@ -2,10 +2,7 @@ const nextra = require("nextra");
 
 module.exports = nextra("./components/layouts/nextra-post-layout")({
   reactStrictMode: true,
-  experiments: {
-    swcLoader: true,
-    swcMinify: true
-  },
+  swcMinify: true,
   images: {
     domains: [
       "pbs.twimg.com",
