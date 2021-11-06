@@ -26,13 +26,13 @@ const Header = ({ id, title, date }) => {
           >
             <span className="img">
               <NextImage
-                src="/images/rauchg.png"
+                src="/images/qiwenwang.webp"
                 width={25}
                 height={25}
                 layout="fixed"
               />
             </span>
-            Wang Qiwen
+            QiWen Wang
           </a>
 
           {isMounted ? (
