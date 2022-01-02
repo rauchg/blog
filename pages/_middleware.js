@@ -2,9 +2,10 @@ import { NextResponse } from "next/server";
 
 const initialDate = Date.now();
 
-export default async function middleware(request) {
+export default async function middleware(_, ev) {
   const res = NextResponse.next();
   res.headers.append("x-edge", "1");
+  ev.waitUntil(log());
   return res;
 }
 
