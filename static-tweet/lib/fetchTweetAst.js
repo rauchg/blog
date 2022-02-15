@@ -19,7 +19,9 @@ export default async function fetchTweetAst(tweetId) {
   const tweetHtml = await fetchTweetHtml(tweetId);
   const tweet = tweetHtml && getTweetData(tweetHtml);
 
-  if (!tweet) return;
+  if (!tweet) {
+    throw new Error(`Tweet not found: ${tweetId}`);
+  }
 
   const context = new Context();
   const html = await getTweetHtml(tweet, context);
