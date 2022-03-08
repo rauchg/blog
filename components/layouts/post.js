@@ -47,10 +47,10 @@ const Post = ({ id, tweets, children, title, date, description, og }) => (
       article {
         scroll-margin-top: 50px;
 
-        width: 590px;
+        width: 990px;
         min-height: 700px;
         border: 1px solid #e4d9c3;
-        margin: 40px 0;
+        margin: 4px 0;
         float: left;
         background: url(images/frontmainslice.jpg) bottom left repeat-x;
       }
