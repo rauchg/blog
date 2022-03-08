@@ -41,7 +41,6 @@ const Main = ({ description = null, children }) => {
           min-height: 700px;
           border: 1px solid #e4d9c3;
           margin: 4px 0;
-          float: left;
           background: url(images/frontmainslice.jpg) bottom left repeat-x;
         }
         @media (max-width: 600px) {
@@ -52,7 +51,6 @@ const Main = ({ description = null, children }) => {
             min-height: 700px;
             border: 1px solid #e4d9c3;
             margin: 4px 0;
-            float: left;
             background: url(images/frontmainslice.jpg) bottom left repeat-x;
           }
         }
