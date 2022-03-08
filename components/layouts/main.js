@@ -36,10 +36,24 @@ const Main = ({ description = null, children }) => {
       <style jsx>{`
         main {
           padding: 10px;
+
+          width: 590px;
+          min-height: 700px;
+          border: 1px solid #e4d9c3;
+          margin: 4px 0;
+          float: left;
+          background: url(images/frontmainslice.jpg) bottom left repeat-x;
         }
         @media (max-width: 600px) {
           main {
             padding: 20px;
+
+            width: 590px;
+            min-height: 700px;
+            border: 1px solid #e4d9c3;
+            margin: 4px 0;
+            float: left;
+            background: url(images/frontmainslice.jpg) bottom left repeat-x;
           }
         }
       `}</style>
