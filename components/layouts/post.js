@@ -51,8 +51,8 @@ const Post = ({ id, tweets, children, title, date, description, og }) => (
         min-height: 700px;
         border: 1px solid #e4d9c3;
         margin: 4px 0;
-        float: center;
-        // background: url(images/frontmainslice.jpg) bottom left repeat-x;
+        float: right;
+        background: url(images/frontmainslice.jpg) bottom left repeat-x;
       }
 
       @media (min-width: 500px) {
