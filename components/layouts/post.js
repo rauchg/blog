@@ -40,8 +40,14 @@ const Post = ({ id, tweets, children, title, date, description, og }) => (
     </Tweets.Provider>
     <style jsx>{`
       main {
-        padding: 15px;
+        padding: 15px 200px;
         font-size: 18px;
+        width: 590px;
+        min-height: 700px;
+        border: 1px solid #e4d9c3;
+        margin: 4px 0;
+        float: left;
+        background: url(images/frontmainslice.jpg) bottom left repeat-x;
       }
 
       article {
@@ -53,16 +59,6 @@ const Post = ({ id, tweets, children, title, date, description, og }) => (
           max-width: 42rem;
           margin: auto;
         }
-      }
-
-      body {
-        background: #fff url(/images/body-bg.jpg) center top no-repeat;
-        color: #424242;
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 0.8125em;
-        line-height: 1.5385;
-        margin: 0;
-        padding: 0;
       }
     `}</style>
   </Page>
