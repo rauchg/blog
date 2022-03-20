@@ -1,16 +1,11 @@
 const Logo = () => (
   <span>
-    {/* <svg width="19" height="19" xmlns="http://www.w3.org/2000/svg">
+    <svg width="19" height="19" xmlns="http://www.w3.org/2000/svg">
       <path d="M0 0h19v19H0z" fill="#000" fillRule="evenodd" />
-    </svg> */}
-    <NextImage
-      src="/images/logo.png"
-      width={25}
-      height={25}
-      layout="fixed"
-    />
-    wangqiwen.xyz
-    <style jsx>{`
+    </svg>
+    <img src="/images/logo.png" style="width:19px; height:19px">
+      wangqiwen.xyz
+      <style jsx>{`
       span {
         font-weight: bold;
         font-size: 18px;
