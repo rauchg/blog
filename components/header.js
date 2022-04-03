@@ -38,13 +38,13 @@ const Header = () => (
 
       nav a.src {
         font-size: 13px;
-        color: #333;
+        color: var(--meta-text-color);
       }
 
       nav a.follow {
         font-weight: bold;
-        color: #fff;
-        background: #000;
+        color: var(--cta-text-color);
+        background: var(--cta-background-color);
         font-size: 13px;
       }
 

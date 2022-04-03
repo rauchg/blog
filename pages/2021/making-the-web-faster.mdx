@@ -8,6 +8,7 @@ date: June 23, 2021
 import getTweets from "../../lib/get-tweets";
 import HR from "../../components/post/hr";
 import Figure, { Image } from "../../components/post/figure";
+import Tweet from '../../components/post/tweet';
 
 export async function getStaticProps() {
   const tweets = await getTweets(MDXContent);

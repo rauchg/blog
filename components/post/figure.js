@@ -34,9 +34,7 @@ const Figure = ({ desc, href, children, wide, height, width }) => {
             maxWidth: "100%",
           }}
         >
-          <FigureContext.Provider value={{ width, height }}>
-            {children}
-          </FigureContext.Provider>
+          {children}
         </div>
       </div>
     ) : (
@@ -86,9 +84,8 @@ const Figure = ({ desc, href, children, wide, height, width }) => {
 };
 
 const Image = ({ width = null, height = null, style, src }) => {
-  const { width: contextWidth, height: contextHeight } = useContext(
-    FigureContext
-  );
+  const { width: contextWidth, height: contextHeight } =
+    useContext(FigureContext);
 
   if (width == null) {
     width = contextWidth;

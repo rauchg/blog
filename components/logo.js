@@ -13,6 +13,11 @@ const Logo = () => (
         height: 30px;
         line-height: 20px;
         padding: 10px;
+        color: var(--logo-text-color);
+      }
+
+      path {
+        fill: var(--logo-text-color);
       }
 
       svg {

@@ -14,7 +14,7 @@ export function getStaticProps() {
   };
 }
 
-const Home = ({ posts, date }) => (
+const Home = ({ posts }) => (
   <Layout>
     <ul>
       {posts.map(post => (
@@ -33,20 +33,20 @@ const Home = ({ posts, date }) => (
       }
 
       ul li span {
-        color: #5b5b5b;
+        color: var(--meta-text-color);
         display: block;
         font-size: 13px;
       }
 
       ul li a {
-        font-weight: bold;
+        font-weight: 600;
         color: var(--link-color);
         text-decoration: none;
       }
 
       @media (any-hover: hover) {
         ul li a:hover {
-          background: #eee;
+          background: var(--link-hover-background-color);
         }
 
         ul li a:active {
