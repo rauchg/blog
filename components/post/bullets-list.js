@@ -7,30 +7,25 @@ const BulletsList = ({ children }) => (
         padding: 0;
         list-style-type: none;
       }
-    `}</style>
-  </ul>
-);
 
-export default BulletsList;
-
-const LI = ({ children }) => (
-  <li>
-    {children}
-    <style jsx>{`
-      li {
+      ul > :global(li) {
         margin-bottom: 15px;
         padding-left: 20px;
         line-height: 1.5;
       }
 
-      li:before {
+      ul > :global(li:before) {
         content: "-";
         color: #ababab;
         position: absolute;
         margin-left: -20px;
       }
     `}</style>
-  </li>
+  </ul>
 );
+
+export default BulletsList;
+
+const LI = ({ children }) => <li>{children}</li>;
 
 export { LI };

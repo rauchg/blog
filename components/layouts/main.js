@@ -7,7 +7,7 @@ import Header from "../header";
 
 import "nprogress";
 
-const Main = ({ children, headerActive }) => {
+const Main = ({ children }) => {
   return (
     <main>
       <Head>
@@ -28,7 +28,7 @@ const Main = ({ children, headerActive }) => {
         {typography}
       </style>
 
-      <Header active={headerActive} />
+      <Header />
 
       {children}
 

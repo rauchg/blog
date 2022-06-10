@@ -1,17 +1,13 @@
 import Post from "../../components/layouts/post";
 import P from "../../components/post/paragraph";
-import Header from "../../components/post/header";
 import Quote from "../../components/post/quote";
 import { H2, H3 } from "../../components/post/heading";
 import { Ref, FootNotes, Note } from "../../components/post/footnotes";
 import Code from "../../components/post/code";
 import Snippet from "../../components/post/snippet";
-import withViews from "../../lib/with-views";
 
-export default withViews(({ views }) => (
-  <Post>
-    <Header title="ECMAScript 6" date="February 22, 2015" views={views} />
-
+export default () => (
+  <Post title="ECMAScript 6" date="February 22, 2015">
     <Quote by="Ludwig Wittgenstein">
       The limits of my language mean the limits of my world.
     </Quote>
@@ -562,7 +558,7 @@ var method = opts.method || 'GET'`}</Snippet>
       </Note>
     </FootNotes>
   </Post>
-));
+);
 
 const links = [
   "https://twitter.com/fogus/status/550717447163355136",

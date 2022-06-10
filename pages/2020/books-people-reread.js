@@ -1,7 +1,4 @@
 import Post from "../../components/layouts/post";
-import Header from "../../components/post/header";
-import Head from "next/head";
-import withViews from "../../lib/with-views";
 import P from "../../components/post/paragraph";
 import Image from "next/image";
 
@@ -13,7 +10,7 @@ import {
 
 export async function getStaticProps() {
   const {
-    recordMap: { collection, collection_view },
+    recordMap: { collection },
   } = await loadPageChunk({
     pageId: "fa0a337c-3807-4aa9-b30f-dddc6ef4ec2e",
     chunkNumber: 0,
@@ -33,7 +30,6 @@ export async function getStaticProps() {
   });
 
   const [collectionId] = Object.keys(collection);
-  const [collectionViewId] = Object.keys(collection_view);
   const collectionSchema = getCollectionSchemaNameIndex(
     collection[collectionId].value.schema
   );
@@ -133,30 +129,15 @@ export async function getStaticProps() {
   };
 }
 
-const Page = withViews(({ tweets, views, books }) => (
+const Page = ({ tweets, views, books }) => (
   <>
-    <Post tweets={tweets}>
-      <Header
-        title="Books people (re)read"
-        date="August 2, 2020"
-        timestamp="2020-08-03T01:38:52.500Z"
-        views={views}
-      />
-      <Head>
-        <meta property="og:title" content="Books people (re)read" />
-        <meta property="og:site_name" content="Guillermo Rauch's blog" />
-        <meta
-          property="og:description"
-          content="What books do people read more than once? That's what I asked on Twitter, which created an epic reading list"
-        />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@rauchg" />
-        <meta
-          property="og:image"
-          content="https://res.cloudinary.com/rauchg/image/upload/v1596418125/blog/og/26ED5322-8782-4B58-BDA1-43FC2018508F_ud9syf.png"
-        />
-      </Head>
-
+    <Post
+      tweets={tweets}
+      title="Books people (re)read"
+      date="August 2, 2020"
+      description="What books do people read more than once? That's what I asked on Twitter, which created an epic reading list"
+      og="https://res.cloudinary.com/rauchg/image/upload/v1596418125/blog/og/26ED5322-8782-4B58-BDA1-43FC2018508F_ud9syf.png"
+    >
       <P>
         Last night I{" "}
         <a
@@ -211,7 +192,7 @@ const Page = withViews(({ tweets, views, books }) => (
       `}</style>
     </div>
   </>
-));
+);
 
 function Book({ URL, Name, Image: ImageURL, ASIN, Votes }) {
   return (

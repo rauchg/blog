@@ -1,14 +1,36 @@
+import React from "react";
 import Page from "./main";
 import { Tweets } from "../../lib/tweets";
+import Head from "next/head";
+import Header from "../post/header";
+import { TwitterContextProvider } from "react-static-tweets";
 
-const Post = ({ tweets, children }) => (
+const Post = ({ tweets, children, title, date, description, og }) => (
   <Page>
+    <Head>
+      <meta property="og:title" content={title} />
+      <meta property="og:site_name" content="Guillermo Rauch's blog" />
+      <meta property="og:description" content={description} />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:site" content="@rauchg" />
+      <meta property="og:image" content={og} />
+    </Head>
     <Tweets.Provider value={tweets}>
-      <main>
-        <article>{children}</article>
-      </main>
+      <TwitterContextProvider
+        value={{
+          swrOptions: {
+            isPaused: () => true,
+          },
+        }}
+      >
+        <main>
+          <article>
+            <Header title={title} date={date} />
+            {children}
+          </article>
+        </main>
+      </TwitterContextProvider>
     </Tweets.Provider>
-
     <style jsx>{`
       main {
         padding: 15px;

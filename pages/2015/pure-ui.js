@@ -1,6 +1,5 @@
 import React from "react";
 import Post from "../../components/layouts/post";
-import Header from "../../components/post/header";
 import P from "../../components/post/paragraph";
 import HR from "../../components/post/hr";
 import Code from "../../components/post/code";
@@ -8,12 +7,9 @@ import Snippet from "../../components/post/snippet";
 import { Ref, FootNotes, Note } from "../../components/post/footnotes";
 import Figure, { Image } from "../../components/post/figure";
 import loadScript from "load-script";
-import withViews from "../../lib/with-views";
 
-export default withViews(({ views }) => (
-  <Post>
-    <Header title="Pure UI" date="July 13, 2015" views={views} />
-
+export default () => (
+  <Post title="Pure UI" date="July 13, 2015">
     <P>
       I recently redesigned and implemented a new version of{" "}
       <a href={links[0]} target="_blank">
@@ -586,7 +582,7 @@ export default withViews(({ views }) => (
       }
     `}</style>
   </Post>
-));
+);
 
 class Demos extends React.Component {
   constructor(props) {

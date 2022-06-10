@@ -1,16 +1,21 @@
----
-title: Develop, Preview, Test
-description: The rise of deploy previews and serverless testing infrastructure is revolutionizing the way we test web projects.
-og: https://res.cloudinary.com/rauchg/image/upload/v1591890273/blog/og/4C8D37F4-9C56-4251-894B-F48EF289C798_fxqt6c.png
-date: June 11, 2020
----
-
 import getTweets from "../../lib/get-tweets";
 import Figure, { Image } from "../../components/post/figure";
+import Tweet from "../../components/post/tweet";
+import Post from "../../components/layouts/post";
 
 export async function getStaticProps() {
   const tweets = await getTweets(MDXContent);
   return { props: { tweets } };
+}
+
+export default function ({ children, tweets }) {
+  return <Post 
+    title="Develop, Preview, Test"
+    description="The rise of deployment previews and serverless testing infrastructure is revolutionizing the way we test Web projects."
+    og="https://res.cloudinary.com/rauchg/image/upload/v1591890273/blog/og/4C8D37F4-9C56-4251-894B-F48EF289C798_fxqt6c.png"
+    date="June 11, 2020"
+    tweets={tweets}
+  >{children}</Post>
 }
 
 A few years ago I tweeted a simple guideline that
@@ -51,7 +56,7 @@ now fully revert the conventional testing pyramid:
   width={1000}
   height={450}
   desc={
-    <div>
+    <span>
       Martin Fowler's conventional{" "}
       <a
         href="https://martinfowler.com/articles/practical-test-pyramid.html#TheTestPyramid"
@@ -60,7 +65,7 @@ now fully revert the conventional testing pyramid:
         testing pyramid
       </a>
       . What if 🐢 and 💲 went away?
-    </div>
+    </span>
   }
 >
   <Image src="/images/develop-preview-test/pyramid.jpg" />
@@ -73,8 +78,8 @@ software quality.
 
 You might be using the fanciest new compiler, the newest type system, but
 won't do well if, after you ship, your site doesn't load in Chrome at all
-because you forgot to send the right HTTP headers for your
-`.js` files. Or you use features not compatible with Safari.
+because you forgot to send the right HTTP headers for your `.js` files.
+Or you use features not compatible with Safari.
 
 Modern cloud software has a great deal of complexity that cannot be
 ascertained "in the lab", or by running artificial tests in your computer.
@@ -104,7 +109,7 @@ mostly re-used from deploy to deploy.
 
 <Figure
   desc={
-    <div>
+    <span>
       An example of a PR automatically deployed{" "}
       <a
         target="_blank"
@@ -112,7 +117,7 @@ mostly re-used from deploy to deploy.
       >
         for this very blog
       </a>
-    </div>
+    </span>
   }
   width={1362}
   height={388}

@@ -1,6 +1,6 @@
 import Layout from "../components/layouts/main";
 import Link from "next/link";
-import postsData from "../posts";
+import postsData from "../posts.json";
 const { posts } = postsData;
 
 export function getStaticProps() {
@@ -14,7 +14,7 @@ export function getStaticProps() {
   };
 }
 
-const Home = ({ posts, date }) => (
+const Home = ({ posts }) => (
   <Layout>
     <ul>
       {posts.map(post => (

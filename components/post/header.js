@@ -1,6 +1,5 @@
 import Head from "next/head";
 import { useState, useEffect } from "react";
-import dynamic from "next/dynamic";
 import HeartIcon from "../icons/heart";
 import RefreshCwIcon from "../icons/refresh-cw";
 import commaNumber from "comma-number";
@@ -11,12 +10,12 @@ const Header = ({
   title,
   date,
   timestamp,
-  views = null,
   tweetUrl = null,
   twitterRetweets = null,
   twitterLikes = null,
 }) => {
   const [isMounted, setIsMounted] = useState(false);
+  const [views, _setViews] = useState(null);
 
   useEffect(() => {
     setIsMounted(true);

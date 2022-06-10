@@ -1,14 +1,10 @@
 import Post from "../../components/layouts/post";
-import Header from "../../components/post/header";
 import P from "../../components/post/paragraph";
 import Code from "../../components/post/code";
 import { Ref, FootNotes, Note } from "../../components/post/footnotes";
-import withViews from "../../lib/with-views";
 
-export default withViews(({ views }) => (
-  <Post>
-    <Header title="Addressable Errors" date="February 4, 2016" views={views} />
-
+export default () => (
+  <Post title="Addressable Errors" date="February 4, 2016">
     <P>
       One of the biggest problems with debugging is that error and warning
       messages are <b>static</b>. The only way for errors to become more useful
@@ -69,7 +65,7 @@ export default withViews(({ views }) => (
       </Note>
     </FootNotes>
   </Post>
-));
+);
 
 const links = [
   "http://elm-lang.org/blog/compiler-errors-for-humans",

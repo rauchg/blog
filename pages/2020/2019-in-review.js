@@ -2,14 +2,12 @@ import Post from "../../components/layouts/post";
 import Quote from "../../components/post/quote";
 import P from "../../components/post/paragraph";
 import Tweet from "../../components/post/tweet";
-import Header from "../../components/post/header";
 import Code from "../../components/post/code";
 import Snippet from "../../components/post/snippet";
 import { H2 } from "../../components/post/heading";
 import Figure, { Image } from "../../components/post/figure";
 import { Ref, FootNotes, Note } from "../../components/post/footnotes";
 import UL, { LI } from "../../components/post/bullets-list";
-import withViews from "../../lib/with-views";
 import YouTube from "../../components/post/youtube";
 import Head from "next/head";
 import getTweets from "../../lib/get-tweets";
@@ -19,9 +17,8 @@ export async function getStaticProps() {
   return { props: { tweets } };
 }
 
-const Page = withViews(({ tweets, views }) => (
-  <Post tweets={tweets}>
-    <Header title="2019 in Review" date="January 2, 2020" views={views} />
+const Page = ({ tweets }) => (
+  <Post tweets={tweets} title="2019 in Review" date="January 2, 2020">
     <Head>
       <meta property="og:title" content="2019 in Review" />
       <meta property="og:site_name" content="Guillermo Rauch's blog" />
@@ -1214,6 +1211,6 @@ const Page = withViews(({ tweets, views }) => (
       </Note>
     </FootNotes>
   </Post>
-));
+);
 
 export default Page;
