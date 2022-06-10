@@ -1,11 +1,13 @@
----
-title: 7 Principles of Rich Web Applications
-description:
-og:
-date: November 4, 2014
----
-
 import Figure, { Image } from "../../components/post/figure";
+import TLDR from "../../components/post/tldr";
+import Post from "../../components/layouts/post";
+
+export default function ({ children }) {
+  return <Post 
+    title="7 Principles of Rich Web Applications"
+    date="November 4, 2014"
+  >{children}</Post>
+}
 
 This is a writeup based on a presentation I gave at BrazilJS in August 2014. It builds on some of the ideas I've been [blogging](https://cloudup.com/blog/the-need-for-speed) [about](https://cloudup.com/blog/introducing-mydb) recently related mostly to UX and performance.
 

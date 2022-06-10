@@ -1,17 +1,22 @@
----
-title: Next for Vercel
-description: We are raising 40M to expand our frontend development and collaboration platform
-og: https://res.cloudinary.com/rauchg/image/upload/v1608103535/blog/2020/next-for-vercel/D934383E-1387-4D67-9937-191153F0C770_js2tgt.jpg
-date: December 16, 2020
----
-
 import getTweets from "../../lib/get-tweets";
 import HR from "../../components/post/hr";
 import Figure, { Image } from "../../components/post/figure";
+import Tweet from "../../components/post/tweet";
+import Post from "../../components/layouts/post";
 
 export async function getStaticProps() {
   const tweets = await getTweets(MDXContent);
   return { props: { tweets } };
+}
+
+export default function ({ children, tweets }) {
+  return <Post 
+    title="Next for Vercel"
+    description="We are raising 40M to expand our frontend development and collaboration platform"
+    og="https://res.cloudinary.com/rauchg/image/upload/v1608103535/blog/2020/next-for-vercel/D934383E-1387-4D67-9937-191153F0C770_js2tgt.jpg"
+    date="December 16, 2020"
+    tweets={tweets}
+  >{children}</Post>
 }
 
 Following our [Series A announcement in April](/2020/vercel), I'm happy to announce a new **Vercel $40M Series B** round led by [GV](https://www.gv.com), with [Greenoaks](http://www.greenoakscap.com), [Bedrock](https://www.bedrockcap.com), [Geodesic](https://www.geodesiccap.com), existing investors [Accel](https://www.accel.com) & [CRV](https://www.crv.com).

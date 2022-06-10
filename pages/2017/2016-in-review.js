@@ -1,6 +1,5 @@
 import Post from "../../components/layouts/post";
 import ZEIT from "../../components/zeit";
-import Header from "../../components/post/header";
 import P from "../../components/post/paragraph";
 import { H2, H3 } from "../../components/post/heading";
 import Code from "../../components/post/code";
@@ -11,12 +10,9 @@ import Figure, { Image, Video } from "../../components/post/figure";
 import Quote from "../../components/post/quote";
 import Link from "next/link";
 import YouTube from "../../components/post/youtube";
-import withViews from "../../lib/with-views";
 
-export default withViews(({ views }) => (
-  <Post>
-    <Header title="2016 in Review" date="January 6, 2017" views={views} />
-
+export default () => (
+  <Post title="2016 in Review" date="January 6, 2017">
     <P>
       What follows is a brief summary of my year organized by different
       categories.
@@ -1085,4 +1081,4 @@ export default withViews(({ views }) => (
       </Note>
     </FootNotes>
   </Post>
-));
+);

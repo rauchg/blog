@@ -5,8 +5,6 @@ import Post from "../../components/layouts/post";
 import { H2 } from "../../components/post/heading";
 import Code from "../../components/post/code";
 import Snippet from "../../components/post/snippet";
-import Header from "../../components/post/header";
-import withViews from "../../lib/with-views";
 import Head from "next/head";
 import UL, { LI } from "../../components/post/bullets-list";
 import { useInView } from "react-intersection-observer";
@@ -85,9 +83,8 @@ function Demo() {
   );
 }
 
-export default withViews(({ views }) => (
-  <Post>
-    <Header title="An Ode to Code Golf" date="April 26, 2020" views={views} />
+export default () => (
+  <Post title="An Ode to Code Golf" date="April 26, 2020">
     <Head>
       <meta property="og:title" content="An Ode to Code Golf" />
       <meta property="og:site_name" content="Guillermo Rauch's blog" />
@@ -732,4 +729,4 @@ export default withViews(({ views }) => (
       </Note>
     </FootNotes>
   </Post>
-));
+);

@@ -10,9 +10,8 @@ import { H2 } from "../../components/post/heading";
 import UL, { LI } from "../../components/post/bullets-list";
 import Post from "../../components/layouts/post";
 
-export default withViews(({ views }) => (
-  <Post>
-    <Header title="Static Hoisting" date="May 2, 2020" views={views} />
+export default () => (
+  <Post title="Static Hoisting" date="May 2, 2020">
     <Head>
       <meta property="og:title" content="Static Hoisting" />
       <meta property="og:site_name" content="Guillermo Rauch's blog" />
@@ -326,7 +325,7 @@ a(314, 159)
       }
     `}</style>
   </Post>
-));
+);
 
 const DIAGRAM_FONT =
   '"SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace';

@@ -1,17 +1,9 @@
 import Post from "../../components/layouts/post";
 import Quote from "../../components/post/quote";
 import P from "../../components/post/paragraph";
-import Header from "../../components/post/header";
-import withViews from "../../lib/with-views";
 
-export default withViews(({ views }) => (
-  <Post>
-    <Header
-      title="It's Hard to Forego Efficiency"
-      date="March 28, 2017"
-      views={views}
-    />
-
+export default () => (
+  <Post title="It's hard to forego efficiency" date="March 28, 2017">
     <P>We live in a world of tradeoffs.</P>
 
     <P>
@@ -145,4 +137,4 @@ export default withViews(({ views }) => (
       eager to make their contribution.
     </P>
   </Post>
-));
+);
