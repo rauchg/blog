@@ -7,22 +7,17 @@ const NumbersList = ({ children }) => (
         padding: 0;
         list-style: inside decimal;
       }
+
+      ul > :global(li) {
+        margin-bottom: 5px;
+        line-height: 1.5;
+      }
     `}</style>
   </ul>
 );
 
 export default NumbersList;
 
-const LI = ({ children }) => (
-  <li>
-    {children}
-    <style jsx>{`
-      li {
-        margin-bottom: 5px;
-        line-height: 1.5;
-      }
-    `}</style>
-  </li>
-);
+const LI = ({ children }) => <li>{children}</li>;
 
 export { LI };
