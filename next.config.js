@@ -1,6 +1,15 @@
-const nextra = require("nextra");
+const withMDX = require("@next/mdx")({
+  extension: /\.mdx?$/,
+  options: {
+    remarkPlugins: [],
+    rehypePlugins: [],
+    providerImportSource: "@mdx-js/react",
+  },
+});
 
-module.exports = nextra("./components/layouts/nextra-post-layout")({
+module.exports = withMDX({
+  // Append the default value with md extensions
+  pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdx"],
   reactStrictMode: true,
   swcMinify: true,
   images: {
