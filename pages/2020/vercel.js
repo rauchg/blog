@@ -23,19 +23,12 @@ export const PostHrefLang = () => (
 );
 
 export default withViews(({ views }) => (
-  <Post>
-    <Header title="Vercel" date="April 21, 2020" views={views} />
-    <Head>
-      <meta property="og:title" content="Vercel" />
-      <meta property="og:site_name" content="Guillermo Rauch's blog" />
-      <meta
-        property="og:description"
-        content="Our journey continues with a new name: Vercel"
-      />
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:site" content="@rauchg" />
-      <meta property="og:image" content="https://rauchg.com/og/vercel.png" />
-    </Head>
+  <Post
+    title="Vercel"
+    date="April 21, 2020"
+    og="https://rauchg.com/og/vercel.png"
+    description="Our journey continues with a new name: Vercel"
+  >
     <PostHrefLang />
 
     <P>
