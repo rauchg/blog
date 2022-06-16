@@ -3,7 +3,11 @@ import Quote from "../../components/post/quote";
 import P from "../../components/post/paragraph";
 
 export default () => (
-  <Post title="It's hard to forego efficiency" date="March 28, 2017">
+  <Post
+    id="its-hard-to-forego-efficiency"
+    title="It's hard to forego efficiency"
+    date="March 28, 2017"
+  >
     <P>We live in a world of tradeoffs.</P>
 
     <P>

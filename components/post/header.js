@@ -1,21 +1,13 @@
 import Head from "next/head";
 import { useState, useEffect } from "react";
-import HeartIcon from "../icons/heart";
-import RefreshCwIcon from "../icons/refresh-cw";
-import commaNumber from "comma-number";
 import TimeAgo from "../time-ago";
 import NextImage from "next/image";
+import dynamic from "next/dynamic";
 
-const Header = ({
-  title,
-  date,
-  timestamp,
-  tweetUrl = null,
-  twitterRetweets = null,
-  twitterLikes = null,
-}) => {
+const Views = dynamic(() => import("./views"));
+
+const Header = ({ id, title, date }) => {
   const [isMounted, setIsMounted] = useState(false);
-  const [views, _setViews] = useState(null);
 
   useEffect(() => {
     setIsMounted(true);
@@ -48,49 +40,19 @@ const Header = ({
           </a>
 
           {isMounted ? (
-            tweetUrl ? (
-              <a
-                className={`date ${isMounted ? "" : "loading"}`}
-                target="_blank"
-                href={tweetUrl}
-              >
-                <span className="sep" />
-                <span className="short">
-                  <TimeAgo timestamp={timestamp} date={date} />
-                </span>
-                <span className="full">
-                  <TimeAgo timestamp={timestamp} date={date} long={true} />
-                </span>
-              </a>
-            ) : (
-              <span className={`date ${isMounted ? "" : "loading"}`}>
-                <span className="sep" />
-                <span className="short">
-                  <TimeAgo timestamp={timestamp} date={date} />
-                </span>
-                <span className="full">
-                  <TimeAgo timestamp={timestamp} date={date} long={true} />
-                </span>
+            <span className={`date ${isMounted ? "" : "loading"}`}>
+              <span className="sep" />
+              <span className="short">
+                <TimeAgo date={date} />
               </span>
-            )
+              <span className="full">
+                <TimeAgo date={date} long={true} />
+              </span>
+            </span>
           ) : null}
         </span>
 
-        {twitterRetweets != null ? (
-          <span className="twitter">
-            <a href="#" className="retweets">
-              <RefreshCwIcon /> {twitterRetweets}
-            </a>
-
-            <a href="#" className="likes">
-              <HeartIcon /> {twitterLikes}
-            </a>
-          </span>
-        ) : (
-          <span className={`views ${views == null ? "loading" : ""}`}>
-            <em>{commaNumber(views)}</em> views
-          </span>
-        )}
+        <Views id={new Date(date).getFullYear() + "-" + id} />
       </nav>
 
       <style jsx>{`
@@ -175,20 +137,6 @@ const Header = ({
         .twitter :global(svg) {
           width: 15px !important;
           margin-right: 5px;
-        }
-
-        nav .views {
-          opacity: 1;
-          transition: 100ms ease-in opacity;
-        }
-
-        nav .views em {
-          font-style: normal;
-          font-variant-numeric: tabular-nums;
-        }
-
-        nav .views.loading {
-          opacity: 0;
         }
 
         @media (any-hover: hover) {

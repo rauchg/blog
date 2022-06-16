@@ -7,7 +7,7 @@ import Code from "../../components/post/code";
 import Snippet from "../../components/post/snippet";
 
 export default () => (
-  <Post title="ECMAScript 6" date="February 22, 2015">
+  <Post id="ecmascript-6" title="ECMAScript 6" date="February 22, 2015">
     <Quote by="Ludwig Wittgenstein">
       The limits of my language mean the limits of my world.
     </Quote>

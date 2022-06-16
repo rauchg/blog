@@ -84,21 +84,13 @@ function Demo() {
 }
 
 export default () => (
-  <Post title="An Ode to Code Golf" date="April 26, 2020">
-    <Head>
-      <meta property="og:title" content="An Ode to Code Golf" />
-      <meta property="og:site_name" content="Guillermo Rauch's blog" />
-      <meta
-        property="og:description"
-        content="Learning to code needs to be fun… and competitive"
-      />
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:site" content="@rauchg" />
-      <meta
-        property="og:image"
-        content="https://rauchg.com/og/an-ode-to-code-golf.png"
-      />
-    </Head>
+  <Post
+    id="an-ode-to-code-golf"
+    title="An Ode to Code Golf"
+    date="April 26, 2020"
+    description="Learning to code needs to be fun… and competitive"
+    og="https://rauchg.com/og/an-ode-to-code-golf.png"
+  >
     <P>
       Even though I don't write code these days,{" "}
       <Link href="/2020/vercel">
