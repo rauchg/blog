@@ -125,13 +125,14 @@ export async function getStaticProps() {
         })
         .filter(v => v != null),
     },
-    revalidate: 1,
+    revalidate: 60,
   };
 }
 
 const Page = ({ tweets, views, books }) => (
   <>
     <Post
+      id="books-people-reread"
       tweets={tweets}
       title="Books people (re)read"
       date="August 2, 2020"

@@ -12,7 +12,7 @@ import Link from "next/link";
 import YouTube from "../../components/post/youtube";
 
 export default () => (
-  <Post title="2016 in Review" date="January 6, 2017">
+  <Post id="2016-in-review" title="2016 in Review" date="January 6, 2017">
     <P>
       What follows is a brief summary of my year organized by different
       categories.

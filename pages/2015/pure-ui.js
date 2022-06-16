@@ -9,7 +9,7 @@ import Figure, { Image } from "../../components/post/figure";
 import loadScript from "load-script";
 
 export default () => (
-  <Post title="Pure UI" date="July 13, 2015">
+  <Post id="pure-ui" title="Pure UI" date="July 13, 2015">
     <P>
       I recently redesigned and implemented a new version of{" "}
       <a href={links[0]} target="_blank">

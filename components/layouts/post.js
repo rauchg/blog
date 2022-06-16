@@ -5,7 +5,7 @@ import Head from "next/head";
 import Header from "../post/header";
 import { TwitterContextProvider } from "react-static-tweets";
 
-const Post = ({ tweets, children, title, date, description, og }) => (
+const Post = ({ id, tweets, children, title, date, description, og }) => (
   <Page>
     <Head>
       <meta property="og:title" content={title} />
@@ -25,7 +25,7 @@ const Post = ({ tweets, children, title, date, description, og }) => (
       >
         <main>
           <article>
-            <Header title={title} date={date} />
+            <Header id={id} title={title} date={date} />
             {children}
           </article>
         </main>

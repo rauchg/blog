@@ -1,31 +1,19 @@
 import P from "../../components/post/paragraph";
-import Head from "next/head";
-import Header from "../../components/post/header";
-import withViews from "../../lib/with-views";
 import Link from "next/link";
 import Code from "../../components/post/code";
 import Snippet from "../../components/post/snippet";
-import Figure from "../../components/post/figure";
 import { H2 } from "../../components/post/heading";
 import UL, { LI } from "../../components/post/bullets-list";
 import Post from "../../components/layouts/post";
 
 export default () => (
-  <Post title="Static Hoisting" date="May 2, 2020">
-    <Head>
-      <meta property="og:title" content="Static Hoisting" />
-      <meta property="og:site_name" content="Guillermo Rauch's blog" />
-      <meta
-        property="og:description"
-        content="From static hosting, to static hoisting"
-      />
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:site" content="@rauchg" />
-      <meta
-        property="og:image"
-        content="https://rauchg.com/og/static-hoisting.png"
-      />
-    </Head>
+  <Post
+    id="static-hoisting"
+    title="Static Hoisting"
+    description="From static hosting, to static hoisting"
+    date="May 2, 2020"
+    og="https://rauchg.com/og/static-hoisting.png"
+  >
     <P>
       Since I published my{" "}
       <Link href="/2020/2019-in-review">

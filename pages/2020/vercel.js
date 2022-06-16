@@ -1,17 +1,6 @@
 import Post from "../../components/layouts/post";
-import Quote from "../../components/post/quote";
 import P from "../../components/post/paragraph";
-import Tweet from "../../components/post/tweet";
-import Header from "../../components/post/header";
-import Code from "../../components/post/code";
-import Snippet from "../../components/post/snippet";
 import { H2, H3 } from "../../components/post/heading";
-import Figure, { Image } from "../../components/post/figure";
-import { Ref, FootNotes, Note } from "../../components/post/footnotes";
-import UL, { LI } from "../../components/post/bullets-list";
-import withViews from "../../lib/with-views";
-import YouTube from "../../components/post/youtube";
-import Head from "next/head";
 import Link from "next/link";
 import Hreflang from "../../components/hreflang";
 
@@ -22,8 +11,9 @@ export const PostHrefLang = () => (
   />
 );
 
-export default withViews(({ views }) => (
+export default () => (
   <Post
+    id="vercel"
     title="Vercel"
     date="April 21, 2020"
     og="https://rauchg.com/og/vercel.png"
@@ -350,4 +340,4 @@ export default withViews(({ views }) => (
       }
     `}</style>
   </Post>
-));
+);

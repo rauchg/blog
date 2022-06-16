@@ -9,7 +9,6 @@ import Figure, { Image } from "../../components/post/figure";
 import { Ref, FootNotes, Note } from "../../components/post/footnotes";
 import UL, { LI } from "../../components/post/bullets-list";
 import YouTube from "../../components/post/youtube";
-import Head from "next/head";
 import getTweets from "../../lib/get-tweets";
 
 export async function getStaticProps() {
@@ -18,22 +17,14 @@ export async function getStaticProps() {
 }
 
 const Page = ({ tweets }) => (
-  <Post tweets={tweets} title="2019 in Review" date="January 2, 2020">
-    <Head>
-      <meta property="og:title" content="2019 in Review" />
-      <meta property="og:site_name" content="Guillermo Rauch's blog" />
-      <meta
-        property="og:description"
-        content="The evolution of our company, our open-source work, interesting news and lessons in product design and engineering in 2019."
-      />
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:site" content="@rauchg" />
-      <meta
-        property="og:image"
-        content="https://rauchg.com/og/2019-in-review.png"
-      />
-    </Head>
-
+  <Post
+    id="2019-in-review"
+    tweets={tweets}
+    description="The evolution of our company, our open-source work, interesting news and lessons in product design and engineering in 2019."
+    title="2019 in Review"
+    date="January 2, 2020"
+    og="https://rauchg.com/og/2019-in-review.png"
+  >
     <P>
       <em>
         This post is a quick summary of the evolution of{" "}

@@ -1,11 +1,11 @@
 import { ago } from "time-ago";
 
-export default function TimeAgo({ date, timestamp, long = false }) {
+export default function TimeAgo({ date, long = false }) {
   return !long ? (
-    <>{ago(timestamp || date, true)} ago</>
+    <>{ago(date, true)} ago</>
   ) : (
     <>
-      {date} ({ago(timestamp || date, true)} ago)
+      {date} ({ago(date, true)} ago)
     </>
   );
 }
