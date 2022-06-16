@@ -1,27 +1,18 @@
 import Post from "../../../components/layouts/post";
 import P from "../../../components/post/paragraph";
 import HR from "../../../components/post/hr";
-import Header from "../../../components/post/header";
 import { H2, H3 } from "../../../components/post/heading";
-import withViews from "../../../lib/with-views";
-import Head from "next/head";
 import Link from "next/link";
 import { PostHrefLang } from "../../2020/vercel";
 
-export default withViews(({ views }) => (
-  <Post>
-    <Header title="Vercel (日本語訳)" date="April 21, 2020" views={views} />
-    <Head>
-      <meta property="og:title" content="Vercel (日本語訳)" />
-      <meta property="og:site_name" content="Guillermo Rauchのブログ" />
-      <meta
-        property="og:description"
-        content="「Vercel」という名と共に、私達の物語は続きます"
-      />
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:site" content="@rauchg" />
-      <meta property="og:image" content="https://rauchg.com/og/vercel.png" />
-    </Head>
+export default () => (
+  <Post
+    id="vercel"
+    title="Vercel (日本語訳)"
+    date="April 21, 2020"
+    description="「Vercel」という名と共に、私達の物語は続きます"
+    og="https://rauchg.com/og/vercel.png"
+  >
     <PostHrefLang />
     <P>
       訳註:{" "}
@@ -270,4 +261,4 @@ export default withViews(({ views }) => (
       な物語が垣間見えることでしょう。
     </P>
   </Post>
-));
+);
