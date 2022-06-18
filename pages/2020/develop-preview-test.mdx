@@ -2,6 +2,7 @@ import getTweets from "../../lib/get-tweets";
 import Figure, { Image } from "../../components/post/figure";
 import Tweet from "../../components/post/tweet";
 import Post from "../../components/layouts/post";
+import { H2 } from "../../components/post/heading";
 
 export async function getStaticProps() {
   const tweets = await getTweets(MDXContent);
@@ -47,7 +48,7 @@ In this essay I want to make the case that
 your app will reduce risk and give you the best return. Further, I'll show
 how you can adopt this methodology in mere minutes.
 
-<h2 id="why">Why end-to-end?</h2>
+<H2 id="why">Why end-to-end?</H2>
 
 In addition to integration tests, I want to now make the case that modern
 deployment workflows in combination with serverless testing solutions can
@@ -96,7 +97,7 @@ doing "the right thing".
 [performance](https://craigmod.com/essays/fast_software/)
 (it must do the right thing quickly).
 
-<h2 id="possible">End-to-end made possible</h2>
+<H2 id="possible">End-to-end made possible</H2>
 
 First, back when I argued for focusing on integration in 2016 and made no
 mention of end-to-end tests, we didn't yet have the deployment
@@ -160,7 +161,7 @@ instantly scale to thousands of concurrent executions (see this
 [Stanford paper](https://stanford.edu/~sadjad/gg-paper.pdf)
 for an example) are <b>now making E2E both fast and cheap</b>.
 
-<h2 id="easy">End-to-end made easy</h2>
+<H2 id="easy">End-to-end made easy</H2>
 
 To show the **Develop -> Preview -> Test** workflow in action, I'm
 going to demonstrate how easily I can add an E2E test for
@@ -229,7 +230,7 @@ changes to `rauchg.com` automatically.
   <Image src="/images/develop-preview-test/github-green.jpg" />
 </Figure>
 
-<h2 id="conclusion">Conclusion</h2>
+<H2 id="conclusion">Conclusion</H2>
 
 Notably, Checkly allows us to configure multiple locations in the world
 that the tests get executed from, as well as
