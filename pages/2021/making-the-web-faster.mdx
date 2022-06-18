@@ -3,6 +3,7 @@ import HR from "../../components/post/hr";
 import Figure, { Image } from "../../components/post/figure";
 import Tweet from "../../components/post/tweet";
 import Post from "../../components/layouts/post";
+import { H2 } from "../../components/post/heading";
 
 export async function getStaticProps() {
   const tweets = await getTweets(MDXContent);

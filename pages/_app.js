@@ -12,7 +12,6 @@ import OL from "../components/post/numbers-list";
 
 const components = {
   h2: H2,
-  H2: H2,
   code: Code,
   pre: Snippet,
   p: P,
