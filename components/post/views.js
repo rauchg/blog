@@ -2,29 +2,33 @@ import commaNumber from "comma-number";
 import { useObjectVal } from "react-firebase-hooks/database";
 import { child, ref } from "firebase/database";
 import { getDatabase } from "../../lib/firebase";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 export default function Views({ id }) {
   const [views, viewsLoading, viewsError] = useObjectVal(
     child(ref(getDatabase(), "views"), id)
   );
+  const pageViewRef = useRef(false);
 
   useEffect(() => {
     if (process.env.NODE_ENV !== "development") {
-      fetch(`/api/view?id=${encodeURIComponent(id)}`)
-        .then(res => res.json())
-        .then(({ total, error }) => {
-          if (error) {
-            console.error("View save error:", error);
-          } else {
-            console.info("View saved. Total views:", total);
-          }
-        })
-        .catch(err => {
-          console.error("View store error", err);
-        });
+      if (!pageViewRef.current) {
+        fetch(`/api/view?id=${encodeURIComponent(id)}`)
+          .then(res => res.json())
+          .then(({ total, error }) => {
+            if (error) {
+              console.error("View save error:", error);
+            } else {
+              console.info("View saved. Total views:", total);
+            }
+          })
+          .catch(err => {
+            console.error("View store error", err);
+          });
+        pageViewRef.current = true;
+      }
     }
-  }, []);
+  }, [id]);
 
   return (
     <span
