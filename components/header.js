@@ -43,6 +43,7 @@ const Header = () => (
       nav a.src {
         font-size: 13px;
         color: #333;
+        display: none;
       }
 
       nav a.follow {
@@ -79,6 +80,10 @@ const Header = () => (
 
         nav {
           padding: 0;
+        }
+
+        nav a.src {
+          display: inline-block;
         }
 
         nav a:last-child {
