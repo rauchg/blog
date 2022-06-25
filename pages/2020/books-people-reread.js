@@ -186,6 +186,7 @@ const Page = ({ tweets, views, books }) => (
       <style jsx>{`
         .books {
           padding: 0 25px;
+          margin: 0 0 40px;
           display: grid;
           grid-gap: 1rem;
           grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
