@@ -7,11 +7,12 @@ import Header from "../header";
 
 import "nprogress";
 
-const Main = ({ children }) => {
+const Main = ({ description = null, children }) => {
   return (
     <main>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        {description && <meta name="description" content={description} />}
         <title>Guillermo Rauch&apos;s blog</title>
       </Head>
 
