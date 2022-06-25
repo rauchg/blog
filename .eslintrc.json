@@ -1,0 +1,6 @@
+{
+  "extends": "next/core-web-vitals",
+  "rules": {
+    "react/jsx-no-target-blank": "off"
+  }
+}

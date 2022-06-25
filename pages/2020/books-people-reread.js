@@ -201,6 +201,7 @@ function Book({ URL, Name, Image: ImageURL, ASIN, Votes }) {
       <a href={URL} target="_blank">
         <span className="image">
           <Image
+            alt={Name}
             layout="fill"
             src={
               ImageURL ||

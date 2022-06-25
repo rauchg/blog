@@ -4,7 +4,7 @@ import Link from "next/link";
 const Header = () => (
   <header>
     <Link href="/">
-      <a className="logo" href="/">
+      <a className="logo">
         <Logo />
       </a>
     </Link>

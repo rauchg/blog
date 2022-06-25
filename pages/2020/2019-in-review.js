@@ -60,16 +60,16 @@ const Page = ({ tweets }) => (
       </LI>
 
       <LI>
-        Static is <b>consistently fast</b>. It gives you "O(1){" "}
+        Static is <b>consistently fast</b>. It gives you &quot;O(1){" "}
         <a
           href="https://en.wikipedia.org/wiki/Time_to_first_byte"
           target="_blank"
         >
           TTFB
         </a>
-        ", which is a fancy way of saying you get stable and predictable latency
-        to the first byte of the screen. Always, because no code, servers,
-        sockets, or databases are involved.
+        &quot;, which is a fancy way of saying you get stable and predictable
+        latency to the first byte of the screen. Always, because no code,
+        servers, sockets, or databases are involved.
       </LI>
 
       <LI>
@@ -89,7 +89,8 @@ const Page = ({ tweets }) => (
         </a>
         <Ref id="1" />, while static files are trivially cacheable and simple to
         serve. The odds of you getting paged during the holidays because a
-        "static asset can't be served from a CDN" are basically zero.
+        &quot;static asset can&apos;t be served from a CDN&quot; are basically
+        zero.
       </LI>
     </UL>
     <P>
@@ -103,8 +104,8 @@ const Page = ({ tweets }) => (
       <LI>
         <b>Static Site Generation (SSG)</b> can be thought of moving around the
         servers and taking them away from the hot path. Instead of putting a
-        server in between the user's request and the response, we compute the
-        response ahead of time.
+        server in between the user&apos;s request and the response, we compute
+        the response ahead of time.
         <br />
         <br />
         This subtle shift pays back handsomely. One, anything that could go
@@ -123,8 +124,8 @@ const Page = ({ tweets }) => (
         <br />
         Pre-computing all pages is not always possible
         <Ref id="2" />, nor desirable. For example, when dealing with data that
-        is <em>not</em> shared between all users and we wouldn't want to cache
-        at the edge
+        is <em>not</em> shared between all users and we wouldn&apos;t want to
+        cache at the edge
         <Ref id="3" />.
       </LI>
     </UL>
@@ -138,21 +139,21 @@ const Page = ({ tweets }) => (
       .
     </P>
     <P>
-      Thanks to its simplicity, it's a compelling all-in-one solution for the
-      full straddle of JAMstack: from a static landing page, to very large
+      Thanks to its simplicity, it&apos;s a compelling all-in-one solution for
+      the full straddle of JAMstack: from a static landing page, to very large
       websites, to fully dynamic applications.
     </P>
     <P>
-      The "secret sauce" continues to be its simple <Code>pages/</Code> system
-      inspired by <Code>cgi-bin</Code> and throwing <Code>.php</Code> files in a
-      FTP webroot.
+      The &quot;secret sauce&quot; continues to be its simple{" "}
+      <Code>pages/</Code> system inspired by <Code>cgi-bin</Code> and throwing{" "}
+      <Code>.php</Code> files in a FTP webroot.
     </P>
     <P>
       A page is <em>just</em> a React component. The simplest Next.js app is{" "}
       <Code>pages/index.js</Code> which will serve the route <Code>/</Code>:
     </P>
     <Snippet>{`export default () => <div>Hello World</div>`}</Snippet>
-    <P>But here's what happened in 2019:</P>
+    <P>But here&apos;s what happened in 2019:</P>
     <UL>
       <LI>
         Pages can be defined like this: <Code>pages/r/[subreddit].js</Code>,
@@ -168,7 +169,7 @@ const Page = ({ tweets }) => (
         >
           server-side data props
         </a>
-        , <Code>next build</Code> will output just "boring" static{" "}
+        , <Code>next build</Code> will output just &quot;boring&quot; static{" "}
         <Code>.html</Code> 😄
       </LI>
 
@@ -178,7 +179,7 @@ const Page = ({ tweets }) => (
           static data props
         </a>
         , we can fetch data at build time for a certain page, but crucially also
-        "explode" dynamic path segments into many discrete pages.
+        &quot;explode&quot; dynamic path segments into many discrete pages.
       </LI>
 
       <LI>
@@ -235,8 +236,9 @@ const Page = ({ tweets }) => (
     </P>
     <H2 id="deploying-jamstack">Deploying the JAMstack</H2>
     <P>
-      We think there's enormous value in empowering teams to instantly build and
-      deploy JAMstack websites, with no servers or infra to manage or configure.
+      We think there&apos;s enormous value in empowering teams to instantly
+      build and deploy JAMstack websites, with no servers or infra to manage or
+      configure.
     </P>
     <P>
       True to our style, deploying any static site (like just a{" "}
@@ -306,7 +308,10 @@ const Page = ({ tweets }) => (
       height={465}
       desc="Every push and branch gets its own deploy URL"
     >
-      <Image src="/images/2019-in-review/github-comment.png" />
+      <Image
+        alt="Every push and branch gets its own deploy URL"
+        src="/images/2019-in-review/github-comment.png"
+      />
     </Figure>
 
     <H2 id="testing-the-jamstack">The Deploy URL, the Center of Gravity</H2>
@@ -346,9 +351,9 @@ const Page = ({ tweets }) => (
       }
     />
     <P>
-      The most natural form of "e2e testing" is experiencing the end result
-      itself by visiting the URL. Sharing it with customers, co-workers and your
-      manager.
+      The most natural form of &quot;e2e testing&quot; is experiencing the end
+      result itself by visiting the URL. Sharing it with customers, co-workers
+      and your manager.
     </P>
     <P>
       But in 2019, we also witnessed the incredible power of delegating
@@ -361,6 +366,7 @@ const Page = ({ tweets }) => (
       desc="The URL as the center of the app-building universe"
     >
       <Image
+        alt="The URL as the center of the app-building universe"
         src="/images/2019-in-review/gravity.png"
         width={1274}
         height={1256}
@@ -372,8 +378,8 @@ const Page = ({ tweets }) => (
       <a href="https://vercel.com/github" target="_blank">
         GitHub app
       </a>
-      , we don't just register a "Check" like other CI providers in the pull
-      request. We also say:{" "}
+      , we don&apos;t just register a &quot;Check&quot; like other CI providers
+      in the pull request. We also say:{" "}
       <em>
         this is a <b>deployment</b>, here is the URL
       </em>
@@ -404,13 +410,16 @@ const Page = ({ tweets }) => (
       height={876}
       desc="Checks are automatically run against the deploy URL"
     >
-      <Image src="/images/2019-in-review/checks.png" />
+      <Image
+        alt="Checks are automatically run against the deploy URL"
+        src="/images/2019-in-review/checks.png"
+      />
     </Figure>
 
     <H2 id="flaky-tests-flaky-ux">Flaky Tests mean Flaky UX</H2>
     <P>
-      When it comes to testing, I've found myself referencing this insight quite
-      frequently:
+      When it comes to testing, I&apos;ve found myself referencing this insight
+      quite frequently:
     </P>
     <Tweet id="1158730494311198720" />
     <P>
@@ -439,28 +448,28 @@ const Page = ({ tweets }) => (
       answers in 2018, and 10 different answers in 2019.
     </P>
     <P>
-      However, a defining characteristic that I've become a fan of is that
+      However, a defining characteristic that I&apos;ve become a fan of is that
       serverless means your <b>infrastructure upgrades itself</b>.
     </P>
     <Tweet id="1095927783421706240" />
     <P>
       This includes everything from upgrading the operating system, to patching
-      the system's OpenSSL, to bumping the version of the Node.js function
+      the system&apos;s OpenSSL, to bumping the version of the Node.js function
       runtime.
     </P>
     <P>
-      This wonderful effect is particularly pronounced for databases. It's one
-      thing to upgrade the infrastructure of <em>stateless</em> code execution,
-      but dealing with data is a whole new challenge that I'm glad we no longer
-      have to deal with
+      This wonderful effect is particularly pronounced for databases. It&apos;s
+      one thing to upgrade the infrastructure of <em>stateless</em> code
+      execution, but dealing with data is a whole new challenge that I&apos;m
+      glad we no longer have to deal with
       <Ref id="4" />.
     </P>
     <Tweet id="1195443929828577280" />
-    <H2 id="hyrums-law">Hyrum's Law</H2>
+    <H2 id="hyrums-law">Hyrum&apos;s Law</H2>
     <P>
       I recently learned about{" "}
       <a href="https://www.hyrumslaw.com/" target="_blank">
-        Hyrum's Law
+        Hyrum&apos;s Law
       </a>
       , which states:
     </P>
@@ -473,13 +482,16 @@ const Page = ({ tweets }) => (
       Which obviously has a <em>relevant xkcd</em> as prior art:
     </P>
     <Figure width={278} height={386} desc="There is always an xkcd for that">
-      <Image src="/images/2019-in-review/xkcd.png" />
+      <Image
+        alt="There is always an xkcd for that"
+        src="/images/2019-in-review/xkcd.png"
+      />
     </Figure>
     <H2 id="microservices-complex-unavailable">
       Microservices increase complexity and reduce availability
     </H2>
     <P>
-      Microservices allow you to break down a service's dependencies into
+      Microservices allow you to break down a service&apos;s dependencies into
       independently deployable units.
     </P>
     <P>
@@ -513,8 +525,9 @@ const Page = ({ tweets }) => (
       case of 1 - ((1 - 0.8) + (1 - 0.95)) = 0.75 (75%)
     </Quote>
     <P>
-      Making your serverless functions "monolithic" offers a compelling solution
-      to this problem. Statically bind the dependencies of each function (
+      Making your serverless functions &quot;monolithic&quot; offers a
+      compelling solution to this problem. Statically bind the dependencies of
+      each function (
       <a href="https://nextjs.org/blog/next-9#api-routes">Next.js API routes</a>{" "}
       and the Go compiler do this) and avoid introducing unneeded service hops
       of your own.
@@ -523,19 +536,20 @@ const Page = ({ tweets }) => (
       Native means Platform Fidelity, not Native Code
     </H2>
     <P>
-      The word "native" has always bothered me. No one can seem to agree on a
-      definition, but we all agree that "native apps" are always optimal.
+      The word &quot;native&quot; has always bothered me. No one can seem to
+      agree on a definition, but we all agree that &quot;native apps&quot; are
+      always optimal.
     </P>
     <P>
       Many people are quick to write off attempting to write a desktop app or
-      mobile app in JavaScript on the basis that it's <em>not native</em>.
-      Sometimes the word is used to indicate that JS can't compile down to an
-      executable binary that's native to the platform.
+      mobile app in JavaScript on the basis that it&apos;s <em>not native</em>.
+      Sometimes the word is used to indicate that JS can&apos;t compile down to
+      an executable binary that&apos;s native to the platform.
     </P>
     <P>
       I propose the following alternative definition of native:{" "}
       <b>
-        an app that behaves to the quality standards of the platform it's
+        an app that behaves to the quality standards of the platform it&apos;s
         deployed to
       </b>
       .
@@ -549,13 +563,14 @@ const Page = ({ tweets }) => (
       >
         A well engineered Electron app
       </a>{" "}
-      will give you "native" platform fidelity, regardless of programming
-      language.
+      will give you &quot;native&quot; platform fidelity, regardless of
+      programming language.
     </P>
     <P>
-      To achieve platform fidelity, it's obvious one must have access to the
-      platform APIs. This makes <b>mobile web "apps"</b> a <em>non-starter</em>{" "}
-      in achieving the coveted "native" status, especially on iOS Safari.
+      To achieve platform fidelity, it&apos;s obvious one must have access to
+      the platform APIs. This makes <b>mobile web &quot;apps&quot;</b> a{" "}
+      <em>non-starter</em> in achieving the coveted &quot;native&quot; status,
+      especially on iOS Safari.
     </P>
     <P>
       {" "}
@@ -569,7 +584,7 @@ const Page = ({ tweets }) => (
       caption="Native performance with JS + native code"
     />
     <P>
-      This means it's only a matter of time before React Native (and{" "}
+      This means it&apos;s only a matter of time before React Native (and{" "}
       <a href="https://github.com/Tencent/Hippy" target="_blank">
         similar technologies
       </a>
@@ -623,7 +638,7 @@ const Page = ({ tweets }) => (
       <a href="http://codewinds.com/podcast/004.html" target="_blank">
         being introduced
       </a>
-      , it was interesting to hear that the inspiration wasn't previous
+      , it was interesting to hear that the inspiration wasn&apos;t previous
       libraries like jQuery, but rather an altogether different system:
     </P>
     <Quote>
@@ -633,7 +648,7 @@ const Page = ({ tweets }) => (
     <P>
       What striked me about this wonderful talk about how{" "}
       <a href="https://www.youtube.com/watch?v=KDhKyIZd3O8" target="_blank">
-        Marvel's Spiderman
+        Marvel&apos;s Spiderman
       </a>{" "}
       was created is how much more we can learn.
     </P>
@@ -659,7 +674,7 @@ const Page = ({ tweets }) => (
     />
     <P>
       So far, we have mostly been <em>suggested</em> limits. Examples include:
-      warnings in webpack's colorful output for oversized bundles, scoring
+      warnings in webpack&apos;s colorful output for oversized bundles, scoring
       systems like WebPageTest and Lighthouse, and the constant reminder and
       enticement that more speed means more success for your business (in the
       form of better Google rankings and the{" "}
@@ -673,13 +688,13 @@ const Page = ({ tweets }) => (
     </P>
     <P>
       AMP, although controversial, is a <em>systematic</em>, rather than{" "}
-      <em>suggested</em> answer to the performance problem. It's very hard,
+      <em>suggested</em> answer to the performance problem. It&apos;s very hard,
       maybe impossible, to create a slow AMP experience, due to the smart
       constraints and built-in well-optimized components
       <Ref id="6" />.
     </P>
     <P>
-      Along the same lines, I'm optimistic about the introduction of{" "}
+      Along the same lines, I&apos;m optimistic about the introduction of{" "}
       <a
         href="https://www.infoq.com/news/2019/02/chrome-never-slow-mode/"
         target="_blank"
@@ -733,8 +748,8 @@ const Page = ({ tweets }) => (
       datastructure.
     </P>
     <P>
-      Notion's datastructure could be explained as: a mutable, realtime graph of
-      documents structured as a list of known blocks.
+      Notion&apos;s datastructure could be explained as: a mutable, realtime
+      graph of documents structured as a list of known blocks.
     </P>
     <P>
       All apps are backed by datastructures, but the critical ingredient seems
@@ -753,13 +768,16 @@ const Page = ({ tweets }) => (
       height={808}
       desc="The Notion UI. Every UI element is mutable and hyperlinkable"
     >
-      <Image src="/images/2019-in-review/notion.png" />
+      <Image
+        alt="The Notion UI. Every UI element is mutable and hyperlinkable"
+        src="/images/2019-in-review/notion.png"
+      />
     </Figure>
     <P>
-      On the left hand side, Notion's sidebar puts you in direct contact with
-      the graph the documents are organized as. You are free to arrange pages
-      into trees and sub-trees of your choosing. On the right hand side, the
-      different block types are trivial to create, edit, re-arrange and most
+      On the left hand side, Notion&apos;s sidebar puts you in direct contact
+      with the graph the documents are organized as. You are free to arrange
+      pages into trees and sub-trees of your choosing. On the right hand side,
+      the different block types are trivial to create, edit, re-arrange and most
       importantly: <b>combine</b>.
     </P>
     <P>
@@ -797,15 +815,18 @@ const Page = ({ tweets }) => (
       height={882}
       desc="Some revenue-centric folks have known the ideal input design forever"
     >
-      <Image src="/images/2019-in-review/irs.png" />
+      <Image
+        alt="Some revenue-centric folks have known the ideal input design forever"
+        src="/images/2019-in-review/irs.png"
+      />
     </Figure>
     <H2 id="shared-cdns-caches-are-busted">
       Shared CDNs have their caches busted
     </H2>
     <P>
-      A remarkable change to anyone who was hoping we could "share React" or
-      "share jQuery" by an ad-hoc agreement of a common CDN and URL inside a{" "}
-      <Code>&lt;script&gt;</Code> tag.
+      A remarkable change to anyone who was hoping we could &quot;share
+      React&quot; or &quot;share jQuery&quot; by an ad-hoc agreement of a common
+      CDN and URL inside a <Code>&lt;script&gt;</Code> tag.
     </P>
     <P>
       The whole idea has{" "}
@@ -837,11 +858,11 @@ const Page = ({ tweets }) => (
           target="_blank"
           href="https://twitter.com/garybernhardt/status/1007699924866093056"
         >
-          if it's not fast and reliable, then it is wrong
+          if it&apos;s not fast and reliable, then it is wrong
         </a>
       </b>
-      . When things are not fast, it's like an implicit confirmation that they
-      are wrong. Deeply wrong:
+      . When things are not fast, it&apos;s like an implicit confirmation that
+      they are wrong. Deeply wrong:
     </P>
 
     <Quote
@@ -876,7 +897,7 @@ const Page = ({ tweets }) => (
       id="1163871715153199104"
       caption={
         <>
-          Don't be afraid to <s>fail</s> demo.
+          Don&apos;t be afraid to <s>fail</s> demo.
         </>
       }
     />
@@ -886,8 +907,8 @@ const Page = ({ tweets }) => (
     </H2>
 
     <P>
-      It's easy to dismiss the hype around NoCode and LowCode as just hype, but
-      I think there's a lot to it.
+      It&apos;s easy to dismiss the hype around NoCode and LowCode as just hype,
+      but I think there&apos;s a lot to it.
     </P>
 
     <P>
@@ -1002,8 +1023,8 @@ const Page = ({ tweets }) => (
     <H2 id="wasm-fast">Webassembly is faster than you thought</H2>
 
     <P>
-      For a while I've been excited about the <b>universal</b> potential of
-      webassembly. It turns out it's even better than I anticipated: when
+      For a while I&apos;ve been excited about the <b>universal</b> potential of
+      webassembly. It turns out it&apos;s even better than I anticipated: when
       disabling sandboxing, webassembly can{" "}
       <a href="https://innative.dev/news/introducing-innative/">
         match 95% the speed of native code
@@ -1039,7 +1060,10 @@ const Page = ({ tweets }) => (
       height={342}
       desc="Percentage improvements in tail-end latencies (95th and 99th percentile)"
     >
-      <Image src="/images/2019-in-review/quic-latency.png" />
+      <Image
+        alt="Percentage improvements in tail-end latencies (95th and 99th percentile)"
+        src="/images/2019-in-review/quic-latency.png"
+      />
     </Figure>
 
     <H2 id="stablecoins-not-bitcoin">
@@ -1047,19 +1071,19 @@ const Page = ({ tweets }) => (
     </H2>
 
     <P>
-      … seems to be the new "we like{" "}
+      … seems to be the new &quot;we like{" "}
       <a
         target="_blank"
         href="https://www.coindesk.com/love-blockchain-just-bitcoin"
       >
         blockchain not bitcoin
       </a>
-      ".
+      &quot;.
     </P>
 
     <P>
-      The president of the European Central Bank said the word "stablecoin" in
-      2019. That was a twist I wasn't expecting.
+      The president of the European Central Bank said the word
+      &quot;stablecoin&quot; in 2019. That was a twist I wasn&apos;t expecting.
     </P>
 
     <Tweet id="1205225680453210112" />
@@ -1079,11 +1103,11 @@ const Page = ({ tweets }) => (
     <Tweet id="1109207974994735104" />
 
     <H2 id="google-oss-pratices">
-      Google's engineering practices go open-source
+      Google&apos;s engineering practices go open-source
     </H2>
 
     <P>
-      Google's engineering practices were{" "}
+      Google&apos;s engineering practices were{" "}
       <a target="_blank" href="https://github.com/google/eng-practices">
         open-sourced on GitHub
       </a>
@@ -1108,7 +1132,8 @@ const Page = ({ tweets }) => (
     </Quote>
 
     <P>
-      Further, Google's cryptography practices were "open-sourced" in a tweet:
+      Further, Google&apos;s cryptography practices were
+      &quot;open-sourced&quot; in a tweet:
     </P>
 
     <Tweet id="1112377964942028805" />
@@ -1153,17 +1178,21 @@ const Page = ({ tweets }) => (
     <FootNotes>
       <Note id="1">
         Servers can be so hard to roll out without downtime that a keynote at
-        this year's KubeCon starts with the glaring admission:{" "}
-        <b>"Noticing your customers receive 503's every now-and-then?"</b>. By
-        not needing to rotate pods, shut down containers, handle signals, wait
-        for grace periods, configure and execute liveliness probes… static is
-        also <b>faster and safer to roll</b>.
+        this year&apos;s KubeCon starts with the glaring admission:{" "}
+        <b>
+          &quot;Noticing your customers receive 503&apos;s every
+          now-and-then?&quot;
+        </b>
+        . By not needing to rotate pods, shut down containers, handle signals,
+        wait for grace periods, configure and execute liveliness probes… static
+        is also <b>faster and safer to roll</b>.
       </Note>
 
       <Note id="2">
         When the set of pages to pre-compute is too large and would make build
-        times prohibitive, it's still probably a good idea to pre-compute your
-        most critical public pages, and do the rest <em>asynchronously</em>.
+        times prohibitive, it&apos;s still probably a good idea to pre-compute
+        your most critical public pages, and do the rest <em>asynchronously</em>
+        .
       </Note>
 
       <Note id="3">
@@ -1180,8 +1209,8 @@ const Page = ({ tweets }) => (
 
       <Note id="5">
         Perhaps the most fundamental way in which a mobile web app on iOS Safari
-        cannot ever be "native" like an app is in the way the viewport size is
-        dynamic and shifts as you scroll to reveal different toolbars.
+        cannot ever be &quot;native&quot; like an app is in the way the viewport
+        size is dynamic and shifts as you scroll to reveal different toolbars.
       </Note>
 
       <Note id="6">
