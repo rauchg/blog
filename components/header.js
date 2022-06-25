@@ -36,6 +36,10 @@ const Header = () => (
         margin-right: 15px;
       }
 
+      nav a:last-child {
+        margin-right: 5px;
+      }
+
       nav a.src {
         font-size: 13px;
         color: #333;
@@ -75,6 +79,10 @@ const Header = () => (
 
         nav {
           padding: 0;
+        }
+
+        nav a:last-child {
+          margin-right: 15px;
         }
       }
     `}</style>
