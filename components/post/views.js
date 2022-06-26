@@ -1,42 +1,35 @@
 import commaNumber from "comma-number";
-import { useObjectVal } from "react-firebase-hooks/database";
-import { child, ref } from "firebase/database";
-import { getDatabase } from "../../lib/firebase";
-import { useEffect, useRef } from "react";
+import useSWR from "swr";
+import { useRef } from "react";
 
 export default function Views({ id }) {
-  const [views, viewsLoading, viewsError] = useObjectVal(
-    child(ref(getDatabase(), "views"), id)
-  );
-  const pageViewRef = useRef(false);
-
-  useEffect(() => {
-    if (process.env.NODE_ENV !== "development") {
-      if (!pageViewRef.current) {
-        fetch(`/api/view?id=${encodeURIComponent(id)}`)
-          .then(res => res.json())
-          .then(({ total, error }) => {
-            if (error) {
-              console.error("View save error:", error);
-            } else {
-              console.info("View saved. Total views:", total);
-            }
-          })
-          .catch(err => {
-            console.error("View store error", err);
-          });
-        pageViewRef.current = true;
-      }
+  const initialRef = useRef(true);
+  const { data: views, error: viewsError } = useSWR(
+    `api-view-${id}`,
+    async () => {
+      const url =
+        "/api/view?id=" +
+        encodeURIComponent(id) +
+        (initialRef.current ? "&initial=1" : "");
+      initialRef.current = false;
+      return fetch(url).then(res => res.json());
+    },
+    {
+      refreshInterval: 5000,
     }
-  }, [id]);
+  );
 
   return (
     <span
       className={`views ${
-        viewsLoading || views == null ? "loading" : viewsError ? "error" : ""
+        views == null ? "loading" : viewsError ? "error" : ""
       }`}
     >
-      <em>{commaNumber(views)}</em> views
+      {views != null && (
+        <>
+          <em>{commaNumber(views.total)}</em> views
+        </>
+      )}
       <style jsx>{`
         .views {
           opacity: 1;
