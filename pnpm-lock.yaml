@@ -4,8 +4,10 @@ specifiers:
   '@mdx-js/loader': ^2.1.1
   '@mdx-js/react': ^2.1.1
   '@next/mdx': ^12.1.6
+  '@types/node-fetch': ^2.5.8
   '@types/react': ^18.0.14
   '@types/react-dom': ^18.0.5
+  '@vercel/fetch': ^6.1.0
   aws-sdk: ^2.1151.0
   comma-number: ^2.0.1
   date-fns: ^2.28.0
@@ -13,6 +15,7 @@ specifiers:
   eslint-config-next: ^12.1.6
   load-script: ^1.0.0
   next: 12.1.7-canary.48
+  node-fetch: ^2.6.1
   nprogress: ^0.2.0
   prettier: ^2.2.1
   react: '18'
@@ -29,18 +32,21 @@ dependencies:
   '@mdx-js/loader': 2.1.1
   '@mdx-js/react': 2.1.1_react@18.1.0
   '@next/mdx': 12.1.6_svepmivmajrgriivp7ha5q4gca
+  '@types/node-fetch': 2.6.1
+  '@vercel/fetch': 6.2.0_fii5qhbaymjqmfm7e2spxc5z4m
   aws-sdk: 2.1151.0
   comma-number: 2.1.0
   date-fns: 2.28.0
   load-script: 1.0.0
   next: 12.1.7-canary.48_ef5jwxihqo6n7gxfmzogljlgcm
+  node-fetch: 2.6.7
   nprogress: 0.2.0
   react: 18.1.0
   react-dom: 18.1.0_react@18.1.0
   react-intersection-observer: 8.34.0_react@18.1.0
   react-static-tweets: 0.8.0_c4dbdoq6w4gse63cqgjhv4l3uy
   react-youtube: 7.14.0_react@18.1.0
-  static-tweets: 0.8.0
+  static-tweets: 0.8.0_fii5qhbaymjqmfm7e2spxc5z4m
   swr: 1.3.0_react@18.1.0
   time-ago: 0.2.1
 
@@ -487,37 +493,41 @@ packages:
       eslint-visitor-keys: 3.3.0
     dev: true
 
-  /@vercel/fetch-cached-dns/2.1.0:
+  /@vercel/fetch-cached-dns/2.1.0_node-fetch@2.6.7:
     resolution: {integrity: sha512-dIQWF+bG2EOYeCCCeT3E77qZZa7VgW2quEKw4k8/keeoD8lRMjiNi//Ww7LJ8wXecfv7XXtprwN5uLLLGo/ktg==}
     peerDependencies:
       node-fetch: ^2.6.1
     dependencies:
       '@types/node-fetch': 2.6.1
       '@zeit/dns-cached-resolve': 2.1.2
+      node-fetch: 2.6.7
     dev: false
 
-  /@vercel/fetch-retry/5.1.3:
+  /@vercel/fetch-retry/5.1.3_node-fetch@2.6.7:
     resolution: {integrity: sha512-UIbFc4VsEZHOr6dWuE+kxY4NxnOLXFMCWm0fSKRRHUEtrIzaJLzHpWk2QskCXTSzFgFvhkLAvSrBK2XZg7NSzg==}
     peerDependencies:
       node-fetch: ^2.6.7
     dependencies:
       async-retry: 1.3.3
       debug: 4.3.4
+      node-fetch: 2.6.7
     transitivePeerDependencies:
       - supports-color
     dev: false
 
-  /@vercel/fetch/6.2.0:
+  /@vercel/fetch/6.2.0_fii5qhbaymjqmfm7e2spxc5z4m:
     resolution: {integrity: sha512-MU+Mzh06NIAXxwdnyHmBFg+/lTKBbzDkCSNhAwWTFJ4rHuBc4pHc8E6XP+qnwqaWugjOBQgFfQCGDLnV820c9A==}
     peerDependencies:
       '@types/node-fetch': ^2.6.1
       node-fetch: ^2.6.7
     dependencies:
       '@types/async-retry': 1.4.4
-      '@vercel/fetch-cached-dns': 2.1.0
-      '@vercel/fetch-retry': 5.1.3
+      '@types/node-fetch': 2.6.1
+      '@vercel/fetch-cached-dns': 2.1.0_node-fetch@2.6.7
+      '@vercel/fetch-retry': 5.1.3_node-fetch@2.6.7
       agentkeepalive: 4.2.1
       debug: 4.3.4
+      node-fetch: 2.6.7
     transitivePeerDependencies:
       - supports-color
     dev: false
@@ -2509,6 +2519,18 @@ packages:
       - '@babel/core'
       - babel-plugin-macros
 
+  /node-fetch/2.6.7:
+    resolution: {integrity: sha512-ZjMPFEfVx5j+y2yF35Kzx5sF7kDzxuDj6ziH4FFbOp87zKDZNx8yExJIb05OGF4Nlt9IHFIMBkRl41VdvcNdbQ==}
+    engines: {node: 4.x || >=6.0.0}
+    peerDependencies:
+      encoding: ^0.1.0
+    peerDependenciesMeta:
+      encoding:
+        optional: true
+    dependencies:
+      whatwg-url: 5.0.0
+    dev: false
+
   /nprogress/0.2.0:
     resolution: {integrity: sha1-y480xTIT2JVyP8urkH6UIq28r7E=}
     dev: false
@@ -3039,12 +3061,12 @@ packages:
     resolution: {integrity: sha512-ekwEbFp5aqSPKaqeY1PGrlGQxPNaq+Cnx4+bE2D8sciBQrHpbwoBbawqTN2+6jPs9IdWxxiUcN0K2pkczD3zmw==}
     dev: false
 
-  /static-tweets/0.8.0:
+  /static-tweets/0.8.0_fii5qhbaymjqmfm7e2spxc5z4m:
     resolution: {integrity: sha512-0fl3OfhdV5AABnXwe/6oYlCntILoumJVgwvwgnVkW4+PrNqqXoQnXL86Gw/QojLuczlq6IixyWTi08/NQtVqgQ==}
     engines: {node: '>=12'}
     dependencies:
       '@mapbox/rehype-prism': 0.5.0
-      '@vercel/fetch': 6.2.0
+      '@vercel/fetch': 6.2.0_fii5qhbaymjqmfm7e2spxc5z4m
       cheerio: 1.0.0-rc.11
       github-slugger: 1.4.0
       rehype-parse: 7.0.1
@@ -3167,6 +3189,10 @@ packages:
     dependencies:
       is-number: 7.0.0
     dev: true
+
+  /tr46/0.0.3:
+    resolution: {integrity: sha512-N3WMsuqV66lT30CrXNbEjx4GEwlow3v6rr4mCcv6prnfwhS01rkgyFdjPNBYd9br7LpXV1+Emh01fHnq2Gdgrw==}
+    dev: false
 
   /trough/1.0.5:
     resolution: {integrity: sha512-rvuRbTarPXmMb79SmzEp8aqXNKcK+y0XaB298IXueQ8I2PsrATcPBCSPyK/dDNa2iWOhKlfNnOjdAOTBU/nkFA==}
@@ -3443,6 +3469,17 @@ packages:
 
   /web-namespaces/1.1.4:
     resolution: {integrity: sha512-wYxSGajtmoP4WxfejAPIr4l0fVh+jeMXZb08wNc0tMg6xsfZXj3cECqIK0G7ZAqUq0PP8WlMDtaOGVBTAWztNw==}
+    dev: false
+
+  /webidl-conversions/3.0.1:
+    resolution: {integrity: sha512-2JAn3z8AR6rjK8Sm8orRC0h/bcl/DqL7tRPdGZ4I1CjdF+EaMLmYxBHyXuKL849eucPFhvBoxMsflfOb8kxaeQ==}
+    dev: false
+
+  /whatwg-url/5.0.0:
+    resolution: {integrity: sha512-saE57nupxk6v3HY35+jzBwYa0rKSy0XR8JSxZPwgLr7ys0IBzhGviA1/TUGJLmSVqs8pb9AnvICXEuOHLprYTw==}
+    dependencies:
+      tr46: 0.0.3
+      webidl-conversions: 3.0.1
     dev: false
 
   /which-boxed-primitive/1.0.2:
