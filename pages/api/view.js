@@ -1,20 +1,35 @@
-import db from "../../lib/db-admin";
+export const config = {
+  runtime: "experimental-edge",
+};
 
-export default async function view(req, res) {
-  if (!req.query.id) {
+export default async function view(req) {
+  const url = new URL(req.url);
+  const id = url.searchParams.get("id");
+  const initial = url.searchParams.get("initial") === "1";
+
+  if (!id) {
     return res.status(400).json({
       error: 'Missing "id" query parameter',
     });
   }
 
-  const ref = db().ref("views").child(req.query.id);
-  const { snapshot } = await ref.transaction(currentViews => {
-    // if it has never been set it returns null
-    if (currentViews === null) currentViews = 0;
-    return currentViews + 1;
-  });
+  const { result: total } = await fetch(
+    `https://global-apt-bear-30602.upstash.io/${
+      initial
+        ? // we make views noop during development
+          process.env.NODE_ENV === "production"
+          ? "incr"
+          : "get"
+        : "get"
+    }/${id}`,
+    {
+      headers: {
+        authorization: `Bearer ${process.env.UPSTASH_REDIS_REST_TOKEN}`,
+      },
+    }
+  ).then(res => res.json());
 
-  res.status(200).json({
-    total: snapshot.val(),
+  return Response.json({
+    total,
   });
 }
