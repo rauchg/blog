@@ -1,4 +1,3 @@
-import { ConvexHttpClient } from "convex-dev/browser";
 import convexConfig from "@/convex.json";
 
 export default async function view(req) {
