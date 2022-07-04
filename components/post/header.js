@@ -16,9 +16,7 @@ const Header = ({ id, title, date }) => {
       <Head>
         <title>{title}</title>
       </Head>
-
       <h1>{title}</h1>
-
       <nav>
         <span className="meta">
           <a
@@ -52,7 +50,6 @@ const Header = ({ id, title, date }) => {
 
         <Views id={new Date(date).getFullYear() + "-" + id} />
       </nav>
-
       <style jsx>{`
         nav {
           display: flex;

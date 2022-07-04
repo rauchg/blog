@@ -1,51 +1,43 @@
-import commaNumber from "comma-number";
-import useSWR from "swr";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
+import { useQuery } from "@/convex/_generated/react";
 
 export default function Views({ id }) {
-  const initialRef = useRef(true);
-  const { data: views, error: viewsError } = useSWR(
-    `api-view-${id}`,
-    async () => {
-      const url =
-        "/api/view?id=" +
-        encodeURIComponent(id) +
-        (initialRef.current ? "&initial=1" : "");
-      initialRef.current = false;
-      return fetch(url).then(res => res.json());
-    },
-    {
-      refreshInterval: 5000,
+  const didLogViewRef = useRef(false);
+  const views = useQuery("getViews", id) ?? null;
+
+  useEffect(() => {
+    if (!didLogViewRef.current) {
+      const url = "/api/view?id=" + encodeURIComponent(id);
+      fetch(url).catch(console.error);
+      didLogViewRef.current = true;
     }
-  );
+  });
 
   return (
-    <span
-      className={`views ${
-        views == null ? "loading" : viewsError ? "error" : ""
-      }`}
-    >
-      {views != null && (
-        <>
-          <em>{commaNumber(views.total)}</em> views
-        </>
-      )}
-      <style jsx>{`
-        .views {
-          opacity: 1;
-          transition: 100ms ease-in opacity;
-        }
+    <>
+      <span className={`views ${views === null ? "loading" : ""}`}>
+        {views != null && (
+          <>
+            <em>{views}</em> views
+          </>
+        )}
+        <style jsx>{`
+          .views {
+            opacity: 1;
+            transition: 100ms ease-in opacity;
+          }
 
-        .views em {
-          font-style: normal;
-          font-variant-numeric: tabular-nums;
-        }
+          .views em {
+            font-style: normal;
+            font-variant-numeric: tabular-nums;
+          }
 
-        .views.loading,
-        .views.error {
-          opacity: 0;
-        }
-      `}</style>
-    </span>
+          .views.loading,
+          .views.error {
+            opacity: 0;
+          }
+        `}</style>
+      </span>
+    </>
   );
 }
