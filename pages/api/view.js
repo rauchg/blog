@@ -1,35 +1,30 @@
-export const config = {
-  runtime: "experimental-edge",
-};
+import convexConfig from "@/convex.json";
 
 export default async function view(req) {
   const url = new URL(req.url);
   const id = url.searchParams.get("id");
-  const initial = url.searchParams.get("initial") === "1";
 
   if (!id) {
-    return res.status(400).json({
-      error: 'Missing "id" query parameter',
-    });
+    return Response.json({ error: 'Missing "id" query' }, { status: 400 });
   }
 
-  const { result: total } = await fetch(
-    `https://global-apt-bear-30602.upstash.io/${
-      initial
-        ? // we make views noop during development
-          process.env.NODE_ENV === "production"
-          ? "incr"
-          : "get"
-        : "get"
-    }/${id}`,
-    {
-      headers: {
-        authorization: `Bearer ${process.env.UPSTASH_REDIS_REST_TOKEN}`,
-      },
-    }
-  ).then(res => res.json());
+  await fetch(`${convexConfig.origin}/api/0.1.4/udf`, {
+    method: "POST",
+    body: JSON.stringify({
+      path: "addView",
+      args: [process.env.CONVEX_AUTH_SECRET, id],
+      tokens: [],
+    }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
 
   return Response.json({
-    total,
+    ok: true,
   });
 }
+
+export const config = {
+  runtime: "experimental-edge",
+};
