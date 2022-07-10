@@ -44,7 +44,7 @@ const NextraPostLayout = ({ meta }) => {
         <Header title={meta.title} date={meta.date} views={views} />
         <Head>
           <meta property="og:title" content={meta.title} />
-          <meta property="og:site_name" content="Wang QiWen's blog" />
+          <meta property="og:site_name" content="Wang Qiwen's blog" />
           <meta property="og:description" content={meta.description} />
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:site" content="@QiwenWang1" />

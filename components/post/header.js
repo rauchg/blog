@@ -32,7 +32,7 @@ const Header = ({ id, title, date }) => {
                 layout="fixed"
               />
             </span>
-            QiWen Wang
+            Wang Qiwen
           </a>
 
           {isMounted ? (
