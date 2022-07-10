@@ -14,10 +14,10 @@ const Post = ({ id, tweets, children, title, date, description, og }) => (
   <Page>
     <Head>
       <meta property="og:title" content={title} />
-      <meta property="og:site_name" content="Guillermo Rauch's blog" />
+      <meta property="og:site_name" content="Wang Qiwen's blog" />
       <meta property="og:description" content={description} />
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:site" content="@rauchg" />
+      <meta name="twitter:site" content="@QiwenWang1" />
       <meta property="og:image" content={og} />
     </Head>
     <Tweets.Provider value={tweets}>
