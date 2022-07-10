@@ -1,0 +1,24 @@
+import getTweets from "../../lib/get-tweets";
+import HR from "../../components/post/hr";
+import Figure, { Image } from "../../components/post/figure";
+import Tweet from "../../components/post/tweet";
+import Post from "../../components/layouts/post";
+import { H2 } from "../../components/post/heading";
+
+export async function getStaticProps() {
+  const tweets = await getTweets(MDXContent);
+  return { props: { tweets } };
+}
+
+export default function ({ children, tweets }) {
+  return <Post
+    id="demo"
+    title="demo"
+    description="Vercel is making a faster platform for those consuming the web and faster for those building for the web. And now that's more than just developers."
+    og="https://res.cloudinary.com/rauchg/image/upload/v1624456141/blog/og/making-the-web_kuwgmz.png"
+    date="June 23, 2021"
+    tweets={tweets}
+  >{children}</Post>
+}
+
+This is a demo.

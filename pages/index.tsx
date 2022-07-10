@@ -17,7 +17,7 @@ export function getStaticProps() {
 
 const Home = ({ posts }) => (
   <Suspense fallback={null}>
-    <Layout description="Guillermo Rauch's blog">
+    <Layout description="Wang Qiwen's blog">
       <ul>
         {posts.map(post => (
           <li key={post.id}>
