@@ -13,7 +13,7 @@ const Main = ({ description = null, children }) => {
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         {description && <meta name="description" content={description} />}
-        <title>Wang Qiwen's blog</title>
+        <title>Wang Qiwen&apos;s blog</title>
       </Head>
 
       <style jsx global>
