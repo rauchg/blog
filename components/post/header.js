@@ -51,6 +51,9 @@ const Header = ({ id, title, date }) => {
         <Views id={new Date(date).getFullYear() + "-" + id} />
       </nav>
       <style jsx>{`
+        h1 {
+          color: #000;
+        }
         nav {
           display: flex;
           justify-content: space-between;

@@ -43,18 +43,9 @@ const Post = ({ id, tweets, children, title, date, description, og }) => (
         padding: 15px;
         font-size: 18px;
       }
-
       article {
         scroll-margin-top: 50px;
-
-        // width: 590px;
-        // min-height: 700px;
-        // border: 1px solid #e4d9c3;
-        // margin: 4px 0;
-        // float: left;
-        // background: url(images/frontmainslice.jpg) bottom left repeat-x;
       }
-
       @media (min-width: 500px) {
         main {
           max-width: 42rem;
