@@ -2,9 +2,7 @@ import Head from "next/head";
 import { useState, useEffect } from "react";
 import TimeAgo from "../time-ago";
 import NextImage from "next/image";
-import dynamic from "next/dynamic";
-
-const Views = dynamic(() => import("./views"));
+import Views from "./views";
 
 const Header = ({ id, title, date }) => {
   const [isMounted, setIsMounted] = useState(false);
