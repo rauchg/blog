@@ -17,7 +17,7 @@ export default function LinkPage({ title, image, description }) {
       <meta property="og:description" content={description} />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content="@rauchg" />
-      <meta property="og:image" content={image} />
+      <meta property="og:image" content={`https://rauchg.com/og/${image}`} />
     </Head>
   );
 }
