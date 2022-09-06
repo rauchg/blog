@@ -5,7 +5,7 @@ let initialDate = Date.now();
 
 export default async function middleware(req) {
   const next = NextResponse.next();
-  next.headers.set("x-edge-age", Date.now() - initialDate);
+  next.headers.set("x-edge-age", String(Date.now() - initialDate));
 
   const url = new URL(req.nextUrl);
   if (url.pathname.startsWith("/links/")) {
