@@ -92,19 +92,14 @@ export default function AnOdeToCodeGolf() {
     >
       <P>
         Even though I don&apos;t write code these days,{" "}
-        <Link href="/2020/vercel">
-          <a>my job</a>
-        </Link>{" "}
-        involves thinking about and deeply understanding it. Code is, and will
-        be, a large part of everyone&apos;s lives for the{" "}
+        <Link href="/2020/vercel">my job</Link> involves thinking about and
+        deeply understanding it. Code is, and will be, a large part of
+        everyone&apos;s lives for the{" "}
         <Link href="/2020/2019-in-review#nocode-lowcode-merge">
-          <a>foreseeable future</a>
+          foreseeable future
         </Link>
         , and I&apos;m glad I spent much of my life learning its ins{" "}
-        <Link href="/2020/2019-in-review#all-code-is-wrong">
-          <a>and outs</a>
-        </Link>
-        .
+        <Link href="/2020/2019-in-review#all-code-is-wrong">and outs</Link>.
       </P>
       <P>
         Outside of work, I&apos;ve now been a part of a number of podcasts or

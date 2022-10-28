@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/react";
 import "react-static-tweets/styles.css";
 
 import { MDXProvider } from "@mdx-js/react";
@@ -32,8 +33,11 @@ const components = {
 
 export default function App({ Component, pageProps }) {
   return (
-    <MDXProvider components={components}>
-      <Component {...pageProps} />
-    </MDXProvider>
+    <>
+      <MDXProvider components={components}>
+        <Component {...pageProps} />
+      </MDXProvider>
+      <Analytics />
+    </>
   );
 }

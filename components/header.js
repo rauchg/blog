@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const Header = () => (
   <header>
-    <Link href="/">
+    <Link href="/" legacyBehavior>
       <a className="logo">
         <Logo />
       </a>
