@@ -92,14 +92,14 @@ export default function AnOdeToCodeGolf() {
     >
       <P>
         Even though I don&apos;t write code these days,{" "}
-        <Link href="/2020/vercel">my job</Link> involves thinking about and
+        <Link href="/2020/vercel" legacyBehavior>my job</Link> involves thinking about and
         deeply understanding it. Code is, and will be, a large part of
         everyone&apos;s lives for the{" "}
-        <Link href="/2020/2019-in-review#nocode-lowcode-merge">
+        <Link href="/2020/2019-in-review#nocode-lowcode-merge" legacyBehavior>
           foreseeable future
         </Link>
         , and I&apos;m glad I spent much of my life learning its ins{" "}
-        <Link href="/2020/2019-in-review#all-code-is-wrong">and outs</Link>.
+        <Link href="/2020/2019-in-review#all-code-is-wrong" legacyBehavior>and outs</Link>.
       </P>
       <P>
         Outside of work, I&apos;ve now been a part of a number of podcasts or
@@ -551,7 +551,7 @@ export default function AnOdeToCodeGolf() {
         Unfortunately, it used <b>30</b> characters, but I was encouraged by the
         existence of another path to a solution
         <Ref id="2" />. I fired up{" "}
-        <Link href="/2020/2019-in-review#notion-is-fancy">
+        <Link href="/2020/2019-in-review#notion-is-fancy" legacyBehavior>
           <a>Notion</a>
         </Link>{" "}
         and started documenting my attempts.

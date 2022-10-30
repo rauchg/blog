@@ -445,14 +445,17 @@ export default function PureUI() {
         otherwise. The programmer that’s in charge of implementing this writes:
       </P>
 
-      <Snippet>{`function pay(){ 
+      <Snippet>{`function pay(){
+
   $.ajax({ url: ‘/api/pay’ })
     .fail(() => $(‘#msg-error’).show())
-    .success( () => {
+    .success(
+() => {
       $('#payment').hide();
       $('#msg-success').show();
     });
- }`}</Snippet>
+
+}`}</Snippet>
 
       <P>
         What if we now wanted to see the two states this procedure can yield, to

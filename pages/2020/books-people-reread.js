@@ -203,7 +203,8 @@ function Book({ URL, Name, Image: ImageURL, ASIN, Votes }) {
         <span className="image">
           <Image
             alt={Name}
-            layout="fill"
+            fill
+            style={{ objectFit: "contain" }}
             src={
               ImageURL ||
               `https://images-na.ssl-images-amazon.com/images/P/${ASIN}._LZZZZZZZ_.jpg`

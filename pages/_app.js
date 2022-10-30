@@ -26,7 +26,7 @@ const components = {
         </a>
       );
     }
-    return <Link href={href}>{children}</Link>;
+    return <Link href={href} legacyBehavior>{children}</Link>;
   },
   blockquote: Quote,
 };

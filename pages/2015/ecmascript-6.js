@@ -60,7 +60,8 @@ export default function ES6() {
         }
       >
         For all intents and purposes, JavaScript has merged CoffeeScript into
-        master.  I call that a victory for making things and trying them out.
+        master. 
+I call that a victory for making things and trying them out.
       </Quote>
 
       <P>
@@ -327,8 +328,10 @@ var method = opts.method || 'GET'`}</Snippet>
 
       <Snippet>{`if (foo) {
   let x = 5
-  setTimeout(function(){ 
-    // x is \`5\` here   
+  setTimeout(function(){
+
+    // x is \`5\` here
+  
   }, 500)
 }
 // x is \`undefined\` here`}</Snippet>

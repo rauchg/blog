@@ -30,7 +30,7 @@ export default function VercelJA() {
         </a>
         による記事の翻訳です。原文は
         <Link href="/2020/vercel">
-          <a>こちら</a>
+          こちら
         </Link>
         。訳者はVercelのエンジニアであり、ハンス・ロスリングほか著『FACTFULNESS』の共訳者でもある上杉周作(
         <a href="https://twitter.com/chibicode" target="_blank">

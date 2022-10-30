@@ -86,9 +86,8 @@ const Figure = ({ desc, href, children, wide, height, width }) => {
 };
 
 const Image = ({ width = null, height = null, style, src }) => {
-  const { width: contextWidth, height: contextHeight } = useContext(
-    FigureContext
-  );
+  const { width: contextWidth, height: contextHeight } =
+    useContext(FigureContext);
 
   if (width == null) {
     width = contextWidth;
@@ -108,7 +107,12 @@ const Image = ({ width = null, height = null, style, src }) => {
 
   return (
     <div style={style}>
-      <NextImage src={src} width={width} height={height} />
+      <NextImage
+        style={{ maxWidth: "100%", height: "auto" }}
+        src={src}
+        width={width}
+        height={height}
+      />
       <style jsx>{`
         div {
           margin: auto;

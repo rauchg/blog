@@ -17,13 +17,13 @@ export default function StaticHoisting() {
     >
       <P>
         Since I published my{" "}
-        <Link href="/2020/2019-in-review">2019 in Review</Link>, detailing the
+        <Link href="/2020/2019-in-review" legacyBehavior>2019 in Review</Link>, detailing the
         industry trend towards{" "}
-        <Link href="/2020/2019-in-review#static-is-the-new-dynamic">
+        <Link href="/2020/2019-in-review#static-is-the-new-dynamic" legacyBehavior>
           static hosting
         </Link>{" "}
         and the rise of Jamstack CDNs like{" "}
-        <Link href="/2020/vercel">Vercel</Link>, a question has persistently
+        <Link href="/2020/vercel" legacyBehavior>Vercel</Link>, a question has persistently
         come up:{" "}
         <a
           href="https://twitter.com/mjackson/status/1234544556948877312"
