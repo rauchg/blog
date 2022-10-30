@@ -24,11 +24,7 @@ export default function Vercel() {
 
       <P>
         <span className="translations">
-          Also available in:{" "}
-          <Link href="/ja/2020/vercel">
-            <a>Japanese</a>
-          </Link>
-          .
+          Also available in: <Link href="/ja/2020/vercel" legacyBehavior>Japanese</Link>.
         </span>
       </P>
 

@@ -5,3 +5,4 @@ dist
 .env
 .output
 .env.local
+.pnpm-debug.log

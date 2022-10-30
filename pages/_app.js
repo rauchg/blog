@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/react";
 import "react-static-tweets/styles.css";
 
 import { MDXProvider } from "@mdx-js/react";
@@ -25,15 +26,18 @@ const components = {
         </a>
       );
     }
-    return <Link href={href}>{children}</Link>;
+    return <Link href={href} legacyBehavior>{children}</Link>;
   },
   blockquote: Quote,
 };
 
 export default function App({ Component, pageProps }) {
   return (
-    <MDXProvider components={components}>
-      <Component {...pageProps} />
-    </MDXProvider>
+    <>
+      <MDXProvider components={components}>
+        <Component {...pageProps} />
+      </MDXProvider>
+      <Analytics />
+    </>
   );
 }

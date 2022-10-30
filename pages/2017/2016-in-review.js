@@ -350,7 +350,7 @@ export default function InReview2016() {
       <P>
         A few years ago I wrote about{" "}
         <Link href="/2014/7-principles-of-rich-web-applications">
-          <a>7 principles</a>
+          7 principles
         </Link>{" "}
         that made for great UX in the web. This tool enables those.
       </P>
@@ -811,7 +811,7 @@ export default function InReview2016() {
       <P>
         The only essay I wrote this year is called{" "}
         <Link href="/2016/addressable-errors">
-          <a>Addressable Errors</a>
+          Addressable Errors
         </Link>
         .
       </P>
