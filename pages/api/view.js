@@ -8,7 +8,7 @@ export default async function view(req) {
     return Response.json({ error: 'Missing "id" query' }, { status: 400 });
   }
 
-  await fetch(`${convexConfig.origin}/api/0.1.4/udf`, {
+  await fetch(`${convexConfig.prodUrl}/api/0.1.4/udf`, {
     method: "POST",
     body: JSON.stringify({
       path: "addView",
@@ -26,5 +26,5 @@ export default async function view(req) {
 }
 
 export const config = {
-  runtime: "experimental-edge",
+  runtime: "edge",
 };

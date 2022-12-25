@@ -1,6 +1,7 @@
 {
-  "authInfo": [],
+  "project": "blog",
+  "team": "rauchg",
+  "prodUrl": "https://focused-quetzal-246.convex.cloud",
   "functions": "convex/",
-  "instanceName": "focused-quetzal-246",
-  "origin": "https://focused-quetzal-246.convex.cloud"
+  "authInfo": []
 }

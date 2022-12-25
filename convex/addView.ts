@@ -1,13 +1,13 @@
 import { mutation } from "./_generated/server";
 
 export default mutation(async ({ db }, authToken: string, postId: string) => {
-  let authDoc = await db.table("auth_table").first();
+  let authDoc = await db.query("auth_table").first();
   if (authDoc?.token == null || authDoc.token != authToken) {
     throw new Error("Unauthorized");
   }
 
   let viewsDoc = await db
-    .table("views_table")
+    .query("views_table")
     .filter(q => q.eq(q.field("postId"), postId))
     .first();
 
