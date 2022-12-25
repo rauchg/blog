@@ -5,6 +5,11 @@
 @layer base {
   :root {
     font-family: "Inter", sans-serif;
+    @apply bg-[#fcfcfc];
+  }
+
+  :root.dark {
+    @apply bg-[#1C1C1C];
   }
 
   @supports (font-variation-settings: normal) {

@@ -107,7 +107,7 @@ export default function Posts({ posts }) {
                 <li key={post.id}>
                   <Link href={`/posts/${post.id}`}>
                     <span
-                      className={`py-3 flex items-center block border-y border-gray-200 dark:border-[#313131] transition-colors hover:bg-gray-100 dark:hover:bg-[#242424]
+                      className={`py-3 flex items-center block border-y border-gray-200 dark:border-[#313131] transition-[background-color] hover:bg-gray-100 dark:hover:bg-[#242424]
                     ${i > 0 ? "pl-14 border-t-0" : ""}
                     ${i === postsByYear[year].length - 1 ? "border-b-0" : ""}`}
                     >
