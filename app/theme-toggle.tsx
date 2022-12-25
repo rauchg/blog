@@ -6,6 +6,7 @@ export function ThemeToggle() {
   // a `null` preference implies auto
   const [preference, setPreference] = useState(undefined);
   const [currentTheme, setCurrentTheme] = useState(null);
+  const [isHovering, setIsHovering] = useState(false);
 
   const onMediaChange = useCallback(() => {
     const current = themeEffect();
@@ -43,11 +44,16 @@ export function ThemeToggle() {
   if (preference === undefined) return;
   return (
     <button
-      className={`inline-flex hover:bg-gray-200 dark:hover:bg-[#313131] active:bg-gray-300 dark:active:bg-[#242424] rounded-sm p-1.5 ${
+      className={`inline-flex ${
+        isHovering ? "bg-gray-200 dark:bg-[#313131]" : ""
+      } active:bg-gray-300 dark:active:bg-[#242424] rounded-sm p-1.5 ${
         preference !== null ? "bg-gray-200 dark:bg-[#313131]" : ""
       }`}
       onClick={ev => {
         ev.preventDefault();
+        // prevent the hover state from rendering
+        setIsHovering(false);
+
         let newPreference = currentTheme === "dark" ? "light" : "dark";
         const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
           .matches
@@ -65,6 +71,8 @@ export function ThemeToggle() {
 
         setPreference(newPreference);
       }}
+      onMouseEnter={() => setIsHovering(true)}
+      onMouseLeave={() => setIsHovering(false)}
     >
       {preference !== undefined ? (
         currentTheme === "dark" ? (
