@@ -1,7 +1,6 @@
 import ReactDOMServer from "react-dom/server";
-import { fetchTweetAst } from "static-tweets";
 import { TweetsMap } from "./tweets";
-import { getJSON, set } from "./store";
+import { fetchTweetData } from "./fetch-tweet-data";
 
 interface TweetsMap {
   [id: string]: any;
@@ -26,10 +25,7 @@ export default async function getTweets(Page: any): Promise<TweetsMap> {
 
   await Promise.all(
     ids.map(async id => {
-      let t = tweetsCache[id] || (await getJSON(`/tweets/${id}.json`));
-      if (t == null) t = await fetchTweetAst(id);
-      if (t == null) throw new Error(`Could not fetch tweet ${id}`);
-      await set(`/tweets/${id}.json`, JSON.stringify(t));
+      let t = tweetsCache[id] || (await fetchTweetData(id));
       tweetsData[id] = tweetsCache[id] = t;
     })
   );
