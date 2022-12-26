@@ -7,7 +7,7 @@ export default function Post() {
       <h1 className="text-2xl font-bold mb-1 dark:text-gray-100">
         Making the Web. Faster.
       </h1>
-      <p className="font-mono text-xs dark:text-gray-500">
+      <p className="font-mono text-xs text-gray-400 dark:text-gray-500">
         <span>
           <a href="#">@rauchg</a>
         </span>
