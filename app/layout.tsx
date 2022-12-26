@@ -2,6 +2,7 @@ import "./globals.css";
 import { Inter } from "@next/font/google";
 import { ThemeToggle } from "./theme-toggle";
 import { themeEffect } from "./theme-effect";
+import { Logo } from "./logo";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,21 +27,21 @@ export default function RootLayout({
 
       <body className="p-6 dark:text-gray-100 max-w-2xl m-auto">
         <header className="flex mb-10">
-          <b className="text-lg">Guillermo Rauch</b>
+          <Logo />
 
           <nav className="font-mono text-xs grow justify-end items-center flex gap-3">
             <ThemeToggle />
 
             <a
               href="/about"
-              className="inline-flex hover:bg-gray-200 dark:hover:bg-[#313131] active:bg-gray-300 dark:active:bg-[#242424] rounded-sm p-1.5"
+              className="inline-flex hover:bg-gray-200 dark:hover:bg-[#313131] active:bg-gray-300 dark:active:bg-[#242424] rounded-sm p-1.5 transition-[background-color]"
             >
               About
             </a>
             <a
               href="https://twitter.com/rauchg"
               target="_blank"
-              className="inline-flex hover:bg-gray-200 dark:hover:bg-[#313131] active:bg-gray-300 dark:active:bg-[#242424] items-center p-1.5 rounded-sm"
+              className="inline-flex hover:bg-gray-200 dark:hover:bg-[#313131] active:bg-gray-300 dark:active:bg-[#242424] items-center p-1.5 rounded-sm transition-[background-color]"
             >
               <TweetIcon style={{ marginRight: 4 }} /> Follow me
             </a>
