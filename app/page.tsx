@@ -2,6 +2,8 @@ import postsData from "@/posts.json";
 import convexConfig from "@/convex.json";
 import Posts, { Post } from "./posts";
 
+export const revalidate = 30;
+
 interface ConvexView {
   postId: string;
   views: number;

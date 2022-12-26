@@ -24,9 +24,9 @@ export default function RootLayout({
         />
       </head>
 
-      <body className="p-6 dark:text-gray-100">
+      <body className="p-6 dark:text-gray-100 max-w-2xl m-auto">
         <header className="flex mb-10">
-          <b>Guillermo Rauch</b>
+          <b className="text-lg">Guillermo Rauch</b>
 
           <nav className="font-mono text-xs grow justify-end items-center flex gap-3">
             <ThemeToggle />

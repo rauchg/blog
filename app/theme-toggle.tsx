@@ -43,45 +43,47 @@ export function ThemeToggle() {
 
   if (preference === undefined) return;
   return (
-    <button
-      className={`inline-flex ${
-        isHovering ? "bg-gray-200 dark:bg-[#313131]" : ""
-      } active:bg-gray-300 dark:active:bg-[#242424] rounded-sm p-1.5 ${
-        preference !== null ? "bg-gray-200 dark:bg-[#313131]" : ""
-      }`}
-      onClick={ev => {
-        ev.preventDefault();
-        // prevent the hover state from rendering
-        setIsHovering(false);
+    <>
+      <button
+        className={`inline-flex ${
+          isHovering ? "bg-gray-200 dark:bg-[#313131]" : ""
+        } active:bg-gray-300 dark:active:bg-[#242424] rounded-sm p-1.5 ${
+          preference !== null ? "bg-gray-200 dark:bg-[#313131]" : ""
+        }`}
+        onClick={ev => {
+          ev.preventDefault();
+          // prevent the hover state from rendering
+          setIsHovering(false);
 
-        let newPreference = currentTheme === "dark" ? "light" : "dark";
-        const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
-          .matches
-          ? "dark"
-          : "light";
+          let newPreference = currentTheme === "dark" ? "light" : "dark";
+          const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
+            .matches
+            ? "dark"
+            : "light";
 
-        // if the user has their current OS theme as a preference (instead of auto)
-        // and they click the toggle, we want to switch to reset the preference
-        if (preference !== null && systemTheme === currentTheme) {
-          newPreference = null;
-          localStorage.removeItem("theme");
-        } else {
-          localStorage.setItem("theme", newPreference);
-        }
+          // if the user has their current OS theme as a preference (instead of auto)
+          // and they click the toggle, we want to switch to reset the preference
+          if (preference !== null && systemTheme === currentTheme) {
+            newPreference = null;
+            localStorage.removeItem("theme");
+          } else {
+            localStorage.setItem("theme", newPreference);
+          }
 
-        setPreference(newPreference);
-      }}
-      onMouseEnter={() => setIsHovering(true)}
-      onMouseLeave={() => setIsHovering(false)}
-    >
-      {preference !== undefined ? (
-        currentTheme === "dark" ? (
-          <SunIcon />
-        ) : (
-          <MoonIcon />
-        )
-      ) : null}
-    </button>
+          setPreference(newPreference);
+        }}
+        onMouseEnter={() => setIsHovering(true)}
+        onMouseLeave={() => setIsHovering(false)}
+      >
+        {preference !== undefined ? (
+          currentTheme === "dark" ? (
+            <SunIcon />
+          ) : (
+            <MoonIcon />
+          )
+        ) : null}
+      </button>
+    </>
   );
 }
 
