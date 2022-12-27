@@ -39,17 +39,17 @@ export default function Post() {
       <p className="my-5">We&rsquo;ll use this investment to:</p>
 
       <ol className="my-5 list-decimal list-inside">
-        <li className="my-1">
+        <li className="my-2">
           <a href="#" className="post-link">
             <b>Build the SDK for Web</b>
           </a>
         </li>
-        <li className="my-1">
+        <li className="my-2">
           <a href="#" className="post-link">
             <b>Lower the barrier of entry</b>
           </a>
         </li>
-        <li className="my-1">
+        <li className="my-2">
           <a href="#" className="post-link">
             <b>Focus on the end-user</b>
           </a>
@@ -147,13 +147,13 @@ export default function Post() {
       </p>
 
       <ul className="my-5 list-inside list-none">
-        <li className="my-1 before:text-gray-400 before:content-['–'] before:mr-2">
+        <li className="my-2 before:text-gray-400 before:content-['–'] before:mr-2">
           Setting up and maintaining your developer environment
         </li>
-        <li className="my-1 before:text-gray-400 before:content-['–'] before:mr-2">
+        <li className="my-2 before:text-gray-400 before:content-['–'] before:mr-2">
           Integrating it into Git for continuous integration
         </li>
-        <li className="my-1 before:text-gray-400 before:content-['–'] before:mr-2">
+        <li className="my-2 before:text-gray-400 before:content-['–'] before:mr-2">
           Manually pushing and waiting to share progress with your team
         </li>
       </ul>
@@ -209,8 +209,8 @@ export default function Post() {
       </p>
 
       <ol className="my-5 list-decimal list-inside">
-        <li className="my-1">The user of the tool</li>
-        <li className="my-1">The user of the output of the tool</li>
+        <li className="my-2">The user of the tool</li>
+        <li className="my-2">The user of the output of the tool</li>
       </ol>
 
       <p className="my-5">
@@ -228,16 +228,41 @@ export default function Post() {
       </p>
 
       <ul className="my-5 list-inside list-none">
-        <li className="my-1 before:text-gray-400 before:content-['–'] before:mr-2">
+        <li className="my-2 relative pl-4 before:text-gray-400 before:content-['–'] before:mr-2 before:absolute before:-ml-4">
           Next.js was born out of the insight that React in its initial Single
           Page Application presentation was putting the rendering burden on the
-          user's device that should have been on the{" "}
+          user&rsquo;s device that should have been on the{" "}
           <a href="#" className="post-link">
             server
           </a>{" "}
           instead.
         </li>
+
+        <li className="my-2 relative pl-4 before:text-gray-400 before:content-['–'] before:mr-2 before:absolute before:-ml-4">
+          Vercel Analytics prioritized giving you a Real Experience Score
+          calculated by each device, rather than just listing traffic stats or
+          TTFB latencies.
+        </li>
+
+        <li className="my-2 relative pl-4 before:text-gray-400 before:content-['–'] before:mr-2 before:absolute before:-ml-4">
+          Pre-rendering at build time or via{" "}
+          <a href="#" className="post-link">
+            Incremental Static Regeneration
+          </a>{" "}
+          is all about{" "}
+          <a href="#" className="post-link">
+            taking the CPU cycles entirely out
+          </a>{" "}
+          of the page serving equation, removing latency for the end user.
+        </li>
       </ul>
+
+      <p className="my-5">
+        Our primary fitness function is your success for your customers. Not
+        every visitor might understand fully how every page is built, but if the
+        experience is delightful and fast, they ought to think it was powered by
+        Vercel.
+      </p>
     </article>
   );
 }
