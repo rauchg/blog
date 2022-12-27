@@ -26,7 +26,7 @@ specifiers:
   react: ^18.2.0
   react-dom: ^18.2.0
   react-intersection-observer: ^8.32.0
-  react-static-tweets: ^1.0.0
+  react-static-tweets: ^2.0.0
   react-wrap-balancer: ^0.2.3
   react-youtube: ^7.13.0
   static-tweets: ^1.0.0
@@ -52,7 +52,7 @@ dependencies:
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-intersection-observer: 8.34.0_react@18.2.0
-  react-static-tweets: 1.0.0_yrhekxy2fadstyxml3mltrie4m
+  react-static-tweets: 2.0.0_yrhekxy2fadstyxml3mltrie4m
   react-wrap-balancer: 0.2.3_react@18.2.0
   react-youtube: 7.14.0_react@18.2.0
   static-tweets: 1.0.0
@@ -3554,8 +3554,8 @@ packages:
   /react-is/16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
 
-  /react-static-tweets/1.0.0_yrhekxy2fadstyxml3mltrie4m:
-    resolution: {integrity: sha512-a20G/ad+UD5j1tp6a/lSnsrAhZqROSCW6iJpn5ol07vyeeZ404BTuXBupQNGGJdJLIGmP3+Kld6AJNlEEIqwHA==}
+  /react-static-tweets/2.0.0_yrhekxy2fadstyxml3mltrie4m:
+    resolution: {integrity: sha512-FDXBTKBVdGkfZMMLnOkMB1P9SVJDBViczfvotkcf+i4p5QUqXJ1vP/+Th+7k0TN1BiOnOudorV2ZgFXEACjesQ==}
     engines: {node: '>=12'}
     peerDependencies:
       date-fns: '>=2'

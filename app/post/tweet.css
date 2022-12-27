@@ -1,0 +1,13 @@
+@import "react-static-tweets/styles.css";
+
+.dark .static-tweet {
+  --tweet-bg-color: theme("colors.neutral.900");
+  --tweet-font-color: theme("colors.white");
+  --tweet-color-gray: theme("colors.neutral.400");
+  --tweet-border: 1px solid theme("colors.neutral.800");
+  --tweet-border-hover: 1px solid theme("colors.neutral.700");
+}
+
+.dark .static-tweet-header-name {
+  color: theme("colors.white");
+}

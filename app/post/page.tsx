@@ -1,5 +1,4 @@
 import { Tweet } from "./tweet";
-import "react-static-tweets/styles.css";
 
 export default function Post() {
   return (
