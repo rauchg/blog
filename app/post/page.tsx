@@ -82,6 +82,7 @@ export default function Post() {
             <a href="https://twitter.com/vadim_kravcenko/status/1401937274972037122">
               recommend it
             </a>{" "}
+            to one another
           </>
         }
       />
@@ -126,12 +127,12 @@ export default function Post() {
       {/* @ts-ignore */}
       <Tweet id="1390309469561659396" />
 
-      <h2 className="font-bold text-xl my-8 relative">
+      <h2 className="group font-bold text-xl my-8 relative">
         <span id="realtime" className="absolute -top-[20px]" />
         <span className="relative">
           <a
             href="#realtime"
-            className="font-normal absolute w-7 -ml-7 text-center text-gray-400 dark:text-gray-500"
+            className="invisible group-hover:visible font-normal absolute w-7 -ml-7 text-center text-gray-400 dark:text-gray-500"
           >
             #
           </a>{" "}
@@ -185,12 +186,12 @@ export default function Post() {
       {/* @ts-ignore */}
       <Tweet id="1404833080435634179" />
 
-      <h2 className="font-bold text-xl my-8 relative">
+      <h2 className="group font-bold text-xl my-8 relative">
         <span id="real" className="absolute -top-[20px]" />
         <span className="relative">
           <a
             href="#real"
-            className="font-normal absolute w-7 -ml-7 text-center text-gray-400 dark:text-gray-500"
+            className="invisible group-hover:visible font-normal absolute w-7 -ml-7 text-center text-gray-400 dark:text-gray-500"
           >
             #
           </a>{" "}

@@ -11,7 +11,7 @@ interface TweetArgs {
 export async function Tweet({ id, caption }: TweetArgs) {
   const ast = await fetchTweetData(id);
   return (
-    <div className="my-5">
+    <div className="my-6">
       <div className="flex justify-center">
         <TweetWrapper id={id} ast={ast} />
       </div>
