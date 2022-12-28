@@ -8,7 +8,7 @@ export default function Post() {
       </h1>
       <p className="font-mono text-xs text-gray-400 dark:text-gray-500">
         <span>
-          <a href="#" className="hover:text-gray-600">
+          <a href="#" className="hover:text-gray-600 dark:hover:text-gray-400">
             @rauchg
           </a>
         </span>
