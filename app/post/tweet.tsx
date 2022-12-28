@@ -14,7 +14,7 @@ export async function Tweet({ id, caption }: TweetArgs) {
   return (
     <div className="my-6">
       <div className="flex justify-center">
-        <TweetElement id={id} ast={ast} />
+        <TweetElement ast={ast} />
       </div>
       {caption && <Caption>{caption}</Caption>}
     </div>
