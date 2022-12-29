@@ -3,7 +3,7 @@
 import { ConvexProvider, ConvexReactClient } from "convex/react";
 import clientConfig from "@/convex/_generated/clientConfig";
 import { useQuery } from "@/convex/_generated/react";
-import { useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 
 const convex = new ConvexReactClient(clientConfig);
 
@@ -35,7 +35,12 @@ export function Meta() {
 }
 
 function Views({ id }) {
-  const views = useQuery("getViews", id);
+  const allViews = useQuery("getAllViews");
+  const views = useMemo(() => {
+    if (allViews) {
+      return allViews.find(view => view.postId === id)?.viewsFormatted;
+    }
+  }, [allViews, id]);
   const didLogViewRef = useRef(false);
 
   useEffect(() => {
