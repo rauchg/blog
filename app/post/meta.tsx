@@ -25,7 +25,7 @@ export function Meta() {
           <span>June 23, 2001 (2y ago)</span>
         </span>
 
-        <span className="pr-2">
+        <span className="pr-1.5">
           <Views />
         </span>
       </p>
