@@ -1,4 +1,5 @@
 import { Tweet } from "./tweet";
+import { Meta } from "./meta";
 
 export default function Post() {
   return (
@@ -6,17 +7,8 @@ export default function Post() {
       <h1 className="text-2xl font-bold mb-1 dark:text-gray-100">
         Making the Web. Faster.
       </h1>
-      <p className="font-mono text-xs text-gray-400 dark:text-gray-500">
-        <span>
-          <a href="#" className="hover:text-gray-600 dark:hover:text-gray-400">
-            @rauchg
-          </a>
-        </span>
 
-        <span className="mx-2">|</span>
-
-        <span>June 23, 2001 (2y ago)</span>
-      </p>
+      <Meta />
 
       <p className="my-5">
         Following our{" "}
