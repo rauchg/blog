@@ -3,6 +3,7 @@
 import { ConvexProvider, ConvexReactClient } from "convex/react";
 import clientConfig from "@/convex/_generated/clientConfig";
 import { useQuery } from "@/convex/_generated/react";
+import { useEffect, useRef } from "react";
 
 const convex = new ConvexReactClient(clientConfig);
 
@@ -26,14 +27,24 @@ export function Meta() {
         </span>
 
         <span className="pr-1.5">
-          <Views />
+          <Views id="2021-making-the-web-faster" />
         </span>
       </p>
     </ConvexProvider>
   );
 }
 
-function Views() {
-  const views = useQuery("getViews", "2021-making-the-web-faster");
+function Views({ id }) {
+  const views = useQuery("getViews", id);
+  const didLogViewRef = useRef(false);
+
+  useEffect(() => {
+    if (!didLogViewRef.current) {
+      const url = "/api/view?id=" + encodeURIComponent(id);
+      fetch(url).catch(console.error);
+      didLogViewRef.current = true;
+    }
+  });
+
   return <>{views != null ? <span>{views} views</span> : null}</>;
 }
