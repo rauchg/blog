@@ -27,7 +27,7 @@ export function Meta() {
         </span>
 
         <span className="pr-1.5">
-          <Views id="2021-making-the-web-faster" />
+          <Views id="making-the-web-faster" />
         </span>
       </p>
     </ConvexProvider>

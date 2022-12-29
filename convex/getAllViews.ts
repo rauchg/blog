@@ -1,12 +1,17 @@
 import { query } from "./_generated/server";
 import commaNumber from "comma-number";
 
-export default query(async ({ db }): Promise<object> => {
+export interface View {
+  postId: string;
+  views: number;
+  viewsFormatted: string;
+}
+
+export default query(async ({ db }): Promise<Array<View>> => {
   const counterDocs = await db.query("views_table").collect();
   return counterDocs.map(doc => {
     return {
       ...doc,
-      views: doc.views,
       viewsFormatted: commaNumber(doc.views),
     };
   });
