@@ -78,7 +78,7 @@ export default function About() {
           Vercel
         </a>{" "}
         were born. Our platform now helps power the online presence of companies
-        like Washington Post, Porsche, Under Armour.
+        like Washington Post, Porsche, Under Armour and Nintendo.
       </p>
 
       <h2 className="group font-bold text-xl my-8 relative">
