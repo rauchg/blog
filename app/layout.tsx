@@ -3,6 +3,7 @@ import { Inter } from "@next/font/google";
 import { ThemeToggle } from "./theme-toggle";
 import { themeEffect } from "./theme-effect";
 import { Logo } from "./logo";
+import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -32,12 +33,12 @@ export default function RootLayout({
           <nav className="font-mono text-xs grow justify-end items-center flex gap-3">
             <ThemeToggle />
 
-            <a
+            <Link
               href="/about"
               className="inline-flex hover:bg-gray-200 dark:hover:bg-[#313131] active:bg-gray-300 dark:active:bg-[#242424] rounded-sm p-1.5 transition-[background-color]"
             >
               About
-            </a>
+            </Link>
             <a
               href="https://twitter.com/rauchg"
               target="_blank"
