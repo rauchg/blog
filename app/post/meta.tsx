@@ -4,10 +4,11 @@ import { ConvexProvider, ConvexReactClient } from "convex/react";
 import clientConfig from "@/convex/_generated/clientConfig";
 import { useQuery } from "@/convex/_generated/react";
 import { useEffect, useMemo, useRef } from "react";
+import type { View } from "@/convex/getAllViews";
 
 const convex = new ConvexReactClient(clientConfig);
 
-export function Meta() {
+export function Meta({ views }) {
   return (
     <ConvexProvider client={convex}>
       <p className="font-mono flex text-xs text-gray-400 dark:text-gray-500">
@@ -27,20 +28,19 @@ export function Meta() {
         </span>
 
         <span className="pr-1.5">
-          <Views id="making-the-web-faster" />
+          <Views id="making-the-web-faster" defaultValue={views} />
         </span>
       </p>
     </ConvexProvider>
   );
 }
 
-function Views({ id }) {
+function Views({ id, defaultValue }) {
   const allViews = useQuery("getAllViews");
   const views = useMemo(() => {
-    if (allViews) {
-      return allViews.find(view => view.postId === id)?.viewsFormatted;
-    }
-  }, [allViews, id]);
+    return (allViews ?? defaultValue)?.find((view: View) => view.postId === id)
+      ?.viewsFormatted;
+  }, [allViews, defaultValue, id]);
   const didLogViewRef = useRef(false);
 
   useEffect(() => {

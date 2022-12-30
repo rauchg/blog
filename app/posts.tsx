@@ -22,7 +22,7 @@ interface YearIndex {
   [key: string]: Post[];
 }
 
-export default function Posts({ posts, views }) {
+export function Posts({ posts, views }) {
   const [sort, setSort] = useState(["date", "desc"]);
 
   function sortDate() {

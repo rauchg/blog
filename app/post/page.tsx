@@ -1,14 +1,19 @@
 import { Tweet } from "./tweet";
 import { Meta } from "./meta";
+import { getViews } from "../get-views";
 
-export default function Post() {
+export const revalidate = 1;
+
+export default async function Post() {
+  const views = await getViews();
+
   return (
     <article className="text-gray-800 dark:text-gray-300">
       <h1 className="text-2xl font-bold mb-1 dark:text-gray-100">
         Making the Web. Faster.
       </h1>
 
-      <Meta />
+      <Meta views={views} />
 
       <p className="my-5">
         Following our{" "}
