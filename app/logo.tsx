@@ -5,9 +5,9 @@ import Link from "next/link";
 export function Logo() {
   const pathname = usePathname();
   return (
-    <span className="text-lg font-bold">
+    <span className="text-lg whitespace-nowrap font-bold">
       {pathname === "/" ? (
-        <span className="cursor-default">Guillermo Rauch</span>
+        <span className="cursor-default pr-2">Guillermo Rauch</span>
       ) : (
         <Link
           href="/"

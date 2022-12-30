@@ -10,6 +10,7 @@ export default function About() {
           src="/images/rauchg-3d4cecf.jpg"
           alt="Guillermo Rauch"
           className="rounded-full bg-gray-100 block my-5 mx-auto sm:float-right sm:ml-5 sm:mb-5 grayscale hover:grayscale-0"
+          unoptimized
           width={192}
           height={192}
           loading="eager"
