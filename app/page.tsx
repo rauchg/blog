@@ -2,7 +2,7 @@ import postsData from "@/posts.json";
 import convexConfig from "@/convex.json";
 import Posts from "./posts";
 
-export const revalidate = 30;
+export const revalidate = 1;
 
 const getViews = async () => {
   const url = new URL(`${convexConfig.prodUrl}/api/0.1.4/udf`);
