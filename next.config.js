@@ -32,6 +32,15 @@ module.exports = withMDX({
           },
         ],
       },
+      {
+        source: "/images/rauchg-3d4cecf.jpg",
+        headers: [
+          {
+            key: "cache-control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
     ];
   },
   redirects() {
