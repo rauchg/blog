@@ -4,7 +4,7 @@ specifiers:
   '@mdx-js/loader': ^2.1.1
   '@mdx-js/react': ^2.1.1
   '@next/font': ^13.1.1
-  '@next/mdx': ^12.1.6
+  '@next/mdx': 13.1.3-canary.0
   '@types/comma-number': ^2.1.0
   '@types/node-fetch': ^2.5.8
   '@types/react': ^18.0.26
@@ -39,7 +39,7 @@ dependencies:
   '@mdx-js/loader': 2.1.1
   '@mdx-js/react': 2.1.1_react@18.2.0
   '@next/font': 13.1.1
-  '@next/mdx': 12.1.6_svepmivmajrgriivp7ha5q4gca
+  '@next/mdx': 13.1.3-canary.0_svepmivmajrgriivp7ha5q4gca
   '@types/node-fetch': 2.6.1
   '@vercel/analytics': 0.1.1_react@18.2.0
   '@vercel/fetch': 6.2.0_fii5qhbaymjqmfm7e2spxc5z4m
@@ -210,14 +210,15 @@ packages:
     resolution: {integrity: sha512-amygRorS05hYK1/XQRZo5qBl7l2fpHnezeKU/cNveWU5QJg+sg8gMGkUXHtvesNKpiKIJshBRH1TzvO+2sKpvQ==}
     dev: false
 
-  /@next/mdx/12.1.6_svepmivmajrgriivp7ha5q4gca:
-    resolution: {integrity: sha512-pyE8CZQ3xHs5rIXp6Js4zN3+u77Y50YFw5kHMtbW1Gfw6zwl9UcJci4K27vURDAItoVFdcwZZ4kvuI2YjO1Cwg==}
+  /@next/mdx/13.1.3-canary.0_svepmivmajrgriivp7ha5q4gca:
+    resolution: {integrity: sha512-k65GtXJDLewp676fMMmhnnYx+Yw4J+oESmsjGlDlvCzRC68Spc0qdbbBk7J9Ax+hfl0lsk7J/mjwK6Qeh2U6JQ==}
     peerDependencies:
       '@mdx-js/loader': '>=0.15.0'
       '@mdx-js/react': '*'
     dependencies:
       '@mdx-js/loader': 2.1.1
       '@mdx-js/react': 2.1.1_react@18.2.0
+      source-map: 0.7.3
     dev: false
 
   /@next/swc-android-arm-eabi/13.1.3-canary.0:
