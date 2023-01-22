@@ -146,7 +146,7 @@ function List({ posts, views, sort }) {
                       }`}
                   >
                     {i === 0 && (
-                      <span className="w-14 inline-block text-gray-400 dark:text-gray-500">
+                      <span className="w-14 inline-block self-start text-gray-400 dark:text-gray-500">
                         {year}
                       </span>
                     )}
