@@ -19,8 +19,8 @@ export default function About() {
 
       <p className="my-2">
         I&rsquo;m a software engineer and CEO of Vercel. I&rsquo;m originally
-        from Lanus, Provincia de Buenos Aires, Argentina. I owe much of my
-        career to the Web and Open Source.
+        from Lanus, Buenos Aires, Argentina. I owe much of my career to the Web
+        and Open Source.
       </p>
 
       <p className="my-2">
@@ -193,6 +193,19 @@ export default function About() {
         </li>
 
         <li className="my-2 relative pl-4 before:text-gray-400 before:content-['–'] before:mr-2 before:absolute before:-ml-4">
+          Authored{" "}
+          <a
+            className="post-link"
+            href="https://github.com/vercel/hyper"
+            target="_blank"
+          >
+            Hyper
+          </a>
+          , a cross-paltform Terminal emulator built on Web technologies with
+          over 42,000 daily active developers.
+        </li>
+
+        <li className="my-2 relative pl-4 before:text-gray-400 before:content-['–'] before:mr-2 before:absolute before:-ml-4">
           Designed and co-authored{" "}
           <a href="https://nextjs.org/" target="_blank" className="post-link">
             Next.js
@@ -245,7 +258,8 @@ export default function About() {
           <a className="post-link" href="https://github.com/Automattic/mydb">
             realtime infrastructure for MongoDB
           </a>{" "}
-          I authored inspired by Firebase.
+          I authored inspired by Firebase and a proprietary predecessor to
+          Electron for cross-platform Web-based desktop apps.
         </li>
 
         <li className="my-2 relative pl-4 before:text-gray-400 before:content-['–'] before:mr-2 before:absolute before:-ml-4">
