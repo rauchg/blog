@@ -13,7 +13,7 @@ export default function About() {
           unoptimized
           width={160}
           height={160}
-          loading="eager"
+          priority
         />
       </a>
 
