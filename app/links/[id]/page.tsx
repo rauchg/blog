@@ -7,7 +7,7 @@ export default function Link({
   searchParams,
 }: {
   params: { id: string };
-  searchParams: URLSearchParams;
+  searchParams: { bot?: string };
 }) {
   const link = links[params.id];
 
@@ -15,9 +15,9 @@ export default function Link({
     return notFound();
   }
 
-  if (searchParams.get("bot") || /bot/i.test(headers().get("user-agent"))) {
-    return redirect(link.link);
+  if (searchParams.bot || /bot/i.test(headers().get("user-agent"))) {
+    return <></>;
+  } else {
+    redirect(link.link);
   }
-
-  return <>Hello bot!</>;
 }
