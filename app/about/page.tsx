@@ -24,9 +24,8 @@ export default function About() {
       </p>
 
       <p className="my-2">
-        I spent my teenage years advocating and teaching people how to use and
-        sysadmin Linux and later developed a passion for JavaScript and Web
-        development.
+        I spent my early teens advocating for and teaching people how to use
+        Linux and later developed a passion for JavaScript and Web development.
       </p>
 
       <p className="my-2">
