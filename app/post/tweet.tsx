@@ -1,4 +1,3 @@
-"use client";
 import { fetchTweetData } from "@/lib/fetch-tweet-data";
 import { Tweet as TweetElement } from "react-static-tweets";
 import { Caption } from "./caption";
