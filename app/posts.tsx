@@ -6,6 +6,7 @@ import { useQuery } from "@/convex/_generated/react";
 import clientConfig from "@/convex/_generated/clientConfig";
 import Link from "next/link";
 import type { View } from "@/convex/getAllViews";
+import { Suspense } from "react";
 
 const convexClient = new ConvexReactClient(clientConfig);
 
@@ -41,33 +42,35 @@ export function Posts({ posts, views }) {
 
   return (
     <ConvexProvider client={convexClient}>
-      <main className="max-w-2xl font-mono m-auto text-sm">
-        <header className="text-gray-400 dark:text-gray-600 mb-2 flex text-xs">
-          <button
-            onClick={sortDate}
-            className={`w-14 text-left  ${
-              sort[0] === "date" && sort[1] !== "desc"
-                ? "text-gray-500 dark:text-gray-400"
-                : ""
-            }`}
-          >
-            date
-            {sort[0] === "date" && sort[1] === "asc" && "↑"}
-          </button>
-          <span className="grow">title</span>
-          <button
-            onClick={sortViews}
-            className={
-              sort[0] === "views" ? "text-gray-500 dark:text-gray-400" : ""
-            }
-          >
-            views
-            {sort[0] === "views" ? (sort[1] === "asc" ? "↑" : "↓") : ""}
-          </button>
-        </header>
+      <Suspense fallback={null}>
+        <main className="max-w-2xl font-mono m-auto text-sm">
+          <header className="text-gray-400 dark:text-gray-600 mb-2 flex text-xs">
+            <button
+              onClick={sortDate}
+              className={`w-14 text-left  ${
+                sort[0] === "date" && sort[1] !== "desc"
+                  ? "text-gray-500 dark:text-gray-400"
+                  : ""
+              }`}
+            >
+              date
+              {sort[0] === "date" && sort[1] === "asc" && "↑"}
+            </button>
+            <span className="grow">title</span>
+            <button
+              onClick={sortViews}
+              className={
+                sort[0] === "views" ? "text-gray-500 dark:text-gray-400" : ""
+              }
+            >
+              views
+              {sort[0] === "views" ? (sort[1] === "asc" ? "↑" : "↓") : ""}
+            </button>
+          </header>
 
-        <List posts={posts} views={views} sort={sort} />
-      </main>
+          <List posts={posts} views={views} sort={sort} />
+        </main>
+      </Suspense>
     </ConvexProvider>
   );
 }

@@ -60,7 +60,7 @@ export function ThemeToggle() {
           isHovering && !isHoveringOverride
             ? "bg-gray-200 dark:bg-[#313131]"
             : ""
-        } active:bg-gray-300 transition-[background-color] dark:active:bg-[#242424] rounded-sm p-1.5 ${
+        } active:bg-gray-300 transition-[background-color] dark:active:bg-[#242424] rounded-sm p-2 ${
           preference !== null ? "bg-gray-200 dark:bg-[#313131]" : ""
         }`}
         onClick={ev => {

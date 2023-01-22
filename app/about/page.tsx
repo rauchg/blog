@@ -201,7 +201,7 @@ export default function About() {
           >
             Hyper
           </a>
-          , a cross-paltform Terminal emulator built on Web technologies with
+          , a cross-platform Terminal emulator built on Web technologies with
           over 42,000 daily active developers.
         </li>
 
@@ -246,7 +246,7 @@ export default function About() {
         </li>
 
         <li className="my-2 relative pl-4 before:text-gray-400 before:content-['–'] before:mr-2 before:absolute before:-ml-4">
-          Authored a popular filesharing multi-platform application called{" "}
+          Built a popular file-sharing platform called{" "}
           <a
             className="post-link"
             href="https://techcrunch.com/2013/06/21/cloudup-is-a-fast-dead-simple-way-to-share-and-view-files-on-any-platform-without-the-folders/"

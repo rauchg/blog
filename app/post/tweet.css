@@ -1,5 +1,13 @@
 @import "react-static-tweets/styles.css";
 
+.static-tweet-emoji {
+  display: inline-flex;
+}
+
+.static-tweet-body :has(blockquote) + .static-tweet-info {
+  margin-top: 1.25rem;
+}
+
 .dark .static-tweet {
   --tweet-bg-color: theme("colors.neutral.900");
   --tweet-font-color: theme("colors.white");
