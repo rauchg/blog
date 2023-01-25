@@ -15,8 +15,9 @@ export function Meta({ views }) {
         <span className="flex-grow">
           <span>
             <a
-              href="#"
+              href="https://twitter.com/rauchg"
               className="hover:text-gray-600 dark:hover:text-gray-400"
+              target="_blank"
             >
               @rauchg
             </a>
