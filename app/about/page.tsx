@@ -19,7 +19,7 @@ export default function About() {
 
       <p className="my-2">
         I&rsquo;m a software engineer and CEO of Vercel. I&rsquo;m originally
-        from Lanus, Buenos Aires, Argentina. I owe much of my career to the Web
+        from Lanús, Buenos Aires, Argentina. I owe much of my career to the Web
         and Open Source.
       </p>
 
