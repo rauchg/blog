@@ -1,6 +1,13 @@
 export const themeEffect = function () {
-  // `null` preference implies auto
+  // `null` preference implies system (auto)
   const pref = localStorage.getItem("theme");
+
+  if (null === pref) {
+    document.documentElement.classList.add("theme-system");
+  } else {
+    document.documentElement.classList.remove("theme-system");
+  }
+
   if (
     pref === "dark" ||
     (!pref && window.matchMedia("(prefers-color-scheme: dark)").matches)

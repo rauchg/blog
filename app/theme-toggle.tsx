@@ -42,7 +42,6 @@ export function ThemeToggle() {
     return () => window.removeEventListener("storage", onStorageChange);
   });
 
-  if (preference === undefined) return;
   return (
     <>
       {isHovering && (
@@ -55,13 +54,22 @@ export function ThemeToggle() {
         </span>
       )}
 
+      {/*
+        the `theme-auto:` plugin is registered in `tailwind.config.js` and
+        works similarly to the `dark:` prefix, which depends on the `theme-effect.ts` behavior
+      */}
       <button
         className={`inline-flex ${
           isHovering && !isHoveringOverride
             ? "bg-gray-200 dark:bg-[#313131]"
             : ""
-        } active:bg-gray-300 transition-[background-color] dark:active:bg-[#242424] rounded-sm p-2 ${
-          preference !== null ? "bg-gray-200 dark:bg-[#313131]" : ""
+        } active:bg-gray-300 transition-[background-color] dark:active:bg-[#242424] rounded-sm p-2 
+          bg-gray-200
+          dark:bg-[#313131]
+          theme-system:!bg-inherit
+          [&_.sun-icon]:hidden
+          dark:[&_.moon-icon]:hidden
+          dark:[&_.sun-icon]:inline
         }`}
         onClick={ev => {
           ev.preventDefault();
@@ -91,13 +99,12 @@ export function ThemeToggle() {
           setIsHoveringOverride(false);
         }}
       >
-        {preference !== undefined ? (
-          currentTheme === "dark" ? (
-            <SunIcon />
-          ) : (
-            <MoonIcon />
-          )
-        ) : null}
+        <span className="sun-icon">
+          <SunIcon />
+        </span>
+        <span className="moon-icon">
+          <MoonIcon />
+        </span>
       </button>
     </>
   );
