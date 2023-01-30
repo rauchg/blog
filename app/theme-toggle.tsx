@@ -59,6 +59,7 @@ export function ThemeToggle() {
         works similarly to the `dark:` prefix, which depends on the `theme-effect.ts` behavior
       */}
       <button
+        aria-label="Toggle theme"
         className={`inline-flex ${
           isHovering && !isHoveringOverride
             ? "bg-gray-200 dark:bg-[#313131]"

@@ -2,7 +2,10 @@ import { fetchTweetData } from "@/lib/fetch-tweet-data";
 import { Tweet as TweetElement } from "react-static-tweets";
 import { Caption } from "./caption";
 import type { ReactNode } from "react";
-import "./tweet.css";
+
+// we import this globally in the top-most layout.tsx file
+// until Next.js lands suspense-y CSS support
+// import "./tweet.css";
 
 interface TweetArgs {
   id: string;

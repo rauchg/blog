@@ -1,20 +1,8 @@
-import { Tweet } from "./tweet";
-import { Meta } from "./meta";
-import { getViews } from "../get-views";
+import { Tweet } from "../components/tweet";
 
-export const revalidate = 1;
-
-export default async function Post() {
-  const views = await getViews();
-
+export default function Post() {
   return (
-    <article className="text-gray-800 dark:text-gray-300">
-      <h1 className="text-2xl font-bold mb-1 dark:text-gray-100">
-        Making the Web. Faster.
-      </h1>
-
-      <Meta views={views} />
-
+    <>
       <p className="my-5">
         Following our{" "}
         <a href="#" className="post-link">
@@ -218,7 +206,7 @@ export default async function Post() {
         .
       </p>
 
-      <p>
+      <p className="my-5">
         Performance for the end-user has been baked in the design of everything
         we make. To name some examples:
       </p>
@@ -259,6 +247,6 @@ export default async function Post() {
         experience is delightful and fast, they ought to think it was powered by
         Vercel.
       </p>
-    </article>
+    </>
   );
 }
