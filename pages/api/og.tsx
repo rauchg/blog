@@ -57,13 +57,24 @@ export default async function OGImage() {
           <div tw="text-[22px]">rauchg.com</div>
         </header>
 
-        <main tw="flex mt-20 flex-col w-full" style={font("Roboto Mono 400")}>
-          {postsData.posts.map(post => (
+        <main tw="flex mt-10 flex-col w-full" style={font("Roboto Mono 400")}>
+          <div tw="flex w-full text-lg text-gray-400 mb-3">
+            <div tw="w-20">date</div>
+            <div tw="grow">title</div>
+            <div>views</div>
+          </div>
+
+          {postsData.posts.map((post, i) => (
             <div
               key={post.id}
               tw="flex py-4 text-xl border-gray-300 border-t w-full"
             >
-              <div tw="flex text-gray-400 pr-7">2021</div>
+              <div tw="flex text-gray-400 w-20">
+                {postsData.posts[i - 1] === undefined ||
+                getYear(post.date) !== getYear(postsData.posts[i - 1].date)
+                  ? getYear(post.date)
+                  : ""}
+              </div>
               <div tw="flex grow">{post.title}</div>
               <div tw="flex text-gray-400 pl-7">
                 {viewsByPostId[post.id] ?? null}
@@ -92,6 +103,11 @@ export default async function OGImage() {
       ],
     }
   );
+}
+
+// lil helper to convert posts.json `date` to full year
+function getYear(date: string) {
+  return new Date(date).getFullYear();
 }
 
 // lil helper for mroe succinct styles
