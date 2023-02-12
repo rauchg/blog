@@ -1,6 +1,4 @@
 import { ImageResponse } from "@vercel/og";
-import postsData from "@/posts.json";
-import { getViews } from "@/app/get-views";
 
 export const config = {
   runtime: "edge",
@@ -28,21 +26,14 @@ const inter600 = fetch(
   )
 ).then(res => res.arrayBuffer());
 
-const robotoMono400 = fetch(
+const robotoMono300 = fetch(
   new URL(
-    `../../node_modules/@fontsource/roboto-mono/files/roboto-mono-latin-400-normal.woff`,
+    `../../node_modules/@fontsource/roboto-mono/files/roboto-mono-latin-300-normal.woff`,
     import.meta.url
   )
 ).then(res => res.arrayBuffer());
 
 export default async function OGImage() {
-  const views = await getViews();
-  const viewsByPostId = views.reduce((acc, view) => {
-    acc[view.postId] = view.viewsFormatted;
-    return acc;
-  }, {});
-  console.log(views);
-
   return new ImageResponse(
     (
       <div
@@ -57,19 +48,17 @@ export default async function OGImage() {
           <div tw="text-[22px]">rauchg.com</div>
         </header>
 
-        <main tw="flex mt-20 flex-col w-full" style={font("Roboto Mono 400")}>
-          {postsData.posts.map(post => (
-            <div
-              key={post.id}
-              tw="flex py-4 text-xl border-gray-300 border-t w-full"
-            >
-              <div tw="flex text-gray-400 pr-7">2021</div>
-              <div tw="flex grow">{post.title}</div>
-              <div tw="flex text-gray-400 pl-7">
-                {viewsByPostId[post.id] ?? null}
-              </div>
-            </div>
-          ))}
+        <main tw="flex mt-20 flex-col">
+          <div
+            tw="bg-gray-100 p-8 text-7xl font-medium rounded-md"
+            style={font("Inter 500")}
+          >
+            Making the Web. Faster.
+          </div>
+
+          <div tw="mt-5 text-2xl" style={font("Roboto Mono 300")}>
+            June 23, 2001 – 35,040 views
+          </div>
         </main>
       </div>
     ),
@@ -82,12 +71,16 @@ export default async function OGImage() {
           data: await inter300,
         },
         {
+          name: "Inter 500",
+          data: await inter500,
+        },
+        {
           name: "Inter 600",
           data: await inter600,
         },
         {
-          name: "Roboto Mono 400",
-          data: await robotoMono400,
+          name: "Roboto Mono 300",
+          data: await robotoMono300,
         },
       ],
     }
