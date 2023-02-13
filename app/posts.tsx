@@ -140,7 +140,7 @@ function List({ posts, views, sort }) {
           <ul>
             {postsByYear[year].map((post: Post, i: number) => (
               <li key={post.id}>
-                <Link href={`/post`}>
+                <Link href={`/${new Date(post.date).getFullYear()}/${post.id}`}>
                   <span
                     className={`py-3 flex items-center border-y border-gray-200 dark:border-[#313131] transition-[background-color] hover:bg-gray-100 dark:hover:bg-[#242424] active:bg-gray-200 dark:active:bg-[#222]
                       ${i > 0 ? "pl-14 border-t-0" : ""}

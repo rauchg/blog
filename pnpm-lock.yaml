@@ -19,6 +19,7 @@ specifiers:
   date-fns: ^2.29.3
   eslint: ^8.34.0
   eslint-config-next: ^13.1.6
+  image-size: ^1.0.2
   load-script: ^1.0.0
   next: 13.1.7-canary.10
   postcss: ^8.4.21
@@ -46,6 +47,7 @@ dependencies:
   aws-sdk: 2.1313.0
   comma-number: 2.1.0
   date-fns: 2.29.3
+  image-size: 1.0.2
   load-script: 1.0.0
   next: 13.1.7-canary.10_biqbaboplfbrettd7655fr4n2y
   react: 18.2.0
@@ -2081,6 +2083,14 @@ packages:
     engines: {node: '>= 4'}
     dev: true
 
+  /image-size/1.0.2:
+    resolution: {integrity: sha512-xfOoWjceHntRb3qFCrh5ZFORYH8XCdYpASltMhZ/Q0KZiOwjdE/Yl2QCiWdwD+lygV5bMCvauzgu5PxBX/Yerg==}
+    engines: {node: '>=14.0.0'}
+    hasBin: true
+    dependencies:
+      queue: 6.0.2
+    dev: false
+
   /import-fresh/3.3.0:
     resolution: {integrity: sha512-veYYhQa+D1QBKznvhUHxb8faxlrwUnxseDAbAp457E0wLNio2bOSKnjYDhMj+YiAq61xrMGhQk9iXVk5FzgQMw==}
     engines: {node: '>=6'}
@@ -2930,6 +2940,12 @@ packages:
   /queue-microtask/1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
     dev: true
+
+  /queue/6.0.2:
+    resolution: {integrity: sha512-iHZWu+q3IdFZFX36ro/lKBkSvfkztY5Y7HMiPlOUjhupPcG2JMfst2KKEpu5XndviX/3UhFbRngUPNKtgvtZiA==}
+    dependencies:
+      inherits: 2.0.4
+    dev: false
 
   /quick-lru/5.1.1:
     resolution: {integrity: sha512-WuyALRjWPDGtt/wzJiadO5AXY+8hZ80hVpe6MyivgraREW751X3SbhRvG3eLKOYN+8VEvqLcf3wdnt44Z4S4SA==}
