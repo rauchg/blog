@@ -53,7 +53,6 @@ export default function Post() {
         </span>
       </h2>
 
-      {/* @ts-ignore */}
       <Tweet
         id="1374492662061953034"
         caption={
@@ -108,7 +107,6 @@ export default function Post() {
         sourcing the lessons learned from the giants of the Web.
       </p>
 
-      {/* @ts-ignore */}
       <Tweet id="1390309469561659396" />
 
       <h2 className="group font-bold text-xl my-8 relative">
@@ -142,7 +140,6 @@ export default function Post() {
         </li>
       </ul>
 
-      {/* @ts-ignore */}
       <Tweet
         id="1404291533042372608"
         caption="We can all contribute to the web, faster"
@@ -167,7 +164,6 @@ export default function Post() {
         or a new designer, from a local editor or the browser itself.
       </p>
 
-      {/* @ts-ignore */}
       <Tweet id="1404833080435634179" />
 
       <h2 className="group font-bold text-xl my-8 relative">
@@ -183,7 +179,6 @@ export default function Post() {
         </span>
       </h2>
 
-      {/* @ts-ignore */}
       <Tweet id="1404218263354101761" />
 
       <p className="my-5">

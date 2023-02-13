@@ -4,7 +4,7 @@ import { NextTweet } from "next-tweet";
 
 interface TweetArgs {
   id: string;
-  caption: ReactNode;
+  caption?: ReactNode;
 }
 
 export function Tweet({ id, caption }: TweetArgs) {
