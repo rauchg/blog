@@ -1,23 +1,18 @@
-import { fetchTweetData } from "@/lib/fetch-tweet-data";
-import { Tweet as TweetElement } from "react-static-tweets";
 import { Caption } from "./caption";
 import type { ReactNode } from "react";
-
-// we import this globally in the top-most layout.tsx file
-// until Next.js lands suspense-y CSS support
-// import "./tweet.css";
+import { NextTweet } from "next-tweet";
 
 interface TweetArgs {
   id: string;
   caption: ReactNode;
 }
 
-export async function Tweet({ id, caption }: TweetArgs) {
-  const ast = await fetchTweetData(id);
+export function Tweet({ id, caption }: TweetArgs) {
   return (
     <div className="my-6">
       <div className="flex justify-center">
-        <TweetElement ast={ast} />
+        {/* @ts-ignore: Async components are valid in the app directory */}
+        <NextTweet id={id} />
       </div>
       {caption && <Caption>{caption}</Caption>}
     </div>

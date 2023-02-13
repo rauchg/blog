@@ -22,6 +22,7 @@ specifiers:
   image-size: ^1.0.2
   load-script: ^1.0.0
   next: 13.1.7-canary.10
+  next-tweet: ^0.3.0
   postcss: ^8.4.21
   prettier: ^2.8.4
   react: ^18.2.0
@@ -50,6 +51,7 @@ dependencies:
   image-size: 1.0.2
   load-script: 1.0.0
   next: 13.1.7-canary.10_biqbaboplfbrettd7655fr4n2y
+  next-tweet: 0.3.0_d7xggybb7nlxm3h4vjoj5b5gkq
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-intersection-observer: 8.34.0_react@18.2.0
@@ -2533,6 +2535,20 @@ packages:
   /natural-compare/1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
     dev: true
+
+  /next-tweet/0.3.0_d7xggybb7nlxm3h4vjoj5b5gkq:
+    resolution: {integrity: sha512-S/9wjgWhytBuAYBaorOeMNan9a3NIgJH3Td7kFhhEyIVLJYQFdtTKMxnHHqoSVsri/GN+TV27eqWwUTw3sxXhw==}
+    peerDependencies:
+      next: '>= 13.0.0'
+      react: '>= 18.0.0'
+      react-dom: '>= 18.0.0'
+    dependencies:
+      clsx: 1.2.1
+      date-fns: 2.29.3
+      next: 13.1.7-canary.10_biqbaboplfbrettd7655fr4n2y
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
 
   /next/13.1.7-canary.10_biqbaboplfbrettd7655fr4n2y:
     resolution: {integrity: sha512-d2GuwJountIXFSiXAi/lR+U6dBY9uF06HgNeZXwFBHTjyWw6XJHMVpXn16oYlsGHdW6qOeioO3ihJ4SOrkWcsg==}

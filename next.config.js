@@ -8,6 +8,7 @@ module.exports = withMDX({
   },
   reactStrictMode: true,
   swcMinify: true,
+  transpilePackages: ["next-tweet"],
   images: {
     domains: [
       "pbs.twimg.com",
