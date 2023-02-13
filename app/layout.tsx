@@ -5,6 +5,7 @@ import "./(post)/components/tweet.css";
 import { Inter } from "@next/font/google";
 import { ThemeToggle } from "./theme-toggle";
 import { themeEffect } from "./theme-effect";
+import { Analytics } from "./analytics";
 import { Logo } from "./logo";
 import Link from "next/link";
 
@@ -54,6 +55,7 @@ export default function RootLayout({
         </header>
 
         {children}
+        <Analytics />
       </body>
     </html>
   );

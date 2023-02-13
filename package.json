@@ -7,7 +7,7 @@
     "@fontsource/roboto-mono": "^4.5.10",
     "@mdx-js/react": "^2.3.0",
     "@next/font": "^13.1.6",
-    "@next/mdx": "13.1.6-canary.3",
+    "@next/mdx": "13.1.7-canary.10",
     "@types/node-fetch": "^2.6.2",
     "@vercel/analytics": "^0.1.8",
     "@vercel/og": "^0.1.0",
@@ -15,7 +15,7 @@
     "comma-number": "^2.1.0",
     "date-fns": "^2.29.3",
     "load-script": "^1.0.0",
-    "next": "13.1.6-canary.3",
+    "next": "13.1.7-canary.10",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-intersection-observer": "^8.34.0",
@@ -41,7 +41,8 @@
   "pnpm": {
     "peerDependencyRules": {
       "ignoreMissing": [
-        "webpack"
+        "webpack",
+        "@mdx-js/loader"
       ]
     }
   },
