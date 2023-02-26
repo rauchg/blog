@@ -6,7 +6,6 @@
     "@fontsource/inter": "^4.5.15",
     "@fontsource/roboto-mono": "^4.5.10",
     "@mdx-js/react": "^2.3.0",
-    "@next/font": "^13.1.6",
     "@next/mdx": "13.1.7-canary.10",
     "@types/node-fetch": "^2.6.2",
     "@vercel/analytics": "^0.1.8",

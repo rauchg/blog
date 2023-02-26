@@ -4,7 +4,6 @@ specifiers:
   '@fontsource/inter': ^4.5.15
   '@fontsource/roboto-mono': ^4.5.10
   '@mdx-js/react': ^2.3.0
-  '@next/font': ^13.1.6
   '@next/mdx': 13.1.7-canary.10
   '@types/comma-number': ^2.1.0
   '@types/node-fetch': ^2.6.2
@@ -39,7 +38,6 @@ dependencies:
   '@fontsource/inter': 4.5.15
   '@fontsource/roboto-mono': 4.5.10
   '@mdx-js/react': 2.3.0_react@18.2.0
-  '@next/font': 13.1.6
   '@next/mdx': 13.1.7-canary.10_@mdx-js+react@2.3.0
   '@types/node-fetch': 2.6.2
   '@vercel/analytics': 0.1.8_react@18.2.0
@@ -172,10 +170,6 @@ packages:
     dependencies:
       glob: 7.1.7
     dev: true
-
-  /@next/font/13.1.6:
-    resolution: {integrity: sha512-AITjmeb1RgX1HKMCiA39ztx2mxeAyxl4ljv2UoSBUGAbFFMg8MO7YAvjHCgFhD39hL7YTbFjol04e/BPBH5RzQ==}
-    dev: false
 
   /@next/mdx/13.1.7-canary.10_@mdx-js+react@2.3.0:
     resolution: {integrity: sha512-pTLWan7J+tlnx0nYCtY9dN+Jo9uD9ZX8NM69PIOvl+qjkaFJs6AzG2El8I00+qTA7O3TWUZkuHmxzd3wzVMAMg==}

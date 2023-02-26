@@ -3,13 +3,7 @@ import { join } from "path";
 import { readFile } from "fs/promises";
 import NextImage from "next/image";
 
-export async function Image({
-  src,
-  caption = null,
-  alt = null,
-  width = null,
-  height = null,
-}) {
+export async function Image({ src, alt = null, width = null, height = null }) {
   if (!src.startsWith("data:") && (width === null || height === null)) {
     let imageBuffer = null;
 
@@ -32,17 +26,12 @@ export async function Image({
       {src.startsWith("data:") ? (
         <img src={src} alt={alt} />
       ) : (
-        <NextImage
-          width={width}
-          height={height}
-          alt={alt ?? caption}
-          src={src}
-        />
+        <NextImage width={width} height={height} alt={alt} src={src} />
       )}
 
-      {caption && (
+      {alt && (
         <figcaption className="font-mono text-xs mt-5 text-center">
-          {caption}
+          {alt}
         </figcaption>
       )}
     </div>

@@ -1,0 +1,218 @@
+import P from "../../components/post/paragraph";
+import Callout from "../../components/post/callout";
+import Link from "next/link";
+import Post from "../../components/layouts/post";
+import { H2 } from "../../components/post/heading";
+import Code from "../../components/post/code";
+import Snippet from "../../components/post/snippet";
+import UL, { LI } from "../../components/post/bullets-list";
+import Figure, { Image } from "../../components/post/figure";
+import { Ref, FootNotes, Note } from "../../components/post/footnotes";
+import { DEMO_CODE, Demo } from './demo'
+
+  Even though I don't write code these days, [my job](/2020/vercel){legacyBehavior} involves thinking about and deeply understanding it. Code is, and will be, a large part of everyone's lives for the [foreseeable future](/2020/2019-in-review#nocode-lowcode-merge){legacyBehavior}, and I'm glad I spent much of my life learning its ins [and outs](/2020/2019-in-review#all-code-is-wrong){legacyBehavior}.
+
+  Outside of work, I've now been a part of a number of podcasts or conversations with strangers that start with the question: how did you learn to code?
+
+  And now, I'm slightly embarrassed to admit that I've probably given 10 different answers to the same question.
+
+  The main reason is that there wasn't a particular instant, or month, or year, or flow state I got in where I finally learned to code. It was more of a *discontinuous* process full of ups, downs, impostor syndrome, months of voracious learning, followed by [months of entertaining distractions](https://twitter.com/dan_abramov/status/1233812773282422784?lang=en).
+
+  However, looking back, there were many decisive contributing factors that clearly helped: exposure to open-source (Linux), being involved in online communities (IRC and forums) and **hacking competitions**.
+
+  ## Izhal: the hacker's ladder of success
+
+  One day, on one of the forums I frequented, someone shared an online game called "Izhal.com", which I became completely obsessed about. It was similar in spirit as another game called "Slyfx.com", which one [could describe](https://forums.anandtech.com/threads/www-slyfx-com.659669/#post-2807097) as a "interactive class on hacking".
+
+  As I mentioned, the journey towards learning to code didn't have a consistent, smooth curve. Looking back, this particular game was one of those things I was fortunate to find along the way which seriously sped things up.
+
+  The idea was simple: you start with a simple hacking challenge at Level 1, and your goal is to hack the made-up system you are given to progress onto the subsequent levels. There was a forum associated with it, where you could meet others and get hints. The level you were in was your flair, and there was a public leaderboard of everyone who was playing.
+
+  Izhal's step 1's URL was, if I remember correctly, something like `http://izhal.com/welcome/1.html` and it said "Welcome to the tournament". The solution to get to level 2 involved inspecting the source of the page and finding a HTML comment like:
+
+  ```
+  <!-- The next step is http://izhal.com/secret/2 -->
+  ```
+
+  This experience was unlike any code tutorial or book I was consuming at the time. It was thrilling, competitive, frustrating, exhilarating. It went from easy (viewing the HTML source) to harder (disassembling binaries and writing [key generators](https://en.wikipedia.org/wiki/Keygen)).
+
+  It taught me skills that are essential to problem solving, rather than coding itself, like reverse engineering a system and [unusually effective debugging](http://carlos.bueno.org/2013/09/effective-debugging.html) with very little information. And it did so very quickly.
+
+  By now, these tournaments have long been wiped from the internet, and if you google you'll find some that have [carried on the torch](https://www.root-me.org/en/Challenges/). I would recommend beginners to play
+
+
+## The power of JavaScript
+
+Why did I decide to write about Izhal? Yesterday I was catching up with my friend [Román Cortes](https://twitter.com/romancortes?lang=en), who for many years was one of the most successful [JS1K](https://js1k.com/) contestants.
+
+If you are unfamiliar, JS1K [was](https://twitter.com/kuvos/status/1213546333707083778) a yearly "code golf" tournament, which is a game with the goal of reducing the amount of code as much as possible ("golfing"). In this case, the constraint was to make the coolest possible demo in 1K (or 1024 characters) of JavaScript.
+
+This article is about learning to code, and I definitely wouldn't start with JS1k. If you are getting started, JS1k is good for setting up the aspirations of what you could do one day, or to marvel at the expressive power of JS. Here's [Roman's runner-up entry from 2013](https://js1k.com/2013-spring/details/1461):
+
+      <Snippet
+        smallText
+        caption="Yes, this is all the code it takes to render the demo below"
+        scroll={false}
+      >
+        {DEMO_CODE}
+      </Snippet>
+
+
+
+Which 7 years later works just fine in any browser and is embeddable inside my [Next.js](https://nextjs.org)-powered [blog post source](https://github.com/rauchg/blog/tree/master/pages/2020/an-ode-to-code-golf.js):
+
+<Demo />
+
+Since JS1k is not returning for 2020, Román shared his new hobby with me: [https://code-golf.io](https://code-golf.io), which became the inspiration for this post.
+
+## Code-golf.io
+[Code-golf.io](https://code-golf.io/) presents challenges of all levels of difficulty, for several programming languages, whose solution needs to be submitted in the fewest number of characters.
+
+As I played around with it, the first thing that stood out to me was that results were being **remotely verified**. The game was sound and complete, and there was no easy way of cheating.
+
+Having studied different virtualization and [secure code execution](https://vercel.com/docs/v2/serverless-functions/introduction) techniques over the years, it picked my curiosity.
+
+As I browsed, I noticed there was a "[Quine](https://en.wikipedia.org/wiki/Quine_(computing))" challenge and I immediately gravitated towards it. If you are not familiar, a Quine is a computer program that prints its own source. One of my favorite examples is [CSSCSS](https://github.com/SlexAxton/CSSCSS/blob/gh-pages/index.html) by [Alex Sexton](https://twitter.com/slexaxton?lang=en), which is a CSS Quine &lt;!&gt;, available here for your meta-introspection pleasure: https://rauchg.com/csscss.html.
+
+Initially driven by my fascination to understand how the code sandboxing mechanism worked, I decided to give it a try. In other words, I wanted to understand how the authors of code-golf.io had ensured you couldn't do evil things to their system.
+
+The first question I had in my mind was: "What is this system executing?". Is it invoking a function? Who is invoking it? How?
+
+So I decided to throw an error, knowing that the [stack trace](https://en.wikipedia.org/wiki/Stack_trace) that typically displays with them would tell me more about the "breadcrumb" of execution.
+
+![The challenge naturally failed because when the code runs, it doesn't print itself](/images/an-ode-to-code-golf/golf1.png)
+
+At this point I became even more intrigued. Being familiar with Node.js, the stack trace was too short, so Node was ruled out.
+
+In addition to ruling out traditional JS execution environments, it gave me another clue: the code is being read from `/tmp/code.js`.
+
+I wanted to learn more about what was there, so I enumerated the [global object](https://developer.mozilla.org/en-US/docs/Glossary/Global_object). I wasn't able to get `console.log` to work either, so I re-used my previous inspection mechanism: `throw`.
+
+![We know that throw exists and it's a valid, hacky way to print](/images/an-ode-to-code-golf/golf2.png)
+
+To my delight: `globalThis` was defined, which surprisingly indicated a [very recent JS environment](https://github.com/tc39/proposal-global), and the first member I enumerated was called `print`. Eureka! That sounds really useful.
+
+
+
+export default function AnOdeToCodeGolf() {
+  return (
+    <Post
+      id="an-ode-to-code-golf"
+      title="An Ode to Code Golf"
+      date="April 26, 2020"
+      description="Learning to code needs to be fun… and competitive"
+      og="https://rauchg.com/og/an-ode-to-code-golf.png"
+    >
+
+
+      <P>
+        I got <b>one thrilling character</b> closer to success, by removing that
+        despicable leading <Code>/</Code>.
+      </P>
+
+      <P>
+        At this point I once again &quot;concluded&quot; I had reached the
+        limits of what was possible, but I was encouraged by Román&apos;s and
+        primo&apos;s success. I was <b>2</b> characters away, where could they
+        possibly come from?
+      </P>
+
+      <P>
+        My only thought was that the only pair of possible characters that could
+        disappear were parentheses, which in mathematics and programming are
+        often used redundantly.
+      </P>
+
+      <P>
+        I pictured removing them, and at that point was reminded of the{" "}
+        <a
+          href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#Tagged_templates"
+          target="_blank"
+        >
+          <b>tagged template literal</b>
+        </a>{" "}
+        feature of JavaScript. Voila!
+      </P>
+
+      <Figure width={1606} height={708} desc="Glory at last">
+        <Image
+          alt="Tagged template literals to the rescue!"
+          src="/images/an-ode-to-code-golf/golf11.png"
+        />
+      </Figure>
+
+      <P>
+        Templates are a relatively new JavaScript feature, I don&apos;t actually
+        ever remember using it, but I had seen it on Twitter many times due to
+        the popularity of its use for CSS-in-JS with{" "}
+        <a href="https://styled-components.com/" target="_blank">
+          Styled Components
+        </a>
+        .
+      </P>
+
+      <P>
+        With those two characters gone, I cemented my one and only contribution
+        to the annals of code-golf.io as the permanent <em>4th 1st-place</em>{" "}
+        😅:
+      </P>
+
+      <Figure
+        width={1664}
+        height={534}
+        desc="Nice detail: code-golf.io uses GitHub login to authenticate your submission"
+      >
+        <Image
+          alt="Nice detail: code-golf.io uses GitHub login to authenticate your submission"
+          src="/images/an-ode-to-code-golf/golf12.png"
+        />
+      </Figure>
+
+      <H2 id="fun-optimization">Optimizing for fun</H2>
+
+      <P>
+        Throughout that simple game, I had to apply lots of the skills that were
+        essential throughout my life as a programmer: figuring out unfamiliar
+        environments and systems without a manual, applying multiple
+        &quot;search&quot; strategies and selecting the most promising one,
+        iterating and dealing with trial-and-error, and perseverance.
+      </P>
+
+      <P>
+        There have never been as many options to learn to code as there are
+        today. From bootcamps, to free youtube videos, to expensive courses and
+        exclusive chatrooms.
+      </P>
+
+      <P>
+        Whether it&apos;s with code golfing or hacking tournaments, I suggest
+        giving a try to the alternative of learning by having fun, overcoming
+        obstacles and a healthy dose of competition with your friends.
+      </P>
+
+      <FootNotes>
+        <Note id="1">
+          In the very minimal list returned, I found <Code>Realm</Code>, which
+          provides a clue about how{" "}
+          <a
+            target="_blank"
+            href="https://www.figma.com/blog/how-we-built-the-figma-plugin-system/#attempt-3-realms"
+          >
+            sandboxing might
+          </a>{" "}
+          have been implemented by the game.
+        </Note>
+        <Note id="2">
+          Much like with{" "}
+          <a
+            href="https://en.wikipedia.org/wiki/Continuous_integration"
+            target="_blank"
+          >
+            CI
+          </a>
+          , green just… feels good
+        </Note>
+      </FootNotes>
+    </Post>
+  );
+}

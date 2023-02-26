@@ -2,7 +2,7 @@ import "./globals.css";
 // we need this until Next.js lands suspense-y CSS support
 import "./(post)/components/tweet.css";
 
-import { Inter } from "@next/font/google";
+import { Inter } from "next/font/google";
 import { ThemeToggle } from "./theme-toggle";
 import { themeEffect } from "./theme-effect";
 import { Analytics } from "./analytics";

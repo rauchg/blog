@@ -1,26 +1,3 @@
-import getTweets from "../../lib/get-tweets";
-import HR from "../../components/post/hr";
-import Figure, { Image } from "../../components/post/figure";
-import Tweet from "../../components/post/tweet";
-import Post from "../../components/layouts/post";
-import { H2 } from "../../components/post/heading";
-
-export async function getStaticProps() {
-  const tweets = await getTweets(MDXContent);
-  return { props: { tweets } };
-}
-
-export default function ({ children, tweets }) {
-  return <Post 
-    id="making-the-web-faster"
-    title="Making the Web. Faster"
-    description="Vercel is making a faster platform for those consuming the web and faster for those building for the web. And now that's more than just developers."
-    og="https://res.cloudinary.com/rauchg/image/upload/v1624456141/blog/og/making-the-web_kuwgmz.png"
-    date="June 23, 2021"
-    tweets={tweets}
-  >{children}</Post>
-}
-
 Following our [Series B last December](/2020/next-for-vercel), I'm happy to announce we've raised a [**$102M Series C**](https://techcrunch.com/2021/06/23/vercel-raises-102m-series-c-for-its-next-js-based-front-end-development-platform) from existing and new investors.
 
 Our vision of the Web is a global realtime medium for both creators and consumers,
