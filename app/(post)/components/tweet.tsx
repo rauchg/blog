@@ -1,5 +1,4 @@
-import { fetchTweetData } from "@/lib/fetch-tweet-data";
-import { Tweet as TweetElement } from "react-static-tweets";
+import { NextTweet } from "next-tweet";
 import { Caption } from "./caption";
 import type { ReactNode } from "react";
 
@@ -13,11 +12,11 @@ interface TweetArgs {
 }
 
 export async function Tweet({ id, caption }: TweetArgs) {
-  const ast = await fetchTweetData(id);
   return (
     <div className="my-6">
       <div className="flex justify-center">
-        <TweetElement ast={ast} />
+        {/* @ts-ignore */}
+        <NextTweet id={id} />
       </div>
       {caption && <Caption>{caption}</Caption>}
     </div>

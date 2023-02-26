@@ -16,13 +16,12 @@
     "image-size": "^1.0.2",
     "load-script": "^1.0.0",
     "next": "13.2.1",
+    "next-tweet": "^0.5.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-intersection-observer": "^8.34.0",
-    "react-static-tweets": "^2.0.0",
     "react-wrap-balancer": "^0.2.4",
     "react-youtube": "^7.14.0",
-    "static-tweets": "^1.0.0",
     "time-ago": "^0.2.1"
   },
   "devDependencies": {
