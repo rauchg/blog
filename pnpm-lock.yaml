@@ -21,7 +21,7 @@ specifiers:
   image-size: ^1.0.2
   load-script: ^1.0.0
   next: 13.2.1
-  next-tweet: ^0.5.0
+  next-tweet: ^0.6.0
   postcss: ^8.4.21
   prettier: ^2.8.4
   react: ^18.2.0
@@ -47,7 +47,7 @@ dependencies:
   image-size: 1.0.2
   load-script: 1.0.0
   next: 13.2.1_biqbaboplfbrettd7655fr4n2y
-  next-tweet: 0.5.0_qgtcjgzkkjtbiyvnx7d32fl5vu
+  next-tweet: 0.6.0_qgtcjgzkkjtbiyvnx7d32fl5vu
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-intersection-observer: 8.34.0_react@18.2.0
@@ -2229,8 +2229,8 @@ packages:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
     dev: true
 
-  /next-tweet/0.5.0_qgtcjgzkkjtbiyvnx7d32fl5vu:
-    resolution: {integrity: sha512-yDE2YMiWhfktGbNikjQiKj0cGdVfSkKCBA+DiK21UDskB3FCjrIl5A3oyfsX/k2E+dAb1gWU19bztWH8omDGGg==}
+  /next-tweet/0.6.0_qgtcjgzkkjtbiyvnx7d32fl5vu:
+    resolution: {integrity: sha512-TMkIKQd2sd/PtNmdFcbwFjMxOdVJ8l40aeotpdKo9UJzTY7+VUCNTn3RIlK3OWBdpF8Ne741XRmXIkj3pIepIQ==}
     peerDependencies:
       next: '>= 13.2.1'
       react: '>= 18.0.0'

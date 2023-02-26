@@ -1,6 +1,6 @@
 "use client";
 
-import { usePathname } from "next/navigation";
+import { useSelectedLayoutSegments } from "next/navigation";
 import { useEffect, useMemo, useState, useRef } from "react";
 import { ConvexProvider, ConvexReactClient } from "convex/react";
 import clientConfig from "@/convex/_generated/clientConfig";
@@ -12,14 +12,8 @@ import type { View } from "@/convex/getAllViews";
 const convex = new ConvexReactClient(clientConfig);
 
 export function Header({ views }) {
-  const pathname = usePathname();
-
-  // fetch post. ideally this would happen in a server component 😬
-  const post = useMemo(() => {
-    if (pathname == null) return null;
-    const id = pathname.split("/").pop();
-    return postsData.posts.find(post => post.id === id);
-  }, [pathname]);
+  const segments = useSelectedLayoutSegments();
+  const post = postsData.posts.find(post => post.id === segments[1]);
 
   // compute time ago client side since it's relative to user's timezone
   const [timeAgo, setTimeAgo] = useState(null);
