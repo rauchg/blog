@@ -92,3 +92,188 @@ True to our style, deploying any static site (like just a `index.html`) or more 
 
 <Snippet caption={<>Use <code>npm i -g vercel</code> to install</>}>{`$  vc`} {"\n"}✅ Preview:{" "}<a href="https://blog-p2pe8jedz.now.sh" target="_blank">https://blog-p2pe8jedz.now.sh</a></Snippet>
 
+The [Vercel](https://vercel.com) platform gives you a comprehensive workflow with built-in CI/CD and global CDN, that are carefully optimized for production-grade dynamic sites.
+
+A salient feature is the transition we are seeing **away from code _review_** into **deployment _preview_**.
+
+Code review is undeniably important (specially [speedy code review](https://google.github.io/eng-practices/review/reviewer/speed.html)), but nothing beats teams collaborating by sharing URLs to the _actual_ sites that are being worked on and experiencing them directly.
+
+By setting up a [Git integration](https://vercel.com/github), every single `git push` gets its own live deployment URL. Thanks to the simplifications granted by the model, deployments are orders of magnitude faster to build, deploy and serve than when using servers or containers, which only adds to the great team-wide collaboration experience.
+
+![Every push and branch gets its own deploy URL](/images/2019-in-review/github-comment.png)
+
+## The Deploy URL, the Center of Gravity
+
+An interesting consequence of being able to deploy so fast and so frequently is that it completely changes **testing and quality assurance**.
+
+Every URL like `https://blog-p2pe8jedz.now.sh`, a preview deployment of this blog as I was writing this post, is a **real, production-like environment** just like the `rauchg.com` one.
+
+This means that instead of running tests that make all kinds of assumptions about the environment (like mocking it), we can instead test the _real thing_. As real as it gets.
+
+<Tweet id="1166443719148466177" />
+
+The most natural form of "e2e testing" is experiencing the end result itself by visiting the URL. Sharing it with customers, co-workers and your manager.
+
+But in 2019, we also witnessed the incredible power of delegating automated testing against this URL to other services.
+
+![The URL as the center of the app-building universe](/images/2019-in-review/gravity.png)
+
+When you install our [GitHub app](https://vercel.com/github), we don't just register a "Check" like other CI providers in the pull request. We also say: _this is a **deployment**, here is the URL_.
+
+In _parallel_, a series of assurance checks can then be run against that prod-ready URL. This includes, but is not limited to:
+
+- **Browser Testing**, simulating user journeys and real interactions
+- **Screenshot Testing**, to automatically prevent visual regressions
+- **HTTP Assertion Testing**, requesting APIs or pages and verifying the outputs
+- **Manual QA**, with designated reviewers who approve the PR.
+
+![Checks are automatically run against the deploy URL](/images/2019-in-review/checks.png)
+
+## Flaky Tests mean Flaky UX
+
+When it comes to testing, I've found myself referencing this insight quite frequently:
+
+<Tweet id="1158730494311198720" />
+
+As developers, we might sometimes be too quick to place the blame on tools (or the [aether](https://en.wikipedia.org/wiki/Aether_(classical_element))) and just press the restart button.
+
+But the truly important question to ask is: what if it had been one of your customers, instead of an automated test? Would they not have had a _flaky_ experience? Would it be ok to tell them to press F5 and try again?
+
+## Serverless means infrastructure that upgrades itself
+
+Serverless is an exciting trend that has resisted a universal definition. Asking what serverless _really_ means probably got you 5 different answers in 2018, and 10 different answers in 2019.
+
+However, a defining characteristic that I've become a fan of is that serverless means your **infrastructure upgrades itself**.
+
+<Tweet id="1095927783421706240" />
+
+This includes everything from upgrading the operating system, to patching the system's OpenSSL, to bumping the version of the Node.js function runtime.
+
+This wonderful effect is particularly pronounced for databases. It's one thing to upgrade the infrastructure of *stateless* code execution, but dealing with data is a whole new challenge that I'm glad we no longer have to deal with <Ref id="4" />.
+
+<Tweet id="1195443929828577280" />
+
+## Hyrum's Law
+
+I recently learned about [Hyrum's Law](https://www.hyrumslaw.com/), which states:
+
+> With a sufficient number of users of an API, it does not matter what you promise in the contract: all observable behaviors of your system will be depended on by somebody.
+
+Which obviously has a *relevant xkcd* as prior art:
+
+![There is always an xkcd for that](/images/2019-in-review/xkcd.png)
+
+## Microservices increase complexity and reduce availability
+
+Microservices allow you to break down a service's dependencies into independently deployable units.
+
+The problem? The assurances that were previously statically guaranteed by the compiler or runtime for a given piece of software are now gone. What was before a unit becomes a distributed system.
+
+<Tweet id="1150939681153929216" />
+
+Not only are microservices harder to *manage* than, say, a static blob of code together with its dependencies inside a function or container, but odds are they are also **less available**.
+
+This should already be obvious from at least one angle: introducing an *additional* network hop can only make things worse.
+
+Kevin Mahoney has provided a new [neat mathematical illustration](http://kevinmahoney.co.uk/articles/microservices-and-availability/) of the availability problem of inter-connecting services:
+
+> Take the example where service C depends on services A and B[…]
+>
+> If A has an availability of 0.8 (80%) and B 0.95 (95%), C will have a best case of 0.8 (80%), an average case of 0.8 × 0.95 = 0.76 (76%), and a worst case of 1 - ((1 - 0.8) + (1 - 0.95)) = 0.75 (75%)
+
+Making your serverless functions "monolithic" offers a compelling solution to this problem. Statically bind the dependencies of each function ([Next.js API routes](https://nextjs.org/blog/next-9#api-routes) and the Go compiler do this) and avoid introducing unneeded service hops of your own.
+
+## Native means Platform Fidelity, not Native Code
+
+The word "native" has always bothered me. No one can seem to agree on a definition, but we all agree that "native apps" are always optimal.
+
+Many people are quick to write off attempting to write a desktop app or mobile app in JavaScript on the basis that it's *not native*. Sometimes the word is used to indicate that JS can't compile down to an executable binary that's native to the platform.
+
+I propose the following alternative definition of native: **an app that behaves to the quality standards of the platform it's deployed to**.
+
+This explains why Electron has been so successful in re-purposing the web stack to the Desktop platform. [A well engineered Electron app](https://www.zdnet.com/article/slacks-desktop-client-gets-major-performance-improvements-after-codebase-rewrite/) will give you "native" platform fidelity, regardless of programming language.
+
+To achieve platform fidelity, it's obvious one must have access to the platform APIs. This makes **mobile web "apps"** a *non-starter* in achieving the coveted "native" status, especially on iOS Safari.
+
+It has nothing to do with performance or JS and HTML, and everything to do with being altogether unable to deliver on the standards of what a *real* app can do on the platform^<Ref id="5" />.
+
+<Tweet id="1199843171431256066" caption="Native performance with JS + native code" />
+
+A React Native app can achieve full platform fidelity (it can exhibit great performance with [solid engineering](https://blog.discordapp.com/how-discord-achieves-native-ios-performance-with-react-native-390c84dcd502) while being unconstrained in API capabilities). Crucially, like Electron, it offers a cohesive development experience, a universal programming language, a shared module and component system, seamless updates and faster deployments, with both ~~macOS~~ iOS and ~~[Windows](https://www.theverge.com/2019/6/24/18715202/microsoft-bill-gates-android-biggest-mistake-interview)~~ Android support to boot.
+
+<Tweet id="1105876480930734086" caption="While SwiftUI is certainly exciting, RN, like Electron, has a tremendous economic advantage" />
+
+## Settings are for successful products
+
+Great products usually start with a dead simple onboarding journey that minimizes or entirely eliminates options.
+
+<Tweet id="1172978856883417088" />
+
+From a startup evolution or product management perspective, another way of considering this wisdom is: absolutely resist adding options until **substantial evidence of success without them** exists.
+
+## Game engineering continues to show the way
+
+When React was [being introduced](http://codewinds.com/podcast/004.html), it was interesting to hear that the inspiration wasn't previous libraries like jQuery, but rather an altogether different system:
+
+> React gets some of its inspiration from how game engines achieve awesome performance in their rendering pipeline
+
+What striked me about this wonderful talk about how [Marvel's Spiderman](https://www.youtube.com/watch?v=KDhKyIZd3O8) was created is how much more we can learn.
+
+<YouTube videoId="KDhKyIZd3O8" />
+<Caption>Insomniac Games' Elan Ruskin on Spider Man's various technical accomplishments</Caption>
+
+The most striking part of it is the careful planning around the well-understood limits of the platform that lead to a great user experience.
+
+Today, at large, this kind of rigor is absent from web engineering practice, even though the boundaries exist and are well documented.
+
+<Tweet id="935857414435495937" caption="Developers understand these figures. How about our tools and platforms?" />
+
+So far, we have mostly been *suggested* limits. Examples include: warnings in webpack's colorful output for oversized bundles, scoring systems like WebPageTest and Lighthouse, and the constant reminder and enticement that more speed means more success for your business (in the form of better Google rankings and the [Amazon 100ms rule](https://www.gigaspaces.com/blog/amazon-found-every-100ms-of-latency-cost-them-1-in-sales/)).
+
+AMP, although controversial, is a *systematic*, rather than *suggested* answer to the performance problem. It's very hard, maybe impossible, to create a slow AMP experience, due to the smart constraints and built-in well-optimized components <Ref id="6" />.
+
+Along the same lines, I'm optimistic about the introduction of [*Never-Slow Mode*](https://www.infoq.com/news/2019/02/chrome-never-slow-mode/), which is a more general solution than AMP, with a shared focus on performance. Like [AMP on Next.js](https://nextjs.org/blog/next-8-1#amp-in-nextjs), I reckon it will be a *mode* many will be interested in adopting.
+
+## Notion: the *fanciest* datastructure
+
+When [announcing Trello](https://www.joelonsoftware.com/2012/01/06/how-trello-is-different/), Joel Spolsky famously conjectured:
+
+> **The great horizontal killer applications are actually just fancy data structures.**
+>
+> Spreadsheets are not just tools for doing “what-if” analysis. They provide a specific data structure: a table. Most Excel users never enter a formula. They use Excel when they need a table. The gridlines are the most important feature of Excel, not recalc.
+
+In 2019, I fell in love with [Notion](https://www.notion.so/), which you can think of an all-in-one company/personal wiki + full MS Office-like suite.
+
+That you could have *one tool* to solve such a wide array of
+problems sounds impossible, let alone for a small startup. But the secret
+to its success lies in its elegant, flexible and **user-transparent** datastructure.
+
+Notion's datastructure could be explained as: a mutable, realtime
+graph of documents structured as a list of known blocks.
+
+All apps are backed by datastructures, but the critical ingredient seems
+to be the ability to perform [direct manipulation](https://www.nngroup.com/articles/direct-manipulation/) on them, which requires that the **topology is completely transparent and obvious to the end user**.
+
+![The Notion UI. Every UI element is mutable and hyperlinkable](/images/2019-in-review/notion.png)
+
+On the left hand side, Notion's sidebar puts you in direct contact
+with the graph the documents are organized as. You are free to arrange
+pages into trees and sub-trees of your choosing. On the right hand side,
+the different block types are trivial to create, edit, re-arrange and most
+importantly: **combine**.
+
+In the old world, a table is not thought of as a *block*, but a
+document that you boot Excel or Google Spreadsheets to visualize. Instead,
+combining headings, paragraphs, tables, databases, lists, etc to your
+liking inside any document, which you link to and open with the same
+realtime collaborative app, strikes me as a revolution whose time
+
+> […] The slowness is like an off smell. I don’t trust the application as
+> much as I would if it didn’t slow down on such a small text file. 5,000
+> words is nothing. Faith is tested: It makes me wonder how good the sync
+> capabilities are. It makes me wonder if the application will lose data.
+> 
+> Speed and reliability are often intuited hand-in-hand. Speed can be a good
+> proxy for general engineering quality
+>
+> — Craig Mod on [Fast software, the Best software](https://craigmod.com/essays/fast_software/)

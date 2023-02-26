@@ -9,8 +9,11 @@ import { HR as hr } from "app/(post)/components/hr";
 import { Tweet } from "app/(post)/components/tweet";
 import { Image } from "app/(post)/components/image";
 import { Snippet } from "app/(post)/components/snippet";
+import { Caption } from "app/(post)/components/caption";
 import { Callout } from "app/(post)/components/callout";
+import { YouTube } from "app/(post)/components/youtube";
 import { Ref, FootNotes, FootNote } from "app/(post)/components/footnotes";
+import { Blockquote as blockquote } from "app/(post)/components/blockquote";
 
 export function useMDXComponents(components: {
   [component: string]: React.ComponentType;
@@ -27,10 +30,13 @@ export function useMDXComponents(components: {
     hr,
     pre: Snippet,
     img: Image,
+    blockquote,
     Tweet,
     Image,
     Snippet,
+    Caption,
     Callout,
+    YouTube,
     Ref,
     FootNotes,
     FootNote,

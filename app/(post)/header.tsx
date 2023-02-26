@@ -1,7 +1,7 @@
 "use client";
 
 import { useSelectedLayoutSegments } from "next/navigation";
-import { useEffect, useMemo, useState, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { ConvexProvider, ConvexReactClient } from "convex/react";
 import clientConfig from "@/convex/_generated/clientConfig";
 import { useQuery } from "@/convex/_generated/react";
@@ -14,14 +14,6 @@ const convex = new ConvexReactClient(clientConfig);
 export function Header({ views }) {
   const segments = useSelectedLayoutSegments();
   const post = postsData.posts.find(post => post.id === segments[1]);
-
-  // compute time ago client side since it's relative to user's timezone
-  const [timeAgo, setTimeAgo] = useState(null);
-  useEffect(() => {
-    if (post != null) {
-      setTimeAgo(ago(post.date, true));
-    }
-  }, [post]);
 
   if (post == null) return <></>;
 
@@ -45,8 +37,12 @@ export function Header({ views }) {
 
           <span className="mx-2">|</span>
 
-          <span>
-            {post.date} {timeAgo && `(2y ago)`}
+          {/* since we will pre-render the relative time, over time it
+           * will diverge with what the user relative time is, so we suppress the warning.
+           * In practice this is not an issue because we revalidate the entire page over time
+           * and because we will move this to a server component with template.tsx at some point */}
+          <span suppressHydrationWarning={true}>
+            {post.date} {ago(post.date, true)}
           </span>
         </span>
 
