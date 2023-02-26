@@ -87,6 +87,90 @@ At this point, I suddenly found myself again in 2002. I felt that familiar feeli
 
 Equipped with `print`, I was able to enumerate the entire environment<Ref id="1" />.
 
+![Enumerating the global object reveals all the methods we can use](/images/an-ode-to-code-golf/golf3.png "Enumerating the global object reveals all the methods we can use")
+
+I noticed print was adding a newline character, which meant I probably needed to use `write` to solve this puzzle.
+
+The tricky thing about writing a Quine is that it requires that you think recursively. The temptation might be to say: I'll just write the source code as a string!
+
+![An impossible approach to get a quine](/images/an-ode-to-code-golf/golf4.png "An impossible approach to get a quine")
+
+Notice that code-golf.io was expecting `write('write()'))` but we just gave it `write()`. No matter what we write in that string, we'll always be one layer removed from success. We'll [need to go deeper](https://knowyourmeme.com/memes/we-need-to-go-deeper).
+
+If we look back at the output of our inspection, you'll see another familiar method: `read`. That sounds like it could read a file!
+
+I connected the pieces: my first clue (`/tmp/code.js`), `write` and `read`. A beautiful Quine was born:
+
+![An early taste of success](/images/an-ode-to-code-golf/golf5.png "An early taste of success")
+
+The program executes, reads its own code, and prints it back. The awesome verification system of code-golf.io compared input and output, and granted my...
+
+😫 Completely unsatisfactory, partial, deflating, half-baked "victory".
+
+See, each code-golf challenge features a leaderboard right next to your input:
+
+![My enemies, but also the benchmark to inspire and show what's possible](/images/an-ode-to-code-golf/golf6.png "My enemies, but also the benchmark to inspire and show what's possible")
+
+My solution used **27** characters, and *primo* had somehow found a solution with just **24**.
+
+Once again, just like back in the day in the programming forums, I was driven to succeed inspired by what other had demonstrably accomplished.
+
+My initial reaction was: how could I possibly make that shorter? That's nuts! There's absolutely nothing non-essential about it.
+
+I abandoned the "read the filesystem" approach altogether, and went off on a disappointing tangent:
+
+![An alternative path with a lot more characters](/images/an-ode-to-code-golf/golf7.png "An alternative path with a lot more characters")
+
+I figured: I could define a **function that prints its own source code**. (In JavaScript, the source of functions is [available at runtime for instrospection](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/toString).)
+
+Unfortunately, it used **30** characters, but I was encouraged by the existence of another path to a solution <Ref id="2" />. I fired up [Notion](/2020/2019-in-review#notion-is-fancy) and started documenting my attempts.
+
+Because I had already tried to compress the code a lot (as you can see, it looks quite unintelligible) and the gap between my new approach and the old one was a huge 3 characters, and I needed an extra 3 to match primo's **24**, I abandoned this direction.
+
+I went back to my initial approach and I started playing with trying to compress the path:
+
+- Use a relative `code.js`
+- Use `/tmp/code` without an extension, similar to how [`require`](https://nodejs.org/api/modules.html#modules_require_id) works in Node.js
+- Use `/tmp/code*`
+
+None worked. However, at that point I remembered the introspection above revealed an interesing `os` object, which I enumerated:
+
+![The members of os look very familiar](/images/an-ode-to-code-golf/golf8.png "The members of os look very familiar")
+
+This looked like the corresponding [basic Unix syscalls](http://man7.org/linux/man-pages/man2/chdir.2.html), so I gave `chdir` a try, so that I could change the directory I was in, and I brought back the relative approach:
+
+![Learning more about the code-golf.io filesystem](/images/an-ode-to-code-golf/golf9.png "Learning more about the code-golf.io filesystem")
+
+Even though I was now at a disheartening **39** chars, it offered the understanding that I was inside a regular Unix-like filesystem. I set out to try to understand what was the default working directory of the system. Was it `/root`? Was it `/`?
+
+At that point, I got one step closer: if the default directory is `/`, I can make `tmp` relative!?
+
+![A monumental single-character discovery](/images/an-ode-to-code-golf/golf10.png "A monumental single-character discovery")
+
+I got **one thrilling character** closer to success, by removing that despicable leading `/`.
+
+At this point I once again "concluded" I had reached the limits of what was possible, but I was encouraged by Román's and primo's success. I was **2** characters away, where could they possibly come from?
+
+My only thought was that the only pair of possible characters that could disappear were parentheses, which in mathematics and programming are often used redundantly.
+
+I pictured removing them, and at that point was reminded of the [tagged template literal](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#Tagged_templates) feature of JavaScript. Voila!
+
+![Glory at last](/images/an-ode-to-code-golf/golf11.png "Tagged template literals to the rescue!")
+
+Templates are a relatively new JavaScript feature, I don't actually ever remember using it, but I had seen it on Twitter many times due to the popularity of its use for CSS-in-JS with [Styled Components](https://styled-components.com/).
+
+With those two characters gone, I cemented my one and only contribution to the annals of code-golf.io as the permanent *4th 1st-place* 😅:
+
+![Nice detail: code-golf.io uses GitHub login to authenticate your submission](/images/an-ode-to-code-golf/golf12.png "Nice detail: code-golf.io uses GitHub login to authenticate your submission")
+
+## Optimizing for fun
+
+Throughout that simple game, I had to apply lots of the skills that were essential throughout my life as a programmer: figuring out unfamiliar environments and systems without a manual, applying multiple "search" strategies and selecting the most promising one, iterating and dealing with trial-and-error, and perseverance.
+
+There have never been as many options to learn to code as there are today. From bootcamps, to free youtube videos, to expensive courses and exclusive chatrooms.
+
+Whether it's with code golfing or hacking tournaments, I suggest giving a try to the alternative of learning by having fun, overcoming obstacles and a healthy dose of competition with your friends.
+
 <FootNotes>
   <FootNote id="1">In the very minimal list returned, I found `Realm`, which provides a clue about how [sandboxing might](https://www.figma.com/blog/how-we-built-the-figma-plugin-system/#attempt-3-realms) have been implemented by the game.</FootNote>
   <FootNote id="2">Much like with [CI](https://en.wikipedia.org/wiki/Continuous_integration), green just… feels good</FootNote>
