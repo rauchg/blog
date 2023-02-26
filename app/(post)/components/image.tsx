@@ -22,7 +22,7 @@ export async function Image({ src, alt = null, width = null, height = null }) {
   }
 
   return (
-    <div className="my-5 flex flex-col items-center">
+    <span className="block my-5 flex flex-col items-center">
       {src.startsWith("data:") ? (
         <img src={src} alt={alt} />
       ) : (
@@ -30,10 +30,8 @@ export async function Image({ src, alt = null, width = null, height = null }) {
       )}
 
       {alt && (
-        <figcaption className="font-mono text-xs mt-5 text-center">
-          {alt}
-        </figcaption>
+        <span className="block font-mono text-xs mt-5 text-center">{alt}</span>
       )}
-    </div>
+    </span>
   );
 }
