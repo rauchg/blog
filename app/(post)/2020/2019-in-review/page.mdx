@@ -1,0 +1,94 @@
+_This post is a quick summary of the evolution of [our company](https://vercel.com), our [open-source work](https://nextjs.org), interesting news and lessons in product design and engineering throughout 2019._
+
+## Static is the new Dynamic
+
+Throughout 2019 we have continued to see the growth of the *JAMstack*. The idea is quite simple: Any website or app you [build](https://nextjs.org) and [deploy](https://vercel.com) will use the stack of client-side *J*avaScript, *A*PIs, and *M*arkup.
+
+By now, client-side JavaScript (like React and Vue) and APIs (like REST and GraphQL) are quite mainstream, but my favorite part is the assumption that your markup will be **static**.
+
+First: Why Static?
+
+- Static is **globally fast**. When you deploy, we can _hoist_ all your static assets to a global CDN network. By removing the server from the equation, we can also maximize availability by reducing and even altogether eliminating cache misses.
+- Static is **consistently fast**. It gives you "O(1) [TTFB](https://en.wikipedia.org/wiki/Time_to_first_byte)", which is a fancy way of saying you get stable and predictable latency to the first byte of the screen. Always, because no code, servers, sockets, or databases are involved.
+- Static is **always online**. This should [not be surprising](https://twitter.com/rauchg/status/1210294503216578560), but servers frequently go down and [involve complex rollout schemes](https://kccncna19.sched.com/event/Uads/the-gotchas-of-zero-downtime-traffic-w-kubernetes-leigh-capili-weaveworks) <Ref id="1" />, while static files are trivially cacheable and simple to serve. The odds of you getting paged during the holidays because a "static asset can't be served from a CDN" are basically zero.
+
+Second: Really, Static? I have *dynamic* needs.
+
+Servers are not going away, but they are _moving around and hiding_.
+
+- **Static Site Generation (SSG)** can be thought of moving around the servers and taking them away from the hot path. Instead of putting a server in between the user's request and the response, we compute the response ahead of time.
+
+  This subtle shift pays back handsomely. One, anything that could go wrong, goes wrong at build time, maximizing **availability**. Two, we compute once and re-use, minimizing **database or API load**. Three, the resulting static HTML is **fast**.
+
+- **Client-side JS and APIs** that get executed later, once the static markup and code is downloaded and executed, allow for effectively infinite dynamism.
+
+  Pre-computing all pages is not always possible <Ref id="2" />, nor desirable. For example, when dealing with data that is *not* shared between all users and we wouldn't want to cache at the edge <Ref id="3" />.
+
+## Next.js, the next frontier
+
+Next.js has continued to grow in adoption and now powers the likes of Hulu, Tencent News, Twitch, AT&T, Auth0 and the [list goes on](http://nextjs.org/showcase).
+
+Thanks to its simplicity, it's a compelling all-in-one solution for the full straddle of JAMstack: from a static landing page, to very large websites, to fully dynamic applications.
+
+The "secret sauce" continues to be its simple `pages/` system inspired by `cgi-bin` and throwing `.php` files in a FTP webroot.
+
+A page is *just* a React component. The simplest Next.js app is `pages/index.js` which will serve the route `/`:
+
+```
+export default () => <div>Hello World</div>
+```
+
+But here's what happened in 2019:
+
+- Pages can be defined like this: `pages/r/[subreddit].js`, which will allow you to define dynamic path segments with no configuration or custom servers.
+- If a given page is static and has no [server-side data props](https://nextjs.org/blog/next-9#automatic-static-optimization), `next build` will output just "boring" static `.html` 😄
+- If you define [static data props](https://github.com/zeit/next.js/issues/9524), we can fetch data at build time for a certain page, but crucially also "explode" dynamic path segments into many discrete pages.
+- If you create `pages/api/myApi.js`, you are basically defining a [serverless function](https://nextjs.org/blog/next-9#api-routes) that can return anything you want, which will most likely be a JSON API.
+
+In short, Next.js is now a comprehensive, hybrid framework, supporting the full spectrum of JAMstack with a *per-page granularity*.
+
+<table>
+  <thead>
+    <tr>
+      <th>Role</th>
+      <th>Provided by</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>J</td>
+      <td>
+        Client-side JS injected via React Hooks (state, event listeners,
+        effects)
+      </td>
+    </tr>
+
+    <tr>
+      <td>A</td>
+      <td>
+        API pages inside the `pages/api` directory.
+      </td>
+    </tr>
+
+    <tr>
+      <td>M</td>
+      <td>
+        Pages with no data dependencies (like the simple example above) or
+        pages with static data deps that trigger build-time static site
+        generation.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+Furthermore, Next.js has been *uncompromising* in its commitment to backwards-compatibility. Servers (SSR) are still fully supported and no apps have been harmed as part of this evolution.
+
+## Deploying the JAMstack
+
+We think there's enormous value in empowering teams to instantly build and deploy JAMstack websites, with no servers or infra to manage or configure.
+
+True to our style, deploying any static site (like just a `index.html`) or more complex and full-featured frameworks like Next.js, Gatsby, Gridsome, … begins with just:
+
+<Snippet caption={<>Use <code>npm i -g vercel</code> to install</>}>{`$  vc`} {"\n"}✅ Preview:{" "}<a href="https://blog-p2pe8jedz.now.sh" target="_blank">https://blog-p2pe8jedz.now.sh</a></Snippet>
+
