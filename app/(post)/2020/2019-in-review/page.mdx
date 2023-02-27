@@ -277,3 +277,105 @@ realtime collaborative app, strikes me as a revolution whose time
 > proxy for general engineering quality
 >
 > — Craig Mod on [Fast software, the Best software](https://craigmod.com/essays/fast_software/)
+
+## Get busy demoing
+
+I continue to marvel at the incredible product-improving and life-improving power of giving demos frequently. Giving frequent demos was an essential part of creating the iPhone:
+
+<Tweet id="1163871715153199104" caption="Don't be afraid to ~~fail~~ demo." />
+
+## NoCode and LowCode are real, and they are on a collision course
+
+It's easy to dismiss the hype around NoCode and LowCode as just hype, but I think there's a lot to it.
+
+For one: the less code you write, the easier to maintain, and [the less likely](#testing-the-jamstack) that [it will be wrong](#all-code-is-wrong). Next.js is a clear example of this. Our data-fetching <Ref id="7" /> library [SWR](https://swr.now.sh/) is another. [Zero-config deployments](https://vercel.com/blog/zero-config), another.
+
+<Tweet id="1191828261501853696" />
+
+I suspect 2020 and the years to come will see LowCode solutions (like React, Vue, [Svelte](https://svelte.dev/)...) continue to gain traction by making it simple and [succinct](https://twitter.com/mweststrate/status/1055532227939966976?lang=en) to share UI and behavior (e.g.: as UI *components* or [*hooks*](https://reactjs.org/docs/hooks-intro.html)).
+
+We will also [see](https://divjoy.com/) the [rise](https://www.framer.com/development) of [visual](https://blocks-ui.com/) [tools](https://builderx.io/) to [bring](https://codesandbox.io/) [those](https://shift.studio/) [primitives](https://www.modulz.app/) [together](https://tinacms.org/) more [efficiently](https://teleporthq.io/), including the capability to bring reusable components from either a canonical component system or a global shared library.
+
+## More Hardware that merges with our Software
+
+After ARM gave us a [JS-optimized instruction](https://twitter.com/gparker/status/1047246359261106176), Samsung is [giving us key-value optimized SSDs](https://www.anandtech.com/show/14839/samsung-announces-standardscompliant-keyvalue-ssd-prototype).
+
+## Everything is code. Roll everything like code
+
+Applying a configuration change? Review it, roll it gradually and most importantly: mistrust it, just like [you mistrust code](#all-code-is-wrong).
+
+<Tweet id="1146230484541722624" />
+
+## Webassembly is faster than you thought
+
+For a while I've been excited about the **universal** potential of webassembly. It turns out it's even better than I anticipated: when disabling sandboxing, webassembly can [match 95% the speed of native code](https://innative.dev/news/introducing-innative/).
+
+> WebAssembly isn’t just a way to run C++ in a web browser, it’s a chance to reinvent how we write programs, and build a radical new foundation for software development
+
+## QUIC (HTTP/3) is faster than you thought
+
+Uber [deployed QUIC at scale](https://eng.uber.com/employing-quic-protocol/), obtaining remarkable results.
+
+> The results from this experiment showed that QUIC consistently and very significantly outperformed TCP in terms of latency when downloading the HTTPS responses on the devices. Specifically, we witnessed a 50 percent reduction in latencies across the board, from the 50th percentile to 99th percentile.
+
+![Percentage improvements in tail-end latencies (95th and 99th percentile)](/images/2019-in-review/quic-latency.png)
+
+## We are interested in stablecoins not bitcoin…
+
+… seems to be the new "we like [blockchain not bitcoin](https://www.coindesk.com/love-blockchain-just-bitcoin)".
+
+The president of the European Central Bank said the word "stablecoin" in 2019. That was a twist I wasn't expecting.
+
+<Tweet id="1205225680453210112" />
+
+## Zoom just works better
+
+[Zoom went public](https://www.businessinsider.com/zoom-files-to-go-public-2019-3). Its differentiator? **It works better**.
+
+<Tweet id="1109207974994735104" />
+
+## Google's engineering practices go open-source
+
+Google's engineering practices were [open-sourced on GitHub](https://github.com/google/eng-practices). My favorite part? The emphasis on [speedy code-review](https://google.github.io/eng-practices/review/reviewer/speed.html):
+
+> **At Google, we optimize for the speed at which a team of developers can produce a product together**, as opposed to optimizing for the speed at which an individual developer can write code. The speed of individual development is important, it’s just not as important as the velocity of the entire team.
+
+Further, Google's cryptography practices were "open-sourced" in a tweet:
+
+<Tweet id="1112377964942028805" />
+
+## AWS shares how they build ultra-reliable services
+
+AWS architect Colm MacCárthaigh shares 10 patterns for controlling the cloud and ensuring its reliability:
+
+<Tweet id="1071084058841559041" caption="If you don't fancy watching the video, read the tweet storm" />
+
+<FootNotes>
+  <FootNote id="1"> Servers can be so hard to roll out without downtime that a keynote at
+    this year&apos;s KubeCon starts with the glaring admission: <b>&quot;Noticing your customers receive 503&apos;s every now-and-then?&quot;</b>. By not needing to rotate pods, shut down containers, handle signals, wait for grace periods, configure and execute liveliness probes… static is also <b>faster and safer to roll</b>. </FootNote>
+
+  <FootNote id="2"> When the set of pages to pre-compute is too large and would make build
+    times prohibitive, it&apos;s still probably a good idea to pre-compute
+    your most critical public pages, and do the rest <em>asynchronously</em>.</FootNote>
+
+  <FootNote id="3">Crucially, websites and apps that serve the same static markup and code
+    to all users have a drastically simpler security model, which means…
+    static is also <b>more secure</b>.</FootNote>
+
+  <FootNote id="4">Our infrastructure makes use of CosmosDB, a serverless database by
+    Microsoft Azure with remarkably (consistent) low-latency and effectively
+    infinite horizontal scalability.</FootNote>
+
+  <FootNote id="5">Perhaps the most fundamental way in which a mobile web app on iOS Safari
+    cannot ever be &quot;native&quot; like an app is in the way the viewport
+    size is dynamic and shifts as you scroll to reveal different toolbars.</FootNote>
+
+  <FootNote id="6">Speaking of <a href="#native-means-platform-fidelity">native</a>, I
+    intuit that, rather than native code generation, native mobile apps owe
+    their generally better performance to the a rich standard library of
+    well-optimized UI components. Go, when compared to Node.js+npm, has
+    similarly demonstrated the success of a great stdlib for common,
+    performance-critical needs.</FootNote>
+
+  <FootNote id="7">What you do in <a href="https://swr.now.sh/#basic-data-loading" target="_blank">one line of SWR</a>, you tend to do in a few dozen lines of Redux.</FootNote>
+</FootNotes>
