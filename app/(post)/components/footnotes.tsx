@@ -2,7 +2,7 @@ import { A } from "./a";
 import { P } from "./p";
 
 export const FootNotes = ({ children }) => (
-  <div className="text-base before:w-[200px] before:m-auto before:content[''] before:border-t before:border-gray-300 before:block before:my-10">
+  <div className="text-base before:w-[200px] before:m-auto before:content[''] before:border-t before:border-gray-300 dark:before:border-[#444] before:block before:my-10">
     {children}
   </div>
 );
