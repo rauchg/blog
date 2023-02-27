@@ -6,8 +6,8 @@ module.exports = withMDX({
     appDir: true,
     mdxRs: true,
   },
-  reactStrictMode: true,
   swcMinify: true,
+  reactStrictMode: true,
   images: {
     domains: [
       "pbs.twimg.com",
