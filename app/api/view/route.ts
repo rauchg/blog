@@ -1,3 +1,5 @@
+export const runtime = "edge";
+
 import convexConfig from "@/convex.json";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
@@ -26,7 +28,3 @@ export default async function view(req: NextRequest) {
     ok: true,
   });
 }
-
-export const config = {
-  runtime: "edge",
-};

@@ -1,34 +1,32 @@
-import { ImageResponse } from "@vercel/og";
+export const runtime = "edge";
 
-export const config = {
-  runtime: "edge",
-};
+import { ImageResponse } from "@vercel/og";
 
 // fonts
 const inter300 = fetch(
   new URL(
-    `../../node_modules/@fontsource/inter/files/inter-latin-300-normal.woff`,
+    `../../../node_modules/@fontsource/inter/files/inter-latin-300-normal.woff`,
     import.meta.url
   )
 ).then(res => res.arrayBuffer());
 
 const inter500 = fetch(
   new URL(
-    `../../node_modules/@fontsource/inter/files/inter-latin-500-normal.woff`,
+    `../../../node_modules/@fontsource/inter/files/inter-latin-500-normal.woff`,
     import.meta.url
   )
 ).then(res => res.arrayBuffer());
 
 const inter600 = fetch(
   new URL(
-    `../../node_modules/@fontsource/inter/files/inter-latin-600-normal.woff`,
+    `../../../node_modules/@fontsource/inter/files/inter-latin-600-normal.woff`,
     import.meta.url
   )
 ).then(res => res.arrayBuffer());
 
 const robotoMono300 = fetch(
   new URL(
-    `../../node_modules/@fontsource/roboto-mono/files/roboto-mono-latin-300-normal.woff`,
+    `../../../node_modules/@fontsource/roboto-mono/files/roboto-mono-latin-300-normal.woff`,
     import.meta.url
   )
 ).then(res => res.arrayBuffer());

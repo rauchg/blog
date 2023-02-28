@@ -1,42 +1,40 @@
+export const runtime = "edge";
+
 import { ImageResponse } from "@vercel/og";
 import postsData from "@/posts.json";
 import { getViews } from "@/app/get-views";
 import commaNumber from "comma-number";
 
-export const config = {
-  runtime: "edge",
-};
-
 // rauchg photo
 const rauchgPhoto = fetch(
-  new URL(`../../public/images/rauchg-3d4cecf.gray.jpg`, import.meta.url)
+  new URL(`../../../public/images/rauchg-3d4cecf.gray.jpg`, import.meta.url)
 ).then(res => res.arrayBuffer());
 
 // fonts
 const inter300 = fetch(
   new URL(
-    `../../node_modules/@fontsource/inter/files/inter-latin-300-normal.woff`,
+    `../../../node_modules/@fontsource/inter/files/inter-latin-300-normal.woff`,
     import.meta.url
   )
 ).then(res => res.arrayBuffer());
 
 const inter500 = fetch(
   new URL(
-    `../../node_modules/@fontsource/inter/files/inter-latin-500-normal.woff`,
+    `../../../node_modules/@fontsource/inter/files/inter-latin-500-normal.woff`,
     import.meta.url
   )
 ).then(res => res.arrayBuffer());
 
 const inter600 = fetch(
   new URL(
-    `../../node_modules/@fontsource/inter/files/inter-latin-600-normal.woff`,
+    `../../../node_modules/@fontsource/inter/files/inter-latin-600-normal.woff`,
     import.meta.url
   )
 ).then(res => res.arrayBuffer());
 
 const robotoMono400 = fetch(
   new URL(
-    `../../node_modules/@fontsource/roboto-mono/files/roboto-mono-latin-400-normal.woff`,
+    `../../../node_modules/@fontsource/roboto-mono/files/roboto-mono-latin-400-normal.woff`,
     import.meta.url
   )
 ).then(res => res.arrayBuffer());
@@ -113,11 +111,6 @@ export default async function OGImage() {
       ],
     }
   );
-}
-
-// lil helper to convert posts.json `date` to full year
-function getYear(date: string) {
-  return new Date(date).getFullYear();
 }
 
 // lil helper for mroe succinct styles
