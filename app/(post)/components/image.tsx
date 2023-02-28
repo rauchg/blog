@@ -22,7 +22,7 @@ export async function Image({ src, alt = null, width = null, height = null }) {
   }
 
   return (
-    <span className="block my-5 flex flex-col items-center">
+    <span className="my-5 flex flex-col items-center">
       {src.startsWith("data:") ? (
         <img src={src} alt={alt} />
       ) : (
