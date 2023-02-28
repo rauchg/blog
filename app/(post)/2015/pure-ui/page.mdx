@@ -1,3 +1,5 @@
+import { Demo, Demos } from './demo'
+
 I recently redesigned and implemented a new version of [VideoPress](https://videopress.com), the [WordPress](https://wordpress.com) video platform.
 
 The process involved, among other things, creating a new UI, ditching the dependency on Flash in favor of HTML5 `<video>` and introducing new functionality.
@@ -59,7 +61,9 @@ and position each canvas where elements are placed.
 
 This is what a designer’s handout looks like when using artboards to represent the same content for desktop and for mobile:
 
-![Typical presentation of a design handout](/images/pure-ui/JDDxCgEoBj.png)
+<Figure wide>
+  ![Typical presentation of a design handout](/images/pure-ui/JDDxCgEoBj.png)
+</Figure>
 
 We can think of the example above as the same Socket.IO `dashboard()` UI function but with different parameters. The
 second artboard represents the invocation `dashboard({ width: 375 })`.
@@ -79,7 +83,9 @@ function dashboard({ width, num }){
 Moreover, seasoned designers have recognized the need for further specification. This can be seen in the popularization of UI styleguides,
 such as the following example from [Github Primer](http://primercss.io/buttons/).
 
-![Design systems in action](/images/pure-ui/AgHrso5cqp.png)
+<Figure wide>
+  ![Design systems in action](/images/pure-ui/AgHrso5cqp.png)
+</Figure>
 
 CSS and HTML being fully declarative have lent themselves very well to this task.
 
@@ -91,7 +97,9 @@ which can be combined: `<button class="btn-sm btn-outline">`, `<button disabled 
 
 With this paradigm in mind, I set out to realize the different main states of the video player with my design tool.
 
-![Multiple states of the video player](/images/pure-ui/iIIdwqx6y4.png)
+<Figure wide>
+  ![Multiple states of the video player](/images/pure-ui/iIIdwqx6y4.png)
+</Figure>
 
 These answer the questions of what the player would look like when
 
@@ -150,7 +158,9 @@ Since these functions are essentially acting as mappings between data and UI, I 
 }
 ```
 
-[DEMO1]
+<Figure wide>
+  <Demo id="pure-ui-demo1" />
+</Figure>
 
 Throughout this exercise it became apparent that there was more to the project than what I had contemplated in my original plan.
 
@@ -172,7 +182,9 @@ First, there’s a potentially infinite number of permutations of the parameters
 
 An example from this project is the conversion phase of the video. While the video is converting, I intended to show a blurred out thumbnail with a progress bar that notifies the user in realtime.
 
-[DEMO2]
+<Figure wide>
+  <Demo id="pure-ui-demo2" />
+</Figure>
 
 Once rendered, I incorporated a <code>[+]</code> icon (which you can click above) to modify the parameters with which the view was invoked and rendered.
 
@@ -236,3 +248,5 @@ As we continue to refine our understanding of the entire process, our tools will
   <FootNote id="1">In general, comparing libraries or frameworks in terms of features seems inferior to examining the model it imposes on the programmer. The latter will inform you about how well the code will fare over time as the product matures and the team grows, but the former won’t. It will also empower you to foresee what the evolutionary path of the technology looks like.</FootNote>
   <FootNote id="2">Artboards were initially introduced by Illustrator as a way of grouping related designs together, such as a [company's business stationary](https://helpx.adobe.com/illustrator/how-to/work-with-artboards.html).  [Sketch](https://www.sketchapp.com/) popularized its usage to represent designs targing varying devices and screen sizes, and Photoshop is now incorporating the feature.</FootNote>
 </FootNotes>
+
+<Demos />

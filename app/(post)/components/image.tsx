@@ -1,6 +1,7 @@
 import sizeOf from "image-size";
 import { join } from "path";
 import { readFile } from "fs/promises";
+import { Caption } from "./caption";
 import NextImage from "next/image";
 
 export async function Image({ src, alt = null, width = null, height = null }) {
@@ -29,9 +30,7 @@ export async function Image({ src, alt = null, width = null, height = null }) {
         <NextImage width={width} height={height} alt={alt} src={src} />
       )}
 
-      {alt && (
-        <span className="block font-mono text-xs mt-5 text-center">{alt}</span>
-      )}
+      {alt && <Caption>{alt}</Caption>}
     </span>
   );
 }
