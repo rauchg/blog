@@ -1,6 +1,4 @@
 import "./globals.css";
-// we need this until Next.js lands suspense-y CSS support
-import "./(post)/components/tweet.css";
 
 import { Inter } from "next/font/google";
 import { ThemeToggle } from "./theme-toggle";
@@ -10,6 +8,12 @@ import { Logo } from "./logo";
 import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
+
+export const metadata = {
+  title: "Guillermo Rauch's blog",
+  description:
+    "Guillermo Rauch is the CEO and founder of Vercel, a software engineer, and the creator of Next.js, Mongoose, Socket.io and other open source libraries.",
+};
 
 export default function RootLayout({
   children,
