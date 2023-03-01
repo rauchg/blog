@@ -4,8 +4,10 @@ import { themeEffect } from "./theme-effect";
 
 export function ThemeToggle() {
   // a `null` preference implies auto
-  const [preference, setPreference] = useState(undefined);
-  const [currentTheme, setCurrentTheme] = useState(null);
+  const [preference, setPreference] = useState<undefined | null | string>(
+    undefined
+  );
+  const [currentTheme, setCurrentTheme] = useState<null | string>(null);
   const [isHovering, setIsHovering] = useState(false);
   const [isHoveringOverride, setIsHoveringOverride] = useState(false);
 
@@ -77,7 +79,8 @@ export function ThemeToggle() {
           // prevent the hover state from rendering
           setIsHoveringOverride(true);
 
-          let newPreference = currentTheme === "dark" ? "light" : "dark";
+          let newPreference: string | null =
+            currentTheme === "dark" ? "light" : "dark";
           const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
             .matches
             ? "dark"
