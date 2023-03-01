@@ -44,10 +44,10 @@ export function Posts({ posts, views }) {
     <ConvexProvider client={convexClient}>
       <Suspense fallback={null}>
         <main className="max-w-2xl font-mono m-auto text-sm">
-          <header className="text-gray-400 dark:text-gray-600 mb-2 flex text-xs">
+          <header className="text-gray-400 dark:text-gray-600 flex items-center text-xs">
             <button
               onClick={sortDate}
-              className={`w-14 text-left  ${
+              className={`w-12 h-8 text-left  ${
                 sort[0] === "date" && sort[1] !== "desc"
                   ? "text-gray-500 dark:text-gray-400"
                   : ""
@@ -56,12 +56,14 @@ export function Posts({ posts, views }) {
               date
               {sort[0] === "date" && sort[1] === "asc" && "↑"}
             </button>
-            <span className="grow">title</span>
+            <span className="grow pl-2">title</span>
             <button
               onClick={sortViews}
-              className={
-                sort[0] === "views" ? "text-gray-500 dark:text-gray-400" : ""
-              }
+              className={`
+                h-8
+                pl-4
+                ${sort[0] === "views" ? "text-gray-500 dark:text-gray-400" : ""}
+              `}
             >
               views
               {sort[0] === "views" ? (sort[1] === "asc" ? "↑" : "↓") : ""}
