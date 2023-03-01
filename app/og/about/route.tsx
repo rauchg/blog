@@ -39,7 +39,7 @@ const robotoMono400 = fetch(
   )
 ).then(res => res.arrayBuffer());
 
-export default async function OGImage() {
+export async function GET() {
   const views = await getViews();
   const viewsSum = views.reduce((acc, view) => {
     return acc + view.views;

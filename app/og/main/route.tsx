@@ -26,13 +26,12 @@ const robotoMono400 = fetch(
   )
 ).then(res => res.arrayBuffer());
 
-export default async function OGImage() {
+export async function GET() {
   const views = await getViews();
   const viewsByPostId = views.reduce((acc, view) => {
     acc[view.postId] = view.viewsFormatted;
     return acc;
   }, {});
-  console.log(views);
 
   return new ImageResponse(
     (

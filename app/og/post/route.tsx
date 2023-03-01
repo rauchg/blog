@@ -31,7 +31,7 @@ const robotoMono300 = fetch(
   )
 ).then(res => res.arrayBuffer());
 
-export default async function OGImage() {
+export async function GET() {
   return new ImageResponse(
     (
       <div
@@ -47,11 +47,13 @@ export default async function OGImage() {
         </header>
 
         <main tw="flex mt-20 flex-col">
-          <div
-            tw="bg-gray-100 p-8 text-7xl font-medium rounded-md"
-            style={font("Inter 500")}
-          >
-            Making the Web. Faster.
+          <div tw="flex">
+            <div
+              tw="bg-gray-100 p-8 text-7xl font-medium rounded-md"
+              style={font("Inter 500")}
+            >
+              Making the Web. Faster.
+            </div>
           </div>
 
           <div tw="mt-5 text-2xl" style={font("Roboto Mono 300")}>
