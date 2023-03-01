@@ -14,6 +14,10 @@
     @apply bg-[#1C1C1C];
   }
 
+  :root.pause-transitions * {
+    transition-duration: 0ms !important;
+  }
+
   @supports (font-variation-settings: normal) {
     :root {
       font-family: "Inter var", sans-serif;

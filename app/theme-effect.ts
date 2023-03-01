@@ -12,10 +12,18 @@ export const themeEffect = function () {
     pref === "dark" ||
     (!pref && window.matchMedia("(prefers-color-scheme: dark)").matches)
   ) {
+    document.documentElement.classList.add("pause-transitions");
     document.documentElement.classList.add("dark");
+    requestAnimationFrame(() => {
+      document.documentElement.classList.remove("pause-transitions");
+    });
     return "dark";
   } else {
+    document.documentElement.classList.add("pause-transitions");
     document.documentElement.classList.remove("dark");
+    requestAnimationFrame(() => {
+      document.documentElement.classList.remove("pause-transitions");
+    });
     return "light";
   }
 };
