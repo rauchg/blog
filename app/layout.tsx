@@ -7,7 +7,7 @@ import { Analytics } from "./analytics";
 import { Logo } from "./logo";
 import Link from "next/link";
 
-// const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Guillermo Rauch's blog",
@@ -23,8 +23,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      classNameOld={`{inter.className} antialiased`}
-      className={`antialiased`}
+      className={`${inter.className} antialiased`}
       suppressHydrationWarning={true}
     >
       <head>
