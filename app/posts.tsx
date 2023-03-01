@@ -89,7 +89,7 @@ function List({ posts, views, sort }) {
     return posts.map((post: Post) => ({
       ...post,
       views: viewsById[post.id]?.views ?? 0,
-      viewsFormatted: viewsById[post.id].viewsFormatted ?? "0",
+      viewsFormatted: viewsById[post.id]?.viewsFormatted ?? "0",
     }));
   }, [posts, viewsById]);
 
