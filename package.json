@@ -10,7 +10,6 @@
     "@types/node-fetch": "^2.6.2",
     "@vercel/analytics": "^0.1.8",
     "@vercel/og": "^0.2.0",
-    "aws-sdk": "^2.1313.0",
     "comma-number": "^2.1.0",
     "date-fns": "^2.29.3",
     "image-size": "^1.0.2",
