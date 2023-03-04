@@ -4,7 +4,7 @@ import convexConfig from "@/convex.json";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-export default async function view(req: NextRequest) {
+export async function GET(req: NextRequest) {
   const url = new URL(req.url);
   const id = url.searchParams.get("id");
 
