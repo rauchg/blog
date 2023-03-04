@@ -6,7 +6,7 @@ export const DEMO_CODE = `_="G=[[@o=j=28H,[@-j]];j3@(25+=A8)+i*Bji&32?70
 
 export function Demo() {
   const { ref, inView } = useInView({
-    margin: "250px 0 500px",
+    rootMargin: "250px 0 500px",
   });
 
   const onIframe = iframe => {

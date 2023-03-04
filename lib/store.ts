@@ -14,6 +14,7 @@ class Store {
   }
 
   get s3() {
+    // @ts-expect-error TODO: fix type mismatch
     return (Store.#s3 =
       Store.#s3 ||
       new S3({
@@ -53,6 +54,7 @@ class Store {
   async set(key: string, Body: string | ArrayBuffer | Buffer | Blob) {
     await this.s3
       .upload({
+        // @ts-expect-error TODO: fix type mismatch
         Bucket: process.env.S3_BUCKET,
         Key: this.getKey(key),
         Body,
@@ -68,7 +70,8 @@ export function createStore(nsp: string) {
 // ideally this would be VERCEL_PROJECT_ID
 // but it doesn't exist ¯\_(ツ)_/¯
 const DEFAULT_NAMESPACE = "rauchg-blog";
-let defaultStore = null;
+// TODO: fix type mismatch
+let defaultStore: any = null;
 
 export function get(key: string): Promise<ArrayBuffer | null> {
   if (defaultStore === null) {

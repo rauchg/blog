@@ -6,7 +6,7 @@ import NextImage from "next/image";
 
 export async function Image({ src, alt = null, width = null, height = null }) {
   if (!src.startsWith("data:") && (width === null || height === null)) {
-    let imageBuffer = null;
+    let imageBuffer: Buffer | null = null;
 
     if (src.startsWith("http")) {
       imageBuffer = Buffer.from(
@@ -18,15 +18,17 @@ export async function Image({ src, alt = null, width = null, height = null }) {
           .pathname
       );
     }
-
+    // @ts-expect-error TODO: fix mismatch of types
     ({ width, height } = sizeOf(imageBuffer));
   }
 
   return (
     <span className="my-5 flex flex-col items-center">
       {src.startsWith("data:") ? (
+        // @ts-expect-error TODO: fix mismatch of types
         <img src={src} alt={alt} />
       ) : (
+        // @ts-expect-error TODO: fix mismatch of types
         <NextImage width={width} height={height} alt={alt} src={src} />
       )}
 

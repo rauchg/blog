@@ -15,7 +15,7 @@ export default function Link({
     return notFound();
   }
 
-  if (searchParams.bot || /bot/i.test(headers().get("user-agent"))) {
+  if (searchParams.bot || /bot/i.test(headers().get("user-agent") as string)) {
     return <></>;
   } else {
     redirect(link.link);

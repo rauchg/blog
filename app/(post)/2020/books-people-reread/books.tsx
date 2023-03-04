@@ -38,7 +38,7 @@ async function getData() {
   });
 
   const [collectionId] = Object.keys(collection);
-  const collectionSchema = getCollectionSchemaNameIndex(
+  const collectionSchema: any = getCollectionSchemaNameIndex(
     collection[collectionId].value.schema
   );
 
