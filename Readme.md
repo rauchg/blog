@@ -10,7 +10,7 @@ First, install [Vercel CLI](https://vercel.com/download).
 
 ### Development
 
-```
+```bash
 vc dev
 ```
 
