@@ -14,7 +14,7 @@ export function Diagram() {
         }}
       >
         <div className="mobile-diagram-wrapper">
-          <Image />
+          <SVG />
         </div>
       </div>
     </div>
@@ -24,7 +24,7 @@ export function Diagram() {
 const DIAGRAM_FONT =
   '"SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace';
 
-function Image(props) {
+function SVG(props) {
   return (
     <svg width={827} height={655} {...props}>
       <g fill="none" fillRule="evenodd">

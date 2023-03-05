@@ -25,8 +25,8 @@ export async function Image({ src, alt = null, width = null, height = null }) {
   return (
     <span className="my-5 flex flex-col items-center">
       {src.startsWith("data:") ? (
-        // @ts-expect-error TODO: fix mismatch of types
-        <img src={src} alt={alt} />
+        /* eslint-disable @next/next/no-img-element */
+        <img src={src} alt={alt ?? ""} />
       ) : (
         // @ts-expect-error TODO: fix mismatch of types
         <NextImage width={width} height={height} alt={alt} src={src} />
