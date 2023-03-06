@@ -1,6 +1,7 @@
 import { NextTweet } from "next-tweet";
 import { Caption } from "./caption";
 import type { ReactNode } from "react";
+import "./tweet.css";
 
 // we import this globally in the top-most layout.tsx file
 // until Next.js lands suspense-y CSS support
@@ -13,8 +14,8 @@ interface TweetArgs {
 
 export async function Tweet({ id, caption }: TweetArgs) {
   return (
-    <div className="my-6">
-      <div className="flex justify-center">
+    <div className="tweet my-6">
+      <div className={`flex justify-center`}>
         {/* @ts-ignore */}
         <NextTweet id={id} />
       </div>
