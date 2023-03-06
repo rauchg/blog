@@ -7,6 +7,7 @@ export default async function rpc(fnName, body) {
     headers: {
       "content-type": "application/json",
     },
+    cache: "force-cache",
     body: JSON.stringify(body),
   });
 
