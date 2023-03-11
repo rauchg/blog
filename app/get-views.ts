@@ -5,5 +5,6 @@ export const getViews = async () => {
   url.searchParams.append("path", "getAllViews");
   url.searchParams.append("args", "[]");
   const res = await fetch(url.toString());
-  return res.json().then(data => data.value);
+  const data = await res.json().then(data => data.value);
+  return data;
 };
