@@ -1,14 +1,14 @@
-import { getViews } from "../get-views";
 import { Header } from "./header";
+import { getPosts } from "../get-posts";
 
-export const revalidate = 1;
+export const revalidate = 60;
 
 export default async function Layout({ children }) {
-  const views = await getViews();
+  const posts = await getPosts();
 
   return (
     <article className="text-gray-800 dark:text-gray-300">
-      <Header views={views} />
+      <Header posts={posts} />
 
       {children}
     </article>

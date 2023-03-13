@@ -2,23 +2,16 @@
 
 import { useSelectedLayoutSegments } from "next/navigation";
 import { useEffect, useMemo, useRef } from "react";
-import { ConvexProvider, ConvexReactClient } from "convex/react";
-import clientConfig from "@/convex/_generated/clientConfig";
-import { useQuery } from "@/convex/_generated/react";
-import postsData from "@/posts.json";
 import { ago } from "time-ago";
-import type { View } from "@/convex/getAllViews";
 
-const convex = new ConvexReactClient(clientConfig);
-
-export function Header({ views }) {
+export function Header({ posts }) {
   const segments = useSelectedLayoutSegments();
-  const post = postsData.posts.find(post => post.id === segments[1]);
+  const post = posts.find(post => post.id === segments[1]);
 
   if (post == null) return <></>;
 
   return (
-    <ConvexProvider client={convex}>
+    <>
       <h1 className="text-2xl font-bold mb-1 dark:text-gray-100">
         {post.title}
       </h1>
@@ -47,19 +40,15 @@ export function Header({ views }) {
         </span>
 
         <span className="pr-1.5">
-          <Views id={post.id} defaultValue={views} />
+          <Views id={post.id} defaultValue={post.viewsFormatted} />
         </span>
       </p>
-    </ConvexProvider>
+    </>
   );
 }
 
 function Views({ id, defaultValue }) {
-  const allViews = useQuery("getAllViews");
-  const views = useMemo(() => {
-    return (allViews ?? defaultValue)?.find((view: View) => view.postId === id)
-      ?.viewsFormatted;
-  }, [allViews, defaultValue, id]);
+  const views = defaultValue;
   const didLogViewRef = useRef(false);
 
   useEffect(() => {
