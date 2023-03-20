@@ -4,18 +4,9 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { Suspense } from "react";
 
-interface Post {
-  id: string;
-  date: string;
-  slug: string;
-  title: string;
-  views: number;
-  viewsFormatted: string;
-}
-
 type SortSetting = ["date" | "views", "desc" | "asc"];
 
-export function Posts({ posts }: { posts: Post[] }) {
+export function Posts({ posts }) {
   const [sort, setSort] = useState<SortSetting>(["date", "desc"]);
 
   function sortDate() {
@@ -67,7 +58,7 @@ export function Posts({ posts }: { posts: Post[] }) {
   );
 }
 
-function List({ posts, sort }: { posts: Post[]; sort: SortSetting }) {
+function List({ posts, sort }) {
   // sort can be ["date", "desc"] or ["views", "desc"] for example
   const sortedPosts = useMemo(() => {
     const [sortKey, sortDirection] = sort;
@@ -84,7 +75,7 @@ function List({ posts, sort }: { posts: Post[]; sort: SortSetting }) {
 
   return (
     <ul>
-      {sortedPosts.map((post: Post, i: number) => {
+      {sortedPosts.map((post, i: number) => {
         const year = getYear(post.date);
         const firstOfYear =
           !sortedPosts[i - 1] || getYear(sortedPosts[i - 1].date) !== year;

@@ -1,8 +1,7 @@
 export const runtime = "edge";
 
 import { ImageResponse } from "@vercel/og";
-import postsData from "@/posts.json";
-import { getViews } from "@/app/get-views";
+import { getPosts } from "@/app/get-posts";
 import commaNumber from "comma-number";
 
 // rauchg photo
@@ -25,13 +24,6 @@ const inter500 = fetch(
   )
 ).then(res => res.arrayBuffer());
 
-const inter600 = fetch(
-  new URL(
-    `../../../node_modules/@fontsource/inter/files/inter-latin-600-normal.woff`,
-    import.meta.url
-  )
-).then(res => res.arrayBuffer());
-
 const robotoMono400 = fetch(
   new URL(
     `../../../node_modules/@fontsource/roboto-mono/files/roboto-mono-latin-400-normal.woff`,
@@ -40,10 +32,8 @@ const robotoMono400 = fetch(
 ).then(res => res.arrayBuffer());
 
 export async function GET() {
-  const views = await getViews();
-  const viewsSum = views.reduce((acc, view) => {
-    return acc + view.views;
-  }, 0);
+  const posts = await getPosts();
+  const viewsSum = posts.reduce((sum, post) => sum + post.views, 0);
 
   return new ImageResponse(
     (
@@ -88,7 +78,7 @@ export async function GET() {
           tw="flex w-full justify-center text-xl text-gray-400"
           style={font("Roboto Mono 400")}
         >
-          {postsData.posts.length} posts / {commaNumber(viewsSum)} views
+          {posts.length} posts / {commaNumber(viewsSum)} views
         </footer>
       </div>
     ),

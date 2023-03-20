@@ -1,8 +1,7 @@
 export const runtime = "edge";
 
 import { ImageResponse } from "@vercel/og";
-import postsData from "@/posts.json";
-import { getViews } from "@/app/get-views";
+import { getPosts } from "@/app/get-posts";
 
 // fonts
 const inter300 = fetch(
@@ -27,11 +26,7 @@ const robotoMono400 = fetch(
 ).then(res => res.arrayBuffer());
 
 export async function GET() {
-  const views = await getViews();
-  const viewsByPostId = views.reduce((acc, view) => {
-    acc[view.postId] = view.viewsFormatted;
-    return acc;
-  }, {});
+  const posts = await getPosts();
 
   return new ImageResponse(
     (
@@ -54,21 +49,19 @@ export async function GET() {
             <div>views</div>
           </div>
 
-          {postsData.posts.map((post, i) => (
+          {posts.map((post, i) => (
             <div
               key={post.id}
               tw="flex py-4 text-xl border-gray-300 border-t w-full"
             >
               <div tw="flex text-gray-400 w-20">
-                {postsData.posts[i - 1] === undefined ||
-                getYear(post.date) !== getYear(postsData.posts[i - 1].date)
+                {posts[i - 1] === undefined ||
+                getYear(post.date) !== getYear(posts[i - 1].date)
                   ? getYear(post.date)
                   : ""}
               </div>
               <div tw="flex grow">{post.title}</div>
-              <div tw="flex text-gray-400 pl-7">
-                {viewsByPostId[post.id] ?? null}
-              </div>
+              <div tw="flex text-gray-400 pl-7">{post?.viewsFormatted}</div>
             </div>
           ))}
         </main>
