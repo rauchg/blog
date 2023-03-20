@@ -29,7 +29,7 @@ export function Posts({ posts }) {
         <header className="text-gray-500 dark:text-gray-600 flex items-center text-xs">
           <button
             onClick={sortDate}
-            className={`w-12 h-8 text-left  ${
+            className={`w-12 h-9 text-left  ${
               sort[0] === "date" && sort[1] !== "desc"
                 ? "text-gray-700 dark:text-gray-400"
                 : ""
@@ -42,7 +42,7 @@ export function Posts({ posts }) {
           <button
             onClick={sortViews}
             className={`
-                h-8
+                h-9
                 pl-4
                 ${sort[0] === "views" ? "text-gray-700 dark:text-gray-400" : ""}
               `}
