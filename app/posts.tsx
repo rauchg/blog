@@ -26,12 +26,12 @@ export function Posts({ posts }) {
   return (
     <Suspense fallback={null}>
       <main className="max-w-2xl font-mono m-auto text-sm">
-        <header className="text-gray-400 dark:text-gray-600 flex items-center text-xs">
+        <header className="text-gray-500 dark:text-gray-600 flex items-center text-xs">
           <button
             onClick={sortDate}
             className={`w-12 h-8 text-left  ${
               sort[0] === "date" && sort[1] !== "desc"
-                ? "text-gray-500 dark:text-gray-400"
+                ? "text-gray-700 dark:text-gray-400"
                 : ""
             }`}
           >
@@ -44,7 +44,7 @@ export function Posts({ posts }) {
             className={`
                 h-8
                 pl-4
-                ${sort[0] === "views" ? "text-gray-500 dark:text-gray-400" : ""}
+                ${sort[0] === "views" ? "text-gray-700 dark:text-gray-400" : ""}
               `}
           >
             views
@@ -97,14 +97,14 @@ function List({ posts, sort }) {
                   }`}
                 >
                   {firstOfYear && (
-                    <span className="w-14 inline-block self-start shrink-0 text-gray-400 dark:text-gray-500">
+                    <span className="w-14 inline-block self-start shrink-0 text-gray-500 dark:text-gray-500">
                       {year}
                     </span>
                   )}
 
-                  <span className="grow dark:text-gray-200">{post.title}</span>
+                  <span className="grow dark:text-gray-100">{post.title}</span>
 
-                  <span className="text-gray-400 dark:text-gray-500 text-xs">
+                  <span className="text-gray-500 dark:text-gray-500 text-xs">
                     {post.viewsFormatted}
                   </span>
                 </span>
