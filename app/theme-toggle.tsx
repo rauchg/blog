@@ -47,7 +47,19 @@ export function ThemeToggle() {
   return (
     <>
       {isHovering && (
-        <span className="text-[9px] mr-[-5px] text-gray-400">
+        <span
+          className={`
+            text-[9px]
+            text-gray-400
+            mr-[-5px]
+            text-gray-400
+
+            /* mobile */
+            hidden
+
+            md:inline
+          `}
+        >
           {preference === null
             ? "System"
             : preference === "dark"
