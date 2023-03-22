@@ -1,7 +1,7 @@
 {
   "build": {
     "env": {
-      "FORCE_RUNTIME_TAG": "canary"
+      "FORCE_BUILD_IN_REGION": "lhr1"
     }
   }
 }
