@@ -7,6 +7,7 @@ import { OL as ol } from "app/(post)/components/ol";
 import { UL as ul } from "app/(post)/components/ul";
 import { LI as li } from "app/(post)/components/li";
 import { HR as hr } from "app/(post)/components/hr";
+import { Code as code } from "app/(post)/components/code";
 import { Tweet } from "app/(post)/components/tweet";
 import { Image } from "app/(post)/components/image";
 import { Figure } from "app/(post)/components/figure";
@@ -31,6 +32,7 @@ export function useMDXComponents(components: {
     ul,
     li,
     hr,
+    code,
     pre: Snippet,
     img: Image,
     blockquote,
