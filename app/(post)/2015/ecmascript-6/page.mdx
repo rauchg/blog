@@ -16,7 +16,7 @@ This should be fairly obvious to you if you’ve been using CoffeeScript, which 
 
 Instead of making a thorough review of [all the new features](https://github.com/lukehoban/es6features), I’ll point out the most interesting ones. To incentivize developers to upgrade, new languages or frameworks need to (1) feature a compelling compatibility story and (2) give you a [big enough carrot](http://teddziuba.tumblr.com/post/26426290981/python-3s-marketing-problem).
 
-## The module syntax
+## The module syntax [#the-module-syntax]
 
 ES6 introduces **syntax** for defining modules and declaring dependencies. I emphasize the word syntax because ES6 is not concerned with the actual implementation details of how modules are fetched or loaded.
 
@@ -76,7 +76,7 @@ import { crc32 } from ‘crc32’
 
 In other words, the simplest (and arguably most desirable) form of module definition requires the extra default keyword. Or in the absence of that, the usage of `{ }` when importing.
 
-## Destructuring
+## Destructuring [#destructuring]
 
 One of the most common patterns that has emerged in modern JavaScript code is the usage of option objects.
 
@@ -162,13 +162,13 @@ var { method, body } = opts
 
 This is reminiscent to me of the expressiveness granted by `with`, without the magic or negative performance implications.
 
-## New Conventions
+## New Conventions [#new-conventions]
 
 Some parts of the language have been altogether replaced with better alternatives that’ll quickly become a new default for how you write JavaScript.
 
 I’ll go over some of them.
 
-### let/const over var
+### let/const over var [#let-and-const-over-var]
 
 Instead of writing `var x = y` you’ll most likely be writing `let x = y`. let scopes your variable definition to the block it’s defined in:
 
@@ -193,7 +193,7 @@ for (let i = 0; i < 10; i++) {}
 
 When you want to ensure [binding immutability](https://mathiasbynens.be/notes/es6-const) with the same semantics as `let`, use `const` instead.
 
-### template strings over concatenation
+### template strings over concatenation [#template-strings]
 
 With the lack of `sprintf` or similar utilities in the standard JavaScript library, composing strings has always been more painful than it should.
 
@@ -206,7 +206,7 @@ let str = `
 `
 ```
 
-### class over prototypes
+### class over prototypes [#class-over-prototypes]
 
 Defining a class was cumbersome and required a deep understanding of the language internals. Even though it’s still obviously useful to grasp the inner-workings, the barrier to entry to newcomers was unnecessarily high.
 
@@ -223,7 +223,7 @@ class A extends B {
 
 I initially was surprised to learn classes are not hoisted (explanation [here](https://esdiscuss.org/history/2014-06-05T15%3A54%3A16.000Z-rossberg.google.com?path=%2Ftopic%2Fin-es6-strict-mode-do-function-declarations-within-a-block-hoist)). You should therefore think of them translating roughly to `var A = function(){}` as opposed to `function A(){}`.
 
-### () => over function
+### () => over function [#fat-arrow-over-function]
 
 Not only is `(x, y) => {}` shorter to write than `function (x,y) {}`, but the behavior of this within the function body will most likely refer to what you want.
 
@@ -249,7 +249,7 @@ class Person {
 
 To the dismay of newcomers to the language, the first timer (using `function`) will log "undefined". The second one will now correctly log name.
 
-## First-class support for async I/O
+## First-class support for async I/O [#async-io]
 
 Asynchronous code execution has been around for almost the entire history of the language. `setTimeout`, after all, was introduced around the time JavaScript 1.0 came out.
 
@@ -267,7 +267,7 @@ function (err, result){}
 
 Also informally specified is the idea that callbacks will fire *only once*. And that `null` will be the value in the absence of an error (and not `undefined` or `false`). Except, this might not always [be the case](https://medium.com/code-adventures/farewell-node-js-4ba9e7f3e52b#7cda).
 
-## Towards the future
+## Towards the future [#towards-the-future]
 
 ES6 is gaining a lot of momentum in the ecosystem. [Chrome](https://twitter.com/addyosmani/status/541978036904554496) and [io.js](https://iojs.org/en/es6.html) have already incorporated some of its features. A lot has already been written about it.
 

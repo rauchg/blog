@@ -4,7 +4,7 @@ Since I published my [2019 in Review](/2020/2019-in-review), detailing the indus
 
 The answer boils down to our ability to not just **host** static assets and cache them, but also **hoist** them.
 
-## An Intro to Hoisting
+## An Intro to Hoisting [#intro-hoisting]
 
 The word hoisting is used quite frequently in JavaScript to describe how the compiler [extracts and "moves" declarations](https://developer.mozilla.org/en-US/docs/Glossary/Hoisting) to the "top" of a scope, which makes the following code actually work:
 
@@ -33,7 +33,7 @@ a(314, 159)
 
 Notice that the sum `b + c` has nothing to do with the context of the loop: it's [loop-invariant](https://en.wikipedia.org/wiki/Loop-invariant_code_motion). An optimizing compiler can recognize it, and hoist it automatically so that the computation behaves _as if you had written it outside of the loop yourself_.
 
-## Hoisting to the Edge
+## Hoisting to the Edge [#hoist-to-the-edge]
 
 Hoisting computation within a program is great, and odds are the compilers and VMs you use every day have plenty of optimizations like it.
 
@@ -43,7 +43,7 @@ A core tenet of Jamstack has been to **pre-render (pre-compute) as much as possi
 
 <Diagram />
 
-## Edge-aware Frameworks
+## Edge-aware Frameworks [#edge-frameworks]
 
 Since [Next.js 9](https://nextjs.org/blog/next-9#automatic-static-optimization), the next build process has started automatically outputting the optimal asset on a per-page
 
@@ -80,7 +80,7 @@ As you can see from the symbols (○ ● λ), which represent the output types:
 - At build time, we create blog posts by querying an API using [Static Site Generation](https://nextjs.org/blog/next-9-3#next-gen-static-site-generation-ssg-support) hooks. Blog posts, like our homepage, are thus statically hoisted (optimized) to the edge network.
 - Our [dashboard](https://vercel.com/dashboard), despite being super dynamic in nature, is a static HTML page that queries data securely using [React Hooks](https://swr.now.sh) from the client side.
 
-## Conclusion
+## Conclusion [#conclusion]
 
 CDNs are great and have been around for a long time, and so have static hosts. However, for the longest time, CDNs have been treating the "origin" as an opaque black box.
 

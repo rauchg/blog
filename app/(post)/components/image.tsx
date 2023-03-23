@@ -4,8 +4,8 @@ import { readFile } from "fs/promises";
 import { Caption } from "./caption";
 import NextImage from "next/image";
 
-export async function Image({ src, alt = null, width = null, height = null }) {
-  if (!src.startsWith("data:") && (width === null || height === null)) {
+export async function Image({ src, alt: originalAlt, width, height }) {
+  if (!src.startsWith("data:") && (width == null || height == null)) {
     let imageBuffer: Buffer | null = null;
 
     if (src.startsWith("http")) {
@@ -18,9 +18,14 @@ export async function Image({ src, alt = null, width = null, height = null }) {
           .pathname
       );
     }
-    // @ts-expect-error TODO: fix mismatch of types
     ({ width, height } = sizeOf(imageBuffer));
   }
+
+  const [, alt, , dividedBy = 100] = (originalAlt !== null
+    ? originalAlt.match(/(.*) (\[(\d+)%\])?$/)
+    : null) ?? [null, originalAlt];
+
+  const factor = dividedBy / 100;
 
   return (
     <span className="my-5 flex flex-col items-center">
@@ -28,8 +33,12 @@ export async function Image({ src, alt = null, width = null, height = null }) {
         /* eslint-disable @next/next/no-img-element */
         <img src={src} alt={alt ?? ""} />
       ) : (
-        // @ts-expect-error TODO: fix mismatch of types
-        <NextImage width={width} height={height} alt={alt} src={src} />
+        <NextImage
+          width={width * factor}
+          height={height * factor}
+          alt={alt}
+          src={src}
+        />
       )}
 
       {alt && <Caption>{alt}</Caption>}

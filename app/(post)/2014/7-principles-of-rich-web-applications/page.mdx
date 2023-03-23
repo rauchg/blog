@@ -23,7 +23,7 @@ What follows is my attempt to answer these. My approach is to examine the usage 
 1. [Push code updates](#push-code-updates)
 1. [Predict behavior](#predict-behavior)
 
-## 1. Pre rendered pages are not optional
+## 1. Pre rendered pages are not optional [#pre-rendered-pages-are-not-optional]
 
 <Callout emoji="⚡️" text="Pre-rendering is not (just) about SEO, it’s about performance. Consider the additional roundtrips to get scripts, styles, and subsequent API requests. In the future, consider HTTP 2.0 “pushing” of resources." />
 
@@ -91,7 +91,7 @@ It's helpful to refer to some of the initial discussions around the design of th
 
 > "If a document has to be pieced together on the fly, it could get arbitrarily complex, and even if that were limited we'd certainly start experiencing major hits on performance for documents structured in this way. This essentially throws the** single-hop principle of WWW **out the door (well, IMG does that too but for a very specific reason and in a very limited sense) --- are we sure we want to do that?"
 
-## 2. Act immediately on user input
+## 2. Act immediately on user input [#act-immediately-on-user-input]
 
 <Callout emoji="⚡️" text="JavaScript allows us to mask network latency altogether. Applying this as a design principle should even remove most spinners or “loading” messages from your applications. PJAX or TurboLinks miss out on opportunities to improve the perception of speed." />
 
@@ -150,7 +150,7 @@ But even in those cases, the display of spinners or loading indicators should be
 
 Techniques like PJAX or TurboLinks unfortunately largely miss out on the opportunities described in this section. The client side code doesn't "know" about the future representation of the page, until an entire roundtrip to the server occurs.
 
-## 3. React to data changes
+## 3. React to data changes [#react-to-data-changes]
 
 <Callout emoji="⚡️" text="When data changes on the server, let the clients know without asking. This is a form of performance improvement that frees the user from manual refresh actions (F5, pull to refresh). New challenges: (re)connection management, state reconciliation." />
 
@@ -182,7 +182,7 @@ When receiving ordered atomic data updates, it's easy to forget that your applic
 
 The ability for your application to reconcile states disjointed in time is also relevant to our first principle. If you opt to send data with the initial page load, you must consider the time the data is on the wire until your client-side scripts load. That time is essentially equivalent to a disconnection, and the initial connection by your scripts is a session resumption.
 
-## 4. Control the data exchange with the server
+## 4. Control the data exchange with the server [#control-the-data-exchange-with-the-server]
 
 <Callout emoji="⚡️" text="We can now fine-tune the data exchange with the server. Make sure to handle errors, retry on behalf of the user, sync data on the background and maintain offline caches." />
 
@@ -212,11 +212,11 @@ Certain errors should be handled carefully. For example, an unexpected `403` c
 
 It's also important to make sure the user doesn't inadvertently interrupt the data flow. This can happen under two situations. The first and most obvious one is closing the browser or tab, which you can attempt to prevent with `beforeunload` handlers.
 
-![The beforeunload browser warning](/images/7-principles-of-rich-web-applications/8Eu4Sk9mD8.png)
+![The beforeunload browser warning [85%]](/images/7-principles-of-rich-web-applications/8Eu4Sk9mD8.png)
 
 The other (and less obvious) one is capturing page transitions before they happen, like clicking links that trigger a new page load. This gives you a chance to display your own modals.
 
-## 5. Don't break history, enhance it
+## 5. Don't break history, enhance it [#dont-break-history-enhance-it]
 
 <Callout emoji="⚡️" text="Without the browser managing URLs and history for us, new challenges emerge. Make sure not to break expectations related to scrolling. Keep your own caches for fast feedback." />
 
@@ -248,7 +248,7 @@ Finally, be aware of state changes that are relevant only while navigating histo
 
 If the page was re-rendered by following a link within the application, the expectation of the user might be that all comments appear uncollapsed. The state was *volatile* and only associated with the entry in the history stack.
 
-## 6. Push code updates
+## 6. Push code updates [#push-code-updates]
 
 <Callout emoji="⚡️" text="Pushing data without pushing code is insufficient. If your data updates automatically, so should your code. Avoid API errors and improve performance. Use stateless DOM for side-effect free repainting." />
 

@@ -1,6 +1,6 @@
 _This post is a quick summary of the evolution of [our company](https://vercel.com), our [open-source work](https://nextjs.org), interesting news and lessons in product design and engineering throughout 2019._
 
-## Static is the new Dynamic
+## Static is the new Dynamic [#static-is-the-new-dynamic]
 
 Throughout 2019 we have continued to see the growth of the *JAMstack*. The idea is quite simple: Any website or app you [build](https://nextjs.org) and [deploy](https://vercel.com) will use the stack of client-side *J*avaScript, *A*PIs, and *M*arkup.
 
@@ -24,7 +24,7 @@ Servers are not going away, but they are _moving around and hiding_.
 
   Pre-computing all pages is not always possible <Ref id="2" />, nor desirable. For example, when dealing with data that is *not* shared between all users and we wouldn't want to cache at the edge <Ref id="3" />.
 
-## Next.js, the next frontier
+## Next.js, the next frontier [#next-the-next-frontier]
 
 Next.js has continued to grow in adoption and now powers the likes of Hulu, Tencent News, Twitch, AT&T, Auth0 and the [list goes on](http://nextjs.org/showcase).
 
@@ -84,7 +84,7 @@ In short, Next.js is now a comprehensive, hybrid framework, supporting the full 
 
 Furthermore, Next.js has been *uncompromising* in its commitment to backwards-compatibility. Servers (SSR) are still fully supported and no apps have been harmed as part of this evolution.
 
-## Deploying the JAMstack
+## Deploying the Jamstack [#deploying-jamstack]
 
 We think there's enormous value in empowering teams to instantly build and deploy JAMstack websites, with no servers or infra to manage or configure.
 
@@ -102,7 +102,7 @@ By setting up a [Git integration](https://vercel.com/github), every single `git 
 
 ![Every push and branch gets its own deploy URL](/images/2019-in-review/github-comment.png)
 
-## The Deploy URL, the Center of Gravity
+## The Deploy URL, the Center of Gravity [#testing-the-jamstack]
 
 An interesting consequence of being able to deploy so fast and so frequently is that it completely changes **testing and quality assurance**.
 
@@ -129,7 +129,7 @@ In _parallel_, a series of assurance checks can then be run against that prod-re
 
 ![Checks are automatically run against the deploy URL](/images/2019-in-review/checks.png)
 
-## Flaky Tests mean Flaky UX
+## Flaky Tests mean Flaky UX [#flaky-tests-flaky-ux]
 
 When it comes to testing, I've found myself referencing this insight quite frequently:
 
@@ -139,7 +139,7 @@ As developers, we might sometimes be too quick to place the blame on tools (or t
 
 But the truly important question to ask is: what if it had been one of your customers, instead of an automated test? Would they not have had a _flaky_ experience? Would it be ok to tell them to press F5 and try again?
 
-## Serverless means infrastructure that upgrades itself
+## Serverless means infrastructure that upgrades itself [#serverless-upgrades-itself]
 
 Serverless is an exciting trend that has resisted a universal definition. Asking what serverless _really_ means probably got you 5 different answers in 2018, and 10 different answers in 2019.
 
@@ -153,7 +153,7 @@ This wonderful effect is particularly pronounced for databases. It's one thing t
 
 <Tweet id="1195443929828577280" />
 
-## Hyrum's Law
+## Hyrum's Law [#hyrums-law]
 
 I recently learned about [Hyrum's Law](https://www.hyrumslaw.com/), which states:
 
@@ -163,7 +163,7 @@ Which obviously has a *relevant xkcd* as prior art:
 
 ![There is always an xkcd for that](/images/2019-in-review/xkcd.png)
 
-## Microservices increase complexity and reduce availability
+## Microservices increase complexity and reduce availability [#microservices-complex-unavailable]
 
 Microservices allow you to break down a service's dependencies into independently deployable units.
 
@@ -183,7 +183,7 @@ Kevin Mahoney has provided a new [neat mathematical illustration](http://kevinma
 
 Making your serverless functions "monolithic" offers a compelling solution to this problem. Statically bind the dependencies of each function ([Next.js API routes](https://nextjs.org/blog/next-9#api-routes) and the Go compiler do this) and avoid introducing unneeded service hops of your own.
 
-## Native means Platform Fidelity, not Native Code
+## Native means Platform Fidelity, not Native Code [#native-means-platform-fidelity]
 
 The word "native" has always bothered me. No one can seem to agree on a definition, but we all agree that "native apps" are always optimal.
 
@@ -203,7 +203,7 @@ A React Native app can achieve full platform fidelity (it can exhibit great perf
 
 <Tweet id="1105876480930734086" caption="While SwiftUI is certainly exciting, RN, like Electron, has a tremendous economic advantage" />
 
-## Settings are for successful products
+## Settings are for successful products [#settings-are-for-successful-products]
 
 Great products usually start with a dead simple onboarding journey that minimizes or entirely eliminates options.
 
@@ -211,7 +211,7 @@ Great products usually start with a dead simple onboarding journey that minimize
 
 From a startup evolution or product management perspective, another way of considering this wisdom is: absolutely resist adding options until **substantial evidence of success without them** exists.
 
-## Game engineering continues to show the way
+## Game engineering continues to show the way [#game-engineering-inspiration]
 
 When React was [being introduced](http://codewinds.com/podcast/004.html), it was interesting to hear that the inspiration wasn't previous libraries like jQuery, but rather an altogether different system:
 
@@ -234,7 +234,7 @@ AMP, although controversial, is a *systematic*, rather than *suggested* answer t
 
 Along the same lines, I'm optimistic about the introduction of [*Never-Slow Mode*](https://www.infoq.com/news/2019/02/chrome-never-slow-mode/), which is a more general solution than AMP, with a shared focus on performance. Like [AMP on Next.js](https://nextjs.org/blog/next-8-1#amp-in-nextjs), I reckon it will be a *mode* many will be interested in adopting.
 
-## Notion: the *fanciest* datastructure
+## Notion: the *fanciest* datastructure [#notion-is-fancy]
 
 When [announcing Trello](https://www.joelonsoftware.com/2012/01/06/how-trello-is-different/), Joel Spolsky famously conjectured:
 
@@ -266,7 +266,32 @@ In the old world, a table is not thought of as a *block*, but a
 document that you boot Excel or Google Spreadsheets to visualize. Instead,
 combining headings, paragraphs, tables, databases, lists, etc to your
 liking inside any document, which you link to and open with the same
-realtime collaborative app, strikes me as a revolution whose time
+realtime collaborative app, strikes me as a revolution whose time has finally come.
+
+## Breaking: inputs should look like inputs [#inputs-should-look-like-inputs]
+
+This one should not come as much of a shocker, but [alas](https://twitter.com/paulg/status/1209874543713640448).
+
+<Tweet id="1191438907696656384" caption={<>But Google does it!</>} />
+
+It [only took](https://twitter.com/mrcoreysimons/status/1191547435513864192) 600 participants, 2 designers, 1 researcher to confirm: **inputs should look like inputs**.
+
+![Some revenue-centric folks have known the ideal input design forever](/images/2019-in-review/irs.png)
+
+## Shared CDNs have their caches busted [#shared-cdns-caches-are-busted]
+
+A remarkable change to anyone who was hoping we could "share React" or "share jQuery" by an ad-hoc agreement of a common CDN and URL inside a `<script>` tag.
+
+The whole idea has [been busted](https://www.jefftk.com/p/shared-cache-is-going-away).
+
+## All Code is Wrong [#all-code-is-wrong]
+
+Another year, another great opportunity to remember that most of your code is likely wrong. We got to hear this from the famed creator of Fornite:
+
+<Tweet id="1190383627340783618" caption="Writing great, correct, fast and reliable code is very hard. Assume it's all wrong." />
+
+As a reminder, **[if it's not fast and reliable, then it is wrong](https://twitter.com/garybernhardt/status/1007699924866093056)**. When things are not fast, it's like an implicit confirmation that
+they are wrong. Deeply wrong:
 
 > […] The slowness is like an off smell. I don’t trust the application as
 > much as I would if it didn’t slow down on such a small text file. 5,000
@@ -278,13 +303,13 @@ realtime collaborative app, strikes me as a revolution whose time
 >
 > — Craig Mod on [Fast software, the Best software](https://craigmod.com/essays/fast_software/)
 
-## Get busy demoing
+## Get busy demoing [#get-busy-demoing]
 
 I continue to marvel at the incredible product-improving and life-improving power of giving demos frequently. Giving frequent demos was an essential part of creating the iPhone:
 
 <Tweet id="1163871715153199104" caption="Don't be afraid to ~~fail~~ demo." />
 
-## NoCode and LowCode are real, and they are on a collision course
+## NoCode and LowCode are real, and they are on a collision course [#nocode-lowcode-merge]
 
 It's easy to dismiss the hype around NoCode and LowCode as just hype, but I think there's a lot to it.
 
@@ -296,23 +321,23 @@ I suspect 2020 and the years to come will see LowCode solutions (like React, Vue
 
 We will also [see](https://divjoy.com/) the [rise](https://www.framer.com/development) of [visual](https://blocks-ui.com/) [tools](https://builderx.io/) to [bring](https://codesandbox.io/) [those](https://shift.studio/) [primitives](https://www.modulz.app/) [together](https://tinacms.org/) more [efficiently](https://teleporthq.io/), including the capability to bring reusable components from either a canonical component system or a global shared library.
 
-## More Hardware that merges with our Software
+## More Hardware that merges with our Software [#hw-merges-with-sw]
 
 After ARM gave us a [JS-optimized instruction](https://twitter.com/gparker/status/1047246359261106176), Samsung is [giving us key-value optimized SSDs](https://www.anandtech.com/show/14839/samsung-announces-standardscompliant-keyvalue-ssd-prototype).
 
-## Everything is code. Roll everything like code
+## Everything is code. Roll everything like code [#roll-everything-like-code]
 
 Applying a configuration change? Review it, roll it gradually and most importantly: mistrust it, just like [you mistrust code](#all-code-is-wrong).
 
 <Tweet id="1146230484541722624" />
 
-## Webassembly is faster than you thought
+## Webassembly is faster than you thought [#wasm-fast]
 
 For a while I've been excited about the **universal** potential of webassembly. It turns out it's even better than I anticipated: when disabling sandboxing, webassembly can [match 95% the speed of native code](https://innative.dev/news/introducing-innative/).
 
 > WebAssembly isn’t just a way to run C++ in a web browser, it’s a chance to reinvent how we write programs, and build a radical new foundation for software development
 
-## QUIC (HTTP/3) is faster than you thought
+## QUIC (HTTP/3) is faster than you thought [#quic-is-fast]
 
 Uber [deployed QUIC at scale](https://eng.uber.com/employing-quic-protocol/), obtaining remarkable results.
 
@@ -320,7 +345,7 @@ Uber [deployed QUIC at scale](https://eng.uber.com/employing-quic-protocol/), ob
 
 ![Percentage improvements in tail-end latencies (95th and 99th percentile)](/images/2019-in-review/quic-latency.png)
 
-## We are interested in stablecoins not bitcoin…
+## We are interested in stablecoins not bitcoin… [#stablecoins-not-bitcoin]
 
 … seems to be the new "we like [blockchain not bitcoin](https://www.coindesk.com/love-blockchain-just-bitcoin)".
 
@@ -328,13 +353,13 @@ The president of the European Central Bank said the word "stablecoin" in 2019. T
 
 <Tweet id="1205225680453210112" />
 
-## Zoom just works better
+## Zoom just works better [#zoom-works-better]
 
 [Zoom went public](https://www.businessinsider.com/zoom-files-to-go-public-2019-3). Its differentiator? **It works better**.
 
 <Tweet id="1109207974994735104" />
 
-## Google's engineering practices go open-source
+## Google's engineering practices go open-source [#google-oss-pratices]
 
 Google's engineering practices were [open-sourced on GitHub](https://github.com/google/eng-practices). My favorite part? The emphasis on [speedy code-review](https://google.github.io/eng-practices/review/reviewer/speed.html):
 
@@ -344,7 +369,7 @@ Further, Google's cryptography practices were "open-sourced" in a tweet:
 
 <Tweet id="1112377964942028805" />
 
-## AWS shares how they build ultra-reliable services
+## AWS shares how they build ultra-reliable services [#aws-reliability-patterns]
 
 AWS architect Colm MacCárthaigh shares 10 patterns for controlling the cloud and ensuring its reliability:
 
