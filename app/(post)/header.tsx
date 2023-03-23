@@ -1,10 +1,11 @@
 "use client";
 
 import { useSelectedLayoutSegments } from "next/navigation";
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { ago } from "time-ago";
+import type { Post } from "@/app/get-posts";
 
-export function Header({ posts }) {
+export function Header({ posts }: { posts: Post[] }) {
   const segments = useSelectedLayoutSegments();
   const post = posts.find(post => post.id === segments[1]);
 
@@ -16,12 +17,12 @@ export function Header({ posts }) {
         {post.title}
       </h1>
 
-      <p className="font-mono flex text-xs text-gray-400 dark:text-gray-500">
+      <p className="font-mono flex text-xs text-gray-500 dark:text-gray-500">
         <span className="flex-grow">
           <span>
             <a
               href="https://twitter.com/rauchg"
-              className="hover:text-gray-600 dark:hover:text-gray-400"
+              className="hover:text-gray-800 dark:hover:text-gray-400"
               target="_blank"
             >
               @rauchg
@@ -52,6 +53,7 @@ function Views({ id, defaultValue }) {
   const didLogViewRef = useRef(false);
 
   useEffect(() => {
+    if ("development" === process.env.NODE_ENV) return;
     if (!didLogViewRef.current) {
       const url = "/api/view?id=" + encodeURIComponent(id);
       fetch(url).catch(console.error);
