@@ -4,44 +4,72 @@ import { readFile } from "fs/promises";
 import { Caption } from "./caption";
 import NextImage from "next/image";
 
-export async function Image({ src, alt: originalAlt, width, height }) {
-  if (!src.startsWith("data:") && (width == null || height == null)) {
-    let imageBuffer: Buffer | null = null;
+export async function Image({
+  src,
+  alt: originalAlt,
+  width = null,
+  height = null,
+}: {
+  src: string;
+  alt?: string;
+  width: number | null;
+  height: number | null;
+}) {
+  const isDataImage = src.startsWith("data:");
+  if (isDataImage) {
+    /* eslint-disable @next/next/no-img-element */
+    return <img src={src} alt={originalAlt ?? ""} />;
+  } else {
+    if (width === null || height === null) {
+      let imageBuffer: Buffer | null = null;
 
-    if (src.startsWith("http")) {
-      imageBuffer = Buffer.from(
-        await fetch(src).then(res => res.arrayBuffer())
-      );
-    } else {
-      imageBuffer = await readFile(
-        new URL(join(import.meta.url, "..", "..", "..", "..", "public", src))
-          .pathname
-      );
+      if (src.startsWith("http")) {
+        imageBuffer = Buffer.from(
+          await fetch(src).then(res => res.arrayBuffer())
+        );
+      } else {
+        imageBuffer = await readFile(
+          new URL(join(import.meta.url, "..", "..", "..", "..", "public", src))
+            .pathname
+        );
+      }
+      const computedSize = sizeOf(imageBuffer);
+      if (
+        computedSize.width === undefined ||
+        computedSize.height === undefined
+      ) {
+        throw new Error("Could not compute image size");
+      }
+      width = computedSize.width;
+      height = computedSize.height;
     }
-    ({ width, height } = sizeOf(imageBuffer));
-  }
 
-  const [, alt, , dividedBy = 100] = (originalAlt !== null
-    ? originalAlt.match(/(.*) (\[(\d+)%\])?$/)
-    : null) ?? [null, originalAlt];
+    let alt: string | null = null;
+    let dividedBy = 100;
 
-  const factor = dividedBy / 100;
+    if ("string" === typeof originalAlt) {
+      const match = originalAlt.match(/(.*) (\[(\d+)%\])?$/);
+      if (match != null) {
+        alt = match[1];
+        dividedBy = match[3] ? parseInt(match[3]) : 100;
+      }
+    } else {
+      alt = originalAlt ?? null;
+    }
 
-  return (
-    <span className="my-5 flex flex-col items-center">
-      {src.startsWith("data:") ? (
-        /* eslint-disable @next/next/no-img-element */
-        <img src={src} alt={alt ?? ""} />
-      ) : (
+    const factor = dividedBy / 100;
+
+    return (
+      <span className="my-5 flex flex-col items-center">
         <NextImage
           width={width * factor}
           height={height * factor}
-          alt={alt}
+          alt={alt ?? ""}
           src={src}
         />
-      )}
 
-      {alt && <Caption>{alt}</Caption>}
-    </span>
-  );
+        {alt && <Caption>{alt}</Caption>}
+      </span>
+    );
+  }
 }
