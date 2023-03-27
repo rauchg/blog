@@ -1,3 +1,5 @@
+export const runtime = "edge";
+
 import links from "@/links.json";
 import { headers } from "next/headers";
 import { redirect, notFound } from "next/navigation";
