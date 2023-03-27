@@ -1,7 +1,7 @@
 import { Posts } from "./posts";
 import { getPosts } from "./get-posts";
 
-export const revalidate = 1;
+export const revalidate = 60;
 
 export const metadata = {
   openGraph: {
