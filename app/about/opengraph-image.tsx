@@ -48,9 +48,9 @@ export default async function AboutOG() {
               <img
                 tw="rounded-full h-70"
                 alt="Guillermo Rauch"
-                src={URL.createObjectURL(
-                  new Blob([await rauchgPhoto], { type: "image/jpeg" })
-                )}
+                src={`data:image/jpeg;base64,${Buffer.from(
+                  rauchgPhoto
+                ).toString("base64")}`}
               />
             </div>
 
