@@ -3,7 +3,7 @@ export const runtime = "edge";
 import { ImageResponse } from "next/server";
 import { getPosts } from "@/app/get-posts";
 
-export async function GET() {
+export default async function MainOG() {
   // fonts
   const inter300 = fetch(
     new URL(

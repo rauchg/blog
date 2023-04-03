@@ -4,7 +4,7 @@ import { ImageResponse } from "next/server";
 import { getPosts } from "@/app/get-posts";
 import commaNumber from "comma-number";
 
-export async function GET() {
+export default async function AboutOG() {
   // rauchg photo
   const rauchgPhoto = fetch(
     new URL(`../../public/images/rauchg-3d4cecf.gray.jpg`, import.meta.url)
