@@ -24,9 +24,11 @@ export const metadata = {
     site: "@rauchg",
     creator: "@rauchg",
   },
-  metadataBase: process.env.VERCEL_URL
-    ? "https://" + process.env.VERCEL_URL
-    : "http://localhost:3000",
+  metadataBase: new URL(
+    process.env.VERCEL_URL
+      ? "https://" + process.env.VERCEL_URL
+      : "http://localhost:3000"
+  ),
 };
 
 export default function RootLayout({
