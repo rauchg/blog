@@ -49,7 +49,7 @@ export default async function AboutOG() {
                 tw="rounded-full h-70"
                 alt="Guillermo Rauch"
                 src={`data:image/jpeg;base64,${Buffer.from(
-                  rauchgPhoto
+                  await rauchgPhoto
                 ).toString("base64")}`}
               />
             </div>
