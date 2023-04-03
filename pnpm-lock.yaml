@@ -23,8 +23,8 @@ dependencies:
     specifier: ^0.1.11
     version: 0.1.11(react@18.2.0)
   '@vercel/og':
-    specifier: ^0.2.0
-    version: 0.2.0
+    specifier: ^0.5.0
+    version: 0.5.0
   comma-number:
     specifier: ^2.1.0
     version: 2.1.0
@@ -464,13 +464,13 @@ packages:
       react: 18.2.0
     dev: false
 
-  /@vercel/og@0.2.0:
-    resolution: {integrity: sha512-nBxtwJpxeK52XQjzNKOlbT0XF6oTyrMHd1/heSUI2pdgjBf5rGS3nWpjlIurWoLGTHhtxwS7zxTgP45sX6Q29Q==}
+  /@vercel/og@0.5.0:
+    resolution: {integrity: sha512-NrHyWFj7fLixXPjgCXlyX90VdbiIfP6IBcyimiFGgwpnmyRgLiYTvrnPIKI/JP49VF9bnYHFfVqzMupeyCamuQ==}
     engines: {node: '>=16'}
     dependencies:
       '@resvg/resvg-wasm': 2.4.1
-      satori: 0.4.0
-      yoga-wasm-web: 0.3.0
+      satori: 0.4.4
+      yoga-wasm-web: 0.3.3
     dev: false
 
   /acorn-jsx@5.3.2(acorn@8.8.2):
@@ -2443,8 +2443,8 @@ packages:
       is-regex: 1.1.4
     dev: true
 
-  /satori@0.4.0:
-    resolution: {integrity: sha512-ROtZJkBErgJ2HVMk5jDUrJ8B+FuOTFlHYjcNCfSHjwgEavkaZsDvxPwl/1VCa4XpdkHrPcMuUDF+36w+lUECUg==}
+  /satori@0.4.4:
+    resolution: {integrity: sha512-UCgoY7CXibFQmgI4ay4QSWUOca07nI9pY56w8NKrBq+bkGgiMbcPXZWj9bxukyJkEl/cgAICGjjxvwlDF2NYRw==}
     engines: {node: '>=16'}
     dependencies:
       '@shuding/opentype.js': 1.4.0-beta.0
@@ -2454,7 +2454,7 @@ packages:
       emoji-regex: 10.2.1
       linebreak: 1.1.0
       postcss-value-parser: 4.2.0
-      yoga-wasm-web: 0.3.2
+      yoga-wasm-web: 0.3.3
     dev: false
 
   /scheduler@0.23.0:
@@ -2876,12 +2876,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /yoga-wasm-web@0.3.0:
-    resolution: {integrity: sha512-rD3L4jyMlO1m+RWU60lNwZQK5zmzglCV5fI1gTRikmpv3YzmNIZQbjyfE6cMNb9Xaly/C1SwemYGbsiOekMvnQ==}
-    dev: false
-
-  /yoga-wasm-web@0.3.2:
-    resolution: {integrity: sha512-X//8P6RHzkO4E1ba/wXwKOybeArNDQJI2vwzFLJxz5bfT9K8fB798ZVYvq+Z+hjRA0Wy2iUlOUch4n2+ddqbDQ==}
+  /yoga-wasm-web@0.3.3:
+    resolution: {integrity: sha512-N+d4UJSJbt/R3wqY7Coqs5pcV0aUj2j9IaQ3rNj9bVCLld8tTGKRa2USARjnvZJWVx1NDmQev8EknoczaOQDOA==}
     dev: false
 
   /youtube-player@5.5.2:
