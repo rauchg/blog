@@ -19,6 +19,11 @@ export const metadata = {
     url: "https://rauchg.com",
     siteName: "Guillermo Rauchg's blog",
   },
+  twitter: {
+    card: "summary_large_image",
+    site: "@rauchg",
+    creator: "@rauchg",
+  },
   metadataBase: process.env.VERCEL_URL
     ? "https://" + process.env.VERCEL_URL
     : "http://localhost:3000",
