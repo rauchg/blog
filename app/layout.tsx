@@ -19,6 +19,9 @@ export const metadata = {
     url: "https://rauchg.com",
     siteName: "Guillermo Rauchg's blog",
   },
+  metadataBase: process.env.VERCEL_URL
+    ? "https://" + process.env.VERCEL_URL
+    : "http://localhost:3000",
 };
 
 export default function RootLayout({
