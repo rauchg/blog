@@ -12,6 +12,13 @@ export const metadata = {
   title: "Guillermo Rauch's blog",
   description:
     "Guillermo Rauch is the CEO and founder of Vercel, a software engineer, and the creator of Next.js, Mongoose, Socket.io and other open source libraries.",
+  openGraph: {
+    title: "Guillermo Rauchg's blog",
+    description:
+      "Guillermo Rauch is the CEO and founder of Vercel, a software engineer, and the creator of Next.js, Mongoose, Socket.io and other open source libraries.",
+    url: "https://rauchg.com",
+    siteName: "Guillermo Rauchg's blog",
+  },
   twitter: {
     card: "summary_large_image",
     site: "@rauchg",

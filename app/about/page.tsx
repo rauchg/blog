@@ -1,17 +1,5 @@
 import Image from "next/image";
 
-export const metadata = {
-  openGraph: {
-    images: [
-      {
-        url: "/og/about",
-        width: 1200,
-        height: 630,
-      },
-    ],
-  },
-};
-
 export default function About() {
   return (
     <article className="text-gray-800 dark:text-gray-300">

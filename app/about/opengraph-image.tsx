@@ -1,37 +1,37 @@
 export const runtime = "edge";
 
-import { ImageResponse } from "@vercel/og";
+import { ImageResponse } from "next/server";
 import { getPosts } from "@/app/get-posts";
 import commaNumber from "comma-number";
 
-// rauchg photo
-const rauchgPhoto = fetch(
-  new URL(`../../../public/images/rauchg-3d4cecf.gray.jpg`, import.meta.url)
-).then(res => res.arrayBuffer());
-
-// fonts
-const inter300 = fetch(
-  new URL(
-    `../../../node_modules/@fontsource/inter/files/inter-latin-300-normal.woff`,
-    import.meta.url
-  )
-).then(res => res.arrayBuffer());
-
-const inter500 = fetch(
-  new URL(
-    `../../../node_modules/@fontsource/inter/files/inter-latin-500-normal.woff`,
-    import.meta.url
-  )
-).then(res => res.arrayBuffer());
-
-const robotoMono400 = fetch(
-  new URL(
-    `../../../node_modules/@fontsource/roboto-mono/files/roboto-mono-latin-400-normal.woff`,
-    import.meta.url
-  )
-).then(res => res.arrayBuffer());
-
 export async function GET() {
+  // rauchg photo
+  const rauchgPhoto = fetch(
+    new URL(`../../public/images/rauchg-3d4cecf.gray.jpg`, import.meta.url)
+  ).then(res => res.arrayBuffer());
+
+  // fonts
+  const inter300 = fetch(
+    new URL(
+      `../../node_modules/@fontsource/inter/files/inter-latin-300-normal.woff`,
+      import.meta.url
+    )
+  ).then(res => res.arrayBuffer());
+
+  const inter500 = fetch(
+    new URL(
+      `../../node_modules/@fontsource/inter/files/inter-latin-500-normal.woff`,
+      import.meta.url
+    )
+  ).then(res => res.arrayBuffer());
+
+  const robotoMono400 = fetch(
+    new URL(
+      `../../node_modules/@fontsource/roboto-mono/files/roboto-mono-latin-400-normal.woff`,
+      import.meta.url
+    )
+  ).then(res => res.arrayBuffer());
+
   const posts = await getPosts();
   const viewsSum = posts.reduce((sum, post) => sum + post.views, 0);
 
