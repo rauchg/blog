@@ -1,7 +1,7 @@
 {
   "build": {
     "env": {
-      "FORCE_BUILD_IN_REGION": "lhr1"
+      "FORCE_BUILD_IN_REGION": "iad1-maya"
     }
   }
 }
