@@ -3,13 +3,24 @@
 import { useSelectedLayoutSegments } from "next/navigation";
 import { useEffect, useRef } from "react";
 import { ago } from "time-ago";
+import useSWR from "swr";
 import type { Post } from "@/app/get-posts";
+
+const fetcher = (url: string) => fetch(url).then(res => res.json());
 
 export function Header({ posts }: { posts: Post[] }) {
   const segments = useSelectedLayoutSegments();
-  const post = posts.find(post => post.id === segments[1]);
+  const initialPost = posts.find(post => post.id === segments[1]);
+  const { data: post, mutate } = useSWR(
+    `/api/view?id=${initialPost?.id ?? ""}`,
+    fetcher,
+    {
+      fallbackData: initialPost,
+      refreshInterval: 5000,
+    }
+  );
 
-  if (post == null) return <></>;
+  if (initialPost == null) return <></>;
 
   return (
     <>
@@ -43,22 +54,31 @@ export function Header({ posts }: { posts: Post[] }) {
         </span>
 
         <span className="pr-1.5">
-          <Views id={post.id} defaultValue={post.viewsFormatted} />
+          <Views
+            id={post.id}
+            mutate={mutate}
+            defaultValue={post.viewsFormatted}
+          />
         </span>
       </p>
     </>
   );
 }
 
-function Views({ id, defaultValue }) {
+function Views({ id, mutate, defaultValue }) {
   const views = defaultValue;
   const didLogViewRef = useRef(false);
 
   useEffect(() => {
-    if ("development" === process.env.NODE_ENV) return;
+    // if ("development" === process.env.NODE_ENV) return;
     if (!didLogViewRef.current) {
-      const url = "/api/view?id=" + encodeURIComponent(id);
-      fetch(url).catch(console.error);
+      const url = "/api/view?incr=1&id=" + encodeURIComponent(id);
+      fetch(url)
+        .then(res => res.json())
+        .then(obj => {
+          mutate(obj);
+        })
+        .catch(console.error);
       didLogViewRef.current = true;
     }
   });
