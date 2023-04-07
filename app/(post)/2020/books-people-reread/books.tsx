@@ -8,7 +8,7 @@ import {
 export async function Books() {
   const books = await getData();
   return (
-    <div className="books grid grid-cols-auto-fit grid-flow-row gap-4 px-5 mb-10">
+    <div className="books grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-10 px-5 mb-10">
       {books.map(book => (
         <Book key={book.URL} {...book} />
       ))}
@@ -137,9 +137,13 @@ async function getData() {
 function Book({ URL, Name, Image: ImageURL, ASIN, Votes }) {
   return (
     <main className="text-sm flex flex-col items-center bg-gray-200">
-      <a href={URL} target="_blank" className="p-4 text-center">
+      <a
+        href={URL}
+        target="_blank"
+        className="flex flex-col items-center p-4 text-center"
+      >
         <span
-          className="block w-48 h-80 bg-center bg-cover mb-2 relative"
+          className="w-40 h-60 bg-center bg-cover mb-2 relative"
           style={{
             backgroundImage: `url(${
               ImageURL ||
@@ -157,12 +161,14 @@ function Book({ URL, Name, Image: ImageURL, ASIN, Votes }) {
             }
           />
         </span>
-        <span className="block font-medium">{Name}</span>
-        {Votes > 1 && (
-          <span className="block bg-blue-500 text-white text-xs py-1 px-2 ml-2 rounded-full">
-            🔥 {Votes}
-          </span>
-        )}
+        <span className="flex flex-row items-center">
+          <span className="inline-block font-medium">{Name}</span>
+          {Votes > 1 && (
+            <span className="inline-block bg-blue-500 text-white text-xs py-1 px-2 ml-2 rounded-full whitespace-nowrap">
+              🔥 {Votes}
+            </span>
+          )}
+        </span>
       </a>
     </main>
   );
