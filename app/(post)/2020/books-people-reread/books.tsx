@@ -136,7 +136,7 @@ async function getData() {
 
 function Book({ URL, Name, Image: ImageURL, ASIN, Votes }) {
   return (
-    <main className="text-sm flex flex-col items-center bg-gray-200">
+    <main className="text-sm flex flex-col items-center bg-gray-200 dark:bg-[#333]">
       <a
         href={URL}
         target="_blank"
