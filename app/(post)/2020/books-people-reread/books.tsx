@@ -164,7 +164,7 @@ function Book({ URL, Name, Image: ImageURL, ASIN, Votes }) {
         <span className="flex flex-row items-center">
           <span className="inline-block font-medium">{Name}</span>
           {Votes > 1 && (
-            <span className="inline-block bg-blue-500 text-white text-xs py-1 px-2 ml-2 rounded-full whitespace-nowrap">
+            <span className="inline-block bg-gray-500 dark:bg-[#222] text-white text-xs py-1 px-2 ml-2 rounded-full whitespace-nowrap">
               🔥 {Votes}
             </span>
           )}
