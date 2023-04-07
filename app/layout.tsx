@@ -50,8 +50,8 @@ export default function RootLayout({
         />
       </head>
 
-      <body className="p-6 pt-3 md:pt-6 dark:text-gray-100 mt-3 max-w-2xl m-auto">
-        <main className="min-h-screen">
+      <body className="dark:text-gray-100 max-w-2xl m-auto">
+        <main className="p-6 pt-3 md:pt-6 min-h-screen">
           <Header />
           {children}
         </main>
