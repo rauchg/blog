@@ -212,8 +212,7 @@ To contrast this, consider a simple payment form with jQuery. The server respond
 function pay(){
   $.ajax({ url: ‘/api/pay’ })
     .fail(() => $(‘#msg-error’).show())
-    .success(
-() => {
+    .success(() => {
       $('#payment').hide();
       $('#msg-success').show();
     });
