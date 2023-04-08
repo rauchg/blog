@@ -24,6 +24,7 @@ export const metadata = {
     site: "@rauchg",
     creator: "@rauchg",
   },
+  themeColor: "transparent",
   metadataBase: new URL(
     process.env.VERCEL_URL
       ? "https://" + process.env.VERCEL_URL
