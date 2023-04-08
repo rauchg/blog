@@ -142,15 +142,7 @@ function Book({ URL, Name, Image: ImageURL, ASIN, Votes }) {
         target="_blank"
         className="flex flex-col items-center p-4 text-center"
       >
-        <span
-          className="w-40 h-60 bg-center bg-cover mb-2 relative"
-          style={{
-            backgroundImage: `url(${
-              ImageURL ||
-              `https://images-na.ssl-images-amazon.com/images/P/${ASIN}._LZZZZZZZ_.jpg`
-            })`,
-          }}
-        >
+        <span className="w-40 h-60 bg-center bg-cover mb-2 relative">
           <Image
             alt={Name}
             fill
