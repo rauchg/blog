@@ -9,8 +9,8 @@ export async function Books() {
   const books = await getData();
   return (
     <div className="books grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-10 px-5 mb-10">
-      {books.map(book => (
-        <Book key={book.URL} {...book} />
+      {books.map((book, i) => (
+        <Book key={book.URL} priority={i < 10} {...book} />
       ))}
     </div>
   );
@@ -134,7 +134,7 @@ async function getData() {
   );
 }
 
-function Book({ URL, Name, Image: ImageURL, ASIN, Votes }) {
+function Book({ URL, Name, Image: ImageURL, ASIN, Votes, priority = false }) {
   return (
     <main className="text-sm flex flex-col items-center bg-gray-200 dark:bg-[#333]">
       <a
@@ -147,6 +147,7 @@ function Book({ URL, Name, Image: ImageURL, ASIN, Votes }) {
             alt={Name}
             fill
             style={{ objectFit: "contain" }}
+            priority={priority}
             src={
               ImageURL ||
               `https://images-na.ssl-images-amazon.com/images/P/${ASIN}._LZZZZZZZ_.jpg`
