@@ -1,4 +1,5 @@
 export const runtime = "edge";
+export const revalidate = 60;
 
 import { ImageResponse } from "next/server";
 import { getPosts } from "@/app/get-posts";
@@ -46,7 +47,7 @@ export default async function AboutOG() {
             <div tw="flex">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                tw="rounded-full h-70"
+                tw="rounded-full h-74"
                 alt="Guillermo Rauch"
                 src={`data:image/jpeg;base64,${Buffer.from(
                   await rauchgPhoto
@@ -54,15 +55,15 @@ export default async function AboutOG() {
               />
             </div>
 
-            <div tw="flex flex-col px-10 grow text-xl h-70 justify-center">
-              <div tw="text-6xl mb-5" style={font("Inter 500")}>
+            <div tw="flex flex-col px-10 grow text-[28px] h-70 justify-center">
+              <div tw="text-[64px] mb-7" style={font("Inter 500")}>
                 Guillermo Rauch
               </div>
-              <div tw="flex mb-3" style={font("Roboto Mono 400")}>
+              <div tw="flex mb-5" style={font("Roboto Mono 400")}>
                 <span tw="text-gray-400 mr-3">&mdash;</span> CEO and Founder of
                 Vercel
               </div>
-              <div tw="flex mb-3" style={font("Roboto Mono 400")}>
+              <div tw="flex mb-5" style={font("Roboto Mono 400")}>
                 <span tw="text-gray-400 mr-3">&mdash;</span> Creator of Next.js,
                 Socket.IO, Mongoose
               </div>
@@ -75,7 +76,7 @@ export default async function AboutOG() {
         </main>
 
         <footer
-          tw="flex w-full justify-center text-xl text-gray-400"
+          tw="flex w-full justify-center text-2xl text-gray-400"
           style={font("Roboto Mono 400")}
         >
           {posts.length} posts / {commaNumber(viewsSum)} views
