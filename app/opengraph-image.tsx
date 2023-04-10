@@ -35,17 +35,17 @@ export default async function MainOG() {
         tw="flex p-10 h-full w-full bg-white flex-col"
         style={font("Inter 300")}
       >
-        <header tw="flex text-[26px] w-full">
+        <header tw="flex text-[36px] w-full">
           <div tw="font-bold" style={font("Inter 600")}>
             Guillermo Rauch
           </div>
           <div tw="grow" />
-          <div tw="text-[22px]">rauchg.com</div>
+          <div tw="text-[28px]">rauchg.com</div>
         </header>
 
         <main tw="flex mt-10 flex-col w-full" style={font("Roboto Mono 400")}>
-          <div tw="flex w-full text-lg text-gray-400 mb-3">
-            <div tw="w-20">date</div>
+          <div tw="flex w-full text-[26px] text-gray-400 mb-3">
+            <div tw="w-24">date</div>
             <div tw="grow">title</div>
             <div>views</div>
           </div>
@@ -53,9 +53,9 @@ export default async function MainOG() {
           {posts.map((post, i) => (
             <div
               key={post.id}
-              tw="flex py-4 text-xl border-gray-300 border-t w-full"
+              tw="flex py-6 text-[26px] border-gray-300 border-t w-full"
             >
-              <div tw="flex text-gray-400 w-20">
+              <div tw="flex text-gray-400 w-24">
                 {posts[i - 1] === undefined ||
                 getYear(post.date) !== getYear(posts[i - 1].date)
                   ? getYear(post.date)
