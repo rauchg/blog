@@ -53,7 +53,7 @@ export async function GET(_req: Request, { params: { id } }) {
           <div tw="text-[28px]">rauchg.com</div>
         </header>
 
-        <main tw="flex grow pb-8 flex-col items-center justify-center">
+        <main tw="flex grow pb-5 flex-col items-center justify-center">
           <div tw="flex">
             <div
               tw="bg-gray-100 p-8 text-7xl font-medium rounded-md"
