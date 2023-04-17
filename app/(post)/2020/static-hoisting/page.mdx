@@ -1,4 +1,13 @@
 import { Diagram } from './diagram'
+export const metadata = {
+  title: 'Static Hoisting',
+  description: 'Exploring Static hoisting, the process of moving static assets to the edge, where they can be served with maximum speed and reliability.',
+  openGraph: {
+    title: 'Static Hoisting',
+    description: 'Exploring Static hoisting, the process of moving static assets to the edge, where they can be served with maximum speed and reliability.',
+    images: [{ url: '/og/static-hoisting' }],
+  },
+}
 
 Since I published my [2019 in Review](/2020/2019-in-review), detailing the industry trend towards [static hosting](/2020/2019-in-review#static-is-the-new-dynamic) and the rise of Jamstack CDNs like [Vercel](/2020/vercel), a question has persistently come up: [how is this different from a server and a traditional CDN on top](https://twitter.com/mjackson/status/1234544556948877312)? Why not then just use servers with containers (even serverless ones)?
 

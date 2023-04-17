@@ -56,7 +56,7 @@ export async function GET(_req: Request, { params: { id } }) {
         <main tw="flex grow pb-3 flex-col items-center justify-center">
           <div tw="flex">
             <div
-              tw="bg-gray-100 p-8 text-7xl font-medium rounded-md"
+              tw="bg-gray-100 p-8 text-7xl font-medium rounded-md text-center"
               style={font("Inter 500")}
             >
               {post.title}
