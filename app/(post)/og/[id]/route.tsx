@@ -1,37 +1,44 @@
 export const runtime = "edge";
 
 import { ImageResponse } from "@vercel/og";
+import { getPosts } from "@/app/get-posts";
 
 // fonts
 const inter300 = fetch(
   new URL(
-    `../../../node_modules/@fontsource/inter/files/inter-latin-300-normal.woff`,
+    `../../../../node_modules/@fontsource/inter/files/inter-latin-300-normal.woff`,
     import.meta.url
   )
 ).then(res => res.arrayBuffer());
 
 const inter500 = fetch(
   new URL(
-    `../../../node_modules/@fontsource/inter/files/inter-latin-500-normal.woff`,
+    `../../../../node_modules/@fontsource/inter/files/inter-latin-500-normal.woff`,
     import.meta.url
   )
 ).then(res => res.arrayBuffer());
 
 const inter600 = fetch(
   new URL(
-    `../../../node_modules/@fontsource/inter/files/inter-latin-600-normal.woff`,
+    `../../../../node_modules/@fontsource/inter/files/inter-latin-600-normal.woff`,
     import.meta.url
   )
 ).then(res => res.arrayBuffer());
 
 const robotoMono300 = fetch(
   new URL(
-    `../../../node_modules/@fontsource/roboto-mono/files/roboto-mono-latin-300-normal.woff`,
+    `../../../../node_modules/@fontsource/roboto-mono/files/roboto-mono-latin-300-normal.woff`,
     import.meta.url
   )
 ).then(res => res.arrayBuffer());
 
-export async function GET() {
+export async function GET(_req: Request, { params: { id } }) {
+  const posts = await getPosts();
+  const post = posts.find(p => p.id === id);
+  if (!post) {
+    return new Response("Not found", { status: 404 });
+  }
+
   return new ImageResponse(
     (
       <div
@@ -52,12 +59,12 @@ export async function GET() {
               tw="bg-gray-100 p-8 text-7xl font-medium rounded-md"
               style={font("Inter 500")}
             >
-              Making the Web. Faster.
+              {post.title}
             </div>
           </div>
 
-          <div tw="mt-5 text-2xl" style={font("Roboto Mono 300")}>
-            June 23, 2001 – 35,040 views
+          <div tw="mt-5 flex text-2xl" style={font("Roboto Mono 300")}>
+            {post.date} – {post.viewsFormatted} views
           </div>
         </main>
       </div>

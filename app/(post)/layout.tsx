@@ -1,5 +1,6 @@
 import { Header } from "./header";
 import { getPosts } from "../get-posts";
+import { useSelectedLayoutSegments } from "next/navigation";
 
 export const revalidate = 60;
 
