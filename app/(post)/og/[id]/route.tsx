@@ -25,9 +25,9 @@ const inter600 = fetch(
   )
 ).then(res => res.arrayBuffer());
 
-const robotoMono300 = fetch(
+const robotoMono400 = fetch(
   new URL(
-    `../../../../node_modules/@fontsource/roboto-mono/files/roboto-mono-latin-300-normal.woff`,
+    `../../../../node_modules/@fontsource/roboto-mono/files/roboto-mono-latin-400-normal.woff`,
     import.meta.url
   )
 ).then(res => res.arrayBuffer());
@@ -45,15 +45,15 @@ export async function GET(_req: Request, { params: { id } }) {
         tw="flex p-10 h-full w-full bg-white flex-col"
         style={font("Inter 300")}
       >
-        <header tw="flex text-[26px] w-full">
+        <header tw="flex text-[36px] w-full">
           <div tw="font-bold" style={font("Inter 600")}>
             Guillermo Rauch
           </div>
           <div tw="grow" />
-          <div tw="text-[22px]">rauchg.com</div>
+          <div tw="text-[28px]">rauchg.com</div>
         </header>
 
-        <main tw="flex mt-20 flex-col">
+        <main tw="flex grow pb-8 flex-col items-center justify-center">
           <div tw="flex">
             <div
               tw="bg-gray-100 p-8 text-7xl font-medium rounded-md"
@@ -63,7 +63,10 @@ export async function GET(_req: Request, { params: { id } }) {
             </div>
           </div>
 
-          <div tw="mt-5 flex text-2xl" style={font("Roboto Mono 300")}>
+          <div
+            tw="mt-5 flex text-3xl text-gray-500"
+            style={font("Roboto Mono 400")}
+          >
             {post.date} – {post.viewsFormatted} views
           </div>
         </main>
@@ -86,8 +89,8 @@ export async function GET(_req: Request, { params: { id } }) {
           data: await inter600,
         },
         {
-          name: "Roboto Mono 300",
-          data: await robotoMono300,
+          name: "Roboto Mono 400",
+          data: await robotoMono400,
         },
       ],
     }
