@@ -19,15 +19,6 @@ module.exports = withMDX({
   headers() {
     return [
       {
-        source: "/atom/:nested*",
-        headers: [
-          {
-            key: "content-type",
-            value: "text/xml",
-          },
-        ],
-      },
-      {
         source: "/images/rauchg-3d4cecf.jpg",
         headers: [
           {
