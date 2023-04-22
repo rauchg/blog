@@ -47,7 +47,7 @@
   },
   "scripts": {
     "dev": "next dev -H 0.0.0.0",
-    "build": "next build && node scripts/build-atom > public/atom",
+    "build": "next build",
     "start": "next start"
   },
   "prettier": {
