@@ -28,10 +28,19 @@ export async function Image({
           await fetch(src).then(res => res.arrayBuffer())
         );
       } else {
-        imageBuffer = await readFile(
-          new URL(join(import.meta.url, "..", "..", "..", "..", "public", src))
-            .pathname
-        );
+        if (!process.env.CI && process.env.NODE_ENV === "production") {
+          imageBuffer = Buffer.from(
+            await fetch("https://" + process.env.VERCEL_URL + src).then(res =>
+              res.arrayBuffer()
+            )
+          );
+        } else {
+          imageBuffer = await readFile(
+            new URL(
+              join(import.meta.url, "..", "..", "..", "..", "public", src)
+            ).pathname
+          );
+        }
       }
       const computedSize = sizeOf(imageBuffer);
       if (
