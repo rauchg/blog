@@ -1,16 +1,13 @@
-const withMDX = require("@next/mdx")({
-  extension: /\.mdx?$/,
-  options: {
-    remarkPlugins: [],
-    rehypePlugins: [],
-    providerImportSource: "@mdx-js/react",
-  },
-});
+const withMDX = require("@next/mdx")();
 
 module.exports = withMDX({
   pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdx"],
-  reactStrictMode: true,
+  experimental: {
+    appDir: true,
+    mdxRs: true,
+  },
   swcMinify: true,
+  reactStrictMode: true,
   images: {
     domains: [
       "pbs.twimg.com",
@@ -22,11 +19,11 @@ module.exports = withMDX({
   headers() {
     return [
       {
-        source: "/atom/:nested*",
+        source: "/images/rauchg-3d4cecf.jpg",
         headers: [
           {
-            key: "content-type",
-            value: "text/xml",
+            key: "cache-control",
+            value: "public, max-age=31536000, immutable",
           },
         ],
       },

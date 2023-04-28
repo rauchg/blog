@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    font-family: "Inter", sans-serif;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-tap-highlight-color: transparent;
+    /* note: must keep in sync with `theme-color` in `theme-effect.ts` */
+    @apply bg-[#fcfcfc];
+  }
+
+  :root.dark {
+    /* note: must keep in sync with `theme-color` in `theme-effect.ts` */
+    @apply bg-[#1C1C1C];
+  }
+
+  :root.pause-transitions * {
+    transition-duration: 0ms !important;
+  }
+
+  @supports (font-variation-settings: normal) {
+    :root {
+      font-family: "Inter var", sans-serif;
+    }
+  }
+}

@@ -1,3 +1,0 @@
-#!/usr/bin/env node
-const atom = require("../lib/atom");
-console.log(atom());
