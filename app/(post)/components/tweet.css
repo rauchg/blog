@@ -1,5 +1,5 @@
 /* generic resets so that we inherit from the parent */
-.tweet .next-tweet-theme {
+.tweet .react-tweet-theme {
   /* margin is handled by our wrappers */
   --tweet-container-margin: 0;
   --tweet-font-family: inherit;
@@ -33,7 +33,7 @@
   --tweet-verified-blue-color: var(--tweet-color-blue-primary);
 }
 
-.dark .tweet .next-tweet-theme {
+.dark .tweet .react-tweet-theme {
   --tweet-bg-color: #222;
   --tweet-bg-color-hover: #222;
   --tweet-border: 1px solid #333;
@@ -42,23 +42,23 @@
   --tweet-font-color-secondary: theme("colors.gray.400");
 }
 
-.tweet .next-tweet-theme p {
+.tweet .react-tweet-theme p {
   font-size: inherit;
   line-height: 1.3rem;
 }
 
-.tweet .next-tweet-theme p a {
+.tweet .react-tweet-theme p a {
   /* TODO: figure out a way to reuse this with `a.tsx` so that we are
    * not repeating stuff that we'll have to manually keep in sync */
   @apply border-b transition-[border-color] border-gray-300 hover:border-gray-600;
 }
 
-.dark .tweet .next-tweet-theme p a {
+.dark .tweet .react-tweet-theme p a {
   /* TODO: figure out a way to reuse this with `a.tsx` so that we are
    * not repeating stuff that we'll have to manually keep in sync */
   @apply text-white border-gray-500 hover:border-white;
 }
 
-.tweet .next-tweet-theme p a:hover {
+.tweet .react-tweet-theme p a:hover {
   text-decoration: none;
 }
