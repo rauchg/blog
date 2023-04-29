@@ -33,7 +33,13 @@
   --tweet-verified-blue-color: var(--tweet-color-blue-primary);
 }
 
-.dark .tweet .next-tweet-theme {
+.dark .next-tweet-theme,
+[data-theme=dark] .next-tweet-theme {
+  /* margin is handled by our wrappers */
+  --tweet-container-margin: 0;
+  --tweet-font-family: inherit;
+  --tweet-font-color: inherit;
+  
   --tweet-bg-color: #222;
   --tweet-bg-color-hover: #222;
   --tweet-border: 1px solid #333;
