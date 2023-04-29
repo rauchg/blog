@@ -49,6 +49,7 @@ export default async function AboutOG() {
               <img
                 tw="rounded-full h-74"
                 alt="Guillermo Rauch"
+                // @ts-ignore
                 src={await rauchgPhoto}
               />
             </div>
