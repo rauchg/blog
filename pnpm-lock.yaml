@@ -40,9 +40,6 @@ dependencies:
   next:
     specifier: 13.3.2-canary.13
     version: 13.3.2-canary.13(react-dom@18.2.0)(react@18.2.0)
-  next-tweet:
-    specifier: ^0.7.2
-    version: 0.7.2(next@13.3.2-canary.13)(react-dom@18.2.0)(react@18.2.0)
   react:
     specifier: ^18.2.0
     version: 18.2.0
@@ -52,6 +49,9 @@ dependencies:
   react-intersection-observer:
     specifier: ^8.34.0
     version: 8.34.0(react@18.2.0)
+  react-tweet:
+    specifier: ^2.0.1
+    version: 2.0.1(react-dom@18.2.0)(react@18.2.0)
   react-wrap-balancer:
     specifier: ^0.2.4
     version: 0.2.4(react@18.2.0)
@@ -1968,21 +1968,6 @@ packages:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
     dev: true
 
-  /next-tweet@0.7.2(next@13.3.2-canary.13)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-q+IKrIC6or5Jfr4fJqahN2IrCwQPjDEsaecjIlDQME3x76p0l840AVbVf0xwOHc31EW4VvZq3/0lM9isPKPlUg==}
-    peerDependencies:
-      next: '>= 13.2.1'
-      react: '>= 18.0.0'
-      react-dom: '>= 18.0.0'
-    dependencies:
-      '@swc/helpers': 0.4.14
-      clsx: 1.2.1
-      date-fns: 2.29.3
-      next: 13.3.2-canary.13(react-dom@18.2.0)(react@18.2.0)
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-    dev: false
-
   /next@13.3.2-canary.13(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-bz3TkzSdiY+ABBW0/aqOl0EvQTQapQtkvsPYCR5LGAM0eeQ8V6ZPrH+4RhkHJMN48qNU9MQZQlP7SsKCabGciw==}
     engines: {node: '>=16.8.0'}
@@ -2353,6 +2338,20 @@ packages:
 
   /react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
+
+  /react-tweet@2.0.1(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-r8Yrv+cW8ajpCcT2AJCIji9crbbVxiaYSagqU4IW4Btsm3b3Ui65pFOV9gZmnt2xorn8L98kqj8REEuGxwnaeA==}
+    peerDependencies:
+      react: '>= 18.0.0'
+      react-dom: '>= 18.0.0'
+    dependencies:
+      '@swc/helpers': 0.4.14
+      clsx: 1.2.1
+      date-fns: 2.29.3
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      swr: 2.1.2(react@18.2.0)
+    dev: false
 
   /react-wrap-balancer@0.2.4(react@18.2.0):
     resolution: {integrity: sha512-MVL9/Tw1X72t0i5Y/2j3YmSx1vkJJ22b5Vb+vZ/IOEdq7r9JPNzTfnfkB8wrl98Jwx+F6VCwJXmU7a1lT5PtCA==}

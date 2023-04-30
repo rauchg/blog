@@ -1,4 +1,4 @@
-import { NextTweet } from "next-tweet";
+import { Tweet as ReactTweet } from "react-tweet";
 import { Caption } from "./caption";
 import type { ReactNode } from "react";
 import "./tweet.css";
@@ -16,8 +16,7 @@ export async function Tweet({ id, caption }: TweetArgs) {
   return (
     <div className="tweet my-6">
       <div className={`flex justify-center`}>
-        {/* @ts-ignore */}
-        <NextTweet id={id} />
+        <ReactTweet id={id} />
       </div>
       {caption && <Caption>{caption}</Caption>}
     </div>
