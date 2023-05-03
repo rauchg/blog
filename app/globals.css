@@ -7,11 +7,13 @@
     font-family: "Inter", sans-serif;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     -webkit-tap-highlight-color: transparent;
+    color-scheme: light;
     /* note: must keep in sync with `theme-color` in `theme-effect.ts` */
     @apply bg-[#fcfcfc];
   }
 
   :root.dark {
+    color-scheme: dark;
     /* note: must keep in sync with `theme-color` in `theme-effect.ts` */
     @apply bg-[#1C1C1C];
   }
