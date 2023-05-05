@@ -25,11 +25,7 @@ export const metadata = {
     creator: "@rauchg",
   },
   themeColor: "transparent",
-  metadataBase: new URL(
-    process.env.VERCEL_URL
-      ? "https://" + process.env.VERCEL_URL
-      : "http://localhost:3000"
-  ),
+  metadataBase: new URL("https://rauchg.com"),
 };
 
 export default function RootLayout({
