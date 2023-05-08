@@ -47,13 +47,14 @@ export function ThemeToggle() {
 
   return (
     <>
+    {/* removed repetitive text-gray-400  */}
       {isHovering && (
         <span
           className={`
             text-[9px]
             text-gray-400
             mr-[-5px]
-            text-gray-400
+         
 
             /* mobile */
             hidden
