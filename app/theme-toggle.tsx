@@ -53,6 +53,7 @@ export function ThemeToggle() {
             text-[9px]
             text-gray-400
             mr-[-5px]
+
             /* mobile */
             hidden
 
