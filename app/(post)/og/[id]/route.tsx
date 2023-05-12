@@ -1,6 +1,6 @@
 export const runtime = "edge";
 
-import { ImageResponse } from "@vercel/og";
+import { ImageResponse } from "next/server";
 import { getPosts } from "@/app/get-posts";
 
 // fonts

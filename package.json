@@ -10,7 +10,6 @@
     "@types/node-fetch": "^2.6.2",
     "@upstash/redis": "^1.20.1",
     "@vercel/analytics": "^1.0.0",
-    "@vercel/og": "^0.5.1",
     "comma-number": "^2.1.0",
     "date-fns": "^2.29.3",
     "image-size": "^1.0.2",
