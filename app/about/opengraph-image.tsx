@@ -103,7 +103,7 @@ export default async function AboutOG() {
   );
 }
 
-// lil helper for mroe succinct styles
+// lil helper for more succinct styles
 function font(fontFamily: string) {
   return { fontFamily };
 }
