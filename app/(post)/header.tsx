@@ -59,11 +59,6 @@ export function Header({ posts }: { posts: Post[] }) {
         </span>
 
         <span className="pr-1.5">
-          <Views
-            id={post.id}
-            mutate={mutate}
-            defaultValue={post.viewsFormatted}
-          />
         </span>
       </p>
     </>

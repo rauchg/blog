@@ -23,13 +23,6 @@ export function Posts({ posts: initialPosts }) {
     ]);
   }
 
-  function sortViews() {
-    setSort(sort => [
-      sort[0] === "views" && sort[1] === "asc" ? "date" : "views",
-      sort[0] !== "views" ? "desc" : sort[1] === "asc" ? "desc" : "asc",
-    ]);
-  }
-
   return (
     <Suspense fallback={null}>
       <main className="max-w-2xl font-mono m-auto mb-10 text-sm">
@@ -46,21 +39,6 @@ export function Posts({ posts: initialPosts }) {
             {sort[0] === "date" && sort[1] === "asc" && "↑"}
           </button>
           <span className="grow pl-2">title</span>
-          <button
-            onClick={sortViews}
-            className={`
-                  h-9
-                  pl-4
-                  ${
-                    sort[0] === "views"
-                      ? "text-gray-700 dark:text-gray-400"
-                      : ""
-                  }
-                `}
-          >
-            views
-            {sort[0] === "views" ? (sort[1] === "asc" ? "↑" : "↓") : ""}
-          </button>
         </header>
 
         <List posts={posts} sort={sort} />
@@ -74,13 +52,9 @@ function List({ posts, sort }) {
   const sortedPosts = useMemo(() => {
     const [sortKey, sortDirection] = sort;
     return [...posts].sort((a, b) => {
-      if (sortKey === "date") {
-        return sortDirection === "desc"
+      return sortDirection === "desc"
           ? new Date(b.date).getTime() - new Date(a.date).getTime()
           : new Date(a.date).getTime() - new Date(b.date).getTime();
-      } else {
-        return sortDirection === "desc" ? b.views - a.views : a.views - b.views;
-      }
     });
   }, [posts, sort]);
 
@@ -114,10 +88,6 @@ function List({ posts, sort }) {
                   )}
 
                   <span className="grow dark:text-gray-100">{post.title}</span>
-
-                  <span className="text-gray-500 dark:text-gray-500 text-xs">
-                    {post.viewsFormatted}
-                  </span>
                 </span>
               </span>
             </Link>
