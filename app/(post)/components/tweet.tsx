@@ -1,16 +1,61 @@
-import { Tweet as ReactTweet } from "react-tweet";
+import { type ReactNode, Suspense } from "react";
+import { Tweet, getTweet } from "react-tweet/api";
+import {
+  EmbeddedTweet,
+  TweetNotFound,
+  TweetSkeleton,
+  type TweetProps,
+} from "react-tweet";
+import redis from "@/app/redis";
 import { Caption } from "./caption";
-import type { ReactNode } from "react";
 import "./tweet.css";
-
-// we import this globally in the top-most layout.tsx file
-// until Next.js lands suspense-y CSS support
-// import "./tweet.css";
 
 interface TweetArgs {
   id: string;
   caption: ReactNode;
 }
+
+async function getAndCacheTweet(id: string): Promise<Tweet | undefined> {
+  try {
+    const tweet = await getTweet(id);
+    if (tweet) {
+      await redis.set(`tweet:${id}`, JSON.stringify(tweet));
+    }
+    return tweet;
+  } catch (error) {
+    // Return a cached Tweet if Twitter's API failed.
+    const cachedTweet = await redis.get<string>(`tweet:${id}`);
+    return cachedTweet ? JSON.parse(cachedTweet) : undefined;
+  }
+}
+
+const TweetContent = async ({ id, components, onError }: TweetProps) => {
+  let error;
+  const tweet = id
+    ? await getAndCacheTweet(id).catch(err => {
+        if (onError) {
+          error = onError(err);
+        } else {
+          console.error(err);
+          error = err;
+        }
+      })
+    : undefined;
+
+  if (!tweet) {
+    const NotFound = components?.TweetNotFound || TweetNotFound;
+    return <NotFound error={error} />;
+  }
+
+  return <EmbeddedTweet tweet={tweet} components={components} />;
+};
+
+export const ReactTweet = (props: TweetProps) => (
+  <Suspense fallback={<TweetSkeleton />}>
+    {/* @ts-ignore: Async components are valid in the app directory */}
+    <TweetContent {...props} />
+  </Suspense>
+);
 
 export async function Tweet({ id, caption }: TweetArgs) {
   return (
