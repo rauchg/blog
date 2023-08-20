@@ -22,7 +22,8 @@
     "react-wrap-balancer": "^0.2.4",
     "react-youtube": "^10.1.0",
     "swr": "^2.1.2",
-    "time-ago": "^0.2.1"
+    "time-ago": "^0.2.1",
+    "word-wrap": "^1.2.5"
   },
   "devDependencies": {
     "@types/comma-number": "^2.1.0",
