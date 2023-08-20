@@ -28,7 +28,11 @@ export async function Image({
           await fetch(src).then(res => res.arrayBuffer())
         );
       } else {
-        if (!process.env.CI && process.env.NODE_ENV === "production") {
+        if (
+          !process.env.CI &&
+          process.env.VERCEL_URL &&
+          process.env.NODE_ENV === "production"
+        ) {
           imageBuffer = Buffer.from(
             await fetch("https://" + process.env.VERCEL_URL + src).then(res =>
               res.arrayBuffer()
