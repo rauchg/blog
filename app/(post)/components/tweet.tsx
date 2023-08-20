@@ -6,7 +6,7 @@ import {
   TweetSkeleton,
   type TweetProps,
 } from "react-tweet";
-import redis from "@/app/redis";
+import { kv } from "@vercel/kv";
 import { Caption } from "./caption";
 import "./tweet.css";
 
@@ -19,12 +19,12 @@ async function getAndCacheTweet(id: string): Promise<Tweet | undefined> {
   try {
     const tweet = await getTweet(id);
     if (tweet) {
-      await redis.set(`tweet:${id}`, JSON.stringify(tweet));
+      await kv.set(`tweet:${id}`, JSON.stringify(tweet));
     }
     return tweet;
   } catch (error) {
     // Return a cached Tweet if Twitter's API failed.
-    const cachedTweet = await redis.get<string>(`tweet:${id}`);
+    const cachedTweet = await kv.get<string>(`tweet:${id}`);
     return cachedTweet ? JSON.parse(cachedTweet) : undefined;
   }
 }
