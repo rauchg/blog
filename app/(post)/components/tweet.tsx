@@ -18,14 +18,15 @@ interface TweetArgs {
 async function getAndCacheTweet(id: string): Promise<Tweet | undefined> {
   try {
     const tweet = await getTweet(id);
+
     if (tweet) {
       await redis.set(`tweet:${id}`, JSON.stringify(tweet));
+      return tweet;
+    } else {
+      return (await redis.get(`tweet:${id}`)) ?? undefined;
     }
-    return tweet;
   } catch (error) {
-    // Return a cached Tweet if Twitter's API failed.
-    const cachedTweet = await redis.get<string>(`tweet:${id}`);
-    return cachedTweet ? JSON.parse(cachedTweet) : undefined;
+    return (await redis.get(`tweet:${id}`)) ?? undefined;
   }
 }
 
