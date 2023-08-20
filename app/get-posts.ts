@@ -1,5 +1,5 @@
 import postsData from "./posts.json";
-import { kv } from "@vercel/kv";
+import redis from "./redis";
 import commaNumber from "comma-number";
 
 export type Post = {
@@ -16,7 +16,7 @@ type Views = {
 };
 
 export const getPosts = async () => {
-  const allViews: null | Views = await kv.hgetall("views");
+  const allViews: null | Views = await redis.hgetall("views");
   const posts = postsData.posts.map((post): Post => {
     const views = Number(allViews?.[post.id] ?? 0);
     return {

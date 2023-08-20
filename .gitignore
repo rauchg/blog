@@ -7,4 +7,3 @@ dist
 .env.local
 .pnpm-debug.log
 TODO
-.env*.local
