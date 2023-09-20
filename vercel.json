@@ -1,0 +1,7 @@
+{
+  "build": {
+    "env": {
+      "FORCE_BUILD_IN_REGION": "iad1-hive"
+    }
+  }
+}
