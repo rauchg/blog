@@ -1,7 +1,7 @@
 export const runtime = "edge";
 export const revalidate = 60;
 
-import { ImageResponse } from "next/server";
+import { ImageResponse } from "next/og";
 import { getPosts } from "@/app/get-posts";
 import commaNumber from "comma-number";
 

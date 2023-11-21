@@ -1,6 +1,6 @@
 export const runtime = "edge";
 
-import { ImageResponse } from "next/server";
+import { ImageResponse } from "next/og";
 import { getPosts } from "@/app/get-posts";
 
 // fonts

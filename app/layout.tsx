@@ -5,6 +5,7 @@ import { themeEffect } from "./theme-effect";
 import { Analytics } from "./analytics";
 import { Header } from "./header";
 import { Footer } from "./footer";
+import { doge } from "./doge";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,8 +25,11 @@ export const metadata = {
     site: "@rauchg",
     creator: "@rauchg",
   },
-  themeColor: "transparent",
   metadataBase: new URL("https://rauchg.com"),
+};
+
+export const viewport = {
+  themeColor: "transparent",
 };
 
 export default function RootLayout({
@@ -42,7 +46,7 @@ export default function RootLayout({
       <head>
         <script
           dangerouslySetInnerHTML={{
-            __html: `(${themeEffect.toString()})();`,
+            __html: `(${themeEffect.toString()})();(${doge.toString()})();`,
           }}
         />
       </head>
