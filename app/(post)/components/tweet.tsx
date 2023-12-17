@@ -16,36 +16,34 @@ interface TweetArgs {
 }
 
 async function getAndCacheTweet(id: string): Promise<Tweet | undefined> {
+  // we first prioritize getting a fresh tweet
   try {
     const tweet = await getTweet(id);
 
-    if (tweet) {
-      await redis.set(`tweet:${id}`, JSON.stringify(tweet));
+    // @ts-ignore
+    if (tweet && !tweet.tombstone) {
+      // we populate the cache if we have a fresh tweet
+      await redis.set(`tweet:${id}`, tweet);
       return tweet;
-    } else {
-      return (await redis.get(`tweet:${id}`)) ?? undefined;
     }
   } catch (error) {
-    return (await redis.get(`tweet:${id}`)) ?? undefined;
+    console.error("tweet fetch error", error);
   }
+
+  const cachedTweet: Tweet | null = await redis.get(`tweet:${id}`);
+
+  // @ts-ignore
+  if (!cachedTweet || cachedTweet.tombstone) return undefined;
+  console.log("tweet cache hit", id);
+
+  return cachedTweet;
 }
 
-const TweetContent = async ({ id, components, onError }: TweetProps) => {
-  let error;
-  const tweet = id
-    ? await getAndCacheTweet(id).catch(err => {
-        if (onError) {
-          error = onError(err);
-        } else {
-          console.error(err);
-          error = err;
-        }
-      })
-    : undefined;
+const TweetContent = async ({ id, components }: TweetProps) => {
+  const tweet = id ? await getAndCacheTweet(id) : undefined;
 
   if (!tweet) {
-    const NotFound = components?.TweetNotFound || TweetNotFound;
-    return <NotFound error={error} />;
+    return <TweetNotFound />;
   }
 
   return <EmbeddedTweet tweet={tweet} components={components} />;
