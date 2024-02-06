@@ -85,7 +85,7 @@ export function ThemeToggle() {
           [&_.sun-icon]:hidden
           dark:[&_.moon-icon]:hidden
           dark:[&_.sun-icon]:inline
-        }`}
+        `}
         onClick={ev => {
           ev.preventDefault();
           // prevent the hover state from rendering
