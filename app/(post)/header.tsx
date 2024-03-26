@@ -42,7 +42,7 @@ export function Header({ posts }: { posts: Post[] }) {
                 className="hover:text-gray-800 dark:hover:text-gray-400"
                 target="_blank"
               >
-                @rauchg
+                @itsarminbabaei
               </a>
             </span>
 

@@ -1,7 +1,7 @@
 {
-  "name": "rauchg-blog",
+  "name": "arminbabaei-blog",
   "license": "MIT",
-  "description": "rauchg.com (blog)",
+  "description": "arminbabaei.com (blog)",
   "dependencies": {
     "@fontsource/inter": "^4.5.15",
     "@fontsource/roboto-mono": "^4.5.10",
@@ -14,7 +14,7 @@
     "date-fns": "^2.29.3",
     "image-size": "^1.0.2",
     "load-script": "^1.0.0",
-    "next": "14.0.5-canary.16",
+    "next": "14.2.0-canary.42",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-intersection-observer": "^8.34.0",

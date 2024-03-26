@@ -48,7 +48,7 @@ export default async function AboutOG() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 tw="rounded-full h-74"
-                alt="Guillermo Rauch"
+                alt="Armin Babaei"
                 // @ts-ignore
                 src={await rauchgPhoto}
               />
@@ -56,19 +56,16 @@ export default async function AboutOG() {
 
             <div tw="flex flex-col px-10 grow text-[28px] h-70 justify-center">
               <div tw="text-[64px] mb-7" style={font("Inter 500")}>
-                Guillermo Rauch
+                Armin Babaei
               </div>
               <div tw="flex mb-5" style={font("Roboto Mono 400")}>
-                <span tw="text-gray-400 mr-3">&mdash;</span> CEO and Founder of
-                Vercel
+                <span tw="text-gray-400 mr-3">&mdash;</span> Director of Travel Technology at First In Service Travel
               </div>
               <div tw="flex mb-5" style={font("Roboto Mono 400")}>
-                <span tw="text-gray-400 mr-3">&mdash;</span> Creator of Next.js,
-                Socket.IO, Mongoose
+                <span tw="text-gray-400 mr-3">&mdash;</span> Founder of Armin Babaei Studio
               </div>
               <div tw="flex" style={font("Roboto Mono 400")}>
-                <span tw="text-gray-400 mr-3">&mdash;</span> Lives in San
-                Francisco, CA
+                <span tw="text-gray-400 mr-3">&mdash;</span> Lives in Toronto, ON
               </div>
             </div>
           </div>
