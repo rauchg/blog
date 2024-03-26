@@ -1,9 +1,24 @@
 {
   "posts": [
     {
+      "id": "scope-creep",
+      "date": "February 29, 2024",
+      "title": "Scope Creep"
+    },
+    {
       "id": "agile-manifesto",
       "date": "March 04, 2024",
       "title": "Agile Manifesto"
+    },
+    {
+      "id": "bias-in-ux-design",
+      "date": "March 12, 2024",
+      "title": "Bias in UX Design"
+    },
+    {
+      "id": "hawthorne-effect",
+      "date": "March 14, 2024",
+      "title": "The Hawthorne Effect"
     }
   ]
 }

@@ -6,6 +6,9 @@ import { Analytics } from "./analytics";
 import { Header } from "./header";
 import { Footer } from "./footer";
 import { doge } from "./doge";
+import { PHProvider } from "./providers";
+import dynamic from "next/dynamic";
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,6 +29,7 @@ export const metadata = {
   metadataBase: new URL("https://arminbabaei.com"),
 };
 
+
 export const viewport = {
   themeColor: "transparent",
 };
@@ -41,23 +45,25 @@ export default function RootLayout({
       className={`${inter.className} antialiased`}
       suppressHydrationWarning={true}
     >
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(${themeEffect.toString()})();(${doge.toString()})();`,
-          }}
-        />
-      </head>
+      <PHProvider>
+        <head>
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `(${themeEffect.toString()})();(${doge.toString()})();`,
+            }}
+          />
+        </head>
 
-      <body className="dark:text-gray-100 max-w-2xl m-auto">
-        <main className="p-6 pt-3 md:pt-6 min-h-screen">
-          <Header />
-          {children}
-        </main>
+        <body className="dark:text-gray-100 max-w-2xl m-auto">
+          <main className="p-6 pt-3 md:pt-6 min-h-screen">
+            <Header />
+            {children}
+          </main>
 
-        <Footer />
-        <Analytics />
-      </body>
+          <Footer />
+          <Analytics />
+        </body>
+      </PHProvider>
     </html>
   );
 }

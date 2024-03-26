@@ -8,7 +8,7 @@ import commaNumber from "comma-number";
 export default async function AboutOG() {
   // rauchg photo
   const rauchgPhoto = fetch(
-    new URL(`../../public/images/rauchg-3d4cecf.gray.jpg`, import.meta.url)
+    new URL(`../../public/images/arminbabaei.png`, import.meta.url)
   ).then(res => res.arrayBuffer());
 
   // fonts
