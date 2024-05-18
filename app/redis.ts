@@ -5,7 +5,7 @@ if (!process.env.UPSTASH_REDIS_REST_TOKEN) {
 }
 
 const redis = new Redis({
-  url: "https://global-apt-bear-30602.upstash.io",
+  url: process.env.UPSTASH_REDIS_REST_URL,
   token: process.env.UPSTASH_REDIS_REST_TOKEN,
 });
 
