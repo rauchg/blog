@@ -1,5 +1,13 @@
 import { getPosts } from "@/app/get-posts";
 
+function formatDate(inputDate: string): string {
+    const dateObject: Date = new Date(inputDate);
+    
+    const formattedDate: string = dateObject.toISOString().slice(0, 19) + ".00Z";
+    
+    return formattedDate;
+}
+
 export async function GET() {
   const posts = await getPosts();
   const max = 100; // max returned posts
@@ -10,7 +18,7 @@ export async function GET() {
     <subtitle>Essays</subtitle>
     <link href="https://rauchg.com/atom" rel="self"/>
     <link href="https://rauchg.com/"/>
-    <updated>${posts[0].date}</updated>
+    <updated>${formatDate(posts[0].date)}</updated>
     <id>https://rauchg.com/</id>
     <author>
       <name>Guillermo Rauch</name>
@@ -21,10 +29,10 @@ export async function GET() {
       if (!dateMatch) return "";
       return `${acc}
         <entry>
-          <id>${post.id}</id>
+          <id>https://rauchg.com/${dateMatch[0]}/${post.id}</id>
           <title>${post.title}</title>
           <link href="https://rauchg.com/${dateMatch[0]}/${post.id}"/>
-          <updated>${post.date}</updated>
+          <updated>${formatDate(post.date)}</updated>
         </entry>`;
     }, "")}
   </feed>`,
