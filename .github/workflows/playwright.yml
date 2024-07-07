@@ -1,0 +1,26 @@
+name: Playwright Tests..
+on: [deployment_status]
+jobs:
+  test:
+    if: github.event.deployment_status.state == 'success'
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+      - name: Install dependencies
+        run: npm install -g pnpm && pnpm install
+      - name: Install Playwright Browsers
+        run: npx replayio update
+      - name: Run Playwright tests
+        run: pnpm run test:replay
+        env:
+          BASE_URL: ${{ github.event.deployment_status.target_url }}
+      - name: Upload replays
+        if: ${{ always() }}
+        uses: replayio/action-upload@v0.5.1
+        with:
+          api-key: ${{ secrets.REPLAY_API_KEY }}
+          public: true
