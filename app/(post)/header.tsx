@@ -75,7 +75,12 @@ function Views({ id, mutate, defaultValue }) {
   const didLogViewRef = useRef(false);
 
   useEffect(() => {
-    if ("development" === process.env.NODE_ENV) return;
+    if (
+      "development" === process.env.NODE_ENV &&
+      !process.env.NEXT_PUBLIC_ENABLE_PAGE_VIEWS
+    )
+      return;
+
     if (!didLogViewRef.current) {
       const url = "/api/view?incr=1&id=" + encodeURIComponent(id);
       fetch(url)
