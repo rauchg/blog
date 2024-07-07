@@ -7,13 +7,16 @@ export function Logo() {
   return (
     <span className="text-md md:text-lg whitespace-nowrap font-bold">
       {pathname === "/" ? (
-        <span className="cursor-default pr-2">Guillermo Rauch</span>
+        <span className="cursor-default pr-2">rauchg
+            <span className="text-base font-normal"> - Guillermo Rauch</span>
+        </span>
       ) : (
         <Link
           href="/"
           className="hover:bg-gray-200 dark:hover:bg-[#313131] active:bg-gray-300 dark:active:bg-[#242424] p-2 rounded-sm -ml-2 transition-[background-color]"
         >
-          Guillermo Rauch
+          rauchg
+            <span className="text-base font-normal"> - Guillermo Rauch</span>
         </Link>
       )}
     </span>
