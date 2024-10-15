@@ -44,6 +44,10 @@
         "webpack",
         "@mdx-js/loader"
       ]
+    },
+    "overrides": {
+      "@types/react": "@types/react@19.0.0-rc.1",
+      "@types/react-dom": "@types/react-dom@19.0.0-rc.1"
     }
   },
   "scripts": {
