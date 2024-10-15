@@ -80,58 +80,56 @@ async function getData() {
       .trim();
   }
 
-  return (
-    col.result.reducerResults.collection_group_results.blockIds
-      .map(blockId => {
-        const blockData = col.recordMap.block[blockId];
+  return (col.result.reducerResults.collection_group_results.blockIds
+    .map(blockId => {
+      const blockData = col.recordMap.block[blockId];
 
-        if (blockData) {
-          const props = blockData.value.properties;
+      if (blockData) {
+        const props = blockData.value.properties;
 
-          if (!props) {
-            // not sure when this happens yet, but it seems
-            // to be limited to only one row
-            // console.info('missing props for block', blockId);
-            return null;
-          }
-
-          // the props are named with unique ids, but
-          // we want to return them with easily addressable
-          // column names
-          const indexedData = {};
-          for (const key in collectionSchema) {
-            indexedData[key] = props[collectionSchema[key]];
-          }
-          return indexedData;
-        } else {
-          console.warn(`missing block data for "${blockId}"`);
+        if (!props) {
+          // not sure when this happens yet, but it seems
+          // to be limited to only one row
+          // console.info('missing props for block', blockId);
           return null;
         }
-      })
-      // sanitize notion data
-      .map(book => {
-        if (!book) return null;
 
-        book.URL = toPlainText(book.URL);
-        book.Image = book.Image ? toPlainText(book.Image) : null;
-
-        const ASIN = book.URL.match(/dp\/(.*)\/?$/);
-        if (ASIN) {
-          book.ASIN = ASIN[1];
+        // the props are named with unique ids, but
+        // we want to return them with easily addressable
+        // column names
+        const indexedData = {};
+        for (const key in collectionSchema) {
+          indexedData[key] = props[collectionSchema[key]];
         }
+        return indexedData;
+      } else {
+        console.warn(`missing block data for "${blockId}"`);
+        return null;
+      }
+    })
+    // sanitize notion data
+    .map(book => {
+      if (!book) return null;
 
-        book.Name = toPlainText(book.Name);
+      book.URL = toPlainText(book.URL);
+      book.Image = book.Image ? toPlainText(book.Image) : null;
 
-        // sanitize vote count, since many are undefined
-        book.Votes = Number(book.Votes);
-        if (isNaN(book.Votes)) {
-          book.Votes = 1;
-        }
+      const ASIN = book.URL.match(/dp\/(.*)\/?$/);
+      if (ASIN) {
+        book.ASIN = ASIN[1];
+      }
 
-        return book;
-      })
-      .filter(v => v != null)
-  );
+      book.Name = toPlainText(book.Name);
+
+      // sanitize vote count, since many are undefined
+      book.Votes = Number(book.Votes);
+      if (isNaN(book.Votes)) {
+        book.Votes = 1;
+      }
+
+      return book;
+    })
+    .filter(v => v != null));
 }
 
 function Book({ URL, Name, Image: ImageURL, ASIN, Votes, priority = false }) {

@@ -10,13 +10,14 @@
     "@types/node-fetch": "^2.6.2",
     "@upstash/redis": "^1.20.1",
     "@vercel/analytics": "^1.0.0",
+    "@vercel/functions": "^1.4.2",
     "comma-number": "^2.1.0",
     "date-fns": "^2.29.3",
     "image-size": "^1.0.2",
     "load-script": "^1.0.0",
-    "next": "14.0.5-canary.16",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "next": "15.0.0-canary.192",
+    "react": "19.0.0-rc-cd22717c-20241013",
+    "react-dom": "19.0.0-rc-cd22717c-20241013",
     "react-intersection-observer": "^8.34.0",
     "react-tweet": "^3.1.1",
     "react-wrap-balancer": "^0.2.4",
@@ -27,8 +28,8 @@
   },
   "devDependencies": {
     "@types/comma-number": "^2.1.0",
-    "@types/react": "^18.0.28",
-    "@types/react-dom": "^18.0.11",
+    "@types/react": "npm:types-react@19.0.0-rc.1",
+    "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1",
     "autoprefixer": "^10.4.14",
     "eslint": "^8.56.0",
     "eslint-config-next": "^14.0.4",
@@ -46,7 +47,7 @@
     }
   },
   "scripts": {
-    "dev": "next dev -H 0.0.0.0",
+    "dev": "next dev --turbo -H 0.0.0.0",
     "build": "next build",
     "start": "next start"
   },
