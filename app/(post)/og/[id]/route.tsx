@@ -32,7 +32,13 @@ const robotoMono400 = fetch(
   )
 ).then(res => res.arrayBuffer());
 
-export async function GET(_req: Request, { params: { id } }) {
+export async function GET(_req: Request, props) {
+  const params = await props.params;
+
+  const {
+    id
+  } = params;
+
   const posts = await getPosts();
   const post = posts.find(p => p.id === id);
   if (!post) {

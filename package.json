@@ -6,7 +6,7 @@
     "@fontsource/inter": "^4.5.15",
     "@fontsource/roboto-mono": "^4.5.10",
     "@mdx-js/react": "^2.3.0",
-    "@next/mdx": "13.1.7-canary.10",
+    "@next/mdx": "15.0.2",
     "@types/node-fetch": "^2.6.2",
     "@upstash/redis": "^1.20.1",
     "@vercel/analytics": "^1.0.0",
@@ -14,9 +14,9 @@
     "date-fns": "^2.29.3",
     "image-size": "^1.0.2",
     "load-script": "^1.0.0",
-    "next": "14.0.5-canary.16",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "next": "15.0.2",
+    "react": "19.0.0-rc-02c0e824-20241028",
+    "react-dom": "19.0.0-rc-02c0e824-20241028",
     "react-intersection-observer": "^8.34.0",
     "react-tweet": "^3.1.1",
     "react-wrap-balancer": "^0.2.4",
@@ -27,11 +27,11 @@
   },
   "devDependencies": {
     "@types/comma-number": "^2.1.0",
-    "@types/react": "^18.0.28",
-    "@types/react-dom": "^18.0.11",
+    "@types/react": "npm:types-react@19.0.0-rc.1",
+    "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1",
     "autoprefixer": "^10.4.14",
     "eslint": "^8.56.0",
-    "eslint-config-next": "^14.0.4",
+    "eslint-config-next": "15.0.2",
     "postcss": "^8.4.21",
     "prettier": "^2.8.4",
     "tailwindcss": "^3.3.1",
@@ -43,10 +43,14 @@
         "webpack",
         "@mdx-js/loader"
       ]
+    },
+    "overrides": {
+      "@types/react": "npm:types-react@19.0.0-rc.1",
+      "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1"
     }
   },
   "scripts": {
-    "dev": "next dev -H 0.0.0.0",
+    "dev": "next dev --turbopack -H 0.0.0.0",
     "build": "next build",
     "start": "next start"
   },
