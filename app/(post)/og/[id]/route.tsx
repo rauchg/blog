@@ -1,34 +1,56 @@
+export const revalidate = 60;
+
 import { ImageResponse } from "next/og";
 import { getPosts } from "@/app/get-posts";
 import { readFileSync } from "fs";
 import { join } from "path";
 
+export async function generateStaticParams() {
+  return (await getPosts()).map(post => ({ id: post.id }));
+}
+
 // fonts
 const inter300 = readFileSync(
   join(
     process.cwd(),
-    "node_modules/@fontsource/inter/files/inter-latin-300-normal.woff"
+    "node_modules",
+    "@fontsource",
+    "inter",
+    "files",
+    "inter-latin-300-normal.woff"
   )
 );
 
 const inter500 = readFileSync(
   join(
     process.cwd(),
-    "node_modules/@fontsource/inter/files/inter-latin-500-normal.woff"
+    "node_modules",
+    "@fontsource",
+    "inter",
+    "files",
+    "inter-latin-500-normal.woff"
   )
 );
 
 const inter600 = readFileSync(
   join(
     process.cwd(),
-    "node_modules/@fontsource/inter/files/inter-latin-600-normal.woff"
+    "node_modules",
+    "@fontsource",
+    "inter",
+    "files",
+    "inter-latin-600-normal.woff"
   )
 );
 
 const robotoMono400 = readFileSync(
   join(
     process.cwd(),
-    "node_modules/@fontsource/roboto-mono/files/roboto-mono-latin-400-normal.woff"
+    "node_modules",
+    "@fontsource",
+    "roboto-mono",
+    "files",
+    "roboto-mono-latin-400-normal.woff"
   )
 );
 
