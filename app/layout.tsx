@@ -19,6 +19,7 @@ export const metadata = {
       "Guillermo Rauch is the CEO and founder of Vercel, a software engineer, and the creator of Next.js, Mongoose, Socket.io and other open source libraries.",
     url: "https://rauchg.com",
     siteName: "Guillermo Rauchg's blog",
+    images: ["/opengraph-image"],
   },
   twitter: {
     card: "summary_large_image",

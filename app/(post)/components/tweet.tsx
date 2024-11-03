@@ -34,7 +34,6 @@ async function getAndCacheTweet(id: string): Promise<Tweet | undefined> {
 
   // @ts-ignore
   if (!cachedTweet || cachedTweet.tombstone) return undefined;
-  console.log("tweet cache hit", id);
 
   return cachedTweet;
 }

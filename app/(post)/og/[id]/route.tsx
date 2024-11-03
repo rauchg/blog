@@ -1,43 +1,41 @@
-export const runtime = "edge";
-
 import { ImageResponse } from "next/og";
 import { getPosts } from "@/app/get-posts";
+import { readFileSync } from "fs";
+import { join } from "path";
 
 // fonts
-const inter300 = fetch(
-  new URL(
-    `../../../../node_modules/@fontsource/inter/files/inter-latin-300-normal.woff`,
-    import.meta.url
+const inter300 = readFileSync(
+  join(
+    process.cwd(),
+    "node_modules/@fontsource/inter/files/inter-latin-300-normal.woff"
   )
-).then(res => res.arrayBuffer());
+);
 
-const inter500 = fetch(
-  new URL(
-    `../../../../node_modules/@fontsource/inter/files/inter-latin-500-normal.woff`,
-    import.meta.url
+const inter500 = readFileSync(
+  join(
+    process.cwd(),
+    "node_modules/@fontsource/inter/files/inter-latin-500-normal.woff"
   )
-).then(res => res.arrayBuffer());
+);
 
-const inter600 = fetch(
-  new URL(
-    `../../../../node_modules/@fontsource/inter/files/inter-latin-600-normal.woff`,
-    import.meta.url
+const inter600 = readFileSync(
+  join(
+    process.cwd(),
+    "node_modules/@fontsource/inter/files/inter-latin-600-normal.woff"
   )
-).then(res => res.arrayBuffer());
+);
 
-const robotoMono400 = fetch(
-  new URL(
-    `../../../../node_modules/@fontsource/roboto-mono/files/roboto-mono-latin-400-normal.woff`,
-    import.meta.url
+const robotoMono400 = readFileSync(
+  join(
+    process.cwd(),
+    "node_modules/@fontsource/roboto-mono/files/roboto-mono-latin-400-normal.woff"
   )
-).then(res => res.arrayBuffer());
+);
 
 export async function GET(_req: Request, props) {
   const params = await props.params;
 
-  const {
-    id
-  } = params;
+  const { id } = params;
 
   const posts = await getPosts();
   const post = posts.find(p => p.id === id);
@@ -84,19 +82,19 @@ export async function GET(_req: Request, props) {
       fonts: [
         {
           name: "Inter 300",
-          data: await inter300,
+          data: inter300,
         },
         {
           name: "Inter 500",
-          data: await inter500,
+          data: inter500,
         },
         {
           name: "Inter 600",
-          data: await inter600,
+          data: inter600,
         },
         {
           name: "Roboto Mono 400",
-          data: await robotoMono400,
+          data: robotoMono400,
         },
       ],
     }
