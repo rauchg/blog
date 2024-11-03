@@ -1,38 +1,37 @@
-export const runtime = "edge";
 export const revalidate = 60;
 
 import { ImageResponse } from "next/og";
 import { getPosts } from "@/app/get-posts";
+import { readFileSync } from "fs";
+import { join } from "path";
 import commaNumber from "comma-number";
 
-export default async function AboutOG() {
-  // rauchg photo
-  const rauchgPhoto = fetch(
-    new URL(`../../public/images/rauchg-3d4cecf.gray.jpg`, import.meta.url)
-  ).then(res => res.arrayBuffer());
+// Image
+const rauchgPhoto = toArrayBuffer(
+  readFileSync(join(process.cwd(), "public/images/rauchg-3d4cecf.gray.jpg"))
+);
 
-  // fonts
-  const inter300 = fetch(
-    new URL(
-      `../../node_modules/@fontsource/inter/files/inter-latin-300-normal.woff`,
-      import.meta.url
-    )
-  ).then(res => res.arrayBuffer());
+// Fonts
+const inter300 = readFileSync(
+  join(
+    process.cwd(),
+    "node_modules/@fontsource/inter/files/inter-latin-300-normal.woff"
+  )
+);
+const inter500 = readFileSync(
+  join(
+    process.cwd(),
+    "node_modules/@fontsource/inter/files/inter-latin-500-normal.woff"
+  )
+);
+const robotoMono400 = readFileSync(
+  join(
+    process.cwd(),
+    "node_modules/@fontsource/roboto-mono/files/roboto-mono-latin-400-normal.woff"
+  )
+);
 
-  const inter500 = fetch(
-    new URL(
-      `../../node_modules/@fontsource/inter/files/inter-latin-500-normal.woff`,
-      import.meta.url
-    )
-  ).then(res => res.arrayBuffer());
-
-  const robotoMono400 = fetch(
-    new URL(
-      `../../node_modules/@fontsource/roboto-mono/files/roboto-mono-latin-400-normal.woff`,
-      import.meta.url
-    )
-  ).then(res => res.arrayBuffer());
-
+export async function GET() {
   const posts = await getPosts();
   const viewsSum = posts.reduce((sum, post) => sum + post.views, 0);
 
@@ -50,7 +49,7 @@ export default async function AboutOG() {
                 tw="rounded-full h-74"
                 alt="Guillermo Rauch"
                 // @ts-ignore
-                src={await rauchgPhoto}
+                src={rauchgPhoto}
               />
             </div>
 
@@ -88,15 +87,15 @@ export default async function AboutOG() {
       fonts: [
         {
           name: "Inter 300",
-          data: await inter300,
+          data: inter300,
         },
         {
           name: "Inter 500",
-          data: await inter500,
+          data: inter500,
         },
         {
           name: "Roboto Mono 400",
-          data: await robotoMono400,
+          data: robotoMono400,
         },
       ],
     }
@@ -106,4 +105,11 @@ export default async function AboutOG() {
 // lil helper for more succinct styles
 function font(fontFamily: string) {
   return { fontFamily };
+}
+
+function toArrayBuffer(buffer) {
+  return buffer.buffer.slice(
+    buffer.byteOffset,
+    buffer.byteOffset + buffer.byteLength
+  );
 }

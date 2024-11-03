@@ -1,5 +1,3 @@
-export const runtime = "edge";
-
 import redis from "@/app/redis";
 import postsData from "@/app/posts.json";
 import commaNumber from "comma-number";
