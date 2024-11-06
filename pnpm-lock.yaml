@@ -24,9 +24,6 @@ importers:
       '@next/mdx':
         specifier: 15.0.2
         version: 15.0.2(@mdx-js/react@2.3.0(react@19.0.0-rc-02c0e824-20241028))
-      '@types/node-fetch':
-        specifier: ^2.6.2
-        version: 2.6.2
       '@upstash/redis':
         specifier: ^1.20.1
         version: 1.20.1
@@ -79,6 +76,9 @@ importers:
       '@types/comma-number':
         specifier: ^2.1.0
         version: 2.1.0
+      '@types/node-fetch':
+        specifier: ^2.6.2
+        version: 2.6.2
       '@types/react':
         specifier: npm:types-react@19.0.0-rc.1
         version: types-react@19.0.0-rc.1
