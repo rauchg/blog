@@ -6,6 +6,7 @@ module.exports = withMDX({
     mdxRs: true,
   },
   images: {
+    minimumCacheTTL: 2678400,
     remotePatterns: [
       {
         protocol: "https",
@@ -30,21 +31,9 @@ module.exports = withMDX({
         hostname: "images-na.ssl-images-amazon.com",
         port: "",
         pathname: "/**",
+        search: "",
       },
     ],
-  },
-  headers() {
-    return [
-      {
-        source: "/images/rauchg-3d4cecf.jpg",
-        headers: [
-          {
-            key: "cache-control",
-            value: "public, max-age=31536000, immutable",
-          },
-        ],
-      },
-    ];
   },
   redirects() {
     return [

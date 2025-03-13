@@ -1,5 +1,7 @@
 import Image from "next/image";
 
+import rauchgPhoto from "../../public/images/rauchg.jpg";
+
 export const metadata = {
   title: 'Guillermo Rauch',
   description: 'An overview of my career and technical contributions',
@@ -14,7 +16,7 @@ export const metadata = {
 
 <a href="https://twitter.com/rauchg" target="_blank">
   <Image
-    src="/images/rauchg-3d4cecf.jpg"
+    src={rauchgPhoto}
     alt="Guillermo Rauch"
     className="rounded-full bg-gray-100 block mt-2 mb-5 mx-auto sm:float-right sm:ml-5 sm:mb-5 grayscale hover:grayscale-0"
     unoptimized
