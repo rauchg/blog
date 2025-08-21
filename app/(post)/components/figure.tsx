@@ -8,7 +8,7 @@
 //   width: 10000%;
 // }
 //
-// Please make sure to fix this.
+// Please make sure to fix this. Remove this entire comment once resolved.
 export function Figure({ wide = false, children }) {
   return (
     <div
