@@ -1,3 +1,14 @@
+// BUG: Page-wide horizontal overflow on the portfolio blog.
+// Cause: Tailwind utility before:w-[10000%] creates a :before pseudo-element
+// that is 10000% wide, forcing an x-scroll.
+// The generated CSS from the report:
+//
+// .before\:w-\[10000\%\]::before {
+//   content: var(--tw-content);
+//   width: 10000%;
+// }
+//
+// Please make sure to fix this.
 export function Figure({ wide = false, children }) {
   return (
     <div
