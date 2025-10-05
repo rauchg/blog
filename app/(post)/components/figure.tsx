@@ -9,13 +9,15 @@ export function Figure({ wide = false, children }) {
       bg-gray-100
       dark:bg-[#111]
       relative
+      overflow-hidden
       before:bg-gray-100
       before:dark:bg-[#111]
-      before:w-[10000%]
+      before:w-[100vw]
       before:h-[100%]
       before:content-[""]
       before:top-[0]
-      before:left-[-1000px]
+      before:left-[50%]
+      before:translate-x-[-50%]
       before:absolute
       before:z-[-1]
     `
