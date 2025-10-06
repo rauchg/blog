@@ -33,13 +33,13 @@ export function Header({ posts }: { posts: Post[] }) {
         {post.title}
       </h1>
 
-      <p className="font-mono flex text-xs text-gray-500 dark:text-gray-500">
+      <p className="font-mono flex text-xs text-neutral-500 dark:text-neutral-500">
         <span className="flex-grow">
           <span className="hidden md:inline">
             <span>
               <a
                 href="https://twitter.com/rauchg"
-                className="hover:text-gray-800 dark:hover:text-gray-400"
+                className="hover:text-neutral-800 dark:hover:text-neutral-400"
                 target="_blank"
               >
                 @rauchg

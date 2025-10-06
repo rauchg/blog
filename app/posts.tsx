@@ -49,16 +49,16 @@ function List({ posts }) {
                   }`}
                 >
                   {firstOfYear && (
-                    <span className="w-14 inline-block self-start shrink-0 text-gray-500 text-xs dark:text-gray-500 mt-0.5">
+                    <span className="w-14 inline-block self-start shrink-0 text-neutral-500 text-xs dark:text-neutral-500 mt-0.5">
                       {year}
                     </span>
                   )}
 
                   <span className="grow dark:text-gray-100">
-		    <span className="[li:hover_&]:bg-gray-200 transition-all rounded-xl py-0.5 px-1.5">{post.title}</span>
+		    <span className="[li:hover_&]:bg-neutral-200 dark:[li:hover_&]:bg-neutral-700 transition-all rounded-xl py-0.5 px-1.5">{post.title}</span>
 		  </span>
 
-                  <span className="text-gray-500 dark:text-gray-500 text-xs mt-0.5">
+                  <span className="text-neutral-500 dark:text-neutral-500 text-xs mt-0.5">
                     {post.viewsFormatted}
                   </span>
                 </span>
