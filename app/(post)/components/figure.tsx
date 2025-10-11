@@ -9,21 +9,19 @@ export function Figure({ wide = false, children }) {
       bg-gray-100
       dark:bg-[#111]
       relative
-      before:bg-gray-100
-      before:dark:bg-[#111]
-      before:w-[10000%]
-      before:h-[100%]
-      before:content-[""]
-      before:top-[0]
-      before:left-[-1000px]
-      before:absolute
-      before:z-[-1]
+      left-[50%]
+      right-[50%]
+      ml-[-50vw]
+      mr-[-50vw]
+      w-[100vw]
     `
         : ""
     }
   `}
     >
-      {children}
+      <div className={wide ? "max-w-2xl mx-auto px-6" : ""}>
+        {children}
+      </div>
     </div>
   );
 }

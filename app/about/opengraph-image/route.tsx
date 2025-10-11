@@ -14,16 +14,16 @@ const rauchgPhoto = toArrayBuffer(
 // Fonts
 const fontsDir = join(process.cwd(), "fonts");
 
-const inter300 = readFileSync(
-  join(fontsDir, "inter-latin-300-normal.woff")
+const geistSans = readFileSync(
+  join(fontsDir, "geist-light.ttf")
 );
 
-const inter500 = readFileSync(
-  join(fontsDir, "inter-latin-500-normal.woff")
+const geistSansMedium = readFileSync(
+  join(fontsDir, "geist-medium.ttf")
 );
 
-const robotoMono400 = readFileSync(
-  join(fontsDir, "roboto-mono-latin-400-normal.woff")
+const geistMono = readFileSync(
+  join(fontsDir, "geist-mono-regular.ttf")
 );
 
 export async function GET() {
@@ -34,7 +34,7 @@ export async function GET() {
     (
       <div
         tw="flex p-10 h-full w-full bg-white flex-col"
-        style={font("Inter 300")}
+        style={font("Geist")}
       >
         <main tw="flex grow pt-4 w-full justify-center items-center">
           <div tw="flex flex-row">
@@ -49,18 +49,18 @@ export async function GET() {
             </div>
 
             <div tw="flex flex-col px-10 grow text-[28px] h-70 justify-center">
-              <div tw="text-[64px] mb-7" style={font("Inter 500")}>
+              <div tw="text-[64px] mb-7" style={font("Geist Medium")}>
                 Guillermo Rauch
               </div>
-              <div tw="flex mb-5" style={font("Roboto Mono 400")}>
+              <div tw="flex mb-5" style={font("Geist Mono")}>
                 <span tw="text-gray-400 mr-3">&mdash;</span> CEO and Founder of
                 Vercel
               </div>
-              <div tw="flex mb-5" style={font("Roboto Mono 400")}>
+              <div tw="flex mb-5" style={font("Geist Mono")}>
                 <span tw="text-gray-400 mr-3">&mdash;</span> Creator of Next.js,
                 Socket.IO, Mongoose
               </div>
-              <div tw="flex" style={font("Roboto Mono 400")}>
+              <div tw="flex" style={font("Geist Mono")}>
                 <span tw="text-gray-400 mr-3">&mdash;</span> Lives in San
                 Francisco, CA
               </div>
@@ -70,7 +70,7 @@ export async function GET() {
 
         <footer
           tw="flex w-full justify-center text-2xl text-gray-500"
-          style={font("Roboto Mono 400")}
+          style={font("Geist Mono")}
         >
           {posts.length} posts / {commaNumber(viewsSum)} views
         </footer>
@@ -81,16 +81,19 @@ export async function GET() {
       height: 630,
       fonts: [
         {
-          name: "Inter 300",
-          data: inter300,
+          name: "Geist",
+          data: geistSans,
+          weight: 300,
         },
         {
-          name: "Inter 500",
-          data: inter500,
+          name: "Geist Medium",
+          data: geistSansMedium,
+          weight: 500,
         },
         {
-          name: "Roboto Mono 400",
-          data: robotoMono400,
+          name: "Geist Mono",
+          data: geistMono,
+          weight: 400,
         },
       ],
     }

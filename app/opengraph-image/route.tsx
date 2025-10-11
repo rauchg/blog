@@ -7,16 +7,16 @@ import { join } from "path";
 
 const fontsDir = join(process.cwd(), "fonts");
 
-const inter300 = readFileSync(
-  join(fontsDir, "inter-latin-300-normal.woff")
+const geistSans = readFileSync(
+  join(fontsDir, "geist-light.ttf")
 );
 
-const inter600 = readFileSync(
-  join(fontsDir, "inter-latin-600-normal.woff")
+const geistSansBold = readFileSync(
+  join(fontsDir, "geist-bold.ttf")
 );
 
-const robotoMono400 = readFileSync(
-  join(fontsDir, "roboto-mono-latin-400-normal.woff")
+const geistMono = readFileSync(
+  join(fontsDir, "geist-mono-regular.ttf")
 );
 
 export async function GET() {
@@ -26,17 +26,17 @@ export async function GET() {
     (
       <div
         tw="flex p-10 h-full w-full bg-white flex-col"
-        style={font("Inter 300")}
+        style={font("Geist")}
       >
         <header tw="flex text-[36px] w-full">
-          <div tw="font-bold" style={font("Inter 600")}>
+          <div tw="font-bold" style={font("Geist Bold")}>
             Guillermo Rauch
           </div>
           <div tw="grow" />
           <div tw="text-[28px]">rauchg.com</div>
         </header>
 
-        <main tw="flex mt-10 flex-col w-full" style={font("Roboto Mono 400")}>
+        <main tw="flex mt-10 flex-col w-full" style={font("Geist Mono")}>
           <div tw="flex w-full text-[26px] text-gray-400 mb-3">
             <div tw="w-24">date</div>
             <div tw="grow">title</div>
@@ -66,16 +66,19 @@ export async function GET() {
       height: 630,
       fonts: [
         {
-          name: "Inter 300",
-          data: inter300,
+          name: "Geist",
+          data: geistSans,
+          weight: 300,
         },
         {
-          name: "Inter 600",
-          data: inter600,
+          name: "Geist Bold",
+          data: geistSansBold,
+          weight: 700,
         },
         {
-          name: "Roboto Mono 400",
-          data: robotoMono400,
+          name: "Geist Mono",
+          data: geistMono,
+          weight: 400,
         },
       ],
     }

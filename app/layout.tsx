@@ -1,13 +1,20 @@
 import "./globals.css";
 
-import { Inter } from "next/font/google";
-import { themeEffect } from "./theme-effect";
+import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "./analytics";
 import { Header } from "./header";
 import { Footer } from "./footer";
 import { doge } from "./doge";
 
-const inter = Inter({ subsets: ["latin"] });
+const geist = Geist({
+  subsets: ["latin"],
+  variable: "--font-geist-sans"
+});
+
+const geistMono = Geist_Mono({
+  subsets: ["latin"],
+  variable: "--font-geist-mono"
+});
 
 export const metadata = {
   title: "Guillermo Rauch's blog",
@@ -41,13 +48,13 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.className} antialiased`}
+      className={`${geist.variable} ${geistMono.variable} ${geist.className} antialiased`}
       suppressHydrationWarning={true}
     >
       <head>
         <script
           dangerouslySetInnerHTML={{
-            __html: `(${themeEffect.toString()})();(${doge.toString()})();`,
+            __html: `(${doge.toString()})();`,
           }}
         />
       </head>

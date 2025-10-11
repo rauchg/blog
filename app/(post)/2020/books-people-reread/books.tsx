@@ -136,7 +136,7 @@ async function getData() {
 
 function Book({ URL, Name, Image: ImageURL, ASIN, Votes, priority = false }) {
   return (
-    <main className="text-sm flex flex-col items-center bg-gray-200 dark:bg-[#333]">
+    <main className="text-sm flex flex-col items-center bg-neutral-100 dark:bg-[#333]">
       <a
         href={URL}
         target="_blank"
@@ -157,7 +157,7 @@ function Book({ URL, Name, Image: ImageURL, ASIN, Votes, priority = false }) {
         <span className="flex flex-row items-center">
           <span className="inline-block font-medium">{Name}</span>
           {Votes > 1 && (
-            <span className="inline-block bg-gray-500 dark:bg-[#222] text-white text-xs py-1 px-2 ml-2 rounded-full whitespace-nowrap">
+            <span className="inline-block text-neutral-800 bg-neutral-200 dark:bg-[#222] dark:text-white text-xs py-1 px-2 ml-2 rounded-full whitespace-nowrap">
               🔥 {Votes}
             </span>
           )}

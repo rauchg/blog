@@ -1,5 +1,5 @@
 import { type ReactNode, Suspense } from "react";
-import { Tweet, getTweet } from "react-tweet/api";
+import { Tweet as TweetType, getTweet } from "react-tweet/api";
 import {
   EmbeddedTweet,
   TweetNotFound,
@@ -15,7 +15,7 @@ interface TweetArgs {
   caption: ReactNode;
 }
 
-async function getAndCacheTweet(id: string): Promise<Tweet | undefined> {
+async function getAndCacheTweet(id: string): Promise<TweetType | undefined> {
   // we first prioritize getting a fresh tweet
   try {
     const tweet = await getTweet(id);
@@ -30,7 +30,7 @@ async function getAndCacheTweet(id: string): Promise<Tweet | undefined> {
     console.error("tweet fetch error", error);
   }
 
-  const cachedTweet: Tweet | null = await redis.get(`tweet:${id}`);
+  const cachedTweet: TweetType | null = await redis.get(`tweet:${id}`);
 
   // @ts-ignore
   if (!cachedTweet || cachedTweet.tombstone) return undefined;

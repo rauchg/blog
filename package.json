@@ -3,55 +3,44 @@
   "license": "MIT",
   "description": "rauchg.com (blog)",
   "dependencies": {
-    "@fontsource/inter": "^4.5.15",
-    "@fontsource/roboto-mono": "^4.5.10",
-    "@mdx-js/react": "^2.3.0",
-    "@next/mdx": "15.0.2",
-    "@types/node-fetch": "^2.6.2",
+    "@mdx-js/react": "^3.1.1",
+    "@next/mdx": "16.0.0-beta.0",
     "@upstash/redis": "^1.20.1",
-    "@vercel/analytics": "^1.4.1",
-    "@vercel/speed-insights": "^1.1.0",
+    "@vercel/analytics": "^1.5.0",
+    "@vercel/speed-insights": "^1.2.0",
     "comma-number": "^2.1.0",
-    "date-fns": "^2.29.3",
+    "geist": "^1.5.1",
     "image-size": "^1.0.2",
     "load-script": "^1.0.0",
-    "next": "15.0.2",
-    "react": "19.0.0-rc-02c0e824-20241028",
-    "react-dom": "19.0.0-rc-02c0e824-20241028",
-    "react-intersection-observer": "^8.34.0",
-    "react-tweet": "^3.1.1",
-    "react-wrap-balancer": "^0.2.4",
+    "next": "16.0.0-beta.0",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "react-intersection-observer": "^9.16.0",
+    "react-tweet": "^3.2.2",
+    "react-wrap-balancer": "^1.1.1",
     "react-youtube": "^10.1.0",
-    "swr": "^2.1.2",
-    "time-ago": "^0.2.1",
-    "word-wrap": "^1.2.5"
+    "swr": "^2.3.6",
+    "time-ago": "^0.2.1"
   },
   "devDependencies": {
     "@types/comma-number": "^2.1.0",
-    "@types/react": "npm:types-react@19.0.0-rc.1",
-    "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1",
+    "@types/node": "24.7.2",
+    "@types/react": "19.2.2",
+    "@types/react-dom": "19.2.1",
     "autoprefixer": "^10.4.14",
-    "eslint": "^8.56.0",
-    "eslint-config-next": "15.0.2",
     "postcss": "^8.4.21",
     "prettier": "^2.8.4",
     "tailwindcss": "^3.3.1",
-    "typescript": "^4.9.5"
+    "typescript": "^5.9.3"
   },
   "pnpm": {
-    "peerDependencyRules": {
-      "ignoreMissing": [
-        "webpack",
-        "@mdx-js/loader"
-      ]
-    },
-    "overrides": {
-      "@types/react": "npm:types-react@19.0.0-rc.1",
-      "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1"
-    }
+    "onlyBuiltDependencies": [
+      "@vercel/speed-insights",
+      "sharp"
+    ]
   },
   "scripts": {
-    "dev": "next dev --turbopack -H 0.0.0.0",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "postinstall": "node ./fonts/init.mjs"
