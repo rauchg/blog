@@ -34,14 +34,16 @@
   --tweet-verified-blue-color: var(--tweet-color-blue-primary);
 }
 
-.dark .tweet .react-tweet-theme {
-  --tweet-bg-color: #222;
-  --tweet-bg-color-hover: #222;
-  --tweet-quoted-bg-color-hover: rgba(255, 255, 255, 0.03);
-  --tweet-border: 1px solid #333;
-  --tweet-color-blue-secondary: theme("colors.white");
-  --tweet-color-blue-secondary-hover: #333;
-  --tweet-font-color-secondary: theme("colors.gray.400");
+@media (prefers-color-scheme: dark) {
+  .tweet .react-tweet-theme {
+    --tweet-bg-color: #222;
+    --tweet-bg-color-hover: #222;
+    --tweet-quoted-bg-color-hover: rgba(255, 255, 255, 0.03);
+    --tweet-border: 1px solid #333;
+    --tweet-color-blue-secondary: theme("colors.white");
+    --tweet-color-blue-secondary-hover: #333;
+    --tweet-font-color-secondary: theme("colors.gray.400");
+  }
 }
 
 .tweet .react-tweet-theme p {
@@ -55,10 +57,12 @@
   @apply border-b transition-[border-color] border-gray-300 hover:border-gray-600;
 }
 
-.dark .tweet .react-tweet-theme p a {
-  /* TODO: figure out a way to reuse this with `a.tsx` so that we are
-   * not repeating stuff that we'll have to manually keep in sync */
-  @apply text-white border-gray-500 hover:border-white;
+@media (prefers-color-scheme: dark) {
+  .tweet .react-tweet-theme p a {
+    /* TODO: figure out a way to reuse this with `a.tsx` so that we are
+     * not repeating stuff that we'll have to manually keep in sync */
+    @apply text-white border-stone-600 hover:border-white;
+  }
 }
 
 .tweet .react-tweet-theme p a:hover {

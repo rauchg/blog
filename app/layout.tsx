@@ -1,7 +1,6 @@
 import "./globals.css";
 
 import { Geist, Geist_Mono } from "next/font/google";
-import { themeEffect } from "./theme-effect";
 import { Analytics } from "./analytics";
 import { Header } from "./header";
 import { Footer } from "./footer";
@@ -55,7 +54,7 @@ export default function RootLayout({
       <head>
         <script
           dangerouslySetInnerHTML={{
-            __html: `(${themeEffect.toString()})();(${doge.toString()})();`,
+            __html: `(${doge.toString()})();`,
           }}
         />
       </head>
