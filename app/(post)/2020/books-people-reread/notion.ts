@@ -1,4 +1,4 @@
-const API_ENDPOINT = "https://www.notion.so/api/v3";
+const API_ENDPOINT = "https://rauchg.notion.site/api/v3";
 
 export default async function rpc(fnName, body) {
   const url = `${API_ENDPOINT}/${fnName}`;
@@ -7,7 +7,6 @@ export default async function rpc(fnName, body) {
     headers: {
       "content-type": "application/json",
     },
-    cache: "force-cache",
     body: JSON.stringify(body),
   });
 
@@ -19,7 +18,11 @@ export default async function rpc(fnName, body) {
 }
 
 function getJSONHeaders(res) {
-  return JSON.stringify(res.headers.raw());
+  const headers = {};
+  res.headers.forEach((value, key) => {
+    headers[key] = value;
+  });
+  return JSON.stringify(headers);
 }
 
 function getBodyOrNull(res) {

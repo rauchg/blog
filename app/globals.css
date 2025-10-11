@@ -4,7 +4,6 @@
 
 @layer base {
   :root {
-    font-family: "Inter", sans-serif;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     -webkit-tap-highlight-color: transparent;
     color-scheme: light;
@@ -22,9 +21,4 @@
     transition-duration: 0ms !important;
   }
 
-  @supports (font-variation-settings: normal) {
-    :root {
-      font-family: "Inter var", sans-serif;
-    }
-  }
 }

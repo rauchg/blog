@@ -1,13 +1,13 @@
 import "./globals.css";
 
-import { Inter } from "next/font/google";
+import { Geist } from "next/font/google";
 import { themeEffect } from "./theme-effect";
 import { Analytics } from "./analytics";
 import { Header } from "./header";
 import { Footer } from "./footer";
 import { doge } from "./doge";
 
-const inter = Inter({ subsets: ["latin"] });
+const geist = Geist({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Guillermo Rauch's blog",
@@ -41,7 +41,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.className} antialiased`}
+      className={`${geist.className} antialiased`}
       suppressHydrationWarning={true}
     >
       <head>
