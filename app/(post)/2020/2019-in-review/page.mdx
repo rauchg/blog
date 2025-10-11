@@ -57,40 +57,11 @@ But here's what happened in 2019:
 
 In short, Next.js is now a comprehensive, hybrid framework, supporting the full spectrum of JAMstack with a *per-page granularity*.
 
-<table>
-  <thead>
-    <tr>
-      <th>Role</th>
-      <th>Provided by</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td>J</td>
-      <td>
-        Client-side JS injected via React Hooks (state, event listeners,
-        effects)
-      </td>
-    </tr>
-
-    <tr>
-      <td>A</td>
-      <td>
-        API pages inside the `pages/api` directory.
-      </td>
-    </tr>
-
-    <tr>
-      <td>M</td>
-      <td>
-        Pages with no data dependencies (like the simple example above) or
-        pages with static data deps that trigger build-time static site
-        generation.
-      </td>
-    </tr>
-  </tbody>
-</table>
+| Role | Provided by |
+| --- | --- |
+| J | Client-side JS injected via React Hooks (state, event listeners, effects) |
+| A | API pages inside the `pages/api` directory. |
+| M | Pages with no data dependencies (like the simple example above) or pages with static data deps that trigger build-time static site generation. |
 
 Furthermore, Next.js has been *uncompromising* in its commitment to backwards-compatibility. Servers (SSR) are still fully supported and no apps have been harmed as part of this evolution.
 
@@ -155,8 +126,6 @@ Serverless is an exciting trend that has resisted a universal definition. Asking
 
 However, a defining characteristic that I've become a fan of is that serverless means your **infrastructure upgrades itself**.
 
-<Tweet id="1095927783421706240" />
-
 This includes everything from upgrading the operating system, to patching the system's OpenSSL, to bumping the version of the Node.js function runtime.
 
 This wonderful effect is particularly pronounced for databases. It's one thing to upgrade the infrastructure of *stateless* code execution, but dealing with data is a whole new challenge that I'm glad we no longer have to deal with <Ref id="4" />.
@@ -178,8 +147,6 @@ Which obviously has a *relevant xkcd* as prior art:
 Microservices allow you to break down a service's dependencies into independently deployable units.
 
 The problem? The assurances that were previously statically guaranteed by the compiler or runtime for a given piece of software are now gone. What was before a unit becomes a distributed system.
-
-<Tweet id="1260603053889052673" />
 
 Not only are microservices harder to *manage* than, say, a static blob of code together with its dependencies inside a function or container, but odds are they are also **less available**.
 
@@ -323,8 +290,6 @@ It's easy to dismiss the hype around NoCode and LowCode as just hype, but I thin
 
 For one: the less code you write, the easier to maintain, and [the less likely](#testing-the-jamstack) that [it will be wrong](#all-code-is-wrong). Next.js is a clear example of this. Our data-fetching <Ref id="7" /> library [SWR](https://swr.now.sh/) is another. [Zero-config deployments](https://vercel.com/blog/zero-config), another.
 
-<Tweet id="1191828261501853696" />
-
 I suspect 2020 and the years to come will see LowCode solutions (like React, Vue, [Svelte](https://svelte.dev/)...) continue to gain traction by making it simple and [succinct](https://twitter.com/mweststrate/status/1055532227939966976?lang=en) to share UI and behavior (e.g.: as UI *components* or [*hooks*](https://reactjs.org/docs/hooks-intro.html)).
 
 We will also [see](https://divjoy.com/) the [rise](https://www.framer.com/development) of [visual](https://blocks-ui.com/) [tools](https://builderx.io/) to [bring](https://codesandbox.io/) [those](https://shift.studio/) [primitives](https://www.modulz.app/) [together](https://tinacms.org/) more [efficiently](https://teleporthq.io/), including the capability to bring reusable components from either a canonical component system or a global shared library.
@@ -364,8 +329,6 @@ The president of the European Central Bank said the word "stablecoin" in 2019. T
 ## Zoom just works better [#zoom-works-better]
 
 [Zoom went public](https://www.businessinsider.com/zoom-files-to-go-public-2019-3). Its differentiator? **It works better**.
-
-<Tweet id="1109207974994735104" />
 
 ## Google's engineering practices go open-source [#google-oss-pratices]
 
