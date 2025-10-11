@@ -24,20 +24,18 @@ export async function Image({
       let imageBuffer: Buffer | null = null;
 
       if (src.startsWith("http")) {
-        imageBuffer = Buffer.from(
-          await fetch(src).then(res => res.arrayBuffer())
-        );
+        const response = await fetch(src);
+        const arrayBuffer = await response.arrayBuffer();
+        imageBuffer = Buffer.from(arrayBuffer);
       } else {
         if (
           !process.env.CI &&
           process.env.VERCEL_URL &&
           process.env.NODE_ENV === "production"
         ) {
-          imageBuffer = Buffer.from(
-            await fetch("https://" + process.env.VERCEL_URL + src).then(res =>
-              res.arrayBuffer()
-            )
-          );
+          const response = await fetch("https://" + process.env.VERCEL_URL + src);
+          const arrayBuffer = await response.arrayBuffer();
+          imageBuffer = Buffer.from(arrayBuffer);
         } else {
           imageBuffer = await readFile(
             new URL(
