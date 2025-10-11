@@ -26,9 +26,6 @@ importers:
       comma-number:
         specifier: ^2.1.0
         version: 2.1.0
-      date-fns:
-        specifier: ^2.29.3
-        version: 2.29.3
       geist:
         specifier: ^1.5.1
         version: 1.5.1(next@16.0.0-beta.0(react-dom@19.2.0(react@19.2.0))(react@19.2.0))
@@ -65,9 +62,6 @@ importers:
       time-ago:
         specifier: ^0.2.1
         version: 0.2.1
-      word-wrap:
-        specifier: ^1.2.5
-        version: 1.2.5
     devDependencies:
       '@types/comma-number':
         specifier: ^2.1.0
@@ -454,10 +448,6 @@ packages:
 
   csstype@3.1.1:
     resolution: {integrity: sha512-DJR/VvkAvSZW9bTouZue2sSxDwdTN92uHjqeKVm+0dAqdfNykRzQ95tay8aXMBAAPpUiq4Qcug2L7neoRh2Egw==}
-
-  date-fns@2.29.3:
-    resolution: {integrity: sha512-dDCnyH2WnnKusqvZZ6+jA1O51Ibt8ZMRNkDZdyAyK4YfbDwa/cEmuztzG5pk6hqlp9aSBPYcjOlktquahGwGeA==}
-    engines: {node: '>=0.11'}
 
   debug@2.6.9:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}
@@ -921,10 +911,6 @@ packages:
   whatwg-url@5.0.0:
     resolution: {integrity: sha512-saE57nupxk6v3HY35+jzBwYa0rKSy0XR8JSxZPwgLr7ys0IBzhGviA1/TUGJLmSVqs8pb9AnvICXEuOHLprYTw==}
 
-  word-wrap@1.2.5:
-    resolution: {integrity: sha512-BN22B5eaMMI9UMtjrGd5g5eCYPpCPDUy0FJXbYsaT5zYxjFOckS53SQDE3pWkVoWpHXVb3BrYcEN4Twa55B5cA==}
-    engines: {node: '>=0.10.0'}
-
   wrappy@1.0.2:
     resolution: {integrity: sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==}
 
@@ -1187,8 +1173,6 @@ snapshots:
   cssesc@3.0.0: {}
 
   csstype@3.1.1: {}
-
-  date-fns@2.29.3: {}
 
   debug@2.6.9:
     dependencies:
@@ -1634,8 +1618,6 @@ snapshots:
     dependencies:
       tr46: 0.0.3
       webidl-conversions: 3.0.1
-
-  word-wrap@1.2.5: {}
 
   wrappy@1.0.2: {}
 
