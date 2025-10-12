@@ -31,8 +31,7 @@ function List({ posts }) {
         const year = getYear(post.date);
         const firstOfYear =
           !posts[i - 1] || getYear(posts[i - 1].date) !== year;
-        const lastOfYear =
-          !posts[i + 1] || getYear(posts[i + 1].date) !== year;
+        const lastOfYear = !posts[i + 1] || getYear(posts[i + 1].date) !== year;
 
         return (
           <li key={post.id}>
@@ -45,18 +44,20 @@ function List({ posts }) {
               >
                 <span
                   className={`py-2 flex grow items-center ${
-                    !firstOfYear ? "ml-14" : ""
+                    !firstOfYear ? "ml-10 md:ml-14" : ""
                   }`}
                 >
                   {firstOfYear && (
-                    <span className="w-14 inline-block self-start shrink-0 text-neutral-500 text-xs dark:text-neutral-500 mt-0.5">
+                    <span className="w-10 md:w-14 inline-block self-start shrink-0 text-neutral-500 text-xs dark:text-neutral-500 mt-0.5">
                       {year}
                     </span>
                   )}
 
                   <span className="grow dark:text-gray-100">
-		    <span className="[li:hover_&]:bg-neutral-200 dark:[li:hover_&]:bg-neutral-700 transition-all rounded-xl py-0.5 px-1.5">{post.title}</span>
-		  </span>
+                    <span className="[li:hover_&]:bg-neutral-200 dark:[li:hover_&]:bg-neutral-700 transition-all rounded-xl py-0.5 px-1.5">
+                      {post.title}
+                    </span>
+                  </span>
 
                   <span className="text-neutral-500 dark:text-neutral-500 text-xs mt-0.5">
                     {post.viewsFormatted}
