@@ -8,14 +8,14 @@ import commaNumber from "comma-number";
 
 // Image
 const rauchgPhoto = toArrayBuffer(
-  readFileSync(join(process.cwd(), "public/images/rauchg.gray.jpg"))
+  readFileSync(join(process.cwd(), "public/images/rauchg.png"))
 );
 
 // Fonts
 const fontsDir = join(process.cwd(), "fonts");
 
 const geistSans = readFileSync(
-  join(fontsDir, "geist-light.ttf")
+  join(fontsDir, "geist-regular.ttf")
 );
 
 const geistSansMedium = readFileSync(
@@ -41,7 +41,7 @@ export async function GET() {
             <div tw="flex">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                tw="rounded-full h-74"
+                tw="h-74"
                 alt="Guillermo Rauch"
                 // @ts-ignore
                 src={rauchgPhoto}
@@ -83,7 +83,7 @@ export async function GET() {
         {
           name: "Geist",
           data: geistSans,
-          weight: 300,
+          weight: 400,
         },
         {
           name: "Geist Medium",

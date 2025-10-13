@@ -8,15 +8,11 @@ import { join } from "path";
 const fontsDir = join(process.cwd(), "fonts");
 
 const geistSans = readFileSync(
-  join(fontsDir, "geist-light.ttf")
+  join(fontsDir, "geist-regular.ttf")
 );
 
-const geistSansBold = readFileSync(
-  join(fontsDir, "geist-bold.ttf")
-);
-
-const geistMono = readFileSync(
-  join(fontsDir, "geist-mono-regular.ttf")
+const geistSansMedium = readFileSync(
+  join(fontsDir, "geist-medium.ttf")
 );
 
 export async function GET() {
@@ -29,35 +25,32 @@ export async function GET() {
         style={font("Geist")}
       >
         <header tw="flex text-[36px] w-full">
-          <div tw="font-bold" style={font("Geist Bold")}>
+          <div style={font("Geist Medium")}>
             Guillermo Rauch
           </div>
           <div tw="grow" />
           <div tw="text-[28px]">rauchg.com</div>
         </header>
 
-        <main tw="flex mt-10 flex-col w-full" style={font("Geist Mono")}>
-          <div tw="flex w-full text-[26px] text-gray-400 mb-3">
-            <div tw="w-24">date</div>
-            <div tw="grow">title</div>
-            <div>views</div>
-          </div>
+        <main tw="flex mt-10 flex-col w-full">
+          {posts.map((post, i) => {
+            const year = getYear(post.date);
+            const firstOfYear =
+              !posts[i - 1] || getYear(posts[i - 1].date) !== year;
 
-          {posts.map((post, i) => (
-            <div
-              key={post.id}
-              tw="flex py-6 text-[26px] border-gray-300 border-t w-full"
-            >
-              <div tw="flex text-gray-400 w-24">
-                {posts[i - 1] === undefined ||
-                  getYear(post.date) !== getYear(posts[i - 1].date)
-                  ? getYear(post.date)
-                  : ""}
+            return (
+              <div
+                key={post.id}
+                tw="flex py-3 text-[28px] w-full items-center"
+              >
+                <div tw="flex text-gray-500 w-24 text-[24px]">
+                  {firstOfYear ? year : ""}
+                </div>
+                <div tw="flex grow">{post.title}</div>
+                <div tw="flex text-gray-500 text-[24px]">{post?.viewsFormatted}</div>
               </div>
-              <div tw="flex grow">{post.title}</div>
-              <div tw="flex text-gray-400 pl-7">{post?.viewsFormatted}</div>
-            </div>
-          ))}
+            );
+          })}
         </main>
       </div>
     ),
@@ -68,17 +61,12 @@ export async function GET() {
         {
           name: "Geist",
           data: geistSans,
-          weight: 300,
-        },
-        {
-          name: "Geist Bold",
-          data: geistSansBold,
-          weight: 700,
-        },
-        {
-          name: "Geist Mono",
-          data: geistMono,
           weight: 400,
+        },
+        {
+          name: "Geist Medium",
+          data: geistSansMedium,
+          weight: 500,
         },
       ],
     }
