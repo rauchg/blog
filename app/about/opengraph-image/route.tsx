@@ -14,17 +14,11 @@ const rauchgPhoto = toArrayBuffer(
 // Fonts
 const fontsDir = join(process.cwd(), "fonts");
 
-const geistSans = readFileSync(
-  join(fontsDir, "geist-regular.ttf")
-);
+const geistSans = readFileSync(join(fontsDir, "geist-regular.ttf"));
 
-const geistSansMedium = readFileSync(
-  join(fontsDir, "geist-medium.ttf")
-);
+const geistSansMedium = readFileSync(join(fontsDir, "geist-medium.ttf"));
 
-const geistMono = readFileSync(
-  join(fontsDir, "geist-mono-regular.ttf")
-);
+const geistMono = readFileSync(join(fontsDir, "geist-mono-regular.ttf"));
 
 export async function GET() {
   const posts = await getPosts();
@@ -32,10 +26,7 @@ export async function GET() {
 
   return new ImageResponse(
     (
-      <div
-        tw="flex p-10 h-full w-full bg-white flex-col"
-        style={font("Geist")}
-      >
+      <div tw="flex p-10 h-full w-full bg-white flex-col" style={font("Geist")}>
         <main tw="flex grow pt-4 w-full justify-center items-center">
           <div tw="flex flex-row">
             <div tw="flex">
@@ -69,7 +60,7 @@ export async function GET() {
         </main>
 
         <footer
-          tw="flex w-full justify-center text-2xl text-gray-500"
+          tw="flex w-full justify-center text-2xl text-gray-500 mb-6"
           style={font("Geist Mono")}
         >
           {posts.length} posts / {commaNumber(viewsSum)} views
