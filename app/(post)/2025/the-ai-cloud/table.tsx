@@ -2,7 +2,7 @@ import { A } from '../../components/a'
 
 export function Table() {
   return (
-    <div className="relative my-12 lg:-mx-[calc((100vw-100%)/2)] overflow-x-auto">
+    <div className="relative my-12 sm:-mx-8 lg:-mx-12 xl:-mx-20 2xl:-mx-40 overflow-x-auto">
       <table className="w-full max-w-4xl mx-auto border-collapse border border-neutral-300 dark:border-neutral-700">
         <thead>
           <tr className="bg-neutral-100 dark:bg-neutral-900">

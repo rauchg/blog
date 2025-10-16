@@ -25,7 +25,7 @@ const CustomLegend = (props: any) => {
   };
 
   return (
-    <div className="flex justify-center gap-7 mt-6">
+    <div className="flex flex-wrap justify-center gap-x-7 gap-y-3 mt-6">
       {payload.map((entry: any, index: number) => {
         // Use different logo URLs based on the package
         const logoUrl = entry.value === 'ai'
@@ -50,7 +50,7 @@ const CustomLegend = (props: any) => {
               className={entry.value === 'ai' ? "w-4 h-4 dark:invert dark:opacity-85" : "w-4 h-4"}
             />
           <span
-            className={`font-mono text-xs border-b border-transparent group-hover:border-dotted transition-colors ${entry.colorClass || ''}`}
+            className={`font-mono text-xs whitespace-nowrap border-b border-transparent group-hover:border-dotted transition-colors ${entry.colorClass || ''}`}
             style={{
               color: entry.color || undefined,
               borderBottomColor: "transparent",
@@ -134,8 +134,8 @@ export function Chart() {
   const ticks = generateTicks();
 
   return (
-    <div className="relative my-12 lg:-mx-[calc((100vw-100%)/2)] overflow-x-auto">
-      <div className="w-full max-w-4xl mx-auto border border-neutral-300 dark:border-neutral-700 p-6">
+    <div className="relative my-12 sm:-mx-8 lg:-mx-12 xl:-mx-20 2xl:-mx-40 overflow-x-auto">
+      <div className="w-full max-w-4xl mx-auto border border-neutral-300 dark:border-neutral-700 p-3 sm:p-6">
         <ResponsiveContainer width="100%" height={450}>
           <LineChart data={data}>
             <CartesianGrid
