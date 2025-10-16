@@ -1,6 +1,11 @@
 {
   "posts": [
     {
+      "id": "the-ai-cloud",
+      "date": "Oct 15, 2025",
+      "title": "The AI Cloud"
+    },
+    {
       "id": "making-the-web-faster",
       "date": "June 23, 2021",
       "title": "Making the web. Faster."
