@@ -1,4 +1,4 @@
-export const revalidate = 60;
+export const revalidate = 300;
 
 import { ImageResponse } from "next/og";
 import { getPosts } from "@/app/get-posts";

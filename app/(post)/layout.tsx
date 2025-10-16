@@ -1,7 +1,7 @@
 import { Header } from "./header";
 import { getPosts } from "../get-posts";
 
-export const revalidate = 60;
+export const revalidate = 300;
 
 export default async function Layout({ children }) {
   const posts = await getPosts();
