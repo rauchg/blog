@@ -34,7 +34,7 @@ function List({ posts }) {
         const lastOfYear = !posts[i + 1] || getYear(posts[i + 1].date) !== year;
 
         return (
-          <li key={post.id}>
+          <li key={post.id} className="group">
             <Link href={`/${new Date(post.date).getFullYear()}/${post.id}`}>
               <span
                 className={`flex
@@ -54,7 +54,7 @@ function List({ posts }) {
                   )}
 
                   <span className="grow dark:text-gray-100">
-                    <span className="[li:hover_&]:bg-neutral-200 dark:[li:hover_&]:bg-neutral-700 transition-all rounded-xl py-0.5 px-1.5">
+                    <span className="group-hover:bg-neutral-200 dark:group-hover:bg-neutral-700 transition-all rounded-xl py-0.5 px-1.5">
                       {post.title}
                     </span>
                   </span>

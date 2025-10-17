@@ -1,36 +1,47 @@
 import { Table } from './table'
 import { Chart } from './chart'
 
+export const metadata = {
+  title: 'The AI Cloud',
+  description: 'The evolution of the cloud, from pages to agents, from problems to solutions, from closed AI to open AI',
+  openGraph: {
+    title: 'The AI Cloud',
+    description: 'The evolution of the cloud, from pages to agents, from problems to solutions, from closed AI to open AI',
+    images: [{ url: '/og/the-ai-cloud' }]
+  }
+}
+
 Vercel was born out of my frustration in 2015 that while the cloud enabled
 this seemingly infinite array of possibilities (and compute), the _pixels_
 on the web weren't getting significantly better. And neither was the experience
 of crafting them.
 
 The cloud promised to remove the burden of maintaining physical data centers
-and hardware, but ultimately inherited much of that burden in digital form.
+and hardware, but ultimately we inherited much of that burden in digital form.
 DevOps, K8s, VPCs, CI/CD, IAM, CDNs, IaC... 
 
 The time you should have spent on the pixels... was spent on the configs. The
 jobs you could have devoted to product and customers, were devoted to the setup
-of clusters and machines. But equally-tedious virtual ones... Progress?
+of clusters and machines.
 
-Over the past 10 years, we were fortunate to play a role in inverting this story. We led with developer experience, starting with frameworks
+Over the past 10 years, we've been fortunate to play a role in reversing this story.
+We led with developer experience, starting with frameworks
 and tools that, upon deployment, _generated_ the infrastructure. React 
 pioneered the concept that the DOM is the _output_ of your state and data.
 
 We set out to make Vercel the _React of the Cloud_, where the hyperscaler
-primitives are outputs _not_ to be directly manipulated, or jQueryed. And,
+primitives are outputs not to be directly manipulated, or jQueryed. And,
 in the process, we made a popular React framework too.
 
-The results: Next.js saw 500M downloads over the past 12 months, which is
-more than in its entire existence from 2016-2024. Vercel just crossed 1B
+The results: Next.js's seen 500M downloads over the past 12 months, which is
+more than in the entire 2016 to 2024 period. Vercel is crossing 1 billion
 application deployments. We now power two of the top 20 highest traffic
 web properties on the planet, like OpenAI and The Weather Company, while also
 serving millions of applications of all sizes, including 1-person
 companies making millions in ARR.
 
 But to win the next decade, Vercel must heed the advice of its hyperscaler
-partner and predecessor: it's always Day One.
+predecessor and partner: it's always Day One.
 
 AI is eating the Web, and with it, the Web Services we're used to. There
 are three massive trends that are shaking up the web, the cloud, and
@@ -53,7 +64,7 @@ data centers, and wanted to dream up new experiences of their own.
 Amazon.com is a set of pages. Very fast, dynamic, personalized pages. Emphasis
 on fast... something that, despite the rise of AWS, remained elusive to most and
 today underpins a lot of the success of the Vercel business. Customers like
-Under Armour, PetSmart, Nintendo, and Porsche partner with us because we
+Under Armour, PetSmart, DoorDash, Nintendo, and Porsche partner with us because we
 help them work backwards from the customer experience, delivering fast pages
 and great product experiences, while we automate the infrastructure away.
 
@@ -124,8 +135,8 @@ you will.
 
 We believe that an agentic cloud will repair and optimize, not merely inform.
 Every application at scale today incurs gigantic costs associated with
-collecting telemetry and observability data, surfacing it in dashboards... with
-the hope that humans will open them, prioritize issues, and fix them by hand.
+collecting telemetry and observability data, surfacing it in dashboards...
+hoping that humans will open them, prioritize issues, and fix them by hand.
 
 Fundamentally, we believe an AI Cloud shouldn't give you problem after problem
 (alerts, 5xx errors, latency spikes, traffic anomalies...). It should give you
@@ -151,7 +162,7 @@ is the AI SDK, which not only abstracts over providers, it makes the developer
 experience even more delightful than the vendor-specific SDKs.
 
 Developers seem to agree, with the AI SDK package (`ai`) on npm now being
-the second largest AI package by downloads, second only to `openai`:
+the second-largest AI package by downloads, second only to `openai`:
 
 <Chart />
 
@@ -173,8 +184,8 @@ empower and delight developers, but also their agents.
 
 It's also true for the cloud. The "hello world" experience of yesterday
 was a page, today it's an agent. The interface was clicking through UIs,
-today it's prompting, or just doing work behind the scenes. Surfacing
-insights and solutions, not endless UI or problems.
+today it's prompting, or just doing work behind the scenes. [Surfacing
+insights and solutions](https://x.com/rauchg/status/1978585286130221336), not endless UI or problems.
 
 For all of us, [developers or not](https://v0.app), this is an opportunity to reinvent and reimagine the web
 and continue building it on open foundations.

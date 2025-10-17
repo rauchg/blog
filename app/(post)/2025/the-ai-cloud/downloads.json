@@ -1,144 +1,506 @@
 [
   {
+    "date": "2022-12-05",
+    "openai": 57292,
+    "ai": 30,
+    "@anthropic-ai/sdk": 0,
+    "@google/genai": 0
+  },
+  {
+    "date": "2022-12-12",
+    "openai": 65185,
+    "ai": 8,
+    "@anthropic-ai/sdk": 0,
+    "@google/genai": 0
+  },
+  {
+    "date": "2022-12-19",
+    "openai": 66773,
+    "ai": 25,
+    "@anthropic-ai/sdk": 0,
+    "@google/genai": 0
+  },
+  {
+    "date": "2022-12-26",
+    "openai": 52491,
+    "ai": 25,
+    "@anthropic-ai/sdk": 0,
+    "@google/genai": 0
+  },
+  {
+    "date": "2023-01-02",
+    "openai": 94276,
+    "ai": 40,
+    "@anthropic-ai/sdk": 0,
+    "@google/genai": 0
+  },
+  {
+    "date": "2023-01-09",
+    "openai": 125559,
+    "ai": 39,
+    "@anthropic-ai/sdk": 0,
+    "@google/genai": 0
+  },
+  {
+    "date": "2023-01-16",
+    "openai": 135360,
+    "ai": 61,
+    "@anthropic-ai/sdk": 0,
+    "@google/genai": 0
+  },
+  {
+    "date": "2023-01-23",
+    "openai": 153439,
+    "ai": 48,
+    "@anthropic-ai/sdk": 0,
+    "@google/genai": 0
+  },
+  {
+    "date": "2023-01-30",
+    "openai": 174077,
+    "ai": 59,
+    "@anthropic-ai/sdk": 283,
+    "@google/genai": 0
+  },
+  {
+    "date": "2023-02-06",
+    "openai": 172397,
+    "ai": 70,
+    "@anthropic-ai/sdk": 269,
+    "@google/genai": 0
+  },
+  {
+    "date": "2023-02-13",
+    "openai": 204288,
+    "ai": 39,
+    "@anthropic-ai/sdk": 117,
+    "@google/genai": 0
+  },
+  {
+    "date": "2023-02-20",
+    "openai": 221136,
+    "ai": 51,
+    "@anthropic-ai/sdk": 294,
+    "@google/genai": 0
+  },
+  {
+    "date": "2023-02-27",
+    "openai": 298568,
+    "ai": 61,
+    "@anthropic-ai/sdk": 269,
+    "@google/genai": 0
+  },
+  {
+    "date": "2023-03-06",
+    "openai": 300290,
+    "ai": 54,
+    "@anthropic-ai/sdk": 333,
+    "@google/genai": 0
+  },
+  {
+    "date": "2023-03-13",
+    "openai": 335808,
+    "ai": 69,
+    "@anthropic-ai/sdk": 14771,
+    "@google/genai": 0
+  },
+  {
+    "date": "2023-03-20",
+    "openai": 348445,
+    "ai": 88,
+    "@anthropic-ai/sdk": 33243,
+    "@google/genai": 0
+  },
+  {
+    "date": "2023-03-27",
+    "openai": 422316,
+    "ai": 116,
+    "@anthropic-ai/sdk": 10796,
+    "@google/genai": 0
+  },
+  {
+    "date": "2023-04-03",
+    "openai": 462762,
+    "ai": 93,
+    "@anthropic-ai/sdk": 44879,
+    "@google/genai": 0
+  },
+  {
+    "date": "2023-04-10",
+    "openai": 459839,
+    "ai": 144,
+    "@anthropic-ai/sdk": 41167,
+    "@google/genai": 0
+  },
+  {
+    "date": "2023-04-17",
+    "openai": 513333,
+    "ai": 98,
+    "@anthropic-ai/sdk": 50784,
+    "@google/genai": 0
+  },
+  {
+    "date": "2023-04-24",
+    "openai": 622756,
+    "ai": 70,
+    "@anthropic-ai/sdk": 56903,
+    "@google/genai": 0
+  },
+  {
+    "date": "2023-05-01",
+    "openai": 619377,
+    "ai": 54,
+    "@anthropic-ai/sdk": 57512,
+    "@google/genai": 0
+  },
+  {
+    "date": "2023-05-08",
+    "openai": 645655,
+    "ai": 89,
+    "@anthropic-ai/sdk": 64885,
+    "@google/genai": 0
+  },
+  {
+    "date": "2023-05-15",
+    "openai": 605407,
+    "ai": 106,
+    "@anthropic-ai/sdk": 65310,
+    "@google/genai": 0
+  },
+  {
+    "date": "2023-05-22",
+    "openai": 611254,
+    "ai": 87,
+    "@anthropic-ai/sdk": 70894,
+    "@google/genai": 0
+  },
+  {
+    "date": "2023-05-29",
+    "openai": 592382,
+    "ai": 102,
+    "@anthropic-ai/sdk": 77633,
+    "@google/genai": 0
+  },
+  {
+    "date": "2023-06-05",
+    "openai": 714036,
+    "ai": 85,
+    "@anthropic-ai/sdk": 101044,
+    "@google/genai": 0
+  },
+  {
+    "date": "2023-06-12",
+    "openai": 817752,
+    "ai": 5430,
+    "@anthropic-ai/sdk": 108475,
+    "@google/genai": 0
+  },
+  {
+    "date": "2023-06-19",
+    "openai": 764287,
+    "ai": 13846,
+    "@anthropic-ai/sdk": 111345,
+    "@google/genai": 0
+  },
+  {
+    "date": "2023-06-26",
+    "openai": 847437,
+    "ai": 15306,
+    "@anthropic-ai/sdk": 121247,
+    "@google/genai": 0
+  },
+  {
+    "date": "2023-07-03",
+    "openai": 770883,
+    "ai": 16696,
+    "@anthropic-ai/sdk": 110559,
+    "@google/genai": 0
+  },
+  {
+    "date": "2023-07-10",
+    "openai": 1066288,
+    "ai": 21445,
+    "@anthropic-ai/sdk": 185914,
+    "@google/genai": 0
+  },
+  {
+    "date": "2023-07-17",
+    "openai": 1034995,
+    "ai": 25641,
+    "@anthropic-ai/sdk": 238636,
+    "@google/genai": 0
+  },
+  {
+    "date": "2023-07-24",
+    "openai": 1015947,
+    "ai": 27048,
+    "@anthropic-ai/sdk": 234497,
+    "@google/genai": 0
+  },
+  {
+    "date": "2023-07-31",
+    "openai": 1203663,
+    "ai": 33741,
+    "@anthropic-ai/sdk": 244045,
+    "@google/genai": 0
+  },
+  {
+    "date": "2023-08-07",
+    "openai": 1055789,
+    "ai": 34098,
+    "@anthropic-ai/sdk": 250156,
+    "@google/genai": 0
+  },
+  {
+    "date": "2023-08-14",
+    "openai": 1069387,
+    "ai": 37657,
+    "@anthropic-ai/sdk": 228350,
+    "@google/genai": 0
+  },
+  {
+    "date": "2023-08-21",
+    "openai": 1051966,
+    "ai": 39583,
+    "@anthropic-ai/sdk": 161650,
+    "@google/genai": 0
+  },
+  {
+    "date": "2023-08-28",
+    "openai": 1044438,
+    "ai": 42416,
+    "@anthropic-ai/sdk": 176266,
+    "@google/genai": 0
+  },
+  {
+    "date": "2023-09-04",
+    "openai": 990777,
+    "ai": 44453,
+    "@anthropic-ai/sdk": 165732,
+    "@google/genai": 0
+  },
+  {
+    "date": "2023-09-11",
+    "openai": 1080790,
+    "ai": 48394,
+    "@anthropic-ai/sdk": 187204,
+    "@google/genai": 0
+  },
+  {
+    "date": "2023-09-18",
+    "openai": 1159419,
+    "ai": 54711,
+    "@anthropic-ai/sdk": 267393,
+    "@google/genai": 0
+  },
+  {
+    "date": "2023-09-25",
+    "openai": 1164999,
+    "ai": 57158,
+    "@anthropic-ai/sdk": 245544,
+    "@google/genai": 0
+  },
+  {
+    "date": "2023-10-02",
+    "openai": 1124698,
+    "ai": 59583,
+    "@anthropic-ai/sdk": 228052,
+    "@google/genai": 0
+  },
+  {
     "date": "2023-10-09",
-    "openai": 58646,
-    "ai": 4444
+    "openai": 1112547,
+    "ai": 59339,
+    "@anthropic-ai/sdk": 217520,
+    "@google/genai": 0
   },
   {
     "date": "2023-10-16",
     "openai": 1211694,
-    "ai": 62711
+    "ai": 62711,
+    "@anthropic-ai/sdk": 256820,
+    "@google/genai": 0
   },
   {
     "date": "2023-10-23",
     "openai": 1233817,
-    "ai": 60078
+    "ai": 60078,
+    "@anthropic-ai/sdk": 267279,
+    "@google/genai": 0
   },
   {
     "date": "2023-10-30",
     "openai": 867397,
-    "ai": 47941
+    "ai": 47941,
+    "@anthropic-ai/sdk": 185490,
+    "@google/genai": 0
   },
   {
     "date": "2023-11-06",
     "openai": 1292082,
-    "ai": 72294
+    "ai": 72294,
+    "@anthropic-ai/sdk": 266166,
+    "@google/genai": 0
   },
   {
     "date": "2023-11-13",
     "openai": 1355351,
-    "ai": 74302
+    "ai": 74302,
+    "@anthropic-ai/sdk": 290964,
+    "@google/genai": 0
   },
   {
     "date": "2023-11-20",
     "openai": 1126966,
-    "ai": 67828
+    "ai": 67828,
+    "@anthropic-ai/sdk": 223123,
+    "@google/genai": 0
   },
   {
     "date": "2023-11-27",
     "openai": 1426157,
-    "ai": 77725
+    "ai": 77725,
+    "@anthropic-ai/sdk": 301720,
+    "@google/genai": 0
   },
   {
     "date": "2023-12-04",
     "openai": 1325349,
-    "ai": 73635
+    "ai": 73635,
+    "@anthropic-ai/sdk": 271445,
+    "@google/genai": 0
   },
   {
     "date": "2023-12-11",
     "openai": 1356776,
-    "ai": 85068
+    "ai": 85068,
+    "@anthropic-ai/sdk": 290430,
+    "@google/genai": 0
   },
   {
     "date": "2023-12-18",
     "openai": 1210000,
-    "ai": 81956
+    "ai": 81956,
+    "@anthropic-ai/sdk": 267451,
+    "@google/genai": 0
   },
   {
     "date": "2023-12-25",
     "openai": 688549,
-    "ai": 66969
+    "ai": 66969,
+    "@anthropic-ai/sdk": 148682,
+    "@google/genai": 0
   },
   {
     "date": "2024-01-01",
     "openai": 1120683,
-    "ai": 83508
+    "ai": 83508,
+    "@anthropic-ai/sdk": 242562,
+    "@google/genai": 0
   },
   {
     "date": "2024-01-08",
     "openai": 1405233,
-    "ai": 92829
+    "ai": 92829,
+    "@anthropic-ai/sdk": 310334,
+    "@google/genai": 0
   },
   {
     "date": "2024-01-15",
     "openai": 1397271,
-    "ai": 95037
+    "ai": 95037,
+    "@anthropic-ai/sdk": 299498,
+    "@google/genai": 0
   },
   {
     "date": "2024-01-22",
     "openai": 1435469,
-    "ai": 92580
+    "ai": 92580,
+    "@anthropic-ai/sdk": 306772,
+    "@google/genai": 0
   },
   {
     "date": "2024-01-29",
     "openai": 1487718,
-    "ai": 112692
+    "ai": 112692,
+    "@anthropic-ai/sdk": 321669,
+    "@google/genai": 0
   },
   {
     "date": "2024-02-05",
     "openai": 1441053,
-    "ai": 109796
+    "ai": 109796,
+    "@anthropic-ai/sdk": 315978,
+    "@google/genai": 0
   },
   {
     "date": "2024-02-12",
     "openai": 1519435,
-    "ai": 125715
+    "ai": 125715,
+    "@anthropic-ai/sdk": 296958,
+    "@google/genai": 0
   },
   {
     "date": "2024-02-19",
     "openai": 1568284,
-    "ai": 125320
+    "ai": 125320,
+    "@anthropic-ai/sdk": 326715,
+    "@google/genai": 0
   },
   {
     "date": "2024-02-26",
     "openai": 1660238,
-    "ai": 138343
+    "ai": 138343,
+    "@anthropic-ai/sdk": 345184,
+    "@google/genai": 0
   },
   {
     "date": "2024-03-04",
     "openai": 1682256,
-    "ai": 144382
+    "ai": 144382,
+    "@anthropic-ai/sdk": 378313,
+    "@google/genai": 0
   },
   {
     "date": "2024-03-11",
     "openai": 1745707,
-    "ai": 155279
+    "ai": 155279,
+    "@anthropic-ai/sdk": 437661,
+    "@google/genai": 0
   },
   {
     "date": "2024-03-18",
     "openai": 1667537,
-    "ai": 176302
+    "ai": 176302,
+    "@anthropic-ai/sdk": 406469,
+    "@google/genai": 0
   },
   {
     "date": "2024-03-25",
     "openai": 1471128,
-    "ai": 153460
+    "ai": 153460,
+    "@anthropic-ai/sdk": 428967,
+    "@google/genai": 0
   },
   {
     "date": "2024-04-01",
     "openai": 1656746,
-    "ai": 155012
+    "ai": 155012,
+    "@anthropic-ai/sdk": 499150,
+    "@google/genai": 0
   },
   {
     "date": "2024-04-08",
     "openai": 1654499,
-    "ai": 167238
+    "ai": 167238,
+    "@anthropic-ai/sdk": 513829,
+    "@google/genai": 0
   },
   {
     "date": "2024-04-15",
     "openai": 1697995,
     "ai": 187365,
-    "@anthropic-ai/sdk": 66348,
+    "@anthropic-ai/sdk": 528248,
     "@google/genai": 0
   },
   {
@@ -672,5 +1034,12 @@
     "ai": 3444266,
     "@anthropic-ai/sdk": 2423543,
     "@google/genai": 1445776
+  },
+  {
+    "date": "2025-10-06",
+    "openai": 7251442,
+    "ai": 3625404,
+    "@anthropic-ai/sdk": 2499103,
+    "@google/genai": 1918211
   }
 ]

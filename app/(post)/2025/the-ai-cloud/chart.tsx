@@ -11,15 +11,15 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
-import { A } from '../../components/a';
+import { A } from "../../components/a";
 import data from "./downloads.json";
 
 const CustomLegend = (props: any) => {
-  const { payload } = props;
+  const { payload, isDark } = props;
 
   const packageUrls: Record<string, string> = {
     openai: "https://www.npmjs.com/package/openai",
-    ai: "https://sdk.vercel.ai",
+    ai: "https://ai-sdk.dev",
     "@anthropic-ai/sdk": "https://www.npmjs.com/package/@anthropic-ai/sdk",
     "@google/genai": "https://www.npmjs.com/package/@google/genai",
   };
@@ -28,13 +28,16 @@ const CustomLegend = (props: any) => {
     <div className="flex flex-wrap justify-center gap-x-7 gap-y-3 mt-6">
       {payload.map((entry: any, index: number) => {
         // Use different logo URLs based on the package
-        const logoUrl = entry.value === 'ai'
-          ? "https://cdn.simpleicons.org/vercel" // Base URL without color
-          : entry.value === 'openai'
-          ? "https://cdn.simpleicons.org/openai/6b7280"
-          : entry.value === '@anthropic-ai/sdk'
-          ? "https://cdn.simpleicons.org/anthropic/c2410c"
-          : "https://cdn.simpleicons.org/google/ca8a04";
+        const logoUrl =
+          entry.value === "ai"
+            ? "https://cdn.simpleicons.org/vercel" // Base URL without color
+            : entry.value === "openai"
+            ? `https://cdn.simpleicons.org/openai/${
+                isDark ? "a3a3a3" : "737373"
+              }`
+            : entry.value === "@anthropic-ai/sdk"
+            ? "https://cdn.simpleicons.org/anthropic/c2410c"
+            : "https://cdn.simpleicons.org/google/ca8a04";
 
         return (
           <a
@@ -47,26 +50,47 @@ const CustomLegend = (props: any) => {
             <img
               src={logoUrl}
               alt={entry.value}
-              className={entry.value === 'ai' ? "w-4 h-4 dark:invert dark:opacity-85" : "w-4 h-4"}
-            />
-          <span
-            className={`font-mono text-xs whitespace-nowrap border-b border-transparent group-hover:border-dotted transition-colors ${entry.colorClass || ''}`}
-            style={{
-              color: entry.color || undefined,
-              borderBottomColor: "transparent",
-            }}
-            onMouseEnter={e => {
-              if (entry.color) {
-                e.currentTarget.style.borderBottomColor = entry.color + "80";
+              className={
+                entry.value === "ai"
+                  ? "w-4 h-4 dark:invert dark:opacity-85"
+                  : "w-4 h-4"
               }
-            }}
-            onMouseLeave={e => {
-              e.currentTarget.style.borderBottomColor = "transparent";
-            }}
-          >
-            {`\`${entry.value}\``}
-          </span>
-        </a>
+            />
+            <span
+              className={`font-mono text-xs whitespace-nowrap ${
+                entry.colorClass || ""
+              }`}
+              style={{
+                color: entry.color || undefined,
+              }}
+            >
+              `
+              <span
+                className="border-b border-transparent group-hover:border-dotted transition-colors"
+                style={{
+                  borderBottomColor: "transparent",
+                }}
+                onMouseEnter={e => {
+                  const color =
+                    entry.color ||
+                    (entry.value === "ai"
+                      ? isDark
+                        ? "#d4d4d4"
+                        : "#000000"
+                      : undefined);
+                  if (color) {
+                    e.currentTarget.style.borderBottomColor = color + "80";
+                  }
+                }}
+                onMouseLeave={e => {
+                  e.currentTarget.style.borderBottomColor = "transparent";
+                }}
+              >
+                {entry.value}
+              </span>
+              `
+            </span>
+          </a>
         );
       })}
     </div>
@@ -134,14 +158,19 @@ export function Chart() {
   const ticks = generateTicks();
 
   return (
-    <div className="relative my-12 sm:-mx-8 lg:-mx-12 xl:-mx-20 2xl:-mx-40 overflow-x-auto">
-      <div className="w-full max-w-4xl mx-auto border border-neutral-300 dark:border-neutral-700 p-3 sm:p-6">
-        <ResponsiveContainer width="100%" height={450}>
+    <div className="relative my-12 lg:-mx-20 overflow-x-auto focus:outline-none">
+      <style jsx>{`
+        .chart-container :global(svg) {
+          outline: none !important;
+        }
+        .chart-container :global(svg:focus) {
+          outline: none !important;
+        }
+      `}</style>
+      <div className="chart-container w-full max-w-4xl mx-auto border border-neutral-300 dark:border-neutral-700 p-3 sm:p-6 focus:outline-none">
+        <ResponsiveContainer width="100%" height={400}>
           <LineChart data={data}>
-            <CartesianGrid
-              strokeDasharray="3 3"
-              className="stroke-neutral-200 dark:stroke-neutral-800"
-            />
+            <CartesianGrid stroke="none" />
             <XAxis
               dataKey="date"
               ticks={ticks}
@@ -152,17 +181,19 @@ export function Chart() {
                 return `${month} '${year}`;
               }}
               className="text-xs"
-              tick={{ dy: 10, fill: isDark ? "#a3a3a3" : "#666666" }}
+              tick={{ dy: 10, fill: isDark ? "#737373" : "#666666" }}
             />
             <YAxis
+              domain={[0, 7500000]}
               tickFormatter={value => {
                 if (value >= 1000000) return `${(value / 1000000).toFixed(1)}M`;
                 if (value >= 1000) return `${(value / 1000).toFixed(0)}K`;
                 return value.toString();
               }}
               className="text-xs"
-              tick={{ dx: -10, fill: isDark ? "#a3a3a3" : "#666666" }}
-              width={60}
+              tick={{ dx: -2, fill: isDark ? "#737373" : "#666666" }}
+              width={35}
+              tickCount={8}
             />
             <Tooltip content={<CustomTooltip />} />
             <Line
@@ -178,7 +209,7 @@ export function Chart() {
             <Line
               type="monotone"
               dataKey="openai"
-              stroke="#737373"
+              stroke={isDark ? "#a3a3a3" : "#737373"}
               strokeWidth={2}
               dot={false}
               name="openai"
@@ -208,16 +239,18 @@ export function Chart() {
           </LineChart>
         </ResponsiveContainer>
         <CustomLegend
+          isDark={isDark}
           payload={[
-            { value: 'ai', colorClass: 'text-black dark:text-neutral-300' },
-            { value: 'openai', color: '#737373' },
-            { value: '@anthropic-ai/sdk', color: '#dc2626' },
-            { value: '@google/genai', color: '#eab308' }
+            { value: "openai", color: isDark ? "#a3a3a3" : "#737373" },
+            { value: "ai", colorClass: "text-black dark:text-neutral-300" },
+            { value: "@anthropic-ai/sdk", color: "#dc2626" },
+            { value: "@google/genai", color: "#eab308" },
           ]}
         />
       </div>
       <p className="text-center mt-4 px-4 font-mono text-xs sm:text-sm text-gray-600 dark:text-gray-400">
-        <A href="https://ai-sdk.dev">AI SDK</A> is now the #2 largest SDK for AI in JS/TS, but, crucially, one that's model and provider agnostic
+        <A href="https://ai-sdk.dev">AI SDK</A> is now the #2 largest SDK for AI
+        in JS/TS, but, crucially, one that's model and provider agnostic
       </p>
     </div>
   );
