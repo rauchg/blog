@@ -19,6 +19,7 @@
     "react-tweet": "^3.2.2",
     "react-wrap-balancer": "^1.1.1",
     "react-youtube": "^10.1.0",
+    "recharts": "^3.2.1",
     "swr": "^2.3.6",
     "time-ago": "^0.2.1"
   },

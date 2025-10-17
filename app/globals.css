@@ -16,4 +16,24 @@
       @apply bg-[#1C1C1C];
     }
   }
+
+  /* Global text selection styles */
+  ::selection {
+    @apply bg-black text-white;
+  }
+
+  ::-moz-selection {
+    @apply bg-black text-white;
+  }
+
+  /* Dark mode selection styles */
+  @media (prefers-color-scheme: dark) {
+    ::selection {
+      @apply bg-white text-black;
+    }
+
+    ::-moz-selection {
+      @apply bg-white text-black;
+    }
+  }
 }
