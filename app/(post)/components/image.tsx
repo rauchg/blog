@@ -33,7 +33,8 @@ export async function Image({
           process.env.VERCEL_URL &&
           process.env.NODE_ENV === "production"
         ) {
-          const response = await fetch("https://" + process.env.VERCEL_URL + src);
+          const url = "https://" + process.env.VERCEL_URL + src + `?image_bot_bypass=${process.env.IMAGE_BOT_BYPASS_SECRET}`;
+          const response = await fetch(url);
           const arrayBuffer = await response.arrayBuffer();
           imageBuffer = Buffer.from(arrayBuffer);
         } else {
