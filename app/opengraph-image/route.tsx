@@ -1,5 +1,3 @@
-export const revalidate = 300;
-
 import { ImageResponse } from "next/og";
 import { getPosts } from "@/app/get-posts";
 import { readFileSync } from "fs";

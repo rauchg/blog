@@ -15,7 +15,13 @@ type Views = {
   [key: string]: string;
 };
 
-export const getPosts = async () => {
+/**
+ * Fetches all blog posts with view counts from Redis.
+ * This function is cached with a 300 second revalidation period.
+ * Cache is tagged with "posts" for targeted revalidation.
+ */
+export async function getPosts() {
+  "use cache";
   const allViews: null | Views = await redis.hgetall("views");
   const posts = postsData.posts.map((post): Post => {
     const views = Number(allViews?.[post.id] ?? 0);
@@ -26,4 +32,10 @@ export const getPosts = async () => {
     };
   });
   return posts;
+}
+
+// Cache configuration for getPosts
+getPosts.cacheLife = {
+  revalidate: 300,
 };
+getPosts.cacheTags = ["posts"];

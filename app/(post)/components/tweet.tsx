@@ -16,6 +16,7 @@ interface TweetArgs {
 }
 
 async function getAndCacheTweet(id: string): Promise<TweetType | undefined> {
+  "use cache";
   // we first prioritize getting a fresh tweet
   try {
     const tweet = await getTweet(id);
@@ -37,6 +38,11 @@ async function getAndCacheTweet(id: string): Promise<TweetType | undefined> {
 
   return cachedTweet;
 }
+
+getAndCacheTweet.cacheLife = {
+  revalidate: 300,
+};
+getAndCacheTweet.cacheTags = (id: string) => [`tweet-${id}`];
 
 const TweetContent = async ({ id, components }: TweetProps) => {
   const tweet = id ? await getAndCacheTweet(id) : undefined;
