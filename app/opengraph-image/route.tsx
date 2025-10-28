@@ -1,4 +1,4 @@
-export const revalidate = 300;
+"use cache";
 
 import { ImageResponse } from "next/og";
 import { getPosts } from "@/app/get-posts";
@@ -7,27 +7,18 @@ import { join } from "path";
 
 const fontsDir = join(process.cwd(), "fonts");
 
-const geistSans = readFileSync(
-  join(fontsDir, "geist-regular.ttf")
-);
+const geistSans = readFileSync(join(fontsDir, "geist-regular.ttf"));
 
-const geistSansMedium = readFileSync(
-  join(fontsDir, "geist-medium.ttf")
-);
+const geistSansMedium = readFileSync(join(fontsDir, "geist-medium.ttf"));
 
 export async function GET() {
   const posts = await getPosts();
 
   return new ImageResponse(
     (
-      <div
-        tw="flex p-10 h-full w-full bg-white flex-col"
-        style={font("Geist")}
-      >
+      <div tw="flex p-10 h-full w-full bg-white flex-col" style={font("Geist")}>
         <header tw="flex text-[36px] w-full">
-          <div style={font("Geist Medium")}>
-            Guillermo Rauch
-          </div>
+          <div style={font("Geist Medium")}>Guillermo Rauch</div>
           <div tw="grow" />
           <div tw="text-[28px]">rauchg.com</div>
         </header>
@@ -39,15 +30,14 @@ export async function GET() {
               !posts[i - 1] || getYear(posts[i - 1].date) !== year;
 
             return (
-              <div
-                key={post.id}
-                tw="flex py-3 text-[28px] w-full items-center"
-              >
+              <div key={post.id} tw="flex py-3 text-[28px] w-full items-center">
                 <div tw="flex text-gray-500 w-24 text-[24px]">
                   {firstOfYear ? year : ""}
                 </div>
                 <div tw="flex grow">{post.title}</div>
-                <div tw="flex text-gray-500 text-[24px]">{post?.viewsFormatted}</div>
+                <div tw="flex text-gray-500 text-[24px]">
+                  {post?.viewsFormatted}
+                </div>
               </div>
             );
           })}

@@ -5,6 +5,7 @@ import { useEffect, useRef } from "react";
 import { ago } from "time-ago";
 import useSWR from "swr";
 import type { Post } from "@/app/get-posts";
+import { Suspense } from "react";
 
 const fetcher = (url: string) => fetch(url).then(res => res.json());
 
@@ -49,12 +50,11 @@ export function Header({ posts }: { posts: Post[] }) {
             <span className="mx-2">|</span>
           </span>
 
-          {/* since we will pre-render the relative time, over time it
-           * will diverge with what the user relative time is, so we suppress the warning.
-           * In practice this is not an issue because we revalidate the entire page over time
-           * and because we will move this to a server component with template.tsx at some point */}
-          <span suppressHydrationWarning={true}>
-            {post.date} ({ago(post.date, true)} ago)
+          <span>
+            {post.date}{" "}
+            <Suspense fallback={null}>
+              <RelativeTime date={post.date} />
+            </Suspense>
           </span>
         </span>
 
@@ -68,6 +68,10 @@ export function Header({ posts }: { posts: Post[] }) {
       </p>
     </>
   );
+}
+
+function RelativeTime({ date }: { date: string }) {
+  return <>({ago(date, true)} ago)</>;
 }
 
 function Views({ id, mutate, defaultValue }) {

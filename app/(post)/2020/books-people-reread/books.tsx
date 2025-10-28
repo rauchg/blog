@@ -6,6 +6,7 @@ import {
 } from "./notion";
 
 export async function Books() {
+  "use cache";
   const books = await getData();
   return (
     <div className="books grid grid-cols-[repeat(auto-fit,minmax(240px,1fr))] gap-10 px-5 mb-10">

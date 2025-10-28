@@ -15,6 +15,7 @@ export async function Image({
   width: number | null;
   height: number | null;
 }) {
+  "use cache";
   const isDataImage = src.startsWith("data:");
   if (isDataImage) {
     /* eslint-disable @next/next/no-img-element */
@@ -33,7 +34,11 @@ export async function Image({
           process.env.VERCEL_URL &&
           process.env.NODE_ENV === "production"
         ) {
-          const url = "https://" + process.env.VERCEL_URL + src + `?image_bot_bypass=${process.env.IMAGE_BOT_BYPASS_SECRET}`;
+          const url =
+            "https://" +
+            process.env.VERCEL_URL +
+            src +
+            `?image_bot_bypass=${process.env.IMAGE_BOT_BYPASS_SECRET}`;
           const response = await fetch(url);
           const arrayBuffer = await response.arrayBuffer();
           imageBuffer = Buffer.from(arrayBuffer);

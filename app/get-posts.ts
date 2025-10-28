@@ -15,7 +15,8 @@ type Views = {
   [key: string]: string;
 };
 
-export const getPosts = async () => {
+export async function getPosts() {
+  "use cache";
   const allViews: null | Views = await redis.hgetall("views");
   const posts = postsData.posts.map((post): Post => {
     const views = Number(allViews?.[post.id] ?? 0);
@@ -26,4 +27,4 @@ export const getPosts = async () => {
     };
   });
   return posts;
-};
+}
