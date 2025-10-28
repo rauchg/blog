@@ -25,12 +25,15 @@ const geist = localFont({
     },
   ],
   variable: "--font-geist-sans",
+  display: "swap",
 });
 
 const geistMono = localFont({
   src: "../fonts/geist-mono-regular.ttf",
   variable: "--font-geist-mono",
   weight: "400",
+  display: "swap",
+  fallback: ["ui-monospace", "SFMono-Regular", "Consolas", "Liberation Mono", "Menlo", "monospace"],
 });
 
 export const metadata = {
