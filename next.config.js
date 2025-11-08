@@ -31,7 +31,6 @@ module.exports = withMDX({
         hostname: "images-na.ssl-images-amazon.com",
         port: "",
         pathname: "/**",
-        search: "",
       },
     ],
   },
