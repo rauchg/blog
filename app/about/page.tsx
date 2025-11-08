@@ -5,15 +5,15 @@ export default function About() {
       
       <div className="prose prose-neutral dark:prose-invert">
         <p className="mb-8 text-lg">
-          I'm Ron Mashate, a Product Leader and AI Experience Builder based in Toronto. 
+          I&apos;m Ron Mashate, a Product Leader and AI Experience Builder based in Toronto. 
           With 8+ years of experience driving digital transformation and building customer-centric products, 
-          I've helped companies achieve over <b>$25M in revenue impact</b> through strategic product initiatives.
+          I&apos;ve helped companies achieve over <b>$25M in revenue impact</b> through strategic product initiatives.
         </p>
 
         <h2 className="font-bold text-2xl font-serif mt-8 mb-4">Professional Journey</h2>
         
         <p className="mb-4">
-          My journey in product management has taken me from launching Canada's largest native advertising network 
+          My journey in product management has taken me from launching Canada&apos;s largest native advertising network 
           at <b>Postmedia</b> to transforming digital platforms at <b>Cineplex</b> (growing revenue from $2M to $11M) 
           and optimizing customer experiences at <b>Assurance IQ</b> (saving $2M in policyholder LTV).
         </p>
@@ -32,17 +32,17 @@ export default function About() {
         <h2 className="font-bold text-2xl font-serif mt-8 mb-4">Current Focus</h2>
         
         <p className="mb-4">
-          I'm currently building AI memory systems and exploring the intersection of artificial intelligence 
+          I&apos;m currently building AI memory systems and exploring the intersection of artificial intelligence 
           and product development. My Memory MCP project for Claude demonstrates how we can give AI systems 
           persistent context and meaningful recall capabilities.
         </p>
 
         <p className="mb-8">
-          I'm also actively contributing to the open-source community with projects focused on improving 
+          I&apos;m also actively contributing to the open-source community with projects focused on improving 
           AI-human interaction and building practical tools for product managers.
         </p>
 
-        <h2 className="font-bold text-2xl font-serif mt-8 mb-4">Let's Connect</h2>
+        <h2 className="font-bold text-2xl font-serif mt-8 mb-4">Let&apos;s Connect</h2>
         
         <p className="mb-4">
           I love connecting with fellow product leaders, AI enthusiasts, and builders working on interesting problems.
