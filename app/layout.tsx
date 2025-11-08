@@ -1,13 +1,19 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import { Analytics } from "@vercel/analytics/react";
-import AnalyticsWrapper from "./analytics";
+import { Geist, Geist_Mono } from "next/font/google";
+import { Analytics } from "./analytics";
+import { Header } from "./header";
+import { Footer } from "./footer";
 
-const inter = Inter({
+const geist = Geist({
   subsets: ["latin"],
-  display: "swap",
-  variable: "--font-inter",
+  variable: "--font-geist-sans"
+});
+
+const geistMono = Geist_Mono({
+  subsets: ["latin"],
+  variable: "--font-geist-mono",
+  fallback: ["ui-monospace", "SFMono-Regular", "Consolas", "Liberation Mono", "Menlo", "monospace"]
 });
 
 export const metadata: Metadata = {
@@ -42,6 +48,10 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport = {
+  themeColor: "transparent",
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -50,16 +60,17 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} font-sans`}
+      className={`${geist.variable} ${geistMono.variable} ${geist.className} antialiased`}
+      suppressHydrationWarning={true}
     >
-      <head>
-        <AnalyticsWrapper />
-      </head>
-      <body className="antialiased max-w-2xl flex flex-col md:flex-row mx-4 lg:mx-auto">
-        <main className="flex-auto min-w-0 mt-12 md:mt-0 flex flex-col px-2 md:px-0">
+      <body className="dark:text-gray-100 max-w-2xl m-auto">
+        <main className="p-6 pt-3 md:pt-6 min-h-screen">
+          <Header />
           {children}
-          <Analytics />
         </main>
+
+        <Footer />
+        <Analytics />
       </body>
     </html>
   );
