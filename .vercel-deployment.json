@@ -1,0 +1,11 @@
+{
+  "lastDeploymentTrigger": "2025-11-08T16:14:00Z",
+  "triggeredBy": "Manual update to trigger Vercel deployment",
+  "fixes": [
+    "Added all missing npm dependencies",
+    "Fixed font loading issue (switched to Google Inter)",
+    "Updated README with deployment information"
+  ],
+  "projectId": "prj_RBudWJDvDGrfqm2xiWpGut2ys4Ti",
+  "repository": "https://github.com/rmashate/blog"
+}
