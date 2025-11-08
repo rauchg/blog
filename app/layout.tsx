@@ -1,44 +1,56 @@
 import "./globals.css";
+import type { Metadata } from "next";
+import localFont from "next/font/local";
+import { Analytics } from "@vercel/analytics/react";
+import AnalyticsWrapper from "./analytics";
 
-import { Geist, Geist_Mono } from "next/font/google";
-import { Analytics } from "./analytics";
-import { Header } from "./header";
-import { Footer } from "./footer";
-import { doge } from "./doge";
-
-const geist = Geist({
-  subsets: ["latin"],
-  variable: "--font-geist-sans"
+const graphik = localFont({
+  src: [
+    {
+      path: "../fonts/Graphik-Regular.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../fonts/Graphik-Medium.woff2",
+      weight: "600",
+      style: "normal",
+    },
+  ],
+  variable: "--font-graphik",
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  subsets: ["latin"],
-  variable: "--font-geist-mono",
-  fallback: ["ui-monospace", "SFMono-Regular", "Consolas", "Liberation Mono", "Menlo", "monospace"]
-});
-
-export const metadata = {
-  title: "Guillermo Rauch's blog",
-  description:
-    "Guillermo Rauch is the CEO and founder of Vercel, a software engineer, and the creator of Next.js, Mongoose, Socket.io and other open source libraries.",
+export const metadata: Metadata = {
+  metadataBase: new URL("https://blog.rmashate.com"),
+  title: {
+    default: "Ron Mashate - Product Leader & AI Experience Builder",
+    template: "%s | Ron Mashate",
+  },
+  description: "Product management insights, AI systems development, and lessons from building digital products that drive real business impact.",
   openGraph: {
-    title: "Guillermo Rauchg's blog",
-    description:
-      "Guillermo Rauch is the CEO and founder of Vercel, a software engineer, and the creator of Next.js, Mongoose, Socket.io and other open source libraries.",
-    url: "https://rauchg.com",
-    siteName: "Guillermo Rauchg's blog",
-    images: ["/opengraph-image"],
+    title: "Ron Mashate - Product Leader & AI Experience Builder",
+    description: "Product management insights, AI systems development, and lessons from building digital products that drive real business impact.",
+    url: "https://blog.rmashate.com",
+    siteName: "Ron Mashate Blog",
+    locale: "en_US",
+    type: "website",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
   twitter: {
+    title: "Ron Mashate",
     card: "summary_large_image",
-    site: "@rauchg",
-    creator: "@rauchg",
   },
-  metadataBase: new URL("https://rauchg.com"),
-};
-
-export const viewport = {
-  themeColor: "transparent",
 };
 
 export default function RootLayout({
@@ -49,25 +61,16 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geist.variable} ${geistMono.variable} ${geist.className} antialiased`}
-      suppressHydrationWarning={true}
+      className={`${graphik.variable} font-sans`}
     >
       <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(${doge.toString()})();`,
-          }}
-        />
+        <AnalyticsWrapper />
       </head>
-
-      <body className="dark:text-gray-100 max-w-2xl m-auto">
-        <main className="p-6 pt-3 md:pt-6 min-h-screen">
-          <Header />
+      <body className="antialiased max-w-2xl flex flex-col md:flex-row mx-4 lg:mx-auto">
+        <main className="flex-auto min-w-0 mt-12 md:mt-0 flex flex-col px-2 md:px-0">
           {children}
+          <Analytics />
         </main>
-
-        <Footer />
-        <Analytics />
       </body>
     </html>
   );

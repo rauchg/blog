@@ -1,52 +1,39 @@
 {
-  "name": "rauchg-blog",
+  "name": "ron-blog",
+  "version": "1.0.0",
+  "description": "Ron Mashate's personal blog - Product management insights and AI systems development",
+  "author": "Ron Mashate",
   "license": "MIT",
-  "description": "rauchg.com (blog)",
-  "dependencies": {
-    "@mdx-js/react": "^3.1.1",
-    "@next/mdx": "16.0.0-beta.0",
-    "@upstash/redis": "^1.20.1",
-    "@vercel/analytics": "^1.5.0",
-    "@vercel/speed-insights": "^1.2.0",
-    "comma-number": "^2.1.0",
-    "geist": "^1.5.1",
-    "image-size": "^1.0.2",
-    "load-script": "^1.0.0",
-    "next": "16.0.0-beta.0",
-    "react": "19.2.0",
-    "react-dom": "19.2.0",
-    "react-intersection-observer": "^9.16.0",
-    "react-tweet": "^3.2.2",
-    "react-wrap-balancer": "^1.1.1",
-    "react-youtube": "^10.1.0",
-    "recharts": "^3.2.1",
-    "swr": "^2.3.6",
-    "time-ago": "^0.2.1"
-  },
-  "devDependencies": {
-    "@types/comma-number": "^2.1.0",
-    "@types/node": "24.7.2",
-    "@types/react": "19.2.2",
-    "@types/react-dom": "19.2.1",
-    "autoprefixer": "^10.4.14",
-    "postcss": "^8.4.21",
-    "prettier": "^2.8.4",
-    "tailwindcss": "^3.3.1",
-    "typescript": "^5.9.3"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "@vercel/speed-insights",
-      "sharp"
-    ]
-  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "postinstall": "node ./fonts/init.mjs"
+    "lint": "next lint"
   },
-  "prettier": {
-    "arrowParens": "avoid"
+  "dependencies": {
+    "@mdx-js/loader": "^3.0.0",
+    "@mdx-js/react": "^3.0.0",
+    "@next/mdx": "14.1.0",
+    "@upstash/redis": "^1.20.1",
+    "@vercel/analytics": "^1.1.2",
+    "@vercel/speed-insights": "^1.0.2",
+    "next": "14.1.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-wrap-balancer": "^1.0.0",
+    "rehype-highlight": "^7.0.0",
+    "remark-gfm": "4.0.0"
+  },
+  "devDependencies": {
+    "@types/mdx": "^2.0.10",
+    "@types/node": "^20.11.16",
+    "@types/react": "^18.2.52",
+    "@types/react-dom": "^18.2.18",
+    "autoprefixer": "^10.4.17",
+    "eslint": "^8.56.0",
+    "eslint-config-next": "14.1.0",
+    "postcss": "^8.4.33",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.3.3"
   }
 }
