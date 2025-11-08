@@ -98,7 +98,7 @@ export function Table() {
         </tbody>
       </table>
       <p className="text-center mt-4 px-4 font-mono text-xs sm:text-sm text-gray-600 dark:text-gray-400">
-        Traditional cloud services and frameworks are foundational — they're not
+        Traditional cloud services and frameworks are foundational — they&apos;re not
         going away
       </p>
     </div>
