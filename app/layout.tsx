@@ -1,24 +1,13 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import AnalyticsWrapper from "./analytics";
 
-const graphik = localFont({
-  src: [
-    {
-      path: "../fonts/Graphik-Regular.woff2",
-      weight: "400",
-      style: "normal",
-    },
-    {
-      path: "../fonts/Graphik-Medium.woff2",
-      weight: "600",
-      style: "normal",
-    },
-  ],
-  variable: "--font-graphik",
+const inter = Inter({
+  subsets: ["latin"],
   display: "swap",
+  variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
@@ -61,7 +50,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${graphik.variable} font-sans`}
+      className={`${inter.variable} font-sans`}
     >
       <head>
         <AnalyticsWrapper />
