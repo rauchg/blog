@@ -1,8 +1,12 @@
 # Ron Mashate's Blog
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Frmashate%2Fblog)
+![Deployment Status](https://img.shields.io/badge/Vercel-Deployed-success?logo=vercel&logoColor=white)
+![Last Updated](https://img.shields.io/badge/Last%20Updated-Nov%208%2C%202025-blue)
 
 Personal blog built with Next.js 14, MDX, and Tailwind CSS. Featuring product management insights, AI systems development, and lessons from building digital products.
+
+🔗 **Live at:** [https://blog-rmashate.vercel.app](https://blog-rmashate.vercel.app)
 
 ## Features
 
@@ -13,6 +17,7 @@ Personal blog built with Next.js 14, MDX, and Tailwind CSS. Featuring product ma
 - 🚀 Optimized for performance
 - 🔍 SEO optimized
 - 📱 Fully responsive design
+- 🎯 View tracking ready (Vercel KV compatible)
 
 ## Blog Posts
 
@@ -24,27 +29,45 @@ Personal blog built with Next.js 14, MDX, and Tailwind CSS. Featuring product ma
 
 ```bash
 # Install dependencies
+npm install
+# or
 pnpm install
 
 # Start development server
+npm run dev
+# or
 pnpm dev
 
 # Build for production
-pnpm build
+npm run build
 
 # Start production server
-pnpm start
+npm run start
 ```
 
 ## Adding New Posts
 
-1. Create a new folder in `app/(post)/your-post-slug/`
+1. Create a new folder in `app/(post)/[year]/your-post-slug/`
 2. Add a `page.mdx` file with your content
 3. Update `app/posts.json` with post metadata
 
 ## Deployment
 
 This blog is deployed on Vercel. Any push to the main branch will trigger a new deployment.
+
+### Deployment Status
+- **Project ID:** `prj_RBudWJDvDGrfqm2xiWpGut2ys4Ti`
+- **Auto-deploy:** Enabled for main branch
+- **Build time:** ~60 seconds
+
+## Tech Stack
+
+- **Framework:** Next.js 14.1.0
+- **Content:** MDX 3.0
+- **Styling:** Tailwind CSS 3.4
+- **Analytics:** Vercel Analytics
+- **Font:** Inter (Google Fonts)
+- **Deployment:** Vercel
 
 ## Connect
 
@@ -58,4 +81,4 @@ MIT License - feel free to use this as a template for your own blog!
 
 ---
 
-Built with ❤️ by Ron Mashate
+Built with ❤️ by Ron Mashate | Last updated: November 8, 2025
