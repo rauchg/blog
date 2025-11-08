@@ -1,0 +1,164 @@
+export const metadata = {
+  title: "Why AI Keeps Forgetting: Building Better Memory Systems",
+  description: "Current AI systems have a memory problem. Here's what I learned building a memory system for Claude, and why this matters for the future of AI.",
+  openGraph: {
+    title: "Why AI Keeps Forgetting: Building Better Memory Systems",
+    description: "Current AI systems have a memory problem. Here's what I learned building a memory system for Claude, and why this matters for the future of AI.",
+  },
+};
+
+Every conversation I have with Claude starts fresh. No matter how detailed our previous discussions or how much context we've built together, each new chat session begins with a blank slate.
+
+It's like talking to someone with short-term memory loss—brilliant in the moment, but unable to build on what we've learned together.
+
+This limitation isn't just frustrating; **it's holding back the true potential of AI systems.** And it's exactly why I've been building a Memory MCP (Model Context Protocol) that gives Claude the ability to remember.
+
+## The Fresh Start Problem
+
+Current AI systems have a fundamental memory problem. ChatGPT, Claude, and other large language models operate with what researchers call "context windows"—essentially short-term memory that gets wiped clean between sessions.
+
+Most people don't realize how severe these limitations really are. Most AI models can only remember **3,000-4,000 words** within a single conversation—equivalent to about 2-3 pages of text.
+
+> Imagine working with a brilliant colleague who forgets your entire project history every time you walk away from your desk. That's essentially where we are with AI today.
+
+## The Memory Gap
+
+### Human vs. AI Memory Comparison
+
+**Human Memory:**
+- Selective retention of important events
+- Builds context over years
+- Connects related experiences
+- Learns from past mistakes
+
+**Current AI Memory:**
+- Forgets everything between sessions
+- Limited to current conversation
+- No learning from past interactions
+- Repeats solved problems
+
+As researchers at Mem0 put it, ideal AI memory should be able to *"selectively store important information, consolidate related concepts, and retrieve relevant details when needed—mirroring human cognitive processes."*
+
+We're nowhere near that ideal yet.
+
+## Why Memory Matters More Than Ever
+
+### The Stakes Are Rising
+
+- **70%** of Fortune 500 companies are using AI
+- **2025** is being called the year of AI agents
+- **Infinite** context is lost daily across millions of AI interactions
+
+In 2025, we're seeing the emergence of **AI agents**—systems designed to handle complex tasks autonomously over extended periods. But here's the problem: how can an AI agent manage a week-long project if it forgets what happened yesterday?
+
+Current AI systems face what researchers call **"catastrophic forgetting"**—they lose previously learned information as they acquire new knowledge. It's like trying to build a house where each new room makes you forget about the previous ones.
+
+### Real-World Impact
+
+This isn't just a technical curiosity. Real businesses are running into these limitations daily:
+
+- **Customer service bots** that can't remember previous interactions
+- **AI assistants** that require constant re-explaining of preferences
+- **Systems** that solve the same problems repeatedly because they can't build on past solutions
+
+## Building a Solution: My Memory MCP Journey
+
+Over the past year, I've been developing a Memory MCP that addresses these limitations head-on. The system implements what I call a **"knowledge graph" approach**—storing entities, relationships, and observations in a structured way that mimics how humans organize memories.
+
+### Key Insights from Building It
+
+**1. Organization > Storage**  
+Memory isn't just about storage—it's about organization. My system doesn't just save information; it categorizes by priority, connects related concepts, and makes insights retrievable when needed.
+
+**2. Context > Completeness**  
+Rather than trying to remember everything, effective AI memory needs to be selective. The system focuses on what matters: goals, preferences, important decisions, and key relationships.
+
+**3. Metadata is Crucial**  
+Each memory includes timestamps, priority levels, and categorical tags. This metadata helps the system understand not just what to remember, but when it's relevant and how fresh the information is.
+
+**Example in action:** When I mention my favorite basketball team (the Bulls), the system doesn't just remember the team name. It connects this to my broader sports preferences, historical context about why I chose that team, and related memories about Chicago sports.
+
+## The Technical Reality
+
+### Current Solutions & Tradeoffs
+
+The hardware side is evolving. Technologies like **Compute Express Link (CXL)** are addressing memory bandwidth limitations that currently constrain AI performance. But the real bottleneck isn't hardware—it's architectural.
+
+**Hardware Evolution:**
+- Compute Express Link (CXL) addressing bandwidth issues
+- Memory-focused architectures emerging
+- But the bottleneck remains architectural, not hardware
+
+**Software Approaches:**
+- Vector databases (costly and complex)
+- Persistent memory stores (performance tradeoffs)
+- My approach: practical implementation that works with existing models
+
+My approach focuses on **practical implementation**: a system that works with existing AI models without requiring massive infrastructure changes or complete architectural overhauls.
+
+### Early Results
+
+What's working so far:
+- Claude remembers our project discussions across sessions
+- Tracks my learning progress on various topics
+- Builds meaningful context over time
+- Represents a significant step toward genuinely useful AI interactions
+
+## What's Next
+
+The memory revolution is already beginning:
+
+**Now:** Companies like Mem0 and Zep are building sophisticated memory layers for AI systems
+
+**Recent:** OpenAI introduced memory features for ChatGPT
+
+**Future:** The real breakthrough will come from the intersection of better memory architectures, improved reasoning capabilities, and practical implementation approaches
+
+We're clearly at an inflection point. But I think the real breakthrough won't come from any single company. It'll emerge from the intersection of:
+
+- **Better memory architectures** that efficiently store and retrieve context
+- **Improved reasoning capabilities** that know what to remember
+- **Practical implementation approaches** that work with existing systems
+
+The goal isn't to give AI perfect human-like memory—it's to create systems that can build meaningful context over time. AI that remembers your project goals, learns from past mistakes, and gets better at helping you with each interaction.
+
+## Why This Matters for Everyone
+
+Memory transforms AI from a powerful but stateless tool into something closer to a **persistent collaborator**.
+
+### Before Memory:
+- Constantly re-explaining context
+- Starting from scratch each time
+- Repetitive problem-solving
+- Limited long-term value
+
+### With Memory:
+- Focus on the actual problem
+- Build on previous work
+- Learn from past mistakes
+- Increasingly valuable over time
+
+Microsoft reports that **nearly 70% of Fortune 500 companies** already use AI for repetitive tasks. Imagine how much more valuable these systems become when they can remember and build on previous work.
+
+Instead of constantly re-explaining context, you can focus on the actual problem you're trying to solve.
+
+## The Path Forward
+
+> "The future of AI isn't just about making models smarter—it's about making them more useful through better memory."
+
+The memory problem is solvable. We just need to approach it thoughtfully, with an understanding of both the technical challenges and the practical needs of real users.
+
+That's exactly what I'm working on, one conversation at a time.
+
+My Memory MCP project is open source and actively being developed. Based on what I've built so far, that future is closer than most people think. The question isn't whether AI will have memory—it's how quickly we can make it practical and useful for everyone.
+
+---
+
+## Join the Conversation
+
+This post is part of my ongoing exploration of AI systems and product development. I'm actively working on solving these problems and would love to connect with others thinking about the same challenges.
+
+**[Connect on LinkedIn](https://linkedin.com/in/rmashate)** to discuss AI memory systems and product development  
+**[View the Memory MCP project](https://github.com/rmashate)** to see the code and contribute
+
+*Working on similar problems? I'd love to hear about your approach - reach out!*
