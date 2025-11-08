@@ -1,10 +1,7 @@
 {
   "framework": "nextjs",
-  "buildCommand": "pnpm build",
-  "devCommand": "pnpm dev",
-  "installCommand": "pnpm install",
-  "regions": ["iad1"],
-  "env": {
-    "NEXT_PUBLIC_SITE_URL": "https://blog.rmashate.com"
-  }
+  "buildCommand": "npm run build",
+  "devCommand": "npm run dev",
+  "installCommand": "npm install",
+  "regions": ["iad1"]
 }
