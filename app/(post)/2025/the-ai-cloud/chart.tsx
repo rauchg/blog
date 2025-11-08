@@ -178,7 +178,7 @@ export function Chart() {
                 const date = new Date(value);
                 const month = date.toLocaleString("en-US", { month: "short" });
                 const year = date.getFullYear().toString().slice(-2);
-                return `${month} '${year}`;
+                return `${month} &apos;${year}`;
               }}
               className="text-xs"
               tick={{ dy: 10, fill: isDark ? "#737373" : "#666666" }}
@@ -250,7 +250,7 @@ export function Chart() {
       </div>
       <p className="text-center mt-4 px-4 font-mono text-xs sm:text-sm text-gray-600 dark:text-gray-400">
         <A href="https://ai-sdk.dev">AI SDK</A> is now the #2 largest SDK for AI
-        in JS/TS, but, crucially, one that's model and provider agnostic
+        in JS/TS, but, crucially, one that&apos;s model and provider agnostic
       </p>
     </div>
   );
