@@ -34,6 +34,18 @@ export async function GET(req: NextRequest) {
     );
   }
 
+  // If Redis/KV is not configured, return mock views for now
+  if (!redis) {
+    // You can return 0 or a random number for demo purposes
+    const mockViews = Math.floor(Math.random() * 100) + 1;
+    return NextResponse.json({
+      ...post,
+      views: mockViews,
+      viewsFormatted: commaNumber(mockViews),
+    });
+  }
+
+  // Real Redis/KV tracking
   if (url.searchParams.get("incr") != null) {
     const views = await redis.hincrby("views", id, 1);
     return NextResponse.json({
