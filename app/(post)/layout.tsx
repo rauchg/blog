@@ -1,4 +1,3 @@
-import Footer from "../footer";
 import "../globals.css";
 
 export default function PostLayout({
@@ -12,7 +11,6 @@ export default function PostLayout({
         <article className="prose prose-neutral dark:prose-invert">
           {children}
         </article>
-        <Footer />
       </main>
     </div>
   );

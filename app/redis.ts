@@ -13,10 +13,10 @@ if (process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN) {
     token: process.env.KV_REST_API_TOKEN,
   });
   console.log("✅ Connected to Vercel KV for view tracking");
-} else if (process.env.UPSTASH_REDIS_REST_TOKEN) {
+} else if (process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN) {
   // Manual Upstash configuration
   redis = new Redis({
-    url: "https://global-apt-bear-30602.upstash.io",
+    url: process.env.UPSTASH_REDIS_REST_URL,
     token: process.env.UPSTASH_REDIS_REST_TOKEN,
   });
   console.log("✅ Connected to Upstash Redis for view tracking");
