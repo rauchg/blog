@@ -1,19 +1,40 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import { Analytics } from "./analytics";
 import { Header } from "./header";
 import { Footer } from "./footer";
 
-const geist = Geist({
-  subsets: ["latin"],
+const geist = localFont({
+  src: [
+    {
+      path: "../fonts/geist-light.ttf",
+      weight: "300",
+      style: "normal",
+    },
+    {
+      path: "../fonts/geist-regular.ttf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../fonts/geist-medium.ttf",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../fonts/geist-bold.ttf",
+      weight: "700",
+      style: "normal",
+    },
+  ],
   variable: "--font-geist-sans"
 });
 
-const geistMono = Geist_Mono({
-  subsets: ["latin"],
+const geistMono = localFont({
+  src: "../fonts/geist-mono-regular.ttf",
   variable: "--font-geist-mono",
-  fallback: ["ui-monospace", "SFMono-Regular", "Consolas", "Liberation Mono", "Menlo", "monospace"]
+  weight: "400",
 });
 
 export const metadata: Metadata = {

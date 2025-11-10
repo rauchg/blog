@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@mdx-js/react": "^3.1.1",
-    "@next/mdx": "16.0.0-beta.0",
+    "@next/mdx": "16.0.1",
     "@upstash/redis": "^1.20.1",
     "@vercel/analytics": "^1.5.0",
     "@vercel/speed-insights": "^1.2.0",
@@ -21,7 +21,7 @@
     "geist": "^1.5.1",
     "image-size": "^1.0.2",
     "load-script": "^1.0.0",
-    "next": "16.0.0-beta.0",
+    "next": "16.0.1",
     "react": "19.2.0",
     "react-dom": "19.2.0",
     "react-intersection-observer": "^9.16.0",
@@ -34,17 +34,17 @@
   },
   "devDependencies": {
     "@types/comma-number": "^2.1.0",
-    "@types/node": "24.7.2",
+    "@types/node": "^24.9.0",
     "@types/react": "19.2.2",
     "@types/react-dom": "19.2.1",
     "@types/mdx": "^2.0.10",
     "autoprefixer": "^10.4.14",
-    "eslint": "^8.56.0",
-    "eslint-config-next": "14.1.0",
+    "eslint": "^9.39.1",
+    "eslint-config-next": "16.0.1",
     "postcss": "^8.4.21",
-    "prettier": "^2.8.4",
+    "prettier": "^3.4.2",
     "tailwindcss": "^3.3.1",
-    "typescript": "^5.9.3"
+    "typescript": "^5.7.2"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
