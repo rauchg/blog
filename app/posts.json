@@ -1,6 +1,11 @@
 {
   "posts": [
     {
+      "id": "the-ai-cloud",
+      "date": "July 1, 2025",
+      "title": "The AI Cloud"
+    },
+    {
       "id": "customer-research-beats-assumptions",
       "date": "June 15, 2025",
       "title": "The $2M Lesson: Why Customer Research Beats Assumptions Every Time"
@@ -14,6 +19,76 @@
       "id": "from-2m-to-11m-cineplex-growth",
       "date": "May 30, 2025",
       "title": "From $2M to $11M: The Cineplex Store Growth Playbook"
+    },
+    {
+      "id": "making-the-web-faster",
+      "date": "December 1, 2021",
+      "title": "Making the Web. Faster"
+    },
+    {
+      "id": "vercel",
+      "date": "April 21, 2020",
+      "title": "Vercel"
+    },
+    {
+      "id": "static-hoisting",
+      "date": "November 15, 2020",
+      "title": "Static Hoisting"
+    },
+    {
+      "id": "next-for-vercel",
+      "date": "October 15, 2020",
+      "title": "Next for Vercel"
+    },
+    {
+      "id": "books-people-reread",
+      "date": "August 20, 2020",
+      "title": "Books people re-read"
+    },
+    {
+      "id": "develop-preview-test",
+      "date": "May 20, 2020",
+      "title": "Develop, Preview, Test"
+    },
+    {
+      "id": "an-ode-to-code-golf",
+      "date": "March 10, 2020",
+      "title": "An Ode to Code Golf"
+    },
+    {
+      "id": "2019-in-review",
+      "date": "January 15, 2020",
+      "title": "2019 in Review"
+    },
+    {
+      "id": "its-hard-to-forego-efficiency",
+      "date": "September 1, 2017",
+      "title": "It's hard to forego efficiency"
+    },
+    {
+      "id": "2016-in-review",
+      "date": "January 10, 2017",
+      "title": "2016 in Review"
+    },
+    {
+      "id": "addressable-errors",
+      "date": "June 1, 2016",
+      "title": "Addressable Errors"
+    },
+    {
+      "id": "pure-ui",
+      "date": "November 1, 2015",
+      "title": "Pure UI"
+    },
+    {
+      "id": "ecmascript-6",
+      "date": "June 15, 2015",
+      "title": "ECMAScript 6"
+    },
+    {
+      "id": "7-principles-of-rich-web-applications",
+      "date": "September 10, 2014",
+      "title": "7 Principles of Rich Web Applications"
     }
   ]
 }
