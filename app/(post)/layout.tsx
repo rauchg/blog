@@ -1,16 +1,17 @@
-import { Header } from "./header";
-import { getPosts } from "../get-posts";
+import "../globals.css";
 
-export const revalidate = 300;
-
-export default async function Layout({ children }) {
-  const posts = await getPosts();
-
+export default function PostLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <article className="text-gray-800 dark:text-gray-300 mb-10">
-      <Header posts={posts} />
-
-      {children}
-    </article>
+    <div className="antialiased max-w-2xl flex flex-col md:flex-row mx-4 lg:mx-auto">
+      <main className="flex-auto min-w-0 mt-12 md:mt-0 flex flex-col px-2 md:px-0">
+        <article className="prose prose-neutral dark:prose-invert">
+          {children}
+        </article>
+      </main>
+    </div>
   );
 }

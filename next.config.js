@@ -4,6 +4,7 @@ module.exports = withMDX({
   pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdx"],
   experimental: {
     mdxRs: true,
+    turbopackUseSystemTlsCerts: true,
   },
   images: {
     minimumCacheTTL: 2678400,
@@ -31,7 +32,6 @@ module.exports = withMDX({
         hostname: "images-na.ssl-images-amazon.com",
         port: "",
         pathname: "/**",
-        search: "",
       },
     ],
   },

@@ -1,5 +1,6 @@
 import { Posts } from "./posts";
 import { getPosts } from "./get-posts";
+import "./globals.css";
 
 export const revalidate = 300;
 
