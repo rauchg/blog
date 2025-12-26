@@ -33,8 +33,15 @@ export async function Image({
           process.env.VERCEL_URL &&
           process.env.NODE_ENV === "production"
         ) {
-          const url = "https://" + process.env.VERCEL_URL + src + `?image_bot_bypass=${process.env.IMAGE_BOT_BYPASS_SECRET}`;
+          const url =
+            "https://" +
+            process.env.VERCEL_URL +
+            src +
+            `?image_bot_bypass=${encodeURIComponent(process.env.IMAGE_BOT_BYPASS_SECRET!)}&x-vercel-protection-bypass=${encodeURIComponent(process.env.VERCEL_AUTOMATION_BYPASS_SECRET!)}`;
           const response = await fetch(url);
+          if (!response.ok) {
+            throw new Error(`Failed to fetch image: ${response.status}`);
+          }
           const arrayBuffer = await response.arrayBuffer();
           imageBuffer = Buffer.from(arrayBuffer);
         } else {
