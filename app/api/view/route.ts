@@ -34,6 +34,14 @@ export async function GET(req: NextRequest) {
     );
   }
 
+  if (!redis) {
+    return NextResponse.json({
+      ...post,
+      views: 0,
+      viewsFormatted: "0",
+    });
+  }
+
   if (url.searchParams.get("incr") != null) {
     const views = await redis.hincrby("views", id, 1);
     return NextResponse.json({
