@@ -26,10 +26,10 @@ export async function GET() {
       >
         <header tw="flex text-[36px] w-full">
           <div style={font("Geist Medium")}>
-            Guillermo Rauch
+            Michael Adeyeri
           </div>
           <div tw="grow" />
-          <div tw="text-[28px]">rauchg.com</div>
+          <div tw="text-[28px]">michaeladeyeri.com</div>
         </header>
 
         <main tw="flex mt-10 flex-col w-full">

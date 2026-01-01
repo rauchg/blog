@@ -16,7 +16,7 @@ export function Header() {
 	  </span>
         </Link>
         <a
-          href="https://x.com/rauchg"
+          href="https://x.com/michael_adeyeri"
           target="_blank"
           className="group inline-flex items-center p-2 rounded-sm transition-[background-color] whitespace-nowrap -mr-2"
         >
