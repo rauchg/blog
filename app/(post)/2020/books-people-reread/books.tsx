@@ -86,7 +86,7 @@ async function getData() {
         const blockData = col.recordMap.block[blockId];
 
         if (blockData) {
-          const props = blockData.value.properties;
+          const props = blockData.value.value.properties;
 
           if (!props) {
             // not sure when this happens yet, but it seems
