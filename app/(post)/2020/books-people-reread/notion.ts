@@ -1,62 +1,32 @@
-const API_ENDPOINT = "https://rauchg.notion.site/api/v3";
+import { Client } from "@notionhq/client";
 
-export default async function rpc(fnName, body) {
-  const url = `${API_ENDPOINT}/${fnName}`;
-  const res = await fetch(url, {
-    method: "POST",
-    headers: {
-      "content-type": "application/json",
-    },
-    body: JSON.stringify(body),
-  });
+const notion = new Client({
+  auth: process.env.NOTION_TOKEN,
+});
 
-  if (res.ok) {
-    return res.json();
-  } else {
-    throw new Error(await getError(url, res));
-  }
-}
+const DATABASE_ID = "ed95c702-dabc-498a-9186-e8ff4719ecc0";
 
-function getJSONHeaders(res) {
-  const headers = {};
-  res.headers.forEach((value, key) => {
-    headers[key] = value;
-  });
-  return JSON.stringify(headers);
-}
+export async function queryBooks() {
+  const results: any[] = [];
+  let cursor: string | undefined = undefined;
 
-function getBodyOrNull(res) {
-  try {
-    return res.text();
-  } catch (err) {
-    return null;
-  }
-}
+  // Paginate through all results
+  do {
+    const response: any = await notion.databases.query({
+      database_id: DATABASE_ID,
+      sorts: [
+        {
+          property: "Votes",
+          direction: "descending",
+        },
+      ],
+      start_cursor: cursor,
+      page_size: 100,
+    });
 
-export function getCollectionSchemaNameIndex(collectionSchema) {
-  const names = {};
-  for (const id in collectionSchema) {
-    const nameKey = collectionSchema[id].name;
-    if (nameKey in names) {
-      console.warn(
-        `duplicate key "${nameKey}" in schema index – make sure column names are unique`
-      );
-    }
-    names[nameKey] = id;
-  }
-  return names;
-}
+    results.push(...response.results);
+    cursor = response.has_more ? response.next_cursor : undefined;
+  } while (cursor);
 
-async function getError(url, res) {
-  return `Notion API error for URL ${url} (${res.status}) \n${getJSONHeaders(
-    res
-  )}\n ${await getBodyOrNull(res)}`;
-}
-
-export function loadPageChunk(body) {
-  return rpc("loadPageChunk", body);
-}
-
-export function queryCollection(body) {
-  return rpc("queryCollection", body);
+  return results;
 }
