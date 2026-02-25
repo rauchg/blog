@@ -19,21 +19,10 @@
 
   /* Global text selection styles */
   ::selection {
-    @apply bg-black text-white;
+    @apply bg-white text-red-600;
   }
 
   ::-moz-selection {
-    @apply bg-black text-white;
-  }
-
-  /* Dark mode selection styles */
-  @media (prefers-color-scheme: dark) {
-    ::selection {
-      @apply bg-white text-black;
-    }
-
-    ::-moz-selection {
-      @apply bg-white text-black;
-    }
+    @apply bg-white text-red-600;
   }
 }

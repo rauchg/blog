@@ -11,7 +11,7 @@ export function Header() {
           href="/about"
           className="group p-2"
         >
-	  <span className="group-hover:bg-neutral-200 dark:group-hover:bg-neutral-700 rounded-xl py-0.5 px-1.5 inline-flex">
+	  <span className="group-hover:bg-red-700 rounded-xl py-0.5 px-1.5 inline-flex">
 		  About
 	  </span>
         </Link>
@@ -20,7 +20,7 @@ export function Header() {
           target="_blank"
           className="group inline-flex items-center p-2 rounded-sm transition-[background-color] whitespace-nowrap -mr-2"
         >
-	  <span className="group-hover:bg-neutral-200 dark:group-hover:bg-neutral-700 rounded-xl py-0.5 px-1.5 inline-flex items-center gap-1">
+	  <span className="group-hover:bg-red-700 rounded-xl py-0.5 px-1.5 inline-flex items-center gap-1">
 	    <TweetIcon style={{ marginRight: 4 }} />
 	    <span>Follow me</span>
 	  </span>
