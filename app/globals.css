@@ -7,13 +7,13 @@
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     -webkit-tap-highlight-color: transparent;
     color-scheme: light;
-    @apply bg-[#fcfcfc];
+    @apply bg-red-600;
   }
 
   @media (prefers-color-scheme: dark) {
     :root {
       color-scheme: dark;
-      @apply bg-[#1C1C1C];
+      @apply bg-red-600;
     }
   }
 
