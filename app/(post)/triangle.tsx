@@ -42,8 +42,6 @@ function getTriangleIntervalForBand(
   return { left, right };
 }
 
-// Count the total number of lines the text would produce at the widest width
-// (the triangle base), to compute a reasonable max scroll.
 function countTotalLines(
   prepared: PreparedTextWithSegments,
   maxWidth: number
@@ -71,7 +69,7 @@ function layoutTriangle(
   const minY = Math.min(...trianglePoints.map((p) => p.y));
   const maxY = Math.max(...trianglePoints.map((p) => p.y));
 
-  // Pre-advance cursor by consuming skipped lines
+  // Pre-advance cursor past scrolled lines
   const skipLines = Math.floor(scrollOffset / lineHeight);
   for (let i = 0; i < skipLines; i++) {
     const line = layoutNextLine(prepared, cursor, 900);
@@ -113,12 +111,13 @@ const SCALE = 0.65;
 const FONT = `${FONT_SIZE}px "Geist", ui-sans-serif, system-ui, sans-serif`;
 
 export function TriangleText() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const preparedRef = useRef<PreparedTextWithSegments | null>(null);
   const scrollRef = useRef(0);
   const maxScrollRef = useRef(Infinity);
   const rafRef = useRef<number>(0);
   const textReadyRef = useRef(false);
+  const linesPoolRef = useRef<HTMLDivElement[]>([]);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
 
   // Extract text from the hidden article DOM
@@ -136,9 +135,7 @@ export function TriangleText() {
         preparedRef.current = prepareWithSegments(text, FONT);
         textReadyRef.current = true;
 
-        // Compute max scroll: total lines minus the visible lines in the triangle
         const totalLines = countTotalLines(preparedRef.current, 900);
-        // Visible lines will be computed during draw, but estimate here
         const visibleEstimate = Math.floor(
           (window.innerHeight * SCALE * 0.7) / LINE_HEIGHT
         );
@@ -174,26 +171,33 @@ export function TriangleText() {
     };
   }, []);
 
-  const draw = useCallback(() => {
-    const canvas = canvasRef.current;
-    const prepared = preparedRef.current;
-    if (!canvas || !prepared) return;
+  // Sync DOM pool: ensure we have exactly `count` line divs
+  const syncPool = useCallback((count: number) => {
+    const container = containerRef.current;
+    if (!container) return;
+    const pool = linesPoolRef.current;
 
-    const dpr = window.devicePixelRatio || 1;
+    while (pool.length < count) {
+      const el = document.createElement("div");
+      el.style.position = "absolute";
+      el.style.whiteSpace = "nowrap";
+      el.style.font = FONT;
+      el.style.lineHeight = `${LINE_HEIGHT}px`;
+      pool.push(el);
+      container.appendChild(el);
+    }
+    // Hide extras
+    for (let i = 0; i < pool.length; i++) {
+      pool[i]!.style.display = i < count ? "" : "none";
+    }
+  }, []);
+
+  const draw = useCallback(() => {
+    const prepared = preparedRef.current;
+    if (!prepared) return;
+
     const { width, height } = dimensions;
     if (width === 0 || height === 0) return;
-
-    canvas.width = width * dpr;
-    canvas.height = height * dpr;
-
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    ctx.scale(dpr, dpr);
-
-    const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    ctx.fillStyle = isDark ? "#111" : "#fafafa";
-    ctx.fillRect(0, 0, width, height);
 
     const paddingX = 40;
     const paddingY = 32;
@@ -220,33 +224,28 @@ export function TriangleText() {
       scrollRef.current
     );
 
-    // Draw subtle triangle outline
-    ctx.beginPath();
-    ctx.moveTo(trianglePoints[0].x, trianglePoints[0].y);
-    ctx.lineTo(trianglePoints[1].x, trianglePoints[1].y);
-    ctx.lineTo(trianglePoints[2].x, trianglePoints[2].y);
-    ctx.closePath();
-    ctx.strokeStyle = isDark
-      ? "rgba(255,255,255,0.06)"
-      : "rgba(0,0,0,0.04)";
-    ctx.lineWidth = 1;
-    ctx.stroke();
+    // Sync the DOM pool and project lines
+    syncPool(lines.length);
+    const pool = linesPoolRef.current;
+    const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const color = isDark ? "rgba(255,255,255,0.85)" : "rgba(0,0,0,0.78)";
 
-    // Draw text lines
-    ctx.font = FONT;
-    ctx.textBaseline = "top";
-    ctx.fillStyle = isDark ? "rgba(255,255,255,0.85)" : "rgba(0,0,0,0.78)";
-
-    for (const line of lines) {
-      ctx.fillText(line.text, line.x, line.y + 2);
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i]!;
+      const el = pool[i]!;
+      el.textContent = line.text;
+      el.style.left = `${line.x}px`;
+      el.style.top = `${line.y}px`;
+      el.style.color = color;
+      el.style.display = "";
     }
-  }, [dimensions]);
+  }, [dimensions, syncPool]);
 
   useEffect(() => {
     draw();
   }, [draw]);
 
-  // Scroll handler on window so canvas can be pointer-events: none
+  // Scroll handler on window
   useEffect(() => {
     const clampScroll = () => {
       scrollRef.current = Math.max(
@@ -292,13 +291,9 @@ export function TriangleText() {
 
   return (
     <div
-      className="fixed inset-0 z-50 pointer-events-none"
-    >
-      <canvas
-        ref={canvasRef}
-        className="block"
-        style={{ width: dimensions.width, height: dimensions.height }}
-      />
-    </div>
+      ref={containerRef}
+      className="fixed inset-0 z-40"
+      style={{ pointerEvents: "none" }}
+    />
   );
 }
