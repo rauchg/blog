@@ -1,6 +1,7 @@
 const withMDX = require("@next/mdx")();
 
 module.exports = withMDX({
+  transpilePackages: ["@chenglou/pretext"],
   pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdx"],
   experimental: {
     mdxRs: true,
