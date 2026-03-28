@@ -8,9 +8,9 @@ import {
   type LayoutCursor,
 } from "@chenglou/pretext";
 
-const FONT_SIZE = 12;
-const LINE_HEIGHT = 20;
-const FONT = `${FONT_SIZE}px "Geist", ui-sans-serif, system-ui, sans-serif`;
+const DEFAULT_FONT_SIZE = 12;
+const DEFAULT_LINE_HEIGHT = 20;
+const DEFAULT_EDGE = 280;
 
 function getTriangleIntervalForBand(
   points: { x: number; y: number }[],
@@ -49,7 +49,8 @@ function layoutFaceLines(
   startCursor: LayoutCursor,
   faceWidth: number,
   faceHeight: number,
-  scrollOffset: number
+  scrollOffset: number,
+  lineHeight: number
 ): { lines: LayoutLine[]; endCursor: LayoutCursor } {
   const pad = faceWidth * 0.06;
   const triPoints = [
@@ -68,16 +69,16 @@ function layoutFaceLines(
   const lines: LayoutLine[] = [];
   let y = triPoints[0].y;
   const maxY = triPoints[1].y;
-  while (y + LINE_HEIGHT <= maxY) {
-    const interval = getTriangleIntervalForBand(triPoints, y, y + LINE_HEIGHT);
-    if (!interval) { y += LINE_HEIGHT; continue; }
+  while (y + lineHeight <= maxY) {
+    const interval = getTriangleIntervalForBand(triPoints, y, y + lineHeight);
+    if (!interval) { y += lineHeight; continue; }
     const lineWidth = interval.right - interval.left;
     const line = layoutNextLine(prepared, cursor, lineWidth);
     if (!line) break;
     const slack = lineWidth - line.width;
     lines.push({ text: line.text, x: interval.left + slack / 2, y, width: line.width });
     cursor = line.end;
-    y += LINE_HEIGHT;
+    y += lineHeight;
   }
   return { lines, endCursor: cursor };
 }
@@ -184,11 +185,15 @@ function Face({
   faceWidth,
   faceHeight,
   transform,
+  font,
+  lineHeight,
 }: {
   lines: LayoutLine[];
   faceWidth: number;
   faceHeight: number;
   transform: string;
+  font: string;
+  lineHeight: number;
 }) {
   return (
     <div
@@ -210,8 +215,8 @@ function Face({
             position: "absolute",
             left: line.x,
             top: line.y,
-            font: FONT,
-            lineHeight: `${LINE_HEIGHT}px`,
+            font,
+            lineHeight: `${lineHeight}px`,
             whiteSpace: "nowrap",
             color: "rgba(0,0,0,0.85)",
             pointerEvents: "auto",
@@ -227,16 +232,31 @@ function Face({
 }
 
 export function TriangleText() {
+  const [params, setParams] = useState({
+    edge: DEFAULT_EDGE,
+    fontSize: DEFAULT_FONT_SIZE,
+    lineHeight: DEFAULT_LINE_HEIGHT,
+  });
+  const [copied, setCopied] = useState(false);
   const [prepared, setPrepared] = useState<PreparedTextWithSegments | null>(null);
   const [scrollOffset, setScrollOffset] = useState(0);
   const maxScrollRef = useRef(0);
   const [rotation, setRotation] = useState({ x: -20, y: 30 });
   const dragging = useRef(false);
   const lastPos = useRef({ x: 0, y: 0 });
+  const rawTextRef = useRef("");
 
-  const EDGE = 280;
-  const FACE_W = EDGE;
-  const FACE_H = (EDGE * Math.sqrt(3)) / 2;
+  const FONT = `${params.fontSize}px "Geist", ui-sans-serif, system-ui, sans-serif`;
+  const FACE_W = params.edge;
+  const FACE_H = (params.edge * Math.sqrt(3)) / 2;
+
+  // Re-prepare text when font size changes
+  const rePrepare = useCallback((text: string, font: string) => {
+    if (text.length === 0) return;
+    const p = prepareWithSegments(text, font);
+    setPrepared(p);
+    maxScrollRef.current = Math.max(0, countTotalLines(p) - 40);
+  }, []);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -246,13 +266,11 @@ export function TriangleText() {
         .replace(/[ \t]+/g, " ")
         .replace(/\n{3,}/g, "\n\n")
         .trim();
-      if (text.length > 0) {
-        const p = prepareWithSegments(text, FONT);
-        setPrepared(p);
-        maxScrollRef.current = Math.max(0, countTotalLines(p) - 40);
-      }
+      rawTextRef.current = text;
+      rePrepare(text, FONT);
     }, 150);
     return () => clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -288,24 +306,21 @@ export function TriangleText() {
     return () => { document.body.style.overflow = ""; };
   }, []);
 
-  // Regular tetrahedron vertices centered at origin
   const verts = useMemo<V3[]>(() => {
-    // Standard regular tetrahedron centered at origin with edge length EDGE
-    const s = EDGE;
+    const s = params.edge;
     return [
-      [0, s * Math.sqrt(2 / 3) * 0.75, 0],                             // top
-      [-s / 2, -s * Math.sqrt(2 / 3) * 0.25, s * Math.sqrt(3) / 6],    // front-left
-      [s / 2, -s * Math.sqrt(2 / 3) * 0.25, s * Math.sqrt(3) / 6],     // front-right
-      [0, -s * Math.sqrt(2 / 3) * 0.25, -s * Math.sqrt(3) / 3],        // back
+      [0, s * Math.sqrt(2 / 3) * 0.75, 0],
+      [-s / 2, -s * Math.sqrt(2 / 3) * 0.25, s * Math.sqrt(3) / 6],
+      [s / 2, -s * Math.sqrt(2 / 3) * 0.25, s * Math.sqrt(3) / 6],
+      [0, -s * Math.sqrt(2 / 3) * 0.25, -s * Math.sqrt(3) / 3],
     ];
-  }, [EDGE]);
+  }, [params.edge]);
 
-  // 4 faces with vertices wound so normals point outward
   const faceIndices: [number, number, number][] = useMemo(() => [
-    [0, 1, 2], // front
-    [0, 2, 3], // right
-    [0, 3, 1], // left
-    [1, 3, 2], // bottom (reversed so normal points down)
+    [0, 2, 1],
+    [0, 3, 2],
+    [0, 1, 3],
+    [1, 2, 3],
   ], []);
 
   const faceData = useMemo(() => {
@@ -314,13 +329,13 @@ export function TriangleText() {
     let cursor: LayoutCursor = { segmentIndex: 0, graphemeIndex: 0 };
     for (let i = 0; i < 4; i++) {
       const { lines, endCursor } = layoutFaceLines(
-        prepared, cursor, FACE_W, FACE_H, i === 0 ? scrollOffset : 0
+        prepared, cursor, FACE_W, FACE_H, i === 0 ? scrollOffset : 0, params.lineHeight
       );
       result.push(lines);
       cursor = endCursor;
     }
     return result;
-  }, [prepared, scrollOffset, FACE_W, FACE_H]);
+  }, [prepared, scrollOffset, FACE_W, FACE_H, params.lineHeight]);
 
   const faceTransforms = useMemo(() => {
     return faceIndices.map(([i0, i1, i2]) =>
@@ -331,36 +346,109 @@ export function TriangleText() {
   if (!prepared) return null;
 
   return (
-    <div
-      className="fixed inset-0 z-40 flex items-center justify-center"
-      style={{
-        perspective: 1000,
-        cursor: dragging.current ? "grabbing" : "grab",
-        marginTop: 80,
-      }}
-      onPointerDown={onPointerDown}
-      onPointerMove={onPointerMove}
-      onPointerUp={onPointerUp}
-    >
+    <>
       <div
+        className="fixed inset-0 z-40 flex items-center justify-center"
         style={{
-          position: "relative",
-          transformStyle: "preserve-3d",
-          transform: `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
-          width: 0,
-          height: 0,
+          perspective: 1000,
+          cursor: dragging.current ? "grabbing" : "grab",
+          marginTop: 80,
+        }}
+        onPointerDown={onPointerDown}
+        onPointerMove={onPointerMove}
+        onPointerUp={onPointerUp}
+      >
+        <div
+          style={{
+            position: "relative",
+            transformStyle: "preserve-3d",
+            transform: `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
+            width: 0,
+            height: 0,
+          }}
+        >
+          {faceIndices.map((_, i) => (
+            <Face
+              key={i}
+              lines={faceData[i] || []}
+              faceWidth={FACE_W}
+              faceHeight={FACE_H}
+              transform={faceTransforms[i]}
+              font={FONT}
+              lineHeight={params.lineHeight}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Tuning controls */}
+      <div
+        className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[60] flex items-center gap-5 rounded-full px-5 py-2.5"
+        style={{
+          background: "rgba(0,0,0,0.75)",
+          backdropFilter: "blur(12px)",
+          color: "#fff",
+          fontSize: 13,
+          fontFamily: "ui-monospace, monospace",
         }}
       >
-        {faceIndices.map((_, i) => (
-          <Face
-            key={i}
-            lines={faceData[i] || []}
-            faceWidth={FACE_W}
-            faceHeight={FACE_H}
-            transform={faceTransforms[i]}
+        <label className="flex items-center gap-2">
+          size
+          <input
+            type="range"
+            min={120}
+            max={500}
+            step={10}
+            value={params.edge}
+            onChange={(e) => setParams((p) => ({ ...p, edge: +e.target.value }))}
+            className="w-20 accent-white"
           />
-        ))}
+          <span className="w-8 text-right">{params.edge}</span>
+        </label>
+        <label className="flex items-center gap-2">
+          font
+          <input
+            type="range"
+            min={6}
+            max={24}
+            step={1}
+            value={params.fontSize}
+            onChange={(e) => {
+              const fs = +e.target.value;
+              const newFont = `${fs}px "Geist", ui-sans-serif, system-ui, sans-serif`;
+              rePrepare(rawTextRef.current, newFont);
+              setParams((p) => ({ ...p, fontSize: fs, lineHeight: Math.round(fs * 1.6) }));
+            }}
+            className="w-20 accent-white"
+          />
+          <span className="w-8 text-right">{params.fontSize}</span>
+        </label>
+        <label className="flex items-center gap-2">
+          lead
+          <input
+            type="range"
+            min={params.fontSize}
+            max={params.fontSize * 3}
+            step={1}
+            value={params.lineHeight}
+            onChange={(e) => setParams((p) => ({ ...p, lineHeight: +e.target.value }))}
+            className="w-20 accent-white"
+          />
+          <span className="w-8 text-right">{params.lineHeight}</span>
+        </label>
+        <button
+          onClick={() => {
+            const str = `edge: ${params.edge}, fontSize: ${params.fontSize}, lineHeight: ${params.lineHeight}`;
+            navigator.clipboard.writeText(str);
+            setCopied(true);
+            setTimeout(() => setCopied(false), 1500);
+          }}
+          className="ml-1 rounded-full px-3 py-1 text-xs transition-colors"
+          style={{ background: copied ? "rgba(255,255,255,0.3)" : "rgba(255,255,255,0.12)" }}
+        >
+          {copied ? "copied" : "copy"}
+        </button>
       </div>
-    </div>
+    </>
   );
 }
