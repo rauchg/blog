@@ -15,42 +15,80 @@ type PositionedLine = {
   width: number;
 };
 
+// Given a polygon (array of {x,y} points) and a horizontal band [bandTop, bandBottom],
+// find the leftmost and rightmost x where the polygon edges cross the band.
+// This matches the approach in pretext's wrap-geometry demo.
+function getTriangleIntervalForBand(
+  points: { x: number; y: number }[],
+  bandTop: number,
+  bandBottom: number
+): { left: number; right: number } | null {
+  let left = Infinity;
+  let right = -Infinity;
+
+  // Sample at several y values within the band for accuracy
+  const steps = 4;
+  for (let s = 0; s <= steps; s++) {
+    const y = bandTop + ((bandBottom - bandTop) * s) / steps;
+    // Find all x intersections at this y
+    for (let i = 0, j = points.length - 1; i < points.length; j = i++) {
+      const a = points[i]!;
+      const b = points[j]!;
+      if ((a.y > y) !== (b.y > y)) {
+        const x = ((b.x - a.x) * (y - a.y)) / (b.y - a.y) + a.x;
+        if (x < left) left = x;
+        if (x > right) right = x;
+      }
+    }
+  }
+
+  if (!Number.isFinite(left) || !Number.isFinite(right)) return null;
+  if (right - left < 30) return null; // too narrow for text
+  return { left, right };
+}
+
 function layoutTriangle(
   prepared: PreparedTextWithSegments,
-  triangleHeight: number,
+  trianglePoints: { x: number; y: number }[],
   lineHeight: number,
-  maxWidth: number,
   scrollOffset: number
 ): PositionedLine[] {
   const lines: PositionedLine[] = [];
   let cursor: LayoutCursor = { segmentIndex: 0, graphemeIndex: 0 };
 
-  const totalPossibleLines = Math.floor(triangleHeight / lineHeight);
-  const skipLines = Math.floor(scrollOffset / lineHeight);
+  // Find the vertical bounds of the triangle
+  const minY = Math.min(...trianglePoints.map((p) => p.y));
+  const maxY = Math.max(...trianglePoints.map((p) => p.y));
 
-  // Pre-advance the cursor by consuming skipped lines
-  // Use a wide width for skipped lines so we advance through content faster
+  // Pre-advance cursor by consuming skipped lines
+  const skipLines = Math.floor(scrollOffset / lineHeight);
   for (let i = 0; i < skipLines; i++) {
-    const line = layoutNextLine(prepared, cursor, maxWidth);
+    // Use a wide width for skipped lines
+    const line = layoutNextLine(prepared, cursor, 900);
     if (line === null) return lines;
     cursor = line.end;
   }
 
-  let y = 0;
-  while (y + lineHeight <= triangleHeight) {
-    const progress =
-      totalPossibleLines <= 1 ? 1 : y / lineHeight / (totalPossibleLines - 1);
-    // Triangle: narrow at top, expands to maxWidth at bottom
-    // Use eased progress for a more pleasing shape
-    const eased = Math.pow(progress, 0.75);
-    const minWidth = 60;
-    const lineWidth = minWidth + (maxWidth - minWidth) * eased;
+  let y = minY;
+  while (y + lineHeight <= maxY) {
+    const interval = getTriangleIntervalForBand(
+      trianglePoints,
+      y,
+      y + lineHeight
+    );
 
+    if (interval === null) {
+      y += lineHeight;
+      continue;
+    }
+
+    const lineWidth = interval.right - interval.left;
     const line = layoutNextLine(prepared, cursor, lineWidth);
     if (line === null) break;
 
-    // Center each line horizontally within the maxWidth
-    const x = (maxWidth - line.width) / 2;
+    // Center the actual text within the available interval
+    const slack = lineWidth - line.width;
+    const x = interval.left + slack / 2;
 
     lines.push({ x, y, text: line.text, width: line.width });
     cursor = line.end;
@@ -66,6 +104,7 @@ export function TriangleText() {
   const preparedRef = useRef<PreparedTextWithSegments | null>(null);
   const scrollRef = useRef(0);
   const rafRef = useRef<number>(0);
+  const textReadyRef = useRef(false);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
 
   const FONT_SIZE = 14;
@@ -85,7 +124,7 @@ export function TriangleText() {
 
       if (text.length > 0) {
         preparedRef.current = prepareWithSegments(text, FONT);
-        // Trigger redraw
+        textReadyRef.current = true;
         setDimensions((d) => ({ ...d }));
       }
     }, 150);
@@ -131,56 +170,50 @@ export function TriangleText() {
     ctx.scale(dpr, dpr);
 
     const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    ctx.fillStyle = isDark ? "#1C1C1C" : "#fcfcfc";
+    ctx.fillStyle = isDark ? "#111" : "#fafafa";
     ctx.fillRect(0, 0, width, height);
 
-    // Triangle sizing - fill as much of the viewport as possible
-    const paddingX = 32;
-    const paddingY = 24;
-    const triangleMaxWidth = Math.min(width - paddingX * 2, 880);
-    const triangleHeight = height - paddingY * 2;
+    // Define triangle polygon - apex at top center, base at bottom
+    const paddingX = 40;
+    const paddingY = 32;
+    const baseWidth = Math.min(width - paddingX * 2, 920);
+    const centerX = width / 2;
+    const topY = paddingY;
+    const bottomY = height - paddingY;
+
+    const trianglePoints = [
+      { x: centerX, y: topY },
+      { x: centerX - baseWidth / 2, y: bottomY },
+      { x: centerX + baseWidth / 2, y: bottomY },
+    ];
 
     const lines = layoutTriangle(
       prepared,
-      triangleHeight,
+      trianglePoints,
       LINE_HEIGHT,
-      triangleMaxWidth,
       scrollRef.current
     );
 
-    const offsetX = (width - triangleMaxWidth) / 2;
-    const offsetY = paddingY;
-
-    // Draw very subtle triangle guide
+    // Draw subtle triangle outline
     ctx.beginPath();
-    ctx.moveTo(width / 2, offsetY - 2);
-    ctx.lineTo(offsetX - 6, offsetY + triangleHeight + 2);
-    ctx.lineTo(offsetX + triangleMaxWidth + 6, offsetY + triangleHeight + 2);
+    ctx.moveTo(trianglePoints[0].x, trianglePoints[0].y);
+    ctx.lineTo(trianglePoints[1].x, trianglePoints[1].y);
+    ctx.lineTo(trianglePoints[2].x, trianglePoints[2].y);
     ctx.closePath();
     ctx.strokeStyle = isDark
-      ? "rgba(255,255,255,0.04)"
-      : "rgba(0,0,0,0.03)";
-    ctx.lineWidth = 0.5;
+      ? "rgba(255,255,255,0.06)"
+      : "rgba(0,0,0,0.04)";
+    ctx.lineWidth = 1;
     ctx.stroke();
 
-    // Draw text
+    // Draw text lines
     ctx.font = FONT;
     ctx.textBaseline = "top";
+    ctx.fillStyle = isDark ? "rgba(255,255,255,0.85)" : "rgba(0,0,0,0.78)";
 
-    const textColor = isDark
-      ? "rgba(255,255,255,0.82)"
-      : "rgba(0,0,0,0.75)";
-
-    for (let i = 0; i < lines.length; i++) {
-      const line = lines[i];
-      // Fade edges
-      const fadeIn = Math.min(1, (i + 1) / 3);
-      const fadeOut = Math.min(1, (lines.length - i) / 3);
-      ctx.globalAlpha = fadeIn * fadeOut;
-      ctx.fillStyle = textColor;
-      ctx.fillText(line.text, offsetX + line.x, offsetY + line.y + 2);
+    for (const line of lines) {
+      ctx.fillText(line.text, line.x, line.y + 2);
     }
-    ctx.globalAlpha = 1;
   }, [dimensions, FONT, LINE_HEIGHT]);
 
   useEffect(() => {
@@ -194,7 +227,7 @@ export function TriangleText() {
 
     const onWheel = (e: WheelEvent) => {
       e.preventDefault();
-      scrollRef.current = Math.max(0, scrollRef.current + e.deltaY * 0.4);
+      scrollRef.current = Math.max(0, scrollRef.current + e.deltaY * 0.5);
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
       rafRef.current = requestAnimationFrame(draw);
     };
