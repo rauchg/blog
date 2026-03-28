@@ -107,9 +107,14 @@ export function TriangleText() {
   const textReadyRef = useRef(false);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
 
-  const FONT_SIZE = 14;
-  const LINE_HEIGHT = 22;
-  const FONT = `${FONT_SIZE}px "Geist", ui-sans-serif, system-ui, sans-serif`;
+  const [params, setParams] = useState({
+    scale: 0.5,
+    fontSize: 14,
+    lineHeight: 22,
+  });
+  const [copied, setCopied] = useState(false);
+
+  const FONT = `${params.fontSize}px "Geist", ui-sans-serif, system-ui, sans-serif`;
 
   // Extract text from the hidden article DOM
   useEffect(() => {
@@ -129,7 +134,8 @@ export function TriangleText() {
       }
     }, 150);
     return () => clearTimeout(timer);
-  }, [FONT]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // Handle resize
   useEffect(() => {
@@ -178,7 +184,7 @@ export function TriangleText() {
     const paddingY = 32;
     const fullBaseWidth = Math.min(width - paddingX * 2, 920);
     const fullHeight = height - paddingY * 2;
-    const scale = 0.5;
+    const scale = params.scale;
     const baseWidth = fullBaseWidth * scale;
     const triHeight = fullHeight * scale;
     const centerX = width / 2;
@@ -195,7 +201,7 @@ export function TriangleText() {
     const lines = layoutTriangle(
       prepared,
       trianglePoints,
-      LINE_HEIGHT,
+      params.lineHeight,
       scrollRef.current
     );
 
@@ -219,7 +225,7 @@ export function TriangleText() {
     for (const line of lines) {
       ctx.fillText(line.text, line.x, line.y + 2);
     }
-  }, [dimensions, FONT, LINE_HEIGHT]);
+  }, [dimensions, FONT, params]);
 
   useEffect(() => {
     draw();
@@ -274,6 +280,81 @@ export function TriangleText() {
         className="block"
         style={{ width: dimensions.width, height: dimensions.height }}
       />
+      <div
+        className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[60] flex items-center gap-5 rounded-full px-5 py-2.5"
+        style={{
+          background: "rgba(0,0,0,0.75)",
+          backdropFilter: "blur(12px)",
+          color: "#fff",
+          fontSize: 13,
+          fontFamily: "ui-monospace, monospace",
+        }}
+      >
+        <label className="flex items-center gap-2">
+          scale
+          <input
+            type="range"
+            min={0.2}
+            max={1}
+            step={0.05}
+            value={params.scale}
+            onChange={(e) => setParams((p) => ({ ...p, scale: +e.target.value }))}
+            className="w-20 accent-white"
+          />
+          <span className="w-8 text-right">{params.scale}</span>
+        </label>
+        <label className="flex items-center gap-2">
+          font
+          <input
+            type="range"
+            min={8}
+            max={28}
+            step={1}
+            value={params.fontSize}
+            onChange={(e) => {
+              const fs = +e.target.value;
+              preparedRef.current = null;
+              textReadyRef.current = false;
+              const article = document.querySelector("[data-post-content]");
+              if (article) {
+                const text = (article.textContent || "").replace(/[ \t]+/g, " ").replace(/\n{3,}/g, "\n\n").trim();
+                if (text.length > 0) {
+                  preparedRef.current = prepareWithSegments(text, `${fs}px "Geist", ui-sans-serif, system-ui, sans-serif`);
+                  textReadyRef.current = true;
+                }
+              }
+              setParams((p) => ({ ...p, fontSize: fs, lineHeight: Math.round(fs * 1.57) }));
+            }}
+            className="w-20 accent-white"
+          />
+          <span className="w-8 text-right">{params.fontSize}</span>
+        </label>
+        <label className="flex items-center gap-2">
+          lead
+          <input
+            type="range"
+            min={params.fontSize}
+            max={params.fontSize * 3}
+            step={1}
+            value={params.lineHeight}
+            onChange={(e) => setParams((p) => ({ ...p, lineHeight: +e.target.value }))}
+            className="w-20 accent-white"
+          />
+          <span className="w-8 text-right">{params.lineHeight}</span>
+        </label>
+        <button
+          onClick={() => {
+            const str = `scale: ${params.scale}, fontSize: ${params.fontSize}, lineHeight: ${params.lineHeight}`;
+            navigator.clipboard.writeText(str);
+            setCopied(true);
+            setTimeout(() => setCopied(false), 1500);
+          }}
+          className="ml-1 rounded-full px-3 py-1 text-xs transition-colors"
+          style={{ background: copied ? "rgba(255,255,255,0.3)" : "rgba(255,255,255,0.12)" }}
+        >
+          {copied ? "copied" : "copy"}
+        </button>
+      </div>
     </div>
   );
 }
