@@ -129,12 +129,10 @@ function faceMatrix3d(
   v0: V3, v1: V3, v2: V3,
   fw: number, fh: number
 ): string {
-  // 2D source points matching the clip-path triangle.
-  // Swap bottom-left and bottom-right so the affine transform
-  // doesn't mirror the text horizontally.
+  // 2D source points matching clip-path: polygon(50% 0%, 0% 100%, 100% 100%)
   const s0x = fw / 2, s0y = 0;   // apex
-  const s1x = fw,     s1y = fh;  // bottom-right (swapped)
-  const s2x = 0,      s2y = fh;  // bottom-left  (swapped)
+  const s1x = 0,      s1y = fh;  // bottom-left
+  const s2x = fw,     s2y = fh;  // bottom-right
 
   const det = s0x * (s1y - s2y) - s1x * (s0y - s2y) + s2x * (s0y - s1y);
   const computeRow = (t0: number, t1: number, t2: number) => {
@@ -150,7 +148,9 @@ function faceMatrix3d(
 
   const edge1 = sub(v1, v0);
   const edge2 = sub(v2, v0);
-  const normal = normalize(cross(edge1, edge2));
+  const n = normalize(cross(edge1, edge2));
+  // Negate normal so the text-bearing side (front face) points outward
+  const normal: V3 = [-n[0], -n[1], -n[2]];
 
   return `matrix3d(${ax},${ay},${az},0, ${bx},${by},${bz},0, ${normal[0]},${normal[1]},${normal[2]},0, ${cx},${cy},${cz},1)`;
 }
@@ -305,15 +305,16 @@ export function TriangleText() {
     ];
   }, [params.edge]);
 
-  // Face winding: text faces outward.
-  // Bottom face has reversed winding so the wide base of the 2D
-  // clip-path triangle maps to the bottom of the tetrahedron,
-  // eliminating the white gap at the base.
+  // Face winding order:
+  //   v0 = apex, v1 = front-left, v2 = front-right, v3 = back
+  // Each triple (a,b,c) maps clip-path points: apex->a, bottom-left->b, bottom-right->c.
+  // We use CCW winding so the outward normal faces outside AND text reads correctly
+  // (left-to-right when viewed from outside the tetrahedron).
   const faceIndices: [number, number, number][] = useMemo(() => [
-    [0, 2, 1], // front
-    [0, 3, 2], // right
-    [0, 1, 3], // left
-    [2, 1, 3], // bottom (swapped to flip text orientation)
+    [0, 1, 2], // front  (apex=v0, bl=v1, br=v2)
+    [0, 2, 3], // right  (apex=v0, bl=v2, br=v3)
+    [0, 3, 1], // left   (apex=v0, bl=v3, br=v1)
+    [1, 3, 2], // bottom (apex=v1, bl=v3, br=v2)
   ], []);
 
   const faceData = useMemo(() => {
