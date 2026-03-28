@@ -298,7 +298,7 @@ export function TriangleText() {
     <div
       ref={containerRef}
       className="fixed inset-0 z-50"
-      style={{ cursor: "ns-resize" }}
+      style={{ cursor: "default" }}
     >
       <canvas
         ref={canvasRef}
