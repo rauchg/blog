@@ -305,12 +305,15 @@ export function TriangleText() {
     ];
   }, [params.edge]);
 
-  // Face winding: text faces outward
+  // Face winding: text faces outward.
+  // Bottom face has reversed winding so the wide base of the 2D
+  // clip-path triangle maps to the bottom of the tetrahedron,
+  // eliminating the white gap at the base.
   const faceIndices: [number, number, number][] = useMemo(() => [
     [0, 2, 1], // front
     [0, 3, 2], // right
     [0, 1, 3], // left
-    [1, 2, 3], // bottom
+    [2, 1, 3], // bottom (swapped to flip text orientation)
   ], []);
 
   const faceData = useMemo(() => {
