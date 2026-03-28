@@ -9,9 +9,7 @@ export default async function Layout({ children }) {
 
   return (
     <>
-      <div className="sr-only" aria-hidden="true">
-        <Header posts={posts} />
-      </div>
+      <Header posts={posts} />
 
       <article
         data-post-content
