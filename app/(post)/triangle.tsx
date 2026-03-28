@@ -183,6 +183,9 @@ export function TriangleText() {
       el.style.whiteSpace = "nowrap";
       el.style.font = FONT;
       el.style.lineHeight = `${LINE_HEIGHT}px`;
+      el.style.pointerEvents = "auto";
+      el.style.cursor = "text";
+      el.style.userSelect = "text";
       pool.push(el);
       container.appendChild(el);
     }
