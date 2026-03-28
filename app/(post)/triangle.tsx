@@ -176,7 +176,7 @@ export function TriangleText() {
     // Define triangle polygon - apex at top center, base at bottom
     const paddingX = 40;
     const paddingY = 32;
-    const baseWidth = Math.min(width - paddingX * 2, 920);
+    const baseWidth = Math.min(width - paddingX * 2, 920) * 0.5;
     const centerX = width / 2;
     const topY = paddingY;
     const bottomY = height - paddingY;
