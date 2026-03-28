@@ -202,8 +202,9 @@ export function TriangleText() {
     const fullHeight = height - paddingY * 2;
     const baseWidth = fullBaseWidth * SCALE;
     const triHeight = fullHeight * SCALE;
+    const headerOffset = 80;
     const centerX = width / 2;
-    const centerY = height / 2;
+    const centerY = height / 2 + headerOffset / 2;
     const topY = centerY - triHeight / 2;
     const bottomY = centerY + triHeight / 2;
 
