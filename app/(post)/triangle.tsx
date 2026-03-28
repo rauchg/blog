@@ -9,8 +9,8 @@ import {
 } from "@chenglou/pretext";
 
 const DEFAULT_FONT_SIZE = 12;
-const DEFAULT_LINE_HEIGHT = 20;
-const DEFAULT_EDGE = 280;
+const DEFAULT_LINE_HEIGHT = 12;
+const DEFAULT_EDGE = 500;
 
 function getTriangleIntervalForBand(
   points: { x: number; y: number }[],
@@ -52,7 +52,7 @@ function layoutFaceLines(
   scrollOffset: number,
   lineHeight: number
 ): { lines: LayoutLine[]; endCursor: LayoutCursor } {
-  const pad = faceWidth * 0.06;
+  const pad = faceWidth * 0.04;
   const triPoints = [
     { x: faceWidth / 2, y: pad },
     { x: pad, y: faceHeight - pad },
@@ -95,17 +95,20 @@ function countTotalLines(prepared: PreparedTextWithSegments): number {
   return count;
 }
 
+// Compute the number of lines that fit in one face at a given edge/lineHeight
+function linesPerFace(edge: number, lineHeight: number): number {
+  const fh = (edge * Math.sqrt(3)) / 2;
+  const pad = edge * 0.04;
+  return Math.floor((fh - 2 * pad) / lineHeight);
+}
+
 // --- CSS 3D Tetrahedron via matrix3d ---
-// Compute an exact CSS matrix3d to map each 2D face div onto its 3D face.
-//
-// Each face div is faceWidth x faceHeight with clip-path triangle:
-//   p0 = (fw/2, 0)     -- apex
-//   p1 = (0, fh)       -- bottom-left
-//   p2 = (fw, fh)      -- bottom-right
-//
-// We compute a matrix that maps those 2D points to the 3D vertex positions.
 
 type V3 = [number, number, number];
+
+function sub(a: V3, b: V3): V3 {
+  return [a[0] - b[0], a[1] - b[1], a[2] - b[2]];
+}
 
 function cross(a: V3, b: V3): V3 {
   return [
@@ -120,34 +123,18 @@ function normalize(v: V3): V3 {
   return [v[0] / len, v[1] / len, v[2] / len];
 }
 
-function sub(a: V3, b: V3): V3 {
-  return [a[0] - b[0], a[1] - b[1], a[2] - b[2]];
-}
-
-// Compute CSS matrix3d that maps from a 2D face (with given triangle points)
-// to 3D positions. The face div's origin (0,0) is at top-left.
-// We map: p0->v0, p1->v1, p2->v2
+// Map the 2D face div (with clip-path triangle apex at top-center,
+// base at bottom) onto 3D vertex positions via an affine matrix3d.
 function faceMatrix3d(
-  v0: V3, v1: V3, v2: V3,  // 3D target vertices
-  fw: number, fh: number    // face div dimensions
+  v0: V3, v1: V3, v2: V3,
+  fw: number, fh: number
 ): string {
-  // 2D source points (in the face div's coordinate system)
-  const s0x = fw / 2, s0y = 0;   // apex
-  const s1x = 0,      s1y = fh;  // bottom-left
-  const s2x = fw,     s2y = fh;  // bottom-right
-
-  // We need affine 2D->3D: [X,Y,Z] = A * [x,y] + t
-  // This gives us 3 equations (for x,y -> X, Y, Z) with 3 point pairs.
-  // 
-  // Using matrix form:
-  // [s0x s1x s2x]   [a b c]^T   [v0x v1x v2x]
-  // [s0y s1y s2y] * [d e f]   = [v0y v1y v2y]  
-  // [  1   1   1]   [g h i]     [v0z v1z v2z]
-  //
-  // Solve for the 3x3 coefficient matrix
+  // 2D source: apex=(fw/2,0), bottom-left=(0,fh), bottom-right=(fw,fh)
+  const s0x = fw / 2, s0y = 0;
+  const s1x = 0,      s1y = fh;
+  const s2x = fw,     s2y = fh;
 
   const det = s0x * (s1y - s2y) - s1x * (s0y - s2y) + s2x * (s0y - s1y);
-
   const computeRow = (t0: number, t1: number, t2: number) => {
     const a = ((s1y - s2y) * t0 + (s2y - s0y) * t1 + (s0y - s1y) * t2) / det;
     const b = ((s2x - s1x) * t0 + (s0x - s2x) * t1 + (s1x - s0x) * t2) / det;
@@ -159,24 +146,10 @@ function faceMatrix3d(
   const [ay, by, cy] = computeRow(v0[1], v1[1], v2[1]);
   const [az, bz, cz] = computeRow(v0[2], v1[2], v2[2]);
 
-  // CSS matrix3d is column-major 4x4:
-  // Column 0: what happens to X direction (face x-axis)
-  // Column 1: what happens to Y direction (face y-axis)  
-  // Column 2: what happens to Z direction (face has no depth, but we need the normal)
-  // Column 3: translation
-
-  // Face normal (for Z column, needed for backface-visibility to work)
   const edge1 = sub(v1, v0);
   const edge2 = sub(v2, v0);
   const normal = normalize(cross(edge1, edge2));
-  
-  // matrix3d(a1,b1,c1,d1, a2,b2,c2,d2, a3,b3,c3,d3, a4,b4,c4,d4)
-  // where columns are: [a1,b1,c1,d1], [a2,b2,c2,d2], [a3,b3,c3,d3], [a4,b4,c4,d4]
-  // col0 = face X -> 3D: [ax, ay, az, 0]
-  // col1 = face Y -> 3D: [bx, by, bz, 0]
-  // col2 = normal:       [nx, ny, nz, 0]
-  // col3 = translation:  [cx, cy, cz, 1]
-  
+
   return `matrix3d(${ax},${ay},${az},0, ${bx},${by},${bz},0, ${normal[0]},${normal[1]},${normal[2]},0, ${cx},${cy},${cz},1)`;
 }
 
@@ -250,12 +223,14 @@ export function TriangleText() {
   const FACE_W = params.edge;
   const FACE_H = (params.edge * Math.sqrt(3)) / 2;
 
-  // Re-prepare text when font size changes
-  const rePrepare = useCallback((text: string, font: string) => {
+  const rePrepare = useCallback((text: string, font: string, edge: number, lh: number) => {
     if (text.length === 0) return;
     const p = prepareWithSegments(text, font);
     setPrepared(p);
-    maxScrollRef.current = Math.max(0, countTotalLines(p) - 40);
+    // Max scroll: total lines minus ~4 faces worth of visible lines
+    const total = countTotalLines(p);
+    const visiblePerFace = linesPerFace(edge, lh);
+    maxScrollRef.current = Math.max(0, total - visiblePerFace * 4);
   }, []);
 
   useEffect(() => {
@@ -267,7 +242,7 @@ export function TriangleText() {
         .replace(/\n{3,}/g, "\n\n")
         .trim();
       rawTextRef.current = text;
-      rePrepare(text, FONT);
+      rePrepare(text, FONT, params.edge, params.lineHeight);
     }, 150);
     return () => clearTimeout(timer);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -306,21 +281,34 @@ export function TriangleText() {
     return () => { document.body.style.overflow = ""; };
   }, []);
 
+  // Regular tetrahedron vertices centered at origin.
+  // Standard formulation: edge length = s
+  //   v0 = ( 0,      h_top, 0     )  -- apex
+  //   v1 = (-s/2,   -h_bot, d     )  -- front-left
+  //   v2 = ( s/2,   -h_bot, d     )  -- front-right
+  //   v3 = ( 0,     -h_bot, -2d   )  -- back
+  // where h = s * sqrt(2/3), h_top = 3/4 * h, h_bot = 1/4 * h
+  //       d = s * sqrt(3) / 6 (inradius of base triangle)
   const verts = useMemo<V3[]>(() => {
     const s = params.edge;
+    const h = s * Math.sqrt(2 / 3);
+    const ht = h * 0.75;
+    const hb = h * 0.25;
+    const d = s / (2 * Math.sqrt(3)); // = s * sqrt(3) / 6
     return [
-      [0, s * Math.sqrt(2 / 3) * 0.75, 0],
-      [-s / 2, -s * Math.sqrt(2 / 3) * 0.25, s * Math.sqrt(3) / 6],
-      [s / 2, -s * Math.sqrt(2 / 3) * 0.25, s * Math.sqrt(3) / 6],
-      [0, -s * Math.sqrt(2 / 3) * 0.25, -s * Math.sqrt(3) / 3],
+      [0,    ht,  0],         // apex (top)
+      [-s/2, -hb,  d],       // front-left
+      [ s/2, -hb,  d],       // front-right
+      [0,    -hb, -2 * d],   // back
     ];
   }, [params.edge]);
 
+  // Face winding: text faces outward
   const faceIndices: [number, number, number][] = useMemo(() => [
-    [0, 2, 1],
-    [0, 3, 2],
-    [0, 1, 3],
-    [1, 2, 3],
+    [0, 2, 1], // front
+    [0, 3, 2], // right
+    [0, 1, 3], // left
+    [1, 2, 3], // bottom
   ], []);
 
   const faceData = useMemo(() => {
@@ -350,7 +338,7 @@ export function TriangleText() {
       <div
         className="fixed inset-0 z-40 flex items-center justify-center"
         style={{
-          perspective: 1000,
+          perspective: 1200,
           cursor: dragging.current ? "grabbing" : "grab",
           marginTop: 80,
         }}
@@ -397,10 +385,14 @@ export function TriangleText() {
           <input
             type="range"
             min={120}
-            max={500}
+            max={600}
             step={10}
             value={params.edge}
-            onChange={(e) => setParams((p) => ({ ...p, edge: +e.target.value }))}
+            onChange={(e) => {
+              const edge = +e.target.value;
+              rePrepare(rawTextRef.current, FONT, edge, params.lineHeight);
+              setParams((p) => ({ ...p, edge }));
+            }}
             className="w-20 accent-white"
           />
           <span className="w-8 text-right">{params.edge}</span>
@@ -415,9 +407,10 @@ export function TriangleText() {
             value={params.fontSize}
             onChange={(e) => {
               const fs = +e.target.value;
+              const lh = Math.round(fs * 1);
               const newFont = `${fs}px "Geist", ui-sans-serif, system-ui, sans-serif`;
-              rePrepare(rawTextRef.current, newFont);
-              setParams((p) => ({ ...p, fontSize: fs, lineHeight: Math.round(fs * 1.6) }));
+              rePrepare(rawTextRef.current, newFont, params.edge, lh);
+              setParams((p) => ({ ...p, fontSize: fs, lineHeight: lh }));
             }}
             className="w-20 accent-white"
           />
@@ -431,7 +424,11 @@ export function TriangleText() {
             max={params.fontSize * 3}
             step={1}
             value={params.lineHeight}
-            onChange={(e) => setParams((p) => ({ ...p, lineHeight: +e.target.value }))}
+            onChange={(e) => {
+              const lh = +e.target.value;
+              rePrepare(rawTextRef.current, FONT, params.edge, lh);
+              setParams((p) => ({ ...p, lineHeight: lh }));
+            }}
             className="w-20 accent-white"
           />
           <span className="w-8 text-right">{params.lineHeight}</span>
