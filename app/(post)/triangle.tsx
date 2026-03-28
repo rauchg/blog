@@ -1,22 +1,18 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback, useMemo } from "react";
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
+import { useEffect, useRef, useState, useCallback } from "react";
 import {
   prepareWithSegments,
   layoutNextLine,
   type PreparedTextWithSegments,
   type LayoutCursor,
 } from "@chenglou/pretext";
-import * as THREE from "three";
 
-// ----- pretext helpers -----
-
-const FONT_SIZE = 13;
-const LINE_HEIGHT = 19;
+const FONT_SIZE = 12;
+const LINE_HEIGHT = 20;
 const FONT = `${FONT_SIZE}px "Geist", ui-sans-serif, system-ui, sans-serif`;
-const TEX_SIZE = 1024;
+
+// --- triangle text layout helpers ---
 
 function getTriangleIntervalForBand(
   points: { x: number; y: number }[],
@@ -43,57 +39,40 @@ function getTriangleIntervalForBand(
   return { left, right };
 }
 
-/** Render a page of text into a triangular region and return the canvas + end cursor. */
-function renderFaceTexture(
+interface LayoutLine {
+  text: string;
+  x: number;
+  y: number;
+  width: number;
+}
+
+function layoutFaceLines(
   prepared: PreparedTextWithSegments,
   startCursor: LayoutCursor,
+  faceSize: number,
   scrollOffset: number
-): { canvas: HTMLCanvasElement; endCursor: LayoutCursor; linesRendered: number } {
-  const canvas = document.createElement("canvas");
-  canvas.width = TEX_SIZE;
-  canvas.height = TEX_SIZE;
-  const ctx = canvas.getContext("2d")!;
-
-  // White background
-  ctx.fillStyle = "#ffffff";
-  ctx.fillRect(0, 0, TEX_SIZE, TEX_SIZE);
-
-  // Triangle region: equilateral, apex at top-center
-  const pad = 60;
+): { lines: LayoutLine[]; endCursor: LayoutCursor } {
+  const pad = faceSize * 0.08;
   const triPoints = [
-    { x: TEX_SIZE / 2, y: pad },
-    { x: pad, y: TEX_SIZE - pad },
-    { x: TEX_SIZE - pad, y: TEX_SIZE - pad },
+    { x: faceSize / 2, y: pad },
+    { x: pad, y: faceSize - pad },
+    { x: faceSize - pad, y: faceSize - pad },
   ];
 
-  // Subtle triangle outline
-  ctx.beginPath();
-  ctx.moveTo(triPoints[0].x, triPoints[0].y);
-  ctx.lineTo(triPoints[1].x, triPoints[1].y);
-  ctx.lineTo(triPoints[2].x, triPoints[2].y);
-  ctx.closePath();
-  ctx.strokeStyle = "rgba(0,0,0,0.04)";
-  ctx.lineWidth = 1;
-  ctx.stroke();
-
-  // Skip lines for scroll offset
   let cursor: LayoutCursor = { ...startCursor };
+
+  // Skip lines for scroll
   let skipped = 0;
   while (skipped < scrollOffset) {
-    const line = layoutNextLine(prepared, cursor, TEX_SIZE);
-    if (line === null) break;
+    const line = layoutNextLine(prepared, cursor, faceSize);
+    if (!line) break;
     cursor = line.end;
     skipped++;
   }
 
-  // Lay out visible text
-  ctx.font = FONT;
-  ctx.textBaseline = "top";
-  ctx.fillStyle = "rgba(0,0,0,0.82)";
-
+  const lines: LayoutLine[] = [];
   let y = triPoints[0].y;
   const maxY = triPoints[2].y;
-  let linesRendered = 0;
 
   while (y + LINE_HEIGHT <= maxY) {
     const interval = getTriangleIntervalForBand(triPoints, y, y + LINE_HEIGHT);
@@ -103,167 +82,130 @@ function renderFaceTexture(
     }
     const lineWidth = interval.right - interval.left;
     const line = layoutNextLine(prepared, cursor, lineWidth);
-    if (line === null) break;
+    if (!line) break;
 
     const slack = lineWidth - line.width;
-    const x = interval.left + slack / 2;
-    ctx.fillText(line.text, x, y);
+    lines.push({
+      text: line.text,
+      x: interval.left + slack / 2,
+      y,
+      width: line.width,
+    });
     cursor = line.end;
     y += LINE_HEIGHT;
-    linesRendered++;
   }
 
-  return { canvas, endCursor: cursor, linesRendered };
+  return { lines, endCursor: cursor };
 }
 
-/** Count total lines the text produces for scroll clamping. */
 function countTotalLines(prepared: PreparedTextWithSegments): number {
   let cursor: LayoutCursor = { segmentIndex: 0, graphemeIndex: 0 };
   let count = 0;
   while (true) {
-    const line = layoutNextLine(prepared, cursor, TEX_SIZE);
-    if (line === null) break;
+    const line = layoutNextLine(prepared, cursor, 600);
+    if (!line) break;
     cursor = line.end;
     count++;
   }
   return count;
 }
 
-// ----- Tetrahedron geometry with per-face UVs -----
+// --- CSS 3D tetrahedron geometry ---
+// Regular tetrahedron: 4 equilateral triangle faces
+// Edge length = size. We position faces using rotations.
 
-function createTetrahedronGeometry(radius: number): THREE.BufferGeometry {
-  const a = new THREE.Vector3(1, 1, 1).normalize().multiplyScalar(radius);
-  const b = new THREE.Vector3(1, -1, -1).normalize().multiplyScalar(radius);
-  const c = new THREE.Vector3(-1, 1, -1).normalize().multiplyScalar(radius);
-  const d = new THREE.Vector3(-1, -1, 1).normalize().multiplyScalar(radius);
+// Dihedral angle of a tetrahedron: arccos(1/3) ≈ 70.528°
+const DIHEDRAL = Math.acos(1 / 3) * (180 / Math.PI); // ~70.528°
 
-  const faces = [
-    [a, b, c],
-    [a, c, d],
-    [a, d, b],
-    [b, d, c],
+function getFaceTransforms(size: number) {
+  // The tetrahedron sits with one face as the base.
+  // We build it by placing 4 triangular faces and folding them up.
+  // The "inradius" (center to face) of a regular tetrahedron with edge a:
+  // r = a / (2 * sqrt(6)) * 2 = a / sqrt(24) ≈ a * 0.2041
+  // Actually: inradius = a * sqrt(6) / 12 ≈ 0.2041 * a
+  const inradius = size * Math.sqrt(6) / 12;
+  const h = size * Math.sqrt(3) / 2; // height of equilateral triangle face
+
+  // Each face is an equilateral triangle of side `size`.
+  // We use clip-path to make it triangular.
+  // Face transforms position each face of the tetrahedron.
+
+  return [
+    // Bottom face (base) - lies in XZ plane, facing down
+    `translateY(${inradius}px) rotateX(-90deg)`,
+    // Front face
+    `translateZ(${inradius}px)`,
+    // Right face
+    `rotateY(120deg) translateZ(${inradius}px)`,
+    // Left face
+    `rotateY(-120deg) translateZ(${inradius}px)`,
   ];
-
-  const positions: number[] = [];
-  const uvs: number[] = [];
-  const groups: { start: number; count: number; materialIndex: number }[] = [];
-
-  const triUVs = [
-    [0.5, 1],
-    [0, 0],
-    [1, 0],
-  ];
-
-  faces.forEach((face, fi) => {
-    const start = fi * 3;
-    face.forEach((v, vi) => {
-      positions.push(v.x, v.y, v.z);
-      uvs.push(triUVs[vi][0], triUVs[vi][1]);
-    });
-    groups.push({ start, count: 3, materialIndex: fi });
-  });
-
-  const geo = new THREE.BufferGeometry();
-  geo.setAttribute("position", new THREE.Float32BufferAttribute(positions, 3));
-  geo.setAttribute("uv", new THREE.Float32BufferAttribute(uvs, 2));
-  geo.computeVertexNormals();
-  groups.forEach((g) => geo.addGroup(g.start, g.count, g.materialIndex));
-  return geo;
 }
 
-// ----- React Three Fiber components -----
+// --- Face component ---
 
-function Tetrahedron({
-  materials,
+function Face({
+  lines,
+  size,
+  transform,
+  faceIndex,
 }: {
-  materials: THREE.MeshStandardMaterial[];
+  lines: LayoutLine[];
+  size: number;
+  transform: string;
+  faceIndex: number;
 }) {
-  const meshRef = useRef<THREE.Mesh>(null);
-  const geometry = useMemo(() => createTetrahedronGeometry(1.6), []);
-
-  return <mesh ref={meshRef} geometry={geometry} material={materials} />;
-}
-
-function Scene({
-  prepared,
-  scrollOffset,
-  maxScroll,
-}: {
-  prepared: PreparedTextWithSegments;
-  scrollOffset: number;
-  maxScroll: number;
-}) {
-  const materialsRef = useRef<THREE.MeshStandardMaterial[]>([]);
-
-  // Create materials once
-  if (materialsRef.current.length === 0) {
-    for (let i = 0; i < 4; i++) {
-      materialsRef.current.push(
-        new THREE.MeshStandardMaterial({
-          roughness: 0.3,
-          metalness: 0.0,
-          side: THREE.FrontSide,
-        })
-      );
-    }
-  }
-
-  // Update textures when scroll changes
-  useEffect(() => {
-    let cursor: LayoutCursor = { segmentIndex: 0, graphemeIndex: 0 };
-
-    for (let i = 0; i < 4; i++) {
-      const faceScroll = Math.floor(scrollOffset / 4) + (i < scrollOffset % 4 ? 1 : 0);
-      const { canvas } = renderFaceTexture(prepared, cursor, scrollOffset);
-      const tex = new THREE.CanvasTexture(canvas);
-      tex.colorSpace = THREE.SRGBColorSpace;
-      tex.minFilter = THREE.LinearFilter;
-      tex.magFilter = THREE.LinearFilter;
-      tex.needsUpdate = true;
-
-      const mat = materialsRef.current[i];
-      if (mat.map) mat.map.dispose();
-      mat.map = tex;
-      mat.needsUpdate = true;
-
-      // Advance cursor for next face
-      const advanceCursor = { ...cursor };
-      let lines = 0;
-      while (lines < 45) {
-        const line = layoutNextLine(prepared, advanceCursor, TEX_SIZE);
-        if (!line) break;
-        Object.assign(advanceCursor, line.end);
-        lines++;
-      }
-      cursor = advanceCursor;
-    }
-  }, [prepared, scrollOffset]);
-
   return (
-    <>
-      <ambientLight intensity={1.2} />
-      <directionalLight position={[5, 5, 5]} intensity={0.6} />
-      <directionalLight position={[-3, -2, 4]} intensity={0.3} />
-      <Tetrahedron materials={materialsRef.current} />
-      <OrbitControls
-        enableZoom={true}
-        enablePan={false}
-        minDistance={2.5}
-        maxDistance={8}
-        autoRotate={false}
-      />
-    </>
+    <div
+      style={{
+        position: "absolute",
+        width: size,
+        height: size * Math.sqrt(3) / 2,
+        transform: `${transform} translateX(-${size / 2}px) translateY(-${(size * Math.sqrt(3) / 2) / 2}px)`,
+        clipPath: "polygon(50% 0%, 0% 100%, 100% 100%)",
+        backfaceVisibility: "hidden",
+        background: "#fff",
+        borderBottom: "1px solid rgba(0,0,0,0.06)",
+      }}
+    >
+      {lines.map((line, i) => (
+        <div
+          key={i}
+          style={{
+            position: "absolute",
+            left: line.x,
+            top: line.y,
+            font: FONT,
+            lineHeight: `${LINE_HEIGHT}px`,
+            whiteSpace: "nowrap",
+            color: "rgba(0,0,0,0.85)",
+            pointerEvents: "auto",
+            cursor: "text",
+            userSelect: "text",
+          }}
+        >
+          {line.text}
+        </div>
+      ))}
+    </div>
   );
 }
 
-// ----- Main export -----
+// --- Main export ---
 
 export function TriangleText() {
-  const [prepared, setPrepared] = useState<PreparedTextWithSegments | null>(null);
+  const [prepared, setPrepared] = useState<PreparedTextWithSegments | null>(
+    null
+  );
   const [scrollOffset, setScrollOffset] = useState(0);
   const maxScrollRef = useRef(0);
+  const [rotation, setRotation] = useState({ x: -20, y: 30 });
+  const dragging = useRef(false);
+  const lastPos = useRef({ x: 0, y: 0 });
 
-  // Extract text from hidden article
+  const FACE_SIZE = 340;
+
+  // Extract text
   useEffect(() => {
     const timer = setTimeout(() => {
       const article = document.querySelector("[data-post-content]");
@@ -275,7 +217,7 @@ export function TriangleText() {
       if (text.length > 0) {
         const p = prepareWithSegments(text, FONT);
         setPrepared(p);
-        maxScrollRef.current = Math.max(0, countTotalLines(p) - 30);
+        maxScrollRef.current = Math.max(0, countTotalLines(p) - 40);
       }
     }, 150);
     return () => clearTimeout(timer);
@@ -284,17 +226,36 @@ export function TriangleText() {
   // Scroll to advance text
   useEffect(() => {
     const onWheel = (e: WheelEvent) => {
-      // Only scroll text if not dragging the tetrahedron (ctrl/meta = zoom)
-      if (e.ctrlKey || e.metaKey) return;
       e.preventDefault();
       setScrollOffset((prev) => {
         const next = prev + (e.deltaY > 0 ? 3 : -3);
         return Math.max(0, Math.min(next, maxScrollRef.current));
       });
     };
-
     window.addEventListener("wheel", onWheel, { passive: false });
     return () => window.removeEventListener("wheel", onWheel);
+  }, []);
+
+  // Drag to rotate
+  const onPointerDown = useCallback((e: React.PointerEvent) => {
+    dragging.current = true;
+    lastPos.current = { x: e.clientX, y: e.clientY };
+    (e.target as HTMLElement).setPointerCapture(e.pointerId);
+  }, []);
+
+  const onPointerMove = useCallback((e: React.PointerEvent) => {
+    if (!dragging.current) return;
+    const dx = e.clientX - lastPos.current.x;
+    const dy = e.clientY - lastPos.current.y;
+    lastPos.current = { x: e.clientX, y: e.clientY };
+    setRotation((r) => ({
+      x: Math.max(-89, Math.min(89, r.x - dy * 0.4)),
+      y: r.y + dx * 0.4,
+    }));
+  }, []);
+
+  const onPointerUp = useCallback(() => {
+    dragging.current = false;
   }, []);
 
   // Lock body scroll
@@ -305,21 +266,57 @@ export function TriangleText() {
     };
   }, []);
 
+  // Compute face lines
+  const faceData = (() => {
+    if (!prepared) return [];
+    const faceHeight = FACE_SIZE * Math.sqrt(3) / 2;
+    const faces: LayoutLine[][] = [];
+    let cursor: LayoutCursor = { segmentIndex: 0, graphemeIndex: 0 };
+
+    for (let i = 0; i < 4; i++) {
+      const { lines, endCursor } = layoutFaceLines(
+        prepared,
+        cursor,
+        FACE_SIZE,
+        i === 0 ? scrollOffset : 0
+      );
+      faces.push(lines);
+      cursor = endCursor;
+    }
+    return faces;
+  })();
+
+  const transforms = getFaceTransforms(FACE_SIZE);
+
   if (!prepared) return null;
 
   return (
-    <div className="fixed inset-0 z-40">
-      <Canvas
-        camera={{ position: [0, 0, 4.5], fov: 50 }}
-        gl={{ antialias: true, alpha: true }}
-        style={{ background: "transparent" }}
+    <div
+      className="fixed inset-0 z-40 flex items-center justify-center"
+      style={{ perspective: 900, cursor: dragging.current ? "grabbing" : "grab" }}
+      onPointerDown={onPointerDown}
+      onPointerMove={onPointerMove}
+      onPointerUp={onPointerUp}
+    >
+      <div
+        style={{
+          width: FACE_SIZE,
+          height: FACE_SIZE,
+          position: "relative",
+          transformStyle: "preserve-3d",
+          transform: `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
+        }}
       >
-        <Scene
-          prepared={prepared}
-          scrollOffset={scrollOffset}
-          maxScroll={maxScrollRef.current}
-        />
-      </Canvas>
+        {faceData.map((lines, i) => (
+          <Face
+            key={i}
+            lines={lines}
+            size={FACE_SIZE}
+            transform={transforms[i]}
+            faceIndex={i}
+          />
+        ))}
+      </div>
     </div>
   );
 }
