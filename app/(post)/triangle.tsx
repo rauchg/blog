@@ -129,10 +129,12 @@ function faceMatrix3d(
   v0: V3, v1: V3, v2: V3,
   fw: number, fh: number
 ): string {
-  // 2D source: apex=(fw/2,0), bottom-left=(0,fh), bottom-right=(fw,fh)
-  const s0x = fw / 2, s0y = 0;
-  const s1x = 0,      s1y = fh;
-  const s2x = fw,     s2y = fh;
+  // 2D source points matching the clip-path triangle.
+  // Swap bottom-left and bottom-right so the affine transform
+  // doesn't mirror the text horizontally.
+  const s0x = fw / 2, s0y = 0;   // apex
+  const s1x = fw,     s1y = fh;  // bottom-right (swapped)
+  const s2x = 0,      s2y = fh;  // bottom-left  (swapped)
 
   const det = s0x * (s1y - s2y) - s1x * (s0y - s2y) + s2x * (s0y - s1y);
   const computeRow = (t0: number, t1: number, t2: number) => {
