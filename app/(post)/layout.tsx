@@ -9,7 +9,9 @@ export default async function Layout({ children }) {
 
   return (
     <>
-      <Header posts={posts} />
+      <div className="relative z-[60]">
+        <Header posts={posts} />
+      </div>
 
       <article
         data-post-content
