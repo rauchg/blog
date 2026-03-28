@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState, useCallback, useMemo } from "react";
 import {
   prepareWithSegments,
   layoutNextLine,
@@ -49,14 +49,16 @@ interface LayoutLine {
 function layoutFaceLines(
   prepared: PreparedTextWithSegments,
   startCursor: LayoutCursor,
-  faceSize: number,
+  faceWidth: number,
+  faceHeight: number,
   scrollOffset: number
 ): { lines: LayoutLine[]; endCursor: LayoutCursor } {
-  const pad = faceSize * 0.08;
+  const pad = faceWidth * 0.06;
+  // Triangle pointing up: apex at top-center, base at bottom
   const triPoints = [
-    { x: faceSize / 2, y: pad },
-    { x: pad, y: faceSize - pad },
-    { x: faceSize - pad, y: faceSize - pad },
+    { x: faceWidth / 2, y: pad },
+    { x: pad, y: faceHeight - pad },
+    { x: faceWidth - pad, y: faceHeight - pad },
   ];
 
   let cursor: LayoutCursor = { ...startCursor };
@@ -64,7 +66,7 @@ function layoutFaceLines(
   // Skip lines for scroll
   let skipped = 0;
   while (skipped < scrollOffset) {
-    const line = layoutNextLine(prepared, cursor, faceSize);
+    const line = layoutNextLine(prepared, cursor, faceWidth);
     if (!line) break;
     cursor = line.end;
     skipped++;
@@ -72,7 +74,7 @@ function layoutFaceLines(
 
   const lines: LayoutLine[] = [];
   let y = triPoints[0].y;
-  const maxY = triPoints[2].y;
+  const maxY = triPoints[1].y;
 
   while (y + LINE_HEIGHT <= maxY) {
     const interval = getTriangleIntervalForBand(triPoints, y, y + LINE_HEIGHT);
@@ -102,7 +104,7 @@ function countTotalLines(prepared: PreparedTextWithSegments): number {
   let cursor: LayoutCursor = { segmentIndex: 0, graphemeIndex: 0 };
   let count = 0;
   while (true) {
-    const line = layoutNextLine(prepared, cursor, 600);
+    const line = layoutNextLine(prepared, cursor, 400);
     if (!line) break;
     cursor = line.end;
     count++;
@@ -110,62 +112,38 @@ function countTotalLines(prepared: PreparedTextWithSegments): number {
   return count;
 }
 
-// --- CSS 3D tetrahedron geometry ---
-// Regular tetrahedron: 4 equilateral triangle faces
-// Edge length = size. We position faces using rotations.
+// --- CSS 3D tetrahedron ---
+// Based on the proven approach from Stack Overflow:
+// - One face lies flat as the base
+// - Three faces fold up from each edge of the base using transform-origin at bottom edge
+// - The fold angle is 180 - atan(2*sqrt(2)) in degrees ≈ 109.47°
+// - clip-path: polygon(50% 0, 0% 100%, 100% 100%) makes each div triangular
 
-// Dihedral angle of a tetrahedron: arccos(1/3) ≈ 70.528°
-const DIHEDRAL = Math.acos(1 / 3) * (180 / Math.PI); // ~70.528°
-
-function getFaceTransforms(size: number) {
-  // The tetrahedron sits with one face as the base.
-  // We build it by placing 4 triangular faces and folding them up.
-  // The "inradius" (center to face) of a regular tetrahedron with edge a:
-  // r = a / (2 * sqrt(6)) * 2 = a / sqrt(24) ≈ a * 0.2041
-  // Actually: inradius = a * sqrt(6) / 12 ≈ 0.2041 * a
-  const inradius = size * Math.sqrt(6) / 12;
-  const h = size * Math.sqrt(3) / 2; // height of equilateral triangle face
-
-  // Each face is an equilateral triangle of side `size`.
-  // We use clip-path to make it triangular.
-  // Face transforms position each face of the tetrahedron.
-
-  return [
-    // Bottom face (base) - lies in XZ plane, facing down
-    `translateY(${inradius}px) rotateX(-90deg)`,
-    // Front face
-    `translateZ(${inradius}px)`,
-    // Right face
-    `rotateY(120deg) translateZ(${inradius}px)`,
-    // Left face
-    `rotateY(-120deg) translateZ(${inradius}px)`,
-  ];
-}
+const FOLD_ANGLE = 180 - Math.atan(2 * Math.sqrt(2)) * (180 / Math.PI); // ~109.47°
 
 // --- Face component ---
 
 function Face({
   lines,
-  size,
-  transform,
-  faceIndex,
+  faceWidth,
+  faceHeight,
+  style,
 }: {
   lines: LayoutLine[];
-  size: number;
-  transform: string;
-  faceIndex: number;
+  faceWidth: number;
+  faceHeight: number;
+  style: React.CSSProperties;
 }) {
   return (
     <div
       style={{
         position: "absolute",
-        width: size,
-        height: size * Math.sqrt(3) / 2,
-        transform: `${transform} translateX(-${size / 2}px) translateY(-${(size * Math.sqrt(3) / 2) / 2}px)`,
+        width: faceWidth,
+        height: faceHeight,
         clipPath: "polygon(50% 0%, 0% 100%, 100% 100%)",
-        backfaceVisibility: "hidden",
         background: "#fff",
-        borderBottom: "1px solid rgba(0,0,0,0.06)",
+        border: "1px solid rgba(0,0,0,0.08)",
+        ...style,
       }}
     >
       {lines.map((line, i) => (
@@ -194,16 +172,16 @@ function Face({
 // --- Main export ---
 
 export function TriangleText() {
-  const [prepared, setPrepared] = useState<PreparedTextWithSegments | null>(
-    null
-  );
+  const [prepared, setPrepared] = useState<PreparedTextWithSegments | null>(null);
   const [scrollOffset, setScrollOffset] = useState(0);
   const maxScrollRef = useRef(0);
-  const [rotation, setRotation] = useState({ x: -20, y: 30 });
+  const [rotation, setRotation] = useState({ x: -30, y: 45 });
   const dragging = useRef(false);
   const lastPos = useRef({ x: 0, y: 0 });
 
-  const FACE_SIZE = 340;
+  // Tetrahedron face size
+  const FACE_W = 300;
+  const FACE_H = FACE_W * Math.sqrt(3) / 2; // equilateral triangle height
 
   // Extract text
   useEffect(() => {
@@ -221,6 +199,7 @@ export function TriangleText() {
       }
     }, 150);
     return () => clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Scroll to advance text
@@ -249,7 +228,7 @@ export function TriangleText() {
     const dy = e.clientY - lastPos.current.y;
     lastPos.current = { x: e.clientX, y: e.clientY };
     setRotation((r) => ({
-      x: Math.max(-89, Math.min(89, r.x - dy * 0.4)),
+      x: r.x - dy * 0.4,
       y: r.y + dx * 0.4,
     }));
   }, []);
@@ -266,10 +245,9 @@ export function TriangleText() {
     };
   }, []);
 
-  // Compute face lines
-  const faceData = (() => {
+  // Compute all face lines, text flows continuously across faces
+  const faceData = useMemo(() => {
     if (!prepared) return [];
-    const faceHeight = FACE_SIZE * Math.sqrt(3) / 2;
     const faces: LayoutLine[][] = [];
     let cursor: LayoutCursor = { segmentIndex: 0, graphemeIndex: 0 };
 
@@ -277,45 +255,91 @@ export function TriangleText() {
       const { lines, endCursor } = layoutFaceLines(
         prepared,
         cursor,
-        FACE_SIZE,
+        FACE_W,
+        FACE_H,
         i === 0 ? scrollOffset : 0
       );
       faces.push(lines);
       cursor = endCursor;
     }
     return faces;
-  })();
-
-  const transforms = getFaceTransforms(FACE_SIZE);
+  }, [prepared, scrollOffset, FACE_W, FACE_H]);
 
   if (!prepared) return null;
 
   return (
     <div
       className="fixed inset-0 z-40 flex items-center justify-center"
-      style={{ perspective: 900, cursor: dragging.current ? "grabbing" : "grab" }}
+      style={{
+        perspective: 800,
+        cursor: dragging.current ? "grabbing" : "grab",
+        marginTop: 80,
+      }}
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}
       onPointerUp={onPointerUp}
     >
+      {/* 3D container */}
       <div
         style={{
-          width: FACE_SIZE,
-          height: FACE_SIZE,
           position: "relative",
+          width: FACE_W,
+          height: FACE_H,
           transformStyle: "preserve-3d",
           transform: `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
         }}
       >
-        {faceData.map((lines, i) => (
-          <Face
-            key={i}
-            lines={lines}
-            size={FACE_SIZE}
-            transform={transforms[i]}
-            faceIndex={i}
-          />
-        ))}
+        {/* Face 1: base - lies flat, facing down */}
+        <Face
+          lines={faceData[0] || []}
+          faceWidth={FACE_W}
+          faceHeight={FACE_H}
+          style={{
+            top: 0,
+            left: 0,
+            transformOrigin: "50% 100%",
+            transform: "rotateX(180deg)",
+          }}
+        />
+
+        {/* Face 2: front - folds up from bottom edge of base */}
+        <Face
+          lines={faceData[1] || []}
+          faceWidth={FACE_W}
+          faceHeight={FACE_H}
+          style={{
+            top: 0,
+            left: 0,
+            transformOrigin: "50% 100%",
+            transform: `rotateX(-${FOLD_ANGLE}deg)`,
+          }}
+        />
+
+        {/* Face 3: right - rotate base 60deg, fold up from bottom-right edge */}
+        <Face
+          lines={faceData[2] || []}
+          faceWidth={FACE_W}
+          faceHeight={FACE_H}
+          style={{
+            top: 0,
+            left: 0,
+            transformOrigin: "100% 100%",
+            transform: `rotate(-60deg) rotateX(-${FOLD_ANGLE}deg)`,
+          }}
+        />
+
+        {/* Face 4: left - rotate base -60deg, fold up from bottom-left edge */}
+        <Face
+          lines={faceData[3] || []}
+          faceWidth={FACE_W}
+          faceHeight={FACE_H}
+          style={{
+            top: 0,
+            left: 0,
+            transformOrigin: "0% 100%",
+            transform: `rotate(60deg) rotateX(-${FOLD_ANGLE}deg)`,
+          }}
+        />
       </div>
     </div>
   );
