@@ -113,7 +113,6 @@ const SCALE = 0.65;
 const FONT = `${FONT_SIZE}px "Geist", ui-sans-serif, system-ui, sans-serif`;
 
 export function TriangleText() {
-  const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const preparedRef = useRef<PreparedTextWithSegments | null>(null);
   const scrollRef = useRef(0);
@@ -247,11 +246,8 @@ export function TriangleText() {
     draw();
   }, [draw]);
 
-  // Scroll handler with clamping
+  // Scroll handler on window so canvas can be pointer-events: none
   useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
     const clampScroll = () => {
       scrollRef.current = Math.max(
         0,
@@ -267,7 +263,7 @@ export function TriangleText() {
       rafRef.current = requestAnimationFrame(draw);
     };
 
-    container.addEventListener("wheel", onWheel, { passive: false });
+    window.addEventListener("wheel", onWheel, { passive: false });
 
     let touchStartY = 0;
     const onTouchStart = (e: TouchEvent) => {
@@ -283,22 +279,20 @@ export function TriangleText() {
       rafRef.current = requestAnimationFrame(draw);
     };
 
-    container.addEventListener("touchstart", onTouchStart, { passive: true });
-    container.addEventListener("touchmove", onTouchMove, { passive: false });
+    window.addEventListener("touchstart", onTouchStart, { passive: true });
+    window.addEventListener("touchmove", onTouchMove, { passive: false });
 
     return () => {
-      container.removeEventListener("wheel", onWheel);
-      container.removeEventListener("touchstart", onTouchStart);
-      container.removeEventListener("touchmove", onTouchMove);
+      window.removeEventListener("wheel", onWheel);
+      window.removeEventListener("touchstart", onTouchStart);
+      window.removeEventListener("touchmove", onTouchMove);
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
   }, [draw]);
 
   return (
     <div
-      ref={containerRef}
-      className="fixed inset-0 z-50"
-      style={{ cursor: "default" }}
+      className="fixed inset-0 z-50 pointer-events-none"
     >
       <canvas
         ref={canvasRef}
