@@ -46,17 +46,17 @@ async function getData() {
   const blockIds: string[] =
     collection_view[viewId].value.value.page_sort ?? [];
 
-  const { results } = await getRecordValues({
-    requests: blockIds.map(id => ({
-      table: "block",
-      id,
-    })),
-  });
-
   const blocks: Record<string, any> = {};
-  for (const result of results) {
-    if (result?.value) {
-      blocks[result.value.id] = result;
+  const BATCH_SIZE = 25;
+  for (let i = 0; i < blockIds.length; i += BATCH_SIZE) {
+    const batch = blockIds.slice(i, i + BATCH_SIZE);
+    const { results } = await getRecordValues({
+      requests: batch.map(id => ({ table: "block", id })),
+    });
+    for (const result of results) {
+      if (result?.value) {
+        blocks[result.value.id] = result;
+      }
     }
   }
 

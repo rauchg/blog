@@ -1,18 +1,25 @@
-const API_ENDPOINT = "https://rauchg.notion.site/api/v3";
+const API_ENDPOINT = "https://www.notion.so/api/v3";
 
-export default async function rpc(fnName, body) {
+export default async function rpc(fnName, body, retries = 3) {
   const url = `${API_ENDPOINT}/${fnName}`;
-  const res = await fetch(url, {
-    method: "POST",
-    headers: {
-      "content-type": "application/json",
-    },
-    body: JSON.stringify(body),
-  });
+  for (let attempt = 0; attempt < retries; attempt++) {
+    const res = await fetch(url, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(body),
+    });
 
-  if (res.ok) {
-    return res.json();
-  } else {
+    if (res.ok) {
+      return res.json();
+    }
+
+    if (res.status >= 500 && attempt < retries - 1) {
+      await new Promise(r => setTimeout(r, 1000 * (attempt + 1)));
+      continue;
+    }
+
     throw new Error(await getError(url, res));
   }
 }
