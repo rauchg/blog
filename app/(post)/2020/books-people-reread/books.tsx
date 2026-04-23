@@ -52,14 +52,8 @@ async function getData() {
       spaceId: "7e95f31d-c9d4-4799-ac66-847d56344ef2",
     },
     loader: {
-      type: "reducer",
-      reducers: {
-        collection_group_results: { type: "results", limit: 1000 },
-        "table:uncategorized:title:count": {
-          type: "aggregation",
-          aggregation: { property: "title", aggregator: "count" },
-        },
-      },
+      type: "table",
+      limit: 1000,
       sort: [{ property: collectionSchema.Votes, direction: "descending" }],
       searchQuery: "",
       userTimeZone: "America/Los_Angeles",
@@ -81,7 +75,7 @@ async function getData() {
   }
 
   return (
-    col.result.reducerResults.collection_group_results.blockIds
+    col.result.blockIds
       .map(blockId => {
         const blockData = col.recordMap.block[blockId];
 
