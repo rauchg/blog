@@ -1,7 +1,7 @@
 import Image from "next/image";
 import {
   loadPageChunk,
-  getRecordValues,
+  queryCollection,
   getCollectionSchemaNameIndex,
 } from "./notion";
 
@@ -43,22 +43,26 @@ async function getData() {
   );
 
   const [viewId] = Object.keys(collection_view);
-  const blockIds: string[] =
-    collection_view[viewId].value.value.page_sort ?? [];
 
-  const blocks: Record<string, any> = {};
-  const BATCH_SIZE = 25;
-  for (let i = 0; i < blockIds.length; i += BATCH_SIZE) {
-    const batch = blockIds.slice(i, i + BATCH_SIZE);
-    const { results } = await getRecordValues({
-      requests: batch.map(id => ({ table: "block", id })),
-    });
-    for (const result of results) {
-      if (result?.value) {
-        blocks[result.value.id] = result;
-      }
-    }
-  }
+  const {
+    result: { reducerResults },
+    recordMap: { block: blocks },
+  } = await queryCollection({
+    collectionId,
+    collectionViewId: viewId,
+    query: {},
+    loader: {
+      type: "reducer",
+      reducers: {
+        collection_group_results: { type: "results", limit: 200 },
+      },
+      searchQuery: "",
+      userTimeZone: "America/Los_Angeles",
+    },
+  });
+
+  const blockIds: string[] =
+    reducerResults.collection_group_results.blockIds ?? [];
 
   function toPlainText(val) {
     return val[0]
