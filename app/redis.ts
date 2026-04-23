@@ -1,11 +1,11 @@
 import { Redis } from "@upstash/redis";
 
 const redis =
-  process.env.SKIP_VIEWS === "1" || !process.env.UPSTASH_REDIS_REST_TOKEN
+  process.env.SKIP_VIEWS === "1" || !process.env.KV_REST_API_TOKEN
     ? null
     : new Redis({
-        url: "https://global-apt-bear-30602.upstash.io",
-        token: process.env.UPSTASH_REDIS_REST_TOKEN,
+        url: process.env.KV_REST_API_URL!,
+        token: process.env.KV_REST_API_TOKEN,
       });
 
 export default redis;
