@@ -1,7 +1,7 @@
 import Image from "next/image";
 import {
   loadPageChunk,
-  queryCollection,
+  getRecordValues,
   getCollectionSchemaNameIndex,
 } from "./notion";
 
@@ -18,7 +18,7 @@ export async function Books() {
 
 async function getData() {
   const {
-    recordMap: { collection },
+    recordMap: { collection, collection_view },
   } = await loadPageChunk({
     pageId: "fa0a337c-3807-4aa9-b30f-dddc6ef4ec2e",
     chunkNumber: 0,
@@ -39,26 +39,26 @@ async function getData() {
 
   const [collectionId] = Object.keys(collection);
   const collectionSchema: any = getCollectionSchemaNameIndex(
-    collection[collectionId].value.schema
+    collection[collectionId].value.value.schema
   );
 
-  const col = await queryCollection({
-    collection: {
-      id: "ed95c702-dabc-498a-9186-e8ff4719ecc0",
-      spaceId: "7e95f31d-c9d4-4799-ac66-847d56344ef2",
-    },
-    collectionView: {
-      id: "29294b4b-7b0f-405f-8f5e-af4454c258a2",
-      spaceId: "7e95f31d-c9d4-4799-ac66-847d56344ef2",
-    },
-    loader: {
-      type: "table",
-      limit: 1000,
-      sort: [{ property: collectionSchema.Votes, direction: "descending" }],
-      searchQuery: "",
-      userTimeZone: "America/Los_Angeles",
-    },
+  const [viewId] = Object.keys(collection_view);
+  const blockIds: string[] =
+    collection_view[viewId].value.value.page_sort ?? [];
+
+  const { results } = await getRecordValues({
+    requests: blockIds.map(id => ({
+      table: "block",
+      id,
+    })),
   });
+
+  const blocks: Record<string, any> = {};
+  for (const result of results) {
+    if (result?.value) {
+      blocks[result.value.id] = result;
+    }
+  }
 
   function toPlainText(val) {
     return val[0]
@@ -66,7 +66,6 @@ async function getData() {
         if (typeof v === "string") {
           return v;
         } else if (Array.isArray(v)) {
-          // if it's bold or something else
           return v[1];
         }
       })
@@ -74,58 +73,44 @@ async function getData() {
       .trim();
   }
 
-  return (
-    col.result.blockIds
-      .map(blockId => {
-        const blockData = col.recordMap.block[blockId];
+  return blockIds
+    .map(blockId => {
+      const blockData = blocks[blockId];
+      if (!blockData) {
+        console.warn(`missing block data for "${blockId}"`);
+        return null;
+      }
 
-        if (blockData) {
-          const props = blockData.value.value.properties;
+      const props = blockData.value?.value?.properties ?? blockData.value?.properties;
+      if (!props) return null;
 
-          if (!props) {
-            // not sure when this happens yet, but it seems
-            // to be limited to only one row
-            // console.info('missing props for block', blockId);
-            return null;
-          }
+      const indexedData: any = {};
+      for (const key in collectionSchema) {
+        indexedData[key] = props[collectionSchema[key]];
+      }
+      return indexedData;
+    })
+    .map(book => {
+      if (!book) return null;
 
-          // the props are named with unique ids, but
-          // we want to return them with easily addressable
-          // column names
-          const indexedData = {};
-          for (const key in collectionSchema) {
-            indexedData[key] = props[collectionSchema[key]];
-          }
-          return indexedData;
-        } else {
-          console.warn(`missing block data for "${blockId}"`);
-          return null;
-        }
-      })
-      // sanitize notion data
-      .map(book => {
-        if (!book) return null;
+      book.URL = toPlainText(book.URL);
+      book.Image = book.Image ? toPlainText(book.Image) : null;
 
-        book.URL = toPlainText(book.URL);
-        book.Image = book.Image ? toPlainText(book.Image) : null;
+      const ASIN = book.URL.match(/dp\/(.*)\/?$/);
+      if (ASIN) {
+        book.ASIN = ASIN[1];
+      }
 
-        const ASIN = book.URL.match(/dp\/(.*)\/?$/);
-        if (ASIN) {
-          book.ASIN = ASIN[1];
-        }
+      book.Name = toPlainText(book.Name);
 
-        book.Name = toPlainText(book.Name);
+      book.Votes = Number(book.Votes);
+      if (isNaN(book.Votes)) {
+        book.Votes = 1;
+      }
 
-        // sanitize vote count, since many are undefined
-        book.Votes = Number(book.Votes);
-        if (isNaN(book.Votes)) {
-          book.Votes = 1;
-        }
-
-        return book;
-      })
-      .filter(v => v != null)
-  );
+      return book;
+    })
+    .filter(Boolean) as any[];
 }
 
 function Book({ URL, Name, Image: ImageURL, ASIN, Votes, priority = false }) {

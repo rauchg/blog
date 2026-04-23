@@ -57,6 +57,6 @@ export function loadPageChunk(body) {
   return rpc("loadPageChunk", body);
 }
 
-export function queryCollection(body) {
-  return rpc("queryCollection", body);
+export function getRecordValues(body) {
+  return rpc("getRecordValues", body);
 }
