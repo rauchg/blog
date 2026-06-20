@@ -29,17 +29,17 @@ export function Header({ posts }: { posts: Post[] }) {
 
   return (
     <>
-      <h1 className="text-2xl font-bold mb-1 dark:text-gray-100">
+      <h1 className="text-2xl font-bold mb-1 text-white">
         {post.title}
       </h1>
 
-      <p className="font-mono flex text-xs text-neutral-500 dark:text-neutral-500">
+      <p className="font-mono flex text-xs text-red-200">
         <span className="flex-grow">
           <span className="hidden md:inline">
             <span>
               <a
                 href="https://twitter.com/rauchg"
-                className="hover:text-neutral-800 dark:hover:text-neutral-400"
+                className="hover:text-white"
                 target="_blank"
               >
                 @rauchg
