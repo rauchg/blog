@@ -3,7 +3,6 @@ import "./globals.css";
 import "@fontsource/inter/variable.css";
 import "@fontsource/roboto-mono/variable.css";
 
-import { Analytics } from "./analytics";
 import { Header } from "./header";
 import { Footer } from "./footer";
 import { doge } from "./doge";
@@ -64,7 +63,6 @@ export default function RootLayout({
         </main>
 
         <Footer />
-        <Analytics />
       </body>
     </html>
   );
