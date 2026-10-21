@@ -6,9 +6,6 @@ module.exports = withMDX({
   experimental: {
     mdxRs: true,
   },
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
   images: {
     minimumCacheTTL: 2678400,
     remotePatterns: [
