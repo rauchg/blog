@@ -190,6 +190,34 @@ vc --prod
 
 This is the equivalent of `git push` to `master` (or merging a PR to master)
 
+## Sync with upstream
+
+This repo is a fork of [rauchg/blog](https://github.com/rauchg/blog). To pull in
+upstream fixes:
+
+```bash
+git fetch upstream
+git merge upstream/main        # merge commit only: no rebase, no force-push
+```
+
+When resolving conflicts, keep OUR versions of:
+
+- Nix packaging and CI: `flake.nix`, `flake.lock`, `nix/**`, `devenv.nix`,
+  `.envrc`, `.github/workflows/ci.yml`, `docker-compose.yml`
+- Local Redis instead of Upstash: `app/redis.ts` (RESP over `node:net`,
+  `REDIS_URL` with auth/db) and `app/api/view/route.ts`. No `@upstash/redis`
+  dependency and no `KV_*` env vars; port upstream's Redis call sites to our
+  client.
+- `app/api/health/route.ts`
+- Personal content and identity: `app/posts.json`, `app/(post)/2026/**`,
+  `archive/**`, `app/about/**`, header/footer/logo/layout, and the OG image
+  routes. Pages we archived stay archived (e.g. modify/delete conflicts on
+  posts that now live under `archive/app-posts/` resolve as deleted).
+
+Take upstream for everything else. After merging, regenerate the lockfile
+(`pnpm install`), then update the `hash` in `nix/package.nix` and verify with
+`nix build .#blog-image`.
+
 ## Architecture
 
 ### Pure components
