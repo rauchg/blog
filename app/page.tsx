@@ -1,9 +1,7 @@
 import { Posts } from "./posts";
-import { getPosts } from "./get-posts";
-
-export const revalidate = 300;
+import { getCachedPosts } from "./get-posts";
 
 export default async function Home() {
-  const posts = await getPosts();
+  const posts = await getCachedPosts();
   return <Posts posts={posts} />;
 }

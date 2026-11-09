@@ -3,6 +3,7 @@ import { join } from "path";
 import { readFile } from "fs/promises";
 import { Caption } from "./caption";
 import NextImage from "next/image";
+import { cacheLife } from "next/cache";
 
 export async function Image({
   src,
@@ -15,6 +16,9 @@ export async function Image({
   width: number | null;
   height: number | null;
 }) {
+  "use cache";
+  cacheLife("hours");
+
   const isDataImage = src.startsWith("data:");
   if (isDataImage) {
     /* eslint-disable @next/next/no-img-element */

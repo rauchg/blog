@@ -1,6 +1,7 @@
 import postsData from "./posts.json";
 import redis from "./redis";
 import commaNumber from "comma-number";
+import { cacheLife } from "next/cache";
 
 export type Post = {
   id: string;
@@ -14,6 +15,12 @@ export type Post = {
 type Views = {
   [key: string]: string;
 };
+
+export async function getCachedPosts() {
+  "use cache";
+  cacheLife({ revalidate: 300 });
+  return getPosts();
+}
 
 export const getPosts = async () => {
   const allViews: null | Views = redis ? await redis.hgetall("views") : null;

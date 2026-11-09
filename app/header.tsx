@@ -1,10 +1,22 @@
 import { Logo } from "./logo";
 import Link from "next/link";
+import { Suspense } from "react";
 
 export function Header() {
   return (
     <header className="flex mb-5 md:mb-10 items-center">
-      <Logo />
+      <Suspense
+        fallback={
+          <Link
+            href="/"
+            className="text-md md:text-lg whitespace-nowrap font-bold pr-2"
+          >
+            Guillermo Rauch
+          </Link>
+        }
+      >
+        <Logo />
+      </Suspense>
 
       <nav className="text-xs grow justify-end items-center flex">
         <Link

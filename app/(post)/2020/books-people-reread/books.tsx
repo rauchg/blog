@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { cacheLife } from "next/cache";
 import {
   loadPageChunk,
   queryCollection,
@@ -17,6 +18,9 @@ export async function Books() {
 }
 
 async function getData() {
+  "use cache";
+  cacheLife({ revalidate: 300 });
+
   const {
     recordMap: { collection, collection_view },
   } = await loadPageChunk({

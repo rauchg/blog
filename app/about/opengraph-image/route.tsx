@@ -1,7 +1,5 @@
-export const revalidate = 300;
-
 import { ImageResponse } from "next/og";
-import { getPosts } from "@/app/get-posts";
+import { getCachedPosts } from "@/app/get-posts";
 import { readFileSync } from "fs";
 import { join } from "path";
 import commaNumber from "comma-number";
@@ -21,7 +19,7 @@ const geistSansMedium = readFileSync(join(fontsDir, "geist-medium.ttf"));
 const geistMono = readFileSync(join(fontsDir, "geist-mono-regular.ttf"));
 
 export async function GET() {
-  const posts = await getPosts();
+  const posts = await getCachedPosts();
   const viewsSum = posts.reduce((sum, post) => sum + post.views, 0);
 
   return new ImageResponse(

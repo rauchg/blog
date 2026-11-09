@@ -1,7 +1,5 @@
-export const revalidate = 300;
-
 import { ImageResponse } from "next/og";
-import { getPosts } from "@/app/get-posts";
+import { getCachedPosts } from "@/app/get-posts";
 import { readFileSync } from "fs";
 import { join } from "path";
 
@@ -16,7 +14,7 @@ const geistSansMedium = readFileSync(
 );
 
 export async function GET() {
-  const posts = await getPosts();
+  const posts = await getCachedPosts();
 
   return new ImageResponse(
     (
