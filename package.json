@@ -2,6 +2,7 @@
   "name": "rauchg-blog",
   "license": "MIT",
   "description": "rauchg.com (blog)",
+  "packageManager": "pnpm@10.34.9",
   "dependencies": {
     "@mdx-js/react": "^3.1.1",
     "@next/mdx": "16.4.5",
