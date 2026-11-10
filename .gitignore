@@ -10,4 +10,3 @@ TODO
 .env*.local
 fonts/*
 !fonts/init.mjs
-.env*
