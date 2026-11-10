@@ -1,4 +1,4 @@
-const API_ENDPOINT = "https://www.notion.so/api/v3";
+const API_ENDPOINT = "https://rauchg.notion.site/api/v3";
 
 export default async function rpc(fnName, body, retries = 3) {
   const url = `${API_ENDPOINT}/${fnName}`;

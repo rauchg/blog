@@ -1,11 +1,17 @@
 import links from "@/links.json";
 import { headers } from "next/headers";
 import { redirect, notFound } from "next/navigation";
+import { Suspense } from "react";
 
-export default async function Link(props: {
-  params: Promise<{ id: string }>;
-  searchParams: Promise<{ bot?: string }>;
-}) {
+export default function Link(props: PageProps<"/links/[id]">) {
+  return (
+    <Suspense fallback={<p>Redirecting…</p>}>
+      <LinkDestination {...props} />
+    </Suspense>
+  );
+}
+
+async function LinkDestination(props: PageProps<"/links/[id]">) {
   const searchParams = await props.searchParams;
   const params = await props.params;
   const link = links[params.id];

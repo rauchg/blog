@@ -7,6 +7,7 @@ import {
   type TweetProps,
 } from "react-tweet";
 import redis from "@/app/redis";
+import { unstable_rethrow } from "next/navigation";
 import { Caption } from "./caption";
 import "./tweet.css";
 
@@ -29,6 +30,7 @@ async function getAndCacheTweet(id: string): Promise<TweetType | undefined> {
       return tweet;
     }
   } catch (error) {
+    unstable_rethrow(error);
     console.error("tweet fetch error", error);
   }
 
@@ -49,8 +51,32 @@ const TweetContent = async ({ id, components }: TweetProps) => {
     return <TweetNotFound />;
   }
 
-  return <EmbeddedTweet tweet={tweet} components={components} />;
+  return (
+    <EmbeddedTweet
+      tweet={{
+        ...normalizeTweet(tweet),
+        quoted_tweet: tweet.quoted_tweet
+          ? normalizeTweet(tweet.quoted_tweet)
+          : undefined,
+      }}
+      components={components}
+    />
+  );
 };
+
+function normalizeTweet<T extends Pick<TweetType, "entities">>(tweet: T): T {
+  // The syndication API omits empty entity arrays.
+  return {
+    ...tweet,
+    entities: {
+      ...tweet.entities,
+      hashtags: tweet.entities.hashtags ?? [],
+      user_mentions: tweet.entities.user_mentions ?? [],
+      urls: tweet.entities.urls ?? [],
+      symbols: tweet.entities.symbols ?? [],
+    },
+  };
+}
 
 export const ReactTweet = (props: TweetProps) => (
   <Suspense fallback={<TweetSkeleton />}>
